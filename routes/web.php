@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/app', function () {
     return view('app');
 });
+
+Route::get('/gestionar_expediente', function () {
+    return view('Expediente.GestionarExpediente');
+});
+
+Route::get('/crear_expediente', function () {
+    return view('Expediente.CrearExpediente');
+});
