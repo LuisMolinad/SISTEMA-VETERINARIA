@@ -1,14 +1,14 @@
 @extends('app')
 
 @section('titulo')
-Gestionar Expediente
+Gestionar Cirugia
 @endsection
 
 @section('header')
 <div class="container">
     <div class="row">
         <div class="column">
-            <h1>GESTIONAR EXPEDIENTE</h1>
+            <h1>GESTIONAR CITAS DE CIRUGÍA</h1>
         </div>
         <div class="column">
             <form class="d-flex">
@@ -17,7 +17,7 @@ Gestionar Expediente
             </form>
         </div>
         <div class="column">
-            <a href="/crear_expediente"><button class="btn btn-success">Crear Expediente</button></a>
+            <a href="/crear_cirugia"><button class="btn btn-success">Crear cita de cirugía</button></a>
         </div>
     </div>
 </div>
@@ -38,35 +38,38 @@ Gestionar Expediente
             </thead>
             <tbody>
                 <tr>
-                    <th scope="id">ROA2405</th>
-                    <td>Centavo</td>
-                    <td>Rosalio</td>
-                    <td>78546932</td>
-                    <td>Cantón Santa Lucia</td>
+                    <th scope="id">G####</th>
+                    <td>Kero</td>
+                    <td>Katya</td>
+                    <td>60014695</td>
+                    <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="id">ROA2405</th>
-                    <td>Centavo</td>
-                    <td>Rosalio</td>
-                    <td>78546932</td>
-                    <td>Cantón Santa Lucia</td>
+                <th scope="id">G####</th>
+                    <td>Luna</td>
+                    <td>Katya</td>
+                    <td>60014695</td>
+                    <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="id">ROA2405</th>
-                    <td>Centavo</td>
-                    <td>Rosalio</td>
-                    <td>78546932</td>
-                    <td>Cantón Santa Lucia</td>
+                    <<th scope="id">G####</th>
+                    <td>Kero</td>
+                    <td>Katya</td>
+                    <td>60014695</td>
+                    <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
