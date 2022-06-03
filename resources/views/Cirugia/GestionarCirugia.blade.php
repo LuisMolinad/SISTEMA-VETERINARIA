@@ -44,7 +44,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
@@ -56,7 +56,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
@@ -68,7 +68,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
