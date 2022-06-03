@@ -16,7 +16,7 @@ class CitaCirugia extends Migration
         Schema::create('citaCirugia', function (Blueprint $table) {
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
+            $table->foreignId('mascota_id')->constrained('mascota')->cascadeOnDelete();
             $table->string('conceptoCirugia',30);
             $table->string('recomendacionPreoOperatoria',50);
         });

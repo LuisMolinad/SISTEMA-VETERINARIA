@@ -16,10 +16,11 @@ class CitaVacuna extends Migration
         Schema::create('citaVacuna', function (Blueprint $table) {
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
+            //$table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
+            $table->foreignId('mascota_id')->constrained('mascota')->cascadeOnDelete();
             $table->foreignId('vacuna_id')->constrained('vacuna')->cascadeOnDelete();
             $table->dateTime('fechaAplicacion');
-            $table->dateTime('siguienteAplicacion');
+            $table->dateTime('fechaRefuerzo');
         });
     }
 
@@ -30,6 +31,6 @@ class CitaVacuna extends Migration
      */
     public function down()
     {
-        //
+            //
     }
 }

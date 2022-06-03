@@ -19,7 +19,7 @@ class Recordatorio extends Migration
 
             $table->bigIncrements('id');
              //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-             $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
+            // $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
              $table->string('mensajeRecordatorio',150);
              $table->dateTime('fechaRecordatorio');
 

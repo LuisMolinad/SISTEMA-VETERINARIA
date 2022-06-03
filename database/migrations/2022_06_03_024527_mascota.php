@@ -20,6 +20,7 @@ class Mascota extends Migration
                $table->engine = "InnoDB";
 
                 $table->bigIncrements('id');
+                $table->string('idMascota',15);
                 //convencion de laravel para llaves foraneas
                 $table->foreignId('propietario_id')->constrained('propietario');
                 $table->string('nombreMascota',15);
@@ -30,7 +31,6 @@ class Mascota extends Migration
                 $table->dateTime('fechaNacimiento');
                 $table->boolean('fallecitoMascota');
                 $table->string('caracteristicasEspeciales',100);
-
 
             });
     }
