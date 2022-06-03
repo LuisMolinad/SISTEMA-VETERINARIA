@@ -32,6 +32,11 @@ Route::get('/gestionar_expediente', function () {
 Route::get('/crear_expediente', function () {
     return view('Expediente.CrearExpediente');
 });
+
+Route::get('/editar_expediente', function () {
+    return view('Expediente.EditarExpediente');
+});
+
 Route::get('/gestionar_cirugia', function () {
     return view('Cirugia.GestionarCirugia');
 });
