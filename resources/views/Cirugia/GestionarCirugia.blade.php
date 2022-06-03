@@ -15,11 +15,7 @@ Gestionar Cirugia
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-        </div>
-        <div class="column">
-            <a href="/crear_cirugia"><button class="btn btn-success">Crear cita de cirugía</button></a>
-        </div>
-    </div>
+    
 </div>
 @endsection
 
@@ -44,7 +40,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
@@ -56,7 +52,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
@@ -68,7 +64,7 @@ Gestionar Cirugia
                     <td>60014695</td>
                     <td>San Bartolo</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Crear</button>
+                        <button type="button" class="btn btn-success">Crear</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
