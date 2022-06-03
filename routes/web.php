@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
+    return view('Calendario.index');
 });
+*/
 
 Route::get('/app', function () {
     return view('app');
@@ -28,3 +32,7 @@ Route::get('/gestionar_expediente', function () {
 Route::get('/crear_expediente', function () {
     return view('Expediente.CrearExpediente');
 });
+
+Auth::routes();
+/*Accede al metodo index del Evento Controller*/
+Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
