@@ -62,7 +62,7 @@ Gestionar Cirugia
                     </td>
                 </tr>
                 <tr>
-                    <<th scope="id">G####</th>
+                    <th scope="id">G####</th>
                     <td>Kero</td>
                     <td>Katya</td>
                     <td>60014695</td>

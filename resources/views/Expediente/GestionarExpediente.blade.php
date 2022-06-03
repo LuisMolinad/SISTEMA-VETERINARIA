@@ -44,7 +44,7 @@ Gestionar Expediente
                     <td>78546932</td>
                     <td>Cantón Santa Lucia</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
@@ -55,7 +55,7 @@ Gestionar Expediente
                     <td>78546932</td>
                     <td>Cantón Santa Lucia</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
@@ -66,7 +66,7 @@ Gestionar Expediente
                     <td>78546932</td>
                     <td>Cantón Santa Lucia</td>
                     <td>
-                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>

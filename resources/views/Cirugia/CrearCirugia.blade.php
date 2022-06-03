@@ -54,13 +54,7 @@ Crear Cirugia
                         <input type="text" class="form-control" id="inputConceptoCirugia" placeholder="Ingrese el concepto de la cirugía">
             </div>
             <label for="date">Fecha de cita de cirugía</label>
-            <input class="date form-control" type="text">
-                    <script type="text/javascript">
-                        $('.date').datepicker({  
-                        format: 'mm-dd-yyyy'
-                        });  
-                    </script>                   
-                  
+            <input class="date form-control" type="text" readonly="readonly"> 
          <div id="columna3">
          <h3>Recomendaciones preoperatorias</h3>
             <div class="form-group">
@@ -68,12 +62,7 @@ Crear Cirugia
                         <input type="text" class="form-control" id="inputCondicionesPreoperatorias" placeholder="Ingrese las recomendaciones preoperatorias">
             </div>
             <label for="date">Fecha de recordatorio</label>
-            <input class="date form-control" type="text">
-                    <script type="text/javascript">
-                        $('.date').datepicker({  
-                        format: 'mm-dd-yyyy'
-                        });  
-                    </script> 
+            <input class="date form-control" type="text" readonly="readonly">  
             <div class="form-group">
                         <label for="exampleFormControlInput1">Mensaje de recordatorio</label>
                         <input type="text" class="form-control" id="inputCondicionesPreoperatorias" placeholder="Ingrese el mensaje de recordatorio">
