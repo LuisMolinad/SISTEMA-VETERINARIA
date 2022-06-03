@@ -4,14 +4,13 @@
 Crear expediente
 @endsection
 
+@section('header')
+    <h1>CREAR EXPEDIENTE MASCOTA</h1>
+@endsection
+
 @section('content')
 
-<header>
-    <h1>CREAR EXPEDIENTE MASCOTA</h1>
-</header>
-
-<main>
-    <div class="container">
+<div class="container">
         <form>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Codigo de la mascota</label>
@@ -61,6 +60,5 @@ Crear expediente
             <button type="submit" class="btn btn-success mb-2">Crear</button>
         </form>
     </div>
-</main>
 
 @endsection

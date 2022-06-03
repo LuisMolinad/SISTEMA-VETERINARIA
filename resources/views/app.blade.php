@@ -41,7 +41,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Expediente</a>
+                <a class="nav-link" href="/gestionar_expediente">Expediente</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +66,12 @@
     </div>
     </nav>
 
-    @yield('content')
+    <header>
+    @yield('header')
+    </header>
     
+    <main>
+    @yield('content')
+    </main>
 </body>
 </html>
