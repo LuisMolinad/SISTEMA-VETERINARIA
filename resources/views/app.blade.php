@@ -46,7 +46,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Citas para vacuna</a>
-                <a class="dropdown-item" href="#">Citas para cirugia</a>
+                <a class="dropdown-item" href="/gestionar_cirugia">Citas para cirugia</a>
                 </div>
             </li>
             <li class="nav-item">
