@@ -43,6 +43,12 @@ Route::get('/gestionar_cirugia', function () {
 Route::get('/crear_cirugia', function () {
     return view('Cirugia.CrearCirugia');
 });
+Route::get('/servicios/gestionar_servicio', function () {
+    return view('Recursos.Servicio.GestionarServicio');
+});
+Route::get('/vacunas/gestionar_vacuna', function () {
+    return view('Recursos.Vacuna.GestionarVacuna');
+});
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
 Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
