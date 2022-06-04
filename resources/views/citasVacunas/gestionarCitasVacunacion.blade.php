@@ -7,9 +7,8 @@ Actas de defunción
 @section('header')
 <br>
 <div class="container">
-    <h2>Actas de defunción</h2>
+    <h2>Gestionar citas de Vacunación</h2>
 </div>
-<br>
 @endsection
 
 @section('content')
@@ -33,7 +32,7 @@ Actas de defunción
                 <td>60014695</td>
                 <td>San Bartolo</td>
                 <td>
-                    <a role="button" class="btn btn-success" href="{{ route('defuncion.create') }}">Crear</a>
+                    <a role="button" class="btn btn-success" href="{{ route('citaVacuna.create') }}">Crear</a>
                     <button type="button" class="btn btn-warning">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
                 </td>

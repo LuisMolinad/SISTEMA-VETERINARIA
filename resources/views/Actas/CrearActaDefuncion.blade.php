@@ -15,29 +15,29 @@ Actas de defunción
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="IDMASCOTA">IDMASCOTA</label>
+            <strong> <label for="IDMASCOTA">IDMASCOTA</label></strong>
             <input type="text" class="form-control" id="inputAddress" placeholder="IDMASCOTA">
           </div>
           <div class="form-group">
-            <label for="inputNombreMascota">Mascota</label>
+            <strong>  <label for="inputNombreMascota">Mascota</label></strong>
             <input type="text" class="form-control" id="inputAddress2" placeholder="Nombre Mascota">
           </div>
-          <div class="form-row" style="background-color:#a6e4a9">
+          <div class="form-row" style="background-color:#e1dff4">
             <div class="form-group col-md-6">
-              <label for="inputnombreDuenio">Dueño</label>
+                <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
               <input type="text" class="form-control" id="inputnombreDuenio" placeholder="Nombre del dueño">
             </div>
             <div class="form-group col-md-6">
-              <label for="inputContactNumber">Número de contacto</label>
+                <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
               <input type="text" class="form-control" id="inputContactNumber" placeholder="Número de contacto">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputDireccion">Direccion</label>
+                <strong>   <label for="inputDireccion" style="color:black">Direccion</label></strong>
                 <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño">
               </div>
           </div>
         <div class="form-group">
-            <label for="InputCausaFallecimiento">Causa del fallecimiento</label>
+            <strong> <label for="InputCausaFallecimiento">Causa del fallecimiento</label> </strong>
             <input type="text" class="form-control" style="width: 550px; height: 120px;" id="InputCausaFallecimiento" placeholder="Causa del fallecimiento">
         </div>
 
