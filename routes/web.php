@@ -48,7 +48,6 @@ Route::get('/crear_cirugia', function () {
     return view('Cirugia.CrearCirugia');
 });
 
-
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
 
 Route::get('citas/listaMascotas', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
@@ -61,9 +60,18 @@ Route::get('citas/nuevaDosis', [CitaVacunaController::class, 'create'])->name('c
 Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
 Route::get('actas/defuncion', [defuncionController::class, 'create'])->name('defuncion.create');
 
-
-
-
+Route::get('/gestionar_servicios', function () {
+    return view('Recursos.Servicio.GestionarServicio');
+});
+Route::get('/gestionar_servicios/agregar_servicio',function(){
+    return view('Recursos.Servicio.AgregarServicio');
+});
+Route::get('/gestionar_vacunas', function () {
+    return view('Recursos.Vacuna.GestionarVacuna');
+});
+Route::get('/gestionar_vacunas/agregar_vacuna', function () {
+    return view('Recursos.Vacuna.AgregarVacuna');
+});
 
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
