@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CitaVacuna extends Migration
+class CreateTipoServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CitaVacuna extends Migration
      */
     public function up()
     {
-        Schema::create('citaVacuna', function (Blueprint $table) {
+        Schema::create('tipo_servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
-            $table->foreignId('vacuna_id')->constrained('vacuna')->cascadeOnDelete();
-            $table->dateTime('fechaAplicacion');
-            $table->dateTime('siguienteAplicacion');
+            $table->string('nombreServicio');
+            $table->string('descripcionServicio');
         });
     }
 
@@ -30,6 +28,6 @@ class CitaVacuna extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tipo_servicios');
     }
 }
