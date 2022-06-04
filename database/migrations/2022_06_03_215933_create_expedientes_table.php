@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Expediente extends Migration
+class CreateExpedientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class Expediente extends Migration
      */
     public function up()
     {
-        Schema::create('expediente', function (Blueprint $table) {
-            //para borrado en cascada
-            $table->engine = "InnoDB";
+        Schema::create('expedientes', function (Blueprint $table) {
+             //para borrado en cascada
+             $table->engine = "InnoDB";
 
              $table->bigIncrements('id');
              //convencion de laravel para llaves foraneas
-             $table->foreignId('mascota_id')->constrained('mascota')->cascadeOnDelete();
+             $table->foreignId('mascota_id')->constrained('mascotas')->cascadeOnDelete();
              $table->string('causaFallecimiento',30);
              $table->boolean('fallecidoExpediente');
 
-         });
+        });
     }
 
     /**
@@ -33,6 +33,6 @@ class Expediente extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('expedientes');
     }
 }

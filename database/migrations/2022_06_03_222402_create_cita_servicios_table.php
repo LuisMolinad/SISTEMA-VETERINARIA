@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CitaServicio extends Migration
+class CreateCitaServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CitaServicio extends Migration
      */
     public function up()
     {
-        Schema::create('citaServicio', function (Blueprint $table) {
+        Schema::create('cita_servicios', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
-            $table->foreignId('tipoServicio_id')->constrained('tipoServicio')->cascadeOnDelete();
+            $table->foreignId('tipoServicio_id')->constrained('tipo_servicios')->cascadeOnDelete();
             $table->string('notaServicio',30);
             $table->string('nombreMascotaServicio',15);
             $table->dateTime('fechaCitaServicio');
@@ -27,7 +27,6 @@ class CitaServicio extends Migration
             $table->time('horaServicio');
             $table->string('razaServicio',8);
             $table->string('colorServicio',8);
-
         });
     }
 
@@ -38,6 +37,6 @@ class CitaServicio extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cita_servicios');
     }
 }
