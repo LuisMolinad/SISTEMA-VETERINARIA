@@ -22,9 +22,9 @@ Route::get('/', function () {
 });
 */
 //Acta de defuncion Controller
-Route::get('actas/defuncion', [defuncionController::class, 'index'])->name('defuncion.index');
+Route::get('actas/defuncion', [defuncionController::class, 'create'])->name('defuncion.create');
 
-
+Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
 
 Route::get('/app', function () {
     return view('app');

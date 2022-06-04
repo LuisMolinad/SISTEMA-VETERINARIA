@@ -7,57 +7,61 @@ Actas de defunción
 @section('header')
 <br>
 <div class="container">
-    <h1>Acta defunción</h1>
+    <h1>Actas de defunción</h1>
 </div>
 @endsection
 
 @section('content')
 <div class="container">
-    <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </form>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">ID Mascota</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dueño</th>
+            <th scope="col">Número</th>
+            <th scope="col">Dirección</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="id">G####</th>
+                <td>Kero</td>
+                <td>Katya</td>
+                <td>60014695</td>
+                <td>San Bartolo</td>
+                <td>
+                    <a role="button" class="btn btn-success" href="{{ route('defuncion.create') }}">Crear</a>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+            <tr>
+            <th scope="id">G####</th>
+                <td>Luna</td>
+                <td>Katya</td>
+                <td>60014695</td>
+                <td>San Bartolo</td>
+                <td>
+                    <button type="button" class="btn btn-success">Crear</button>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="id">G####</th>
+                <td>Kero</td>
+                <td>Katya</td>
+                <td>60014695</td>
+                <td>San Bartolo</td>
+                <td>
+                    <button type="button" class="btn btn-success">Crear</button>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 @endsection
