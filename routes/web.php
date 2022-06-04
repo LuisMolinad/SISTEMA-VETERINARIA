@@ -43,11 +43,17 @@ Route::get('/gestionar_cirugia', function () {
 Route::get('/crear_cirugia', function () {
     return view('Cirugia.CrearCirugia');
 });
-Route::get('/servicios/gestionar_servicio', function () {
+Route::get('/gestionar_servicios', function () {
     return view('Recursos.Servicio.GestionarServicio');
 });
-Route::get('/vacunas/gestionar_vacuna', function () {
+Route::get('/gestionar_servicios/agregar_servicio',function(){
+    return view('Recursos.Servicio.AgregarServicio');
+});
+Route::get('/gestionar_vacunas', function () {
     return view('Recursos.Vacuna.GestionarVacuna');
+});
+Route::get('/gestionar_vacunas/agregar_vacuna', function () {
+    return view('Recursos.Vacuna.AgregarVacuna');
 });
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
