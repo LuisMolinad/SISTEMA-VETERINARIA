@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\defuncionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ Route::get('/', function () {
     return view('Calendario.index');
 });
 */
+//Acta de defuncion Controller
+Route::get('actas/defuncion', [defuncionController::class, 'index'])->name('defuncion.index');
+
+
 
 Route::get('/app', function () {
     return view('app');
@@ -46,3 +51,5 @@ Route::get('/crear_cirugia', function () {
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
 Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
+
+
