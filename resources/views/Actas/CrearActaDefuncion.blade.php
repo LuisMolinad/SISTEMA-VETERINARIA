@@ -22,7 +22,7 @@ Actas de defunción
             <label for="inputNombreMascota">Mascota</label>
             <input type="text" class="form-control" id="inputAddress2" placeholder="Nombre Mascota">
           </div>
-          <div class="form-row" style="background-color:#d3e9ff">
+          <div class="form-row" style="background-color:#a6e4a9">
             <div class="form-group col-md-6">
               <label for="inputnombreDuenio">Dueño</label>
               <input type="text" class="form-control" id="inputnombreDuenio" placeholder="Nombre del dueño">
@@ -42,7 +42,7 @@ Actas de defunción
         </div>
 
 
-        <button type="submit"  class="btn btn-primary">Guardar</button>
+        <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
       </form>
 </div>
 @endsection

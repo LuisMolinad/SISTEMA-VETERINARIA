@@ -29,7 +29,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark "  style="background-color: #00a00d;">
     <a class="navbar-brand" href="#">Logo veterinaria</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -71,7 +71,7 @@
                 </div>
             </li>
         </ul>
-        <a href="#"><button type="button" class="btn btn-secondary">Cerrar Sesion</button></a>
+        <a href="#"><button type="button" class="btn btn-danger">Cerrar Sesion</button></a>
     </div>
     </nav>
 
