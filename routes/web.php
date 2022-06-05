@@ -41,12 +41,14 @@ Route::get('/editar_expediente', function () {
 });
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
-Route::get('/gestionar_cirugia', function () {
+Route::get('/listaCirugia', function () {
     return view('Cirugia.GestionarCirugia');
 });
-Route::get('/crear_cirugia', function () {
+Route::get('/crearCita', function () {
     return view('Cirugia.CrearCirugia');
 });
+
+
 
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
 

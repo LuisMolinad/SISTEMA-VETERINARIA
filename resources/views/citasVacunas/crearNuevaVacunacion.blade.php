@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-Actas de defunción
+Cita de vacunación
 @endsection
 
 @section('header')
