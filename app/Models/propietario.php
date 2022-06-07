@@ -11,4 +11,6 @@ class propietario extends Model
 
     protected $table='propietarios';
     public $timestamps = false;
+
+
 }
