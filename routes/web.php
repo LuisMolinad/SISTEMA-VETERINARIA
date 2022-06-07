@@ -78,5 +78,9 @@ Route::get('/gestionar_vacunas/agregar_vacuna', function () {
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
 Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
-
-
+//Almacenar datos por medio de Store
+Route::post('/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+//Obtengo los datos para pintarlos en el calendario
+Route::get('/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+//Al momento de dar click a un evento del calendario se mostrara su contenido
+Route::post('/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);

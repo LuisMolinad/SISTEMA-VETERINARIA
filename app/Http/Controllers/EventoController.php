@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventoController extends Controller
 {
@@ -37,6 +38,8 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         //
+        request()->validate(Evento::$rules);
+        $evento = Evento::create($request->all());
     }
 
     /**
@@ -47,7 +50,9 @@ class EventoController extends Controller
      */
     public function show(Evento $evento)
     {
-        //
+        //Consultamos los datos almacenados en la base de datos
+        $evento = Evento::all();
+        return response()->json($evento);
     }
 
     /**
@@ -56,9 +61,16 @@ class EventoController extends Controller
      * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evento $evento)
+    public function edit($id)
     {
-        //
+        //Obtengo la informacion al darle click
+        $evento = Evento::find($id);
+
+        //Dar formato a los campos recuperados de la base por medio de carbon
+        $evento->start=Carbon::createFromFormat('Y-m-d H:i:s', $evento->start)->format('Y-m-d');
+        $evento->end=Carbon::createFromFormat('Y-m-d H:i:s', $evento->end)->format('Y-m-d');
+
+        return response()->json($evento);
     }
 
     /**
