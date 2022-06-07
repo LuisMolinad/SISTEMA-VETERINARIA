@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class propietario extends Model
 {
     use HasFactory;
+
+    protected $table='propietarios';
+    public $timestamps = false;
 }
