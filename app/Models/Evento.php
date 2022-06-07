@@ -12,11 +12,18 @@ class Evento extends Model
     //Se colocaran validaciones
     static $rules = [
         'title' => 'required',
-        'descripcion' => 'required',
+        'razaServicio' => 'required',
+        'colorServicio' => 'required',
+        'horaServicio' => 'required',
         'start' => 'required',
+        'clienteServicio' => 'required',
+        'telefonoServicio' => 'required',
+        'descripcion' => 'required',
         'end' => 'required'
     ];
 
-    protected $fillable = ['title','descripcion','start','end'];
+    protected $fillable = ['title','razaServicio',
+    'colorServicio','horaServicio', 'start','clienteServicio',
+    'telefonoServicio', 'descripcion','end'];
 
 }

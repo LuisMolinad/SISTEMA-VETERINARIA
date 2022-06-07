@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     //Obtenemos los campos del formulario
-    let formulario = document.querySelector("form");
+    let formulario = document.querySelector("#agregarcitasservicios");
 
 
     var calendarEl = document.getElementById('agenda');
@@ -40,10 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
             then(
                 (respuesta)=>{
                     //Recupero la informacion de la base de datos y la coloco para que se muestre
+                    //al momento de presionar una cita
                     formulario.id.value = respuesta.data.id;
                     formulario.title.value = respuesta.data.title;
+                    formulario.razaServicio.value = respuesta.data.razaServicio;
+                    formulario.colorServicio.value = respuesta.data.colorServicio;
+                    formulario.horaServicio.value = respuesta.data.horaServicio;
+                    formulario.start.value = respuesta.data.start; //Fecha de servicio
+                    formulario.clienteServicio.value = respuesta.data.clienteServicio;
+                    formulario.telefonoServicio.value = respuesta.data.telefonoServicio;
                     formulario.descripcion.value = respuesta.data.descripcion;
-                    formulario.start.value = respuesta.data.start;
+                    formulario.clienteServicio.value = respuesta.data.clienteServicio;
+                    
                     formulario.end.value = respuesta.data.end;
                     
 
