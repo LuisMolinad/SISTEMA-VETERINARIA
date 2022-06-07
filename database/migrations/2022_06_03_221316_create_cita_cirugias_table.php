@@ -14,9 +14,11 @@ class CreateCitaCirugiasTable extends Migration
     public function up()
     {
         Schema::create('cita_cirugias', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('mascota_id')->constrained('mascotas')->cascadeOnDelete();
+            $table->foreignId('mascota_id')->constrained('mascotas');
+           // $table->foreignId('recordatorios_id')->constrained('recordatorios')->cascadeOnDelete();
             $table->string('conceptoCirugia',30);
             $table->string('recomendacionPreoOperatoria',50);
         });
