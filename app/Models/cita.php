@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class propietario extends Model
+Abstract class CITA extends Model
 {
     use HasFactory;
-
-    protected $table='propietarios';
-    public $timestamps = false;
 }

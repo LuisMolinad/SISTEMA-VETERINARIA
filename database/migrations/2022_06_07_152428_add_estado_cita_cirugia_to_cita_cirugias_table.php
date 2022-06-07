@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventosTable extends Migration
+class AddEstadoCitaCirugiaToCitaCirugiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class CreateEventosTable extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
-
-            $table->id();
-            $table->string("title",255);
-            $table->text("descripcion");
-            $table->dateTime("start");
-            $table->dateTime("end");
-            $table->timestamps();
+        Schema::table('cita_cirugias', function (Blueprint $table) {
+            $table->boolean('estadoCitaCirugia')->nullable(true);
         });
     }
 
@@ -31,6 +25,8 @@ class CreateEventosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::table('cita_cirugias', function (Blueprint $table) {
+            $table->dropColumn('estadoCitaCirugia');
+        });
     }
 }
