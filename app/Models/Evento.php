@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     use HasFactory;
+
+    //Se colocaran validaciones
+    static $rules = [
+        'title' => 'required',
+        'descripcion' => 'required',
+        'start' => 'required',
+        'end' => 'required'
+    ];
+
+    protected $fillable = ['title','descripcion','start','end'];
+
 }

@@ -24,11 +24,52 @@
                     </button>
             </div>
             <div class="modal-body">
-                Body
+                <!--Coloco los campos de llenado -->
+
+                <form action=""> <!-- Se declara esta accion para poder capturar los datos del formulario -->
+                  {!! csrf_field() !!} <!--Captura los formularios unicamente del formulario-->
+                  <div class="form-group">
+
+                 
+
+                    <div class="form-group">
+                      <label for="id">ID</label>
+                      <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
+                      <small id="helpId" class="form-text text-muted">Help text</small>
+                    </div>
+
+
+                  <label for="title">Titulo</label>
+                  <input type="text" name="title" id="title" class="form-control" placeholder="Escribe el titulo del evento" aria-describedby="helpId">
+                  <small id="helpId" class="text-muted">Help text</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="descripcion">Descripcion</label>
+                  <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="start">Inicio</label>
+                  <input type="date"
+                    class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+                  <small id="helpId" class="form-text text-muted">Help text</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="end">Fin</label>
+                  <input type="date"
+                    class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
+                  <small id="helpId" class="form-text text-muted">Help text</small>
+                </div>
+            </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btnguardar">Guardar</button>
+               <!-- <button type="button" class="btn btn-primary">Modificar</button>
+                <button type="button" class="btn btn-primary">Eliminar</button> -->
+            
             </div>
         </div>
     </div>
