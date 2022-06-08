@@ -15,7 +15,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
-                <a class="dropdown-item" href="/listaCirugia">Citas para cirugia</a>
+                <a class="dropdown-item" href="/GestionarCirugia">Citas para cirugia</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -32,7 +32,6 @@
                 Actas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Cirugia</a>
                 <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
                 </div>
             </li>
