@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,10 +76,10 @@ Route::get('/gestionar_vacunas/agregar_vacuna', function () {
 
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
-Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
+Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
 //Almacenar datos por medio de Store
-Route::post('/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'store']);
 //Obtengo los datos para pintarlos en el calendario
-Route::get('/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
-Route::post('/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);

@@ -14,7 +14,7 @@ class DeleteCamposCitaServiciosToCitaServiciosTable extends Migration
     public function up()
     {
         Schema::table('cita_servicios', function (Blueprint $table) {
-            $table->dropColumn('horaServicio');
+            /*$table->dropColumn('horaServicio');*/
             $table->dropColumn('razaServicio');
             $table->dropColumn('colorServicio');
         });
@@ -28,7 +28,6 @@ class DeleteCamposCitaServiciosToCitaServiciosTable extends Migration
     public function down()
     {
         Schema::table('cita_servicios', function (Blueprint $table) {
-            $table->time('horaServicio');
             $table->string('razaServicio',8);
             $table->string('colorServicio',8);
         });
