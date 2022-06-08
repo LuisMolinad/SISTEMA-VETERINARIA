@@ -6,11 +6,7 @@ GESTIONAR PROPIETARIO
 
 @section('librerias')
 <!--Data tables-->
-<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-<script src="cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="code.jquery.com/jquery-3.5.1.js"></script>
-<script src="cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
 @section('header')
 <h1 class="header">GESTIONAR PROPIETARIO</h1>
@@ -18,8 +14,11 @@ GESTIONAR PROPIETARIO
 
 @section('content')
     <div class="container">
-        <table class="table" id="table">
-            <thead>
+        <div class="boton crear container_btn">
+        <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
+        </div>
+        <table class="table table-striped" style="width:100%" id="propietario">
+            <thead class="table-dark table-header">
                 <tr>
                 <th scope="col">Dueño</th>
                 <th scope="col">Número</th>
@@ -51,8 +50,17 @@ GESTIONAR PROPIETARIO
     </div>
 @endsection
 
-<script type="text/script">
-    $(document).ready(function () {
-    $('#table').DataTable();
-});
-</script>
+@section('js')
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#propietario').DataTable({
+                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]]
+            });
+        });
+    </script>
+@endsection

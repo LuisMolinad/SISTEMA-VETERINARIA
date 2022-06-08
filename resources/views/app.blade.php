@@ -56,6 +56,8 @@
     @yield('content')
     </main>
 </body>
+
+    @yield('js')
     <!--Date picker-->
     <!--
         <input class="date form-control" type="text" readonly="readonly">
