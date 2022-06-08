@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
+use App\Http\Controllers\CitaCirugiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,12 +41,22 @@ Route::get('/editar_expediente', function () {
 });
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
-Route::get('/listaCirugia', function () {
-    return view('Cirugia.GestionarCirugia');
-});
-Route::get('/crearCita', function () {
-    return view('Cirugia.CrearCirugia');
-});
+//Route::get('/listaCirugia', function () {
+  //  return view('Cirugia.GestionarCirugia');
+//});
+//Route::get('/crearCita', function () {
+//    return view('Cirugia.CrearCirugia');
+//});
+Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
+Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
+
+/*------------------------------------- PDF ---------------------------------------------------------------------------- */
+
+/* Route::get('/crearCita/pdf', function () {
+    return view('welcome');
+}); */
+
+Route::get('crearCita/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
 
 
 

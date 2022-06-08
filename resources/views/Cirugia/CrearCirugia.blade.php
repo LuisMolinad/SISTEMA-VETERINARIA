@@ -98,12 +98,11 @@ Cita de cirugía
             </div>
         
          </div>    
-         <br> 
-         <br> 
-         <button type="submit" style=" width: 150px;" class="btn btn-primary">Acta de permiso</button>
          
-         <br>  
-         <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
-      </form>
+          <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+      
+ <a href="{{ route('Cirugia.pdf') }}"  class="btn btn-primary btn-sm" data-placement= "left">{{__('Acta de permiso')}}  
+</a>  
+</form>
 </div>
 @endsection
