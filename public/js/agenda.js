@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Obtenemos los campos del formulario
     let formulario = document.querySelector("#agregarcitasservicios");
-
+    let formularioCaptura = document.querySelector("#operacionesservicio")
 
     var calendarEl = document.getElementById('agenda');
     
@@ -31,31 +31,38 @@ document.addEventListener('DOMContentLoaded', function() {
             $("#evento").modal("show");
         },
 
+    
         //Obtiene la informacion del evento seleccionado
         eventClick:function(info){
             var evento = info.event;
-            console.log(evento);
+            //console.log(evento);
 
             axios.post(baseURL+"/editar/"+info.event.id).
             then(
                 (respuesta)=>{
                     //Recupero la informacion de la base de datos y la coloco para que se muestre
-                    //al momento de presionar una cita
-                    formulario.id.value = respuesta.data.id;
-                    formulario.title.value = respuesta.data.title;
-                    formulario.razaServicio.value = respuesta.data.razaServicio;
-                    formulario.colorServicio.value = respuesta.data.colorServicio;
-                    formulario.horaServicio.value = respuesta.data.horaServicio;
-                    formulario.start.value = respuesta.data.start; //Fecha de servicio
-                    formulario.clienteServicio.value = respuesta.data.clienteServicio;
-                    formulario.telefonoServicio.value = respuesta.data.telefonoServicio;
-                    formulario.descripcion.value = respuesta.data.descripcion;
-                    formulario.clienteServicio.value = respuesta.data.clienteServicio;
-                    
-                    formulario.end.value = respuesta.data.end;
+                    //al momento de presionar una cita [Mostrar]
+                    formularioCaptura.id.value = respuesta.data.id;
+                    formularioCaptura.title.value = respuesta.data.title;
+                    formularioCaptura.horaServicio.value = respuesta.data.horaServicio;
+                    formularioCaptura.start.value = respuesta.data.start; //Fecha de servicio
+                    formularioCaptura.clienteServicio.value = respuesta.data.clienteServicio;
+                    formularioCaptura.telefonoServicio.value = respuesta.data.telefonoServicio;
+                    formularioCaptura.descripcion.value = respuesta.data.descripcion;
+                    formularioCaptura.clienteServicio.value = respuesta.data.clienteServicio;
+                    formularioCaptura.end.value = respuesta.data.end;
                     
 
-                    $("#evento").modal("show");
+                    //Desactivamos para que el usuario no pueda editar
+                    formularioCaptura.title.disabled = true;
+                    formularioCaptura.horaServicio.disabled = true;
+                    formularioCaptura.start.disabled = true;
+                    formularioCaptura.clienteServicio.disabled = true;
+                    formularioCaptura.telefonoServicio.disabled = true;
+                    formularioCaptura.descripcion.disabled = true;
+                    formularioCaptura.clienteServicio.disabled = true;
+
+                    $("#eventoconsulta").modal("show");
                 }
                 ).catch(
                     error=>{
@@ -80,8 +87,17 @@ document.addEventListener('DOMContentLoaded', function() {
     //Creo una funcion para que no se manejen los eventos de forma local
     function envioDeDatos(url){
 
+
+        //variable para capturar la hora, esto es la ubicacion del formulario
+        let posicionHora = 3;
+        let posicionFecha = 4;
+
+        let hora = formulario[posicionHora].value;
+        formulario[posicionFecha].value += " " + hora;
+
         const datosformulario = new FormData(formulario);
-        //console.log(datosformulario);
+        console.log(formulario[4].value);
+        
 
         const nuevaUrl = baseURL+url;
 

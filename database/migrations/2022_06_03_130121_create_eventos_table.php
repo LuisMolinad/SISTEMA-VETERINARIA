@@ -17,8 +17,6 @@ class CreateEventosTable extends Migration
 
             $table->id();
             $table->string("title",15); //Este es el nombre de la mascota
-            $table->string('razaServicio',8);
-            $table->string('colorServicio',8);
             $table->time('horaServicio');
             $table->dateTime("start"); //Fecha
             $table->string('clienteServicio',20); 
