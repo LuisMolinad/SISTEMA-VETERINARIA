@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PropietarioSeeder::class]);
         $this->call([TipoServicioSeeder::class]);
         $this->call([VacunaSeeder::class]);
+        $this->call([ MascotasSeeder::class ]);
         //seeder del recordatorio
         //seeder de cita servicio
         //seeder de mascota

@@ -1,11 +1,12 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\propietario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PropietarioFactory extends Factory
 {
+    protected $propietario = propietario::class;
     /**
      * Define the model's default state.
      *
