@@ -14,7 +14,7 @@ class ChangeNameFechaCitaServicioToCitasServiciosTable extends Migration
     public function up()
     {
         Schema::table('cita_servicios', function (Blueprint $table) {
-            $table->renameColumn('fechaCitaServicio', 'fechaHoraCitaServicio');
+           // $table->renameColumn('fechaCitaServicio', 'fechaHoraCitaServicio');
         });
     }
 
@@ -26,7 +26,7 @@ class ChangeNameFechaCitaServicioToCitasServiciosTable extends Migration
     public function down()
     {
         Schema::table('cita_servicios', function (Blueprint $table) {
-            $table->dateTime('fechaCitaServicio');
+           // $table->dateTime('fechaCitaServicio');
         });
     }
 }

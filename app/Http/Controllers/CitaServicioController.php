@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\citaServicio;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CitaServicioController extends Controller
 {
@@ -14,7 +15,8 @@ class CitaServicioController extends Controller
      */
     public function index()
     {
-        //
+        //Retornamos a la vista del calendario
+        return view('Calendario.index');
     }
 
     /**
@@ -36,6 +38,8 @@ class CitaServicioController extends Controller
     public function store(Request $request)
     {
         //
+        request()->validate(citaServicio::$rules);
+        $citaServicio = citaServicio::create($request->all());
     }
 
     /**
@@ -46,7 +50,9 @@ class CitaServicioController extends Controller
      */
     public function show(citaServicio $citaServicio)
     {
-        //
+        //Consultamos los datos almacenados en la base de datos
+        $citaServicio = citaServicio::all();
+        return response()->json($citaServicio);
     }
 
     /**
@@ -55,9 +61,16 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(citaServicio $citaServicio)
+    public function edit($id)
     {
-        //
+        //Obtengo la informacion al darle click a un evento por medio de su id
+        $citaServicio = citaServicio::find($id);
+
+        //Dar formato a los campos recuperados de la base por medio de carbon
+        $citaServicio->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('Y-m-d');
+        $citaServicio->end=Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
+
+        return response()->json($citaServicio);
     }
 
     /**
