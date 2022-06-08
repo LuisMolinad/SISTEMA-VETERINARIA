@@ -61,7 +61,6 @@ class PropietarioController extends Controller
     public function edit($id)
     {
         $propietario = Propietario::FindOrFail($id);
-
         return view('propietario.edit', compact('propietario'));
     }
 
@@ -77,8 +76,6 @@ class PropietarioController extends Controller
         $datosPropietario = request()->except(['_token', '_method']);
         Propietario::where('id','=',$id)->update($datosPropietario);
         $propietario = Propietario::FindOrFail($id);
-
-        //return view('propietario.edit', compact('propietario'));
         return redirect('/propietario');
     }
 

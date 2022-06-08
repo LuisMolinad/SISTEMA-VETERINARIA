@@ -13,13 +13,14 @@ GESTIONAR PROPIETARIO
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid contenedor">
         <div class="boton crear container_btn">
         <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
         </div>
         <table class="table table-striped" style="width:100%" id="propietario">
             <thead class="table-dark table-header">
                 <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Dueño</th>
                 <th scope="col">Número</th>
                 <th scope="col">Dirección</th>
@@ -30,6 +31,7 @@ GESTIONAR PROPIETARIO
             <tbody>
                 @foreach ($propietarios as $propietario)
                 <tr>
+                    <td>{{$propietario->id}}</td>
                     <td>{{$propietario->nombrePropietario}}</td>
                     <td>{{$propietario->telefonoPropietario}}</td>
                     <td>{{$propietario->direccionPropietario}}</td>
