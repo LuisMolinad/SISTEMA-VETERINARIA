@@ -14,7 +14,7 @@ class MascotaController extends Controller
      */
     public function index()
     {
-        //
+        return view('mascota.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MascotaController extends Controller
      */
     public function create()
     {
-        //
+        return view('mascota.create');
     }
 
     /**

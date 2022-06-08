@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
+use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\MascotaController;
+use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
 
 /*
@@ -93,4 +96,14 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 //Obtengo los datos para pintarlos en el calendario
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
+Route::post('/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+
+
+/*---------------Propietario---------------*/
+Route::resource('propietario', PropietarioController::class);
+/*---------------Mascota---------------*/
+Route::resource('mascota', MascotaController::class);
+/*---------------Expediente---------------*/
+Route::resource('expediente', ExpedienteController::class);
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+

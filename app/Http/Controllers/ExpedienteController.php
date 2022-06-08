@@ -14,7 +14,7 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('expediente.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ExpedienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('expediente.create');
     }
 
     /**

@@ -14,7 +14,8 @@ class PropietarioController extends Controller
      */
     public function index()
     {
-        //
+        $datosPropietario['propietarios'] = propietario::all();
+        return view('propietario.index',$datosPropietario);
     }
 
     /**
@@ -24,7 +25,7 @@ class PropietarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('propietario.create');
     }
 
     /**
@@ -35,7 +36,9 @@ class PropietarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosPropietario = request()->except('_token');
+        Propietario::insert($datosPropietario);
+        return redirect('/propietario');
     }
 
     /**
@@ -55,9 +58,11 @@ class PropietarioController extends Controller
      * @param  \App\Models\propietario  $propietario
      * @return \Illuminate\Http\Response
      */
-    public function edit(propietario $propietario)
+    public function edit($id)
     {
-        //
+        $propietario = Propietario::FindOrFail($id);
+
+        return view('propietario.edit', compact('propietario'));
     }
 
     /**
@@ -67,9 +72,14 @@ class PropietarioController extends Controller
      * @param  \App\Models\propietario  $propietario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, propietario $propietario)
+    public function update(Request $request, $id)
     {
-        //
+        $datosPropietario = request()->except(['_token', '_method']);
+        Propietario::where('id','=',$id)->update($datosPropietario);
+        $propietario = Propietario::FindOrFail($id);
+
+        //return view('propietario.edit', compact('propietario'));
+        return redirect('/propietario');
     }
 
     /**
@@ -78,8 +88,9 @@ class PropietarioController extends Controller
      * @param  \App\Models\propietario  $propietario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(propietario $propietario)
+    public function destroy($id)
     {
-        //
+        Propietario::destroy($id);
+        return redirect('/propietario');
     }
 }
