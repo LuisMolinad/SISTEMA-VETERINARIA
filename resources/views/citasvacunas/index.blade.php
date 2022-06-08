@@ -32,7 +32,7 @@ Actas de defunción
                 <td>60014695</td>
                 <td>San Bartolo</td>
                 <td>
-                    <a role="button" class="btn btn-success" href="{{ route('citaVacuna.create') }}">Crear</a>
+                    <a role="button" class="btn btn-success" href="{{ url('citasvacuna/create') }}">Crear</a>
                     <button type="button" class="btn btn-warning">Editar</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
                 </td>

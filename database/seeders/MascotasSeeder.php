@@ -27,8 +27,6 @@ class MascotasSeeder extends Seeder
             'fechaNacimiento'=>'2022-03-25 13:50:55.999',
             'fallecidoMascota'=>0,
        ],
-
-
         [
             'propietario_id'=>'1',
             'idMascota'=> 'G00002',

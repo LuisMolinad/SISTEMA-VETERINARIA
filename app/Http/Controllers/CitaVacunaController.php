@@ -14,7 +14,7 @@ class CitaVacunaController extends Controller
      */
     public function index()
     {
-       //return view('citasVacunas.gestionarCitasVacunacion');
+        return view('citasvacunas.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CitaVacunaController extends Controller
      */
     public function create()
     {
-        return view('citasVacunas.crearNuevaVacunacion');
+        return view('citasvacunas.create');
     }
 
     /**
@@ -35,7 +35,9 @@ class CitaVacunaController extends Controller
      */
     public function store(Request $request)
     {
-        return view('citasVacunas.gestionarCitasVacunacion');
+      $datosCita = request()->except('_token');
+      citaVacuna ::insert($datosCita);
+      return response()->json($datosCita);
     }
 
     /**
@@ -46,7 +48,7 @@ class CitaVacunaController extends Controller
      */
     public function show(citaVacuna $citaVacuna)
     {
-        return view('citasVacunas.gestionarCitasVacunacion');
+       // return view('citasVacunas.gestionarCitasVacunacion');
     }
 
     /**

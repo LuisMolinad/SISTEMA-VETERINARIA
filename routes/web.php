@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
+
+/****
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +26,7 @@ Route::get('/', function () {
     return view('Calendario.index');
 });
 */
+Auth::routes();
 
 Route::get('/app', function () {
     return view('app');
@@ -51,11 +56,13 @@ Route::get('/crearCita', function () {
 
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
 //Route::resource('citaVacuna',CitaVacunaController::class);
-
+/*
 Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacuna.show');
 
 Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
+*/
 
+Route::resource('/citasvacuna', CitaVacunaController::class);
 
 
 
@@ -92,3 +99,7 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

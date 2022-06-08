@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>@yield('titulo')</title>  
+    <title>@yield('titulo')</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -46,7 +46,8 @@
                 Citas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('citaVacuna.show') }}">Citas para vacuna</a>
+               <!-- ">Citas para vacuna</a>-->
+               <a class="dropdown-item" href="{{ url('citasvacuna') }}">Citas para vacuna</a>
                 <a class="dropdown-item" href="/listaCirugia">Citas para cirugia</a>
                 </div>
             </li>
