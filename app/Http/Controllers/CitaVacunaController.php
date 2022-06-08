@@ -14,7 +14,7 @@ class CitaVacunaController extends Controller
      */
     public function index()
     {
-       return view('citasVacunas.gestionarCitasVacunacion');
+       //return view('citasVacunas.gestionarCitasVacunacion');
     }
 
     /**
@@ -35,7 +35,7 @@ class CitaVacunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('citasVacunas.gestionarCitasVacunacion');
     }
 
     /**
@@ -46,7 +46,7 @@ class CitaVacunaController extends Controller
      */
     public function show(citaVacuna $citaVacuna)
     {
-        //
+        return view('citasVacunas.gestionarCitasVacunacion');
     }
 
     /**

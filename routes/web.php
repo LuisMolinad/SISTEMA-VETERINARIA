@@ -50,9 +50,16 @@ Route::get('/crearCita', function () {
 
 
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
+//Route::resource('citaVacuna',CitaVacunaController::class);
 
-Route::get('citas/listaMascotas', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
-Route::get('citas/nuevaDosis', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
+Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacuna.show');
+
+Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
+
+
+
+
+
 
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
@@ -74,7 +81,9 @@ Route::get('/gestionar_vacunas/agregar_vacuna', function () {
     return view('Recursos.Vacuna.AgregarVacuna');
 });
 
-Auth::routes();
+
+
+
 /*Accede al metodo index del Evento Controller*/
 Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
 //Almacenar datos por medio de Store

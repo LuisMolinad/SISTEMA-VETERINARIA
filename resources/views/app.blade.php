@@ -46,7 +46,7 @@
                 Citas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
+                <a class="dropdown-item" href="{{ route('citaVacuna.show') }}">Citas para vacuna</a>
                 <a class="dropdown-item" href="/listaCirugia">Citas para cirugia</a>
                 </div>
             </li>
