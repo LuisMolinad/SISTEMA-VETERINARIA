@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\citaCirugia;
 use Illuminate\Http\Request;
+use PDF;
 
 class CitaCirugiaController extends Controller
 {
@@ -14,7 +15,17 @@ class CitaCirugiaController extends Controller
      */
     public function index()
     {
-        //
+       // $citaCirugia = Cirugia::paginate();
+       return view('Cirugia.GestionarCirugia'); 
+    }
+
+    /*Para el PDF */
+    public function pdf()
+    {
+        $pdf = PDF::loadView('Cirugia.pdf');
+      //  $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+        //return view('Cirugia.pdf');
     }
 
     /**
@@ -24,7 +35,7 @@ class CitaCirugiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Cirugia.CrearCirugia');
     }
 
     /**
