@@ -13,6 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([PropietarioSeeder::class]);
+        $this->call([TipoServicioSeeder::class]);
+        $this->call([VacunaSeeder::class]);
+        //seeder del recordatorio
+        //seeder de cita servicio
+        //seeder de mascota
+        //seeder de expediente
+        //seeder de citavacuna
+        //seeder de citacirugia
     }
 }
