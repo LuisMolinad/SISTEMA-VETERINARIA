@@ -1,0 +1,20 @@
+.navbar{
+    background-color: #00a00d;
+}
+
+.fieldset{
+    border: 1px black solid;
+    padding: 1rem 2rem;
+    margin: 2rem 0;
+}
+
+.legend{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+.header{
+    text-align: center;
+    margin-top: 2rem;
+}
