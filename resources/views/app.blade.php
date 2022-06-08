@@ -47,9 +47,7 @@
     -->
 </head>
 <body>
-
     @include('navbar')
-
     <header>
     @yield('header')
     </header>

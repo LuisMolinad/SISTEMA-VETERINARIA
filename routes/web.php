@@ -7,7 +7,7 @@ use App\Http\Controllers\CitaVacunaController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
-
+use App\Http\Controllers\CitaCirugiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +44,22 @@ Route::get('/editar_expediente', function () {
 });
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
-Route::get('/listaCirugia', function () {
-    return view('Cirugia.GestionarCirugia');
-});
-Route::get('/crearCita', function () {
-    return view('Cirugia.CrearCirugia');
-});
+//Route::get('/listaCirugia', function () {
+  //  return view('Cirugia.GestionarCirugia');
+//});
+//Route::get('/crearCita', function () {
+//    return view('Cirugia.CrearCirugia');
+//});
+Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
+Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
+
+/*------------------------------------- PDF ---------------------------------------------------------------------------- */
+
+/* Route::get('/crearCita/pdf', function () {
+    return view('welcome');
+}); */
+
+Route::get('crearCita/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
 
 
 
@@ -80,13 +90,14 @@ Route::get('/gestionar_vacunas/agregar_vacuna', function () {
 
 Auth::routes();
 /*Accede al metodo index del Evento Controller*/
-Route::get('/', [App\Http\Controllers\EventoController::class, 'index']);
+Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
 //Almacenar datos por medio de Store
-Route::post('/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'store']);
 //Obtengo los datos para pintarlos en el calendario
-Route::get('/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+
 
 /*---------------Propietario---------------*/
 Route::resource('propietario', PropietarioController::class);
@@ -94,3 +105,5 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
+Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+
