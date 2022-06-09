@@ -14,6 +14,22 @@ class mascota extends Model
 
     protected $table='mascotas';
     public $timestamps = false;
+    protected $fillable = [
+
+        'propietario_id',
+        'idMascota',
+        'nombreMascota',
+        'razaMascota',
+        'especie',
+        'colorMascota',
+        'sexoMascota',
+        //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),
+        'fechaNacimiento',
+        'fallecidoMascota',
+    ];
+
+
+        //ha este metodo me refiero, una mascota tiene muchos propietarios
     public function propietario()
     {
         return $this->belongsTo(propietario::class);

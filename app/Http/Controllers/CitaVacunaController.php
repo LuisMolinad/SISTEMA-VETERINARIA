@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\citaVacuna;
 use Illuminate\Http\Request;
-
+use App\Models\mascota;
+use App\Models\propietario;
 class CitaVacunaController extends Controller
 {
     /**
@@ -14,7 +15,12 @@ class CitaVacunaController extends Controller
      */
     public function index()
     {
-        return view('citasvacunas.index');
+        //lo que va dentro del with tiene que ser igual al metodo que esta dentro del model mascota, es el que define la relacion hace ctrl + click al
+        // model y alla te explico
+        $mascotas = mascota::with('propietario')->get();
+       // $propietarios = propietario::with('mascotas')->get();
+                                                //aca se van as variables de arriba
+        return view(('citasvacunas.index'),compact('mascotas'));
     }
 
     /**

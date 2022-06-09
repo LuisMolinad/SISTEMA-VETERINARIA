@@ -24,42 +24,25 @@ Actas de defunción
             <th scope="col"></th>
             </tr>
         </thead>
+            <!-- $mascota->propietario(es el nombre del metodo que esta en el model que define la relacion)->nombrePropietario(el nombre de la columna en la bd)-->
         <tbody>
+            @foreach ( $mascotas as $mascota )
+
+                    <tr>
+                        <th scope="id">{{$mascota->idMascota}}</th>
+                        <td id="nombre mascota">{{$mascota->nombreMascota}}</td>
+                        <td id="nombre duenio">{{$mascota->propietario->nombrePropietario }}</td>
+                        <td id="telefono duenio">{{$mascota->propietario->telefonoPropietario}}</td>
+                        <td id="direccion  duenio">{{$mascota->propietario->direccionPropietario}}</td>
+                        <td>
+                            <a role="button" class="btn btn-success" href="{{ url('citasvacuna/create') }}">Crear</a>
+                            <button type="button" class="btn btn-warning">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+
+            @endforeach
             <tr>
-                <th scope="id">G####</th>
-                <td>Kero</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                    <a role="button" class="btn btn-success" href="{{ url('citasvacuna/create') }}">Crear</a>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-            <th scope="id">G####</th>
-                <td>Luna</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                    <button type="button" class="btn btn-success">Crear</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="id">G####</th>
-                <td>Kero</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                    <button type="button" class="btn btn-success">Crear</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
             </tr>
         </tbody>
     </table>

@@ -13,7 +13,11 @@ class propietario extends Model
 
     protected $table='propietarios';
     public $timestamps = false;
-
+    protected $fillable = [
+        'nombrePropietario',
+        'telefonoPropietario',
+        'direccionPropietario',
+    ];
     public function mascotas()
     {
         return $this->hasMany(mascota::class);
