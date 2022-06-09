@@ -1,5 +1,6 @@
 .navbar{
     background-color: #00a00d;
+    margin-bottom: 1rem;
 }
 
 .fieldset{
@@ -38,4 +39,20 @@
 
 .contenedor{
     max-width: 90%;
+}
+
+.logo-navbar{
+    aspect-ratio: 1;
+    max-width: 4rem;
+}
+
+.nav-link{
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+}
+
+.nav-link::after{
+    font-weight: bold;
+    color: white;
 }
