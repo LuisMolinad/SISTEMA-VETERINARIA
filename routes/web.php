@@ -105,5 +105,3 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
-Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
-

@@ -19,7 +19,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/gestionar_expediente">Expediente</a>
+                <a class="nav-link" href="/expediente">Expediente</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/propietario">Propietario</a>

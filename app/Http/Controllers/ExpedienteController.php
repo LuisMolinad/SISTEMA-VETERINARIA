@@ -14,7 +14,8 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        return view('expediente.index');
+        $datosExpediente['expedientes'] =expediente::all();
+        return view('expediente.index',$datosExpediente);
     }
 
     /**
@@ -35,7 +36,9 @@ class ExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosExpediente = request()->except('_token');
+        Expediente::insert($datosExpediente);
+        return redirect('/expediente');
     }
 
     /**
@@ -55,9 +58,10 @@ class ExpedienteController extends Controller
      * @param  \App\Models\expediente  $expediente
      * @return \Illuminate\Http\Response
      */
-    public function edit(expediente $expediente)
+    public function edit($id)
     {
-        //
+        $expediente = Expediente::FindOrFail($id);
+        return view('expediente.edit', compact('expediente'));
     }
 
     /**
@@ -67,9 +71,12 @@ class ExpedienteController extends Controller
      * @param  \App\Models\expediente  $expediente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, expediente $expediente)
+    public function update(Request $request, $id)
     {
-        //
+        $datosExpediente = request()->except(['_token', '_method']);
+        Expediente::where('id','=',$id)->update($datosExpediente);
+        $expediente = Expediente::FindOrFail($id);
+        return redirect('/expediente');
     }
 
     /**
@@ -78,8 +85,9 @@ class ExpedienteController extends Controller
      * @param  \App\Models\expediente  $expediente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(expediente $expediente)
+    public function destroy($id)
     {
-        //
+        Expediente::destroy($id);
+        return redirect('/expediente');
     }
 }
