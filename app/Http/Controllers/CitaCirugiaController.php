@@ -84,9 +84,17 @@ class CitaCirugiaController extends Controller
     }
 
     public function mostrar($id){
-        $mascotas = mascota::FindOrFail($id);
+        //$mascotas = mascota::FindOrFail($id);
+      //  return view('Cirugia.CrearCirugia',compact('mascotas'));
+       
+    /*  public function show($id)
+{
+    $item = MenuItem::with('variant')->findOrFail($id);
+    return $item;
+}*/
+        $mascotas=mascota::with('propietario')->findOrFail($id);
+
         return view('Cirugia.CrearCirugia',compact('mascotas'));
-        //return view('Cirugia.CrearCirugia');
     }
 
     /**
