@@ -20,18 +20,18 @@ Cita de cirugía
     <div class="form-row" >
             <div class="form-group col-md-6">
             <strong> <label for="IDMASCOTA">IDMASCOTA</label></strong>
-                <input type="text" class="form-control" id="IDMASCOTA" placeholder="IDMASCOTA">
+                <input type="text" class="form-control" id="IDMASCOTA" name="idMascota" value = "{{$mascotas->idMascota}}" readonly="readonly">
            
                 <strong> <label for="inputRazaMascota">RAZA</label></strong>
-                <input type="text" class="form-control" id="inputRazaMascota" placeholder="Raza">
+                <input type="text" class="form-control" id="inputRazaMascota" name="razaMascota" value="{{$mascotas->razaMascota}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="inputNombreMascota">Mascota</label></strong>
-                <input type="text" class="form-control" id="inputNombreMascota" placeholder="Nombre Mascota">
+                <input type="text" class="form-control" id="inputNombreMascota" name="nombreMascota" value="{{$mascotas->nombreMascota}}" readonly=readonly">
 
 
                 <strong>  <label for="inputSexoMascota" >Sexo</label></strong>
-                <input type="text" class="form-control" id="inputSexoMascota" style="width: 180px;"placeholder="Sexo mascota">
+                <input type="text" class="form-control" id="inputSexoMascota" name="sexoMascota" value="{{$mascotas->sexoMascota}}" style="width: 180px;" readonly="readonly">
             </div>
         </div>
 
@@ -42,15 +42,15 @@ Cita de cirugía
         <div class="form-row" style="background-color:#e1dff4">
             <div class="form-group col-md-6">
                 <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
-              <input type="text" class="form-control" id="inputnombreDuenio" placeholder="Nombre del dueño">
+              <input type="text" class="form-control" id="inputnombreDuenio" name="nombrePropietario" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-              <input type="text" class="form-control" id="inputContactNumber" placeholder="Número de contacto">
+              <input type="text" class="form-control" id="inputContactNumber" name="telefonoPropietario" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>   <label for="inputDireccion" style="color:black">Dirección</label></strong>
-                <input type="text" class="form-control" id="inputDireccion" placeholder="Dirección del dueño">
+                <input type="text" class="form-control" id="inputDireccion" name="direccionPropietario" readonly="readonly">
               </div>
           </div>
 
