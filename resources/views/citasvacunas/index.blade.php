@@ -3,20 +3,22 @@
 @section('titulo')
 GESTIONAR CITA VACUNA
 @endsection
+
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+@endsection
+
 @section('header')
-<br>
-<div class="container">
-    <h1>Gestionar citas de Vacunación</h1>
-</div>
+
+    <h1 class="header">Gestionar citas de Vacunación</h1>
+
 @endsection
 
 @section('content')
 <div class="container-fluid contenedor">
-    <div class="boton crear container_btn">
-    <table class="table table-striped" style="width:100%" id="propietario" >
+
+    <table class="table table-striped" style="width:100%" id="citaVacuna">
         <thead class="table-dark table-header">
             <tr>
             <th scope="col">ID Mascota</th>
@@ -45,15 +47,12 @@ GESTIONAR CITA VACUNA
                     </tr>
 
             @endforeach
-            <tr>
-            </tr>
         </tbody>
     </table>
-    </div>
+
 </div>
 
 @endsection
-
 @section('js')
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -62,9 +61,10 @@ GESTIONAR CITA VACUNA
 
     <script>
         $(document).ready(function () {
-            $('#mascota').DataTable({
+            $('#citaVacuna').DataTable({
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]]
             });
         });
     </script>
 @endsection
+
