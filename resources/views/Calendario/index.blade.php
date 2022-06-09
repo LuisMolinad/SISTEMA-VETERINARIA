@@ -25,7 +25,8 @@
             <div class="modal-body">
                 <!--Coloco los campos de llenado -->
 
-                <form action="" id="agregarcitasservicios"> <!-- Se declara esta accion para poder capturar los datos del formulario -->
+                <form action="" id="agregarcitasservicios" name="agregarcitasservicios"> <!-- Se declara esta accion para poder capturar los datos del formulario -->
+                  <div id="validaragendar"></div>
                   {!! csrf_field() !!} <!--Captura los formularios unicamente del formulario-->
                   <div class="form-group">
 
@@ -37,7 +38,6 @@
 
                   <label for="title">Nombre de Mascota: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
-                  <small id="helpId" class="text-muted">Help text</small>
                 </div>
                 
                 <div class="form-group">
