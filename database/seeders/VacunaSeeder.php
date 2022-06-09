@@ -18,7 +18,7 @@ class VacunaSeeder extends Seeder
      $data= [
                 [
                     'nombreVacuna'=> 'Rabia',
-                    'descripcionVacuna'=> 'Las vacunas en perros contra la rabia hacen que el animal cree una respuesta inmunológica contra el virus. El perro está protegido a los 14 días tras la inyección de la vacuna. SI ha sido administrada correctamente su efectividad es del 100%.',
+                    'descripcionVacuna'=> 'Vacuna contra la rabia obligatoria',
                     'tiempoEntreDosisDia'=> 365
 
                 ],
@@ -28,7 +28,7 @@ class VacunaSeeder extends Seeder
                     'tiempoEntreDosisDia'=> 365
                 ],
                 [
-                    'nombreVacuna'=> 'Moquillo-Hepatitis-Leptospirosis',
+                    'nombreVacuna'=> 'Moquillo-Hepatitis',
                     'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
                     'tiempoEntreDosisDia'=> 365
                 ],

@@ -10,6 +10,8 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
+use App\Http\Controllers\VacunaController;
+use App\Http\Controllers\TipoServicioController;
 
 /****
 
@@ -89,18 +91,7 @@ Route::resource('/citasvacuna', CitaVacunaController::class);
 Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
 Route::get('actas/defuncion', [defuncionController::class, 'create'])->name('defuncion.create');
 
-Route::get('/gestionar_servicios', function () {
-    return view('Recursos.Servicio.GestionarServicio');
-});
-Route::get('/gestionar_servicios/agregar_servicio',function(){
-    return view('Recursos.Servicio.AgregarServicio');
-});
-Route::get('/gestionar_vacunas', function () {
-    return view('Recursos.Vacuna.GestionarVacuna');
-});
-Route::get('/gestionar_vacunas/agregar_vacuna', function () {
-    return view('Recursos.Vacuna.AgregarVacuna');
-});
+
 
 
 
@@ -121,3 +112,6 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
+
+Route::resource('vacuna',VacunaController::class);
+Route::resource('tiposervicio',TipoServicioController::class);
