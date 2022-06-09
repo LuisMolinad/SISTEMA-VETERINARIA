@@ -17,11 +17,13 @@ class citaServicio extends Model
         'clienteServicio' => 'required',
         'telefonoServicio' => 'required',
         'descripcion' => 'required',
-        'end' => 'required'
+        'end' => 'required',
+        'tipoServicio_id' => 'required',
+        'color' => 'required',
     ];
 
 
     protected $fillable = ['title','horaServicio', 'start','clienteServicio',
-    'telefonoServicio', 'descripcion','end'];
+    'telefonoServicio', 'descripcion','end','tipoServicio_id', 'color'];
 
 }

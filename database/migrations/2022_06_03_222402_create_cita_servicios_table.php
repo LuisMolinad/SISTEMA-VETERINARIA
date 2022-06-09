@@ -14,10 +14,9 @@ class CreateCitaServiciosTable extends Migration
     public function up()
     {
         Schema::create('cita_servicios', function (Blueprint $table) {
-            /*$table->engine = "InnoDB";
-            $table->bigIncrements('id');
+            $table->engine = "InnoDB";
+            /*$table->bigIncrements('id');*/
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->foreignId('tipoServicio_id')->constrained('tipo_servicios')->cascadeOnDelete();*/
             $table->id();
             $table->string('title',15);
             $table->time('horaServicio');
@@ -28,7 +27,9 @@ class CreateCitaServiciosTable extends Migration
             /*$table->boolean('estadoServicio');*/
             $table->string('razaServicio',8);
             $table->string('colorServicio',8);
+            $table->string('color',20);
             $table->dateTime("end");
+            $table->foreignId('tipoServicio_id')->constrained('tipo_servicios')->cascadeOnDelete();
             $table->timestamps();
         });
     }
