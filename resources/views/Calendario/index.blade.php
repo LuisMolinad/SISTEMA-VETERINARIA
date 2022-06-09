@@ -35,42 +35,58 @@
                       <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
 
-                  <label for="title">Nombre de Mascota</label>
+                  <label for="title">Nombre de Mascota: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
                   <small id="helpId" class="text-muted">Help text</small>
                 </div>
                 
                 <div class="form-group">
-                  <label for="horaServicio">Hora</label>
+                  <label for="horaServicio">Hora: </label>
                   <input type="time"
                     class="form-control" name="horaServicio" id="horaServicio" aria-describedby="helpId" placeholder="Ingrese el color de la mascota">
                   <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
-                  <label for="start">Fecha</label>
+                  <label for="start">Fecha: </label>
                   <input type="text"
                     class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
                   <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
-                  <label for="clienteServicio">Propietario</label>
+                  <label for="tipoServicio_id">Tipo de Servicio: </label>
+                  <select class="form-control" name="tipoServicio_id" id="tipoServicio_id">
+                    @foreach ($tipoServicios as $tipoServicio)
+                      <option value="{{$tipoServicio->id}}">{{$tipoServicio->nombreServicio}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="clienteServicio">Propietario: </label>
                   <input type="text"
                     class="form-control" name="clienteServicio" id="clienteServicio" aria-describedby="helpId" placeholder="Ingrese el nombre del propietario">
                   <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
-                  <label for="telefonoServicio">Telefono</label>
+                  <label for="telefonoServicio">Telefono: </label>
                   <input type="text"
                     class="form-control" name="telefonoServicio" id="telefonoServicio" aria-describedby="helpId" placeholder="Ingrese el telefono del propietario">
                   <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
-                  <label for="descripcion">Observaciones</label>
+                  <label for="descripcion">Observaciones: </label>
                   <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                </div>
+
+                <div class="form-group d-none">
+                  <label for="color">Color</label>
+                  <input type="text"
+                    class="form-control" name="color" id="color" aria-describedby="helpId" placeholder="">
+                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group d-none">
@@ -127,6 +143,14 @@
                 <input type="text"
                   class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
               </div>
+
+              <div class="form-group">
+                <label for="tipoServicio_id">Tipo Servicio</label>
+                <input type="text"
+                  class="form-control" name="tipoServicio_id" id="tipoServicio_id" aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">Help text</small>
+              </div>
+
 
               <div class="form-group">
                 <label for="clienteServicio">Propietario</label>

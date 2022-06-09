@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\citaServicio;
+use App\Models\tipoServicio;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -15,8 +16,9 @@ class CitaServicioController extends Controller
      */
     public function index()
     {
+        $tipoServicios = tipoServicio::all();
         //Retornamos a la vista del calendario
-        return view('Calendario.index');
+        return view('Calendario.index', compact("tipoServicios"));
     }
 
     /**
