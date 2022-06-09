@@ -20,18 +20,18 @@ Cita de cirugía
     <div class="form-row" >
             <div class="form-group col-md-6">
             <strong> <label for="IDMASCOTA">IDMASCOTA</label></strong>
-                <input type="text" class="form-control" id="IDMASCOTA" placeholder="IDMASCOTA">
+                <input type="text" class="form-control" id="IDMASCOTA" name="idMascota" value = "{{$mascotas->idMascota}}" readonly="readonly">
            
                 <strong> <label for="inputRazaMascota">RAZA</label></strong>
-                <input type="text" class="form-control" id="inputRazaMascota" placeholder="Raza">
+                <input type="text" class="form-control" id="inputRazaMascota" name="razaMascota" value="{{$mascotas->razaMascota}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="inputNombreMascota">Mascota</label></strong>
-                <input type="text" class="form-control" id="inputNombreMascota" placeholder="Nombre Mascota">
+                <input type="text" class="form-control" id="inputNombreMascota" name="nombreMascota" value="{{$mascotas->nombreMascota}}" readonly=readonly">
 
 
                 <strong>  <label for="inputSexoMascota" >Sexo</label></strong>
-                <input type="text" class="form-control" id="inputSexoMascota" style="width: 180px;"placeholder="Sexo mascota">
+                <input type="text" class="form-control" id="inputSexoMascota" name="sexoMascota" value="{{$mascotas->sexoMascota}}" style="width: 180px;" readonly="readonly">
             </div>
         </div>
 
@@ -42,15 +42,15 @@ Cita de cirugía
         <div class="form-row" style="background-color:#e1dff4">
             <div class="form-group col-md-6">
                 <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
-              <input type="text" class="form-control" id="inputnombreDuenio" placeholder="Nombre del dueño">
+              <input type="text" class="form-control" id="inputnombreDuenio" name="nombrePropietario" value="{{$mascotas->propietario->nombrePropietario }}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-              <input type="text" class="form-control" id="inputContactNumber" placeholder="Número de contacto">
+              <input type="text" class="form-control" id="inputContactNumber" name="telefonoPropietario" value="{{$mascotas->propietario->telefonoPropietario}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>   <label for="inputDireccion" style="color:black">Dirección</label></strong>
-                <input type="text" class="form-control" id="inputDireccion" placeholder="Dirección del dueño">
+                <input type="text" class="form-control" id="inputDireccion" name="direccionPropietario" value="{{$mascotas->propietario->direccionPropietario}}" readonly="readonly">
               </div>
           </div>
 
@@ -68,7 +68,8 @@ Cita de cirugía
            
             <div class="form-group col-md-6">
                 <strong>   <label for="inputFechaCirugia" style="color:black">Fecha de cirugía</label></strong>
-                <input class="date form-control" type="text" id="inputFechaCirugia" readonly="readonly">
+                <input class="form-control" type="datetime-local" name="fechaCirugia" id="inputFechaCirugia" >
+
             </div>
             <div class="form-group col-md-6">
                 <strong>   <label for="inputRecomendacionesPre" style="color:black">Recomendaciones preoperatorias</label></strong>
@@ -94,7 +95,9 @@ Cita de cirugía
            
             <div class="form-group col-md-6">
                 <strong>   <label for="inputFechaRecordatorio" style="color:black">Fecha de recordatorio de cirugía</label></strong>
-                <input class="date form-control" type="text" id="inputFechaRecordatorio" readonly="readonly">
+                <input class="form-control" type="datetime-local" name="fechaRecordatorio" id="FechaRecordatorio" >
+
+                
             </div>
         
          </div>    

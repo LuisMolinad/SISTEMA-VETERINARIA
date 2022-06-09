@@ -49,22 +49,17 @@ Route::get('/editar_expediente', function () {
 });
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
-//Route::get('/listaCirugia', function () {
-  //  return view('Cirugia.GestionarCirugia');
-//});
-//Route::get('/crearCita', function () {
-//    return view('Cirugia.CrearCirugia');
-//});
+/*
 Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
 Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
-
+*/
+Route::resource('citacirugia', CitaCirugiaController::class );
+Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar');
+//Route::resource('expediente', ExpedienteController::class);
 /*------------------------------------- PDF ---------------------------------------------------------------------------- */
 
-/* Route::get('/crearCita/pdf', function () {
-    return view('welcome');
-}); */
 
-Route::get('crearCita/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
+Route::get('/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
 
 
 

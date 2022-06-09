@@ -1,38 +1,25 @@
 @extends('app')
 
 @section('titulo')
-Citas de cirugías
+GESTIONAR CITA CIRUGÍA
+@endsection
+
+@section('librerias')
+<!--Data tables-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @endsection
 
 @section('header')
 
-<div class="container">
-    <div class="row">
-        <div class="column">
-        <br>   
-            <h2>Gestionar citas de cirugías</h2>
-        </div>
-        
-        <div class="column cl-md-6">
-        <br>  
-        <br>  
-        <br> 
-            <form class="d-flex"> 
-            <input class="form-control me-2" type="search" placeholder="IDMASCOTA" aria-label="Search" style=" width: 170px; height: 35px;">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-        <br>
-    </div>
-</div> 
+    <h1 class="header">Gestionar citas de cirugía</h1>
 
 @endsection
 
 @section('content')
-<br>
-<div class="container">
-    <table class="table">
-        <thead style="background-color:#FFEFCF">
+<div class="container-fluid contenedor">
+
+    <table class="table table-striped" style="width:100%" id="cirugia">
+        <thead class="table-dark table-header">
             <tr>
             <th scope="col">ID Mascota</th>
             <th scope="col">Nombre</th>
@@ -42,45 +29,42 @@ Citas de cirugías
             <th scope="col"></th>
             </tr>
         </thead>
+            <!-- $mascota->propietario(es el nombre del metodo que esta en el model que define la relacion)->nombrePropietario(el nombre de la columna en la bd)-->
         <tbody>
-            <tr>
-                <th scope="id">G####</th>
-                <td>Kero</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                <a href="/crearCita"><button type="button" class="btn btn-success">Crear</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-            <th scope="id">G####</th>
-                <td>Luna</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                    <button type="button" class="btn btn-success">Crear</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="id">G####</th>
-                <td>Kero</td>
-                <td>Katya</td>
-                <td>60014695</td>
-                <td>San Bartolo</td>
-                <td>
-                    <button type="button" class="btn btn-success">Crear</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
-            </tr>
+            @foreach ( $mascotas as $mascota )
+
+                    <tr>
+                        <th scope="id">{{$mascota->idMascota}}</th>
+                        <td id="nombre mascota">{{$mascota->nombreMascota}}</td>
+                        <td id="nombre duenio">{{$mascota->propietario->nombrePropietario }}</td>
+                        <td id="telefono duenio">{{$mascota->propietario->telefonoPropietario}}</td>
+                        <td id="direccion  duenio">{{$mascota->propietario->direccionPropietario}}</td>
+                        <td>
+                            <a role="button" class="btn btn-success" href="{{ url('/crearCita/'.$mascota->id) }}">Crear</a>
+                            <button type="button" class="btn btn-warning">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+
+            @endforeach
         </tbody>
     </table>
+
 </div>
 
 @endsection
+@section('js')
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#cirugia').DataTable({
+                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]]
+            });
+        });
+    </script>
+@endsection
+
