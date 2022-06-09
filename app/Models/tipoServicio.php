@@ -10,4 +10,8 @@ class tipoServicio extends Model
     use HasFactory;
     protected $table='tipo_servicios';
     public $timestamps = false;
+    protected $fillable=[
+        'nombreServicio',
+        'descripcionServicio',
+    ];
 }

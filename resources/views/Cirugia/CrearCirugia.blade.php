@@ -42,15 +42,15 @@ Cita de cirugía
         <div class="form-row" style="background-color:#e1dff4">
             <div class="form-group col-md-6">
                 <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
-              <input type="text" class="form-control" id="inputnombreDuenio" name="nombrePropietario" readonly="readonly">
+              <input type="text" class="form-control" id="inputnombreDuenio" name="nombrePropietario" value="{{$mascotas->propietario->nombrePropietario }}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-              <input type="text" class="form-control" id="inputContactNumber" name="telefonoPropietario" readonly="readonly">
+              <input type="text" class="form-control" id="inputContactNumber" name="telefonoPropietario" value="{{$mascotas->propietario->telefonoPropietario}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>   <label for="inputDireccion" style="color:black">Dirección</label></strong>
-                <input type="text" class="form-control" id="inputDireccion" name="direccionPropietario" readonly="readonly">
+                <input type="text" class="form-control" id="inputDireccion" name="direccionPropietario" value="{{$mascotas->propietario->direccionPropietario}}" readonly="readonly">
               </div>
           </div>
 
@@ -68,7 +68,8 @@ Cita de cirugía
            
             <div class="form-group col-md-6">
                 <strong>   <label for="inputFechaCirugia" style="color:black">Fecha de cirugía</label></strong>
-                <input class="date form-control" type="text" id="inputFechaCirugia" readonly="readonly">
+                <input class="form-control" type="datetime-local" name="fechaCirugia" id="inputFechaCirugia" >
+
             </div>
             <div class="form-group col-md-6">
                 <strong>   <label for="inputRecomendacionesPre" style="color:black">Recomendaciones preoperatorias</label></strong>
@@ -94,7 +95,9 @@ Cita de cirugía
            
             <div class="form-group col-md-6">
                 <strong>   <label for="inputFechaRecordatorio" style="color:black">Fecha de recordatorio de cirugía</label></strong>
-                <input class="date form-control" type="text" id="inputFechaRecordatorio" readonly="readonly">
+                <input class="form-control" type="datetime-local" name="fechaRecordatorio" id="FechaRecordatorio" >
+
+                
             </div>
         
          </div>    

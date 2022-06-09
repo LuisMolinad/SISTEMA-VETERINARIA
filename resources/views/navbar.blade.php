@@ -40,8 +40,8 @@
                 Recursos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/gestionar_vacunas">Vacunas</a>
-                <a class="dropdown-item" href="/gestionar_servicios">Servicios</a>
+                <a class="dropdown-item" href="/vacuna">Vacunas</a>
+                <a class="dropdown-item" href="/tiposervicio">Servicios</a>
                 </div>
             </li>
         </ul>
