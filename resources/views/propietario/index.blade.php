@@ -7,6 +7,7 @@ GESTIONAR PROPIETARIO
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+@endsection
 
 @section('header')
 <h1 class="header">GESTIONAR PROPIETARIO</h1>
