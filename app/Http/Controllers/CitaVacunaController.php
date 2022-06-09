@@ -6,6 +6,8 @@ use App\Models\citaVacuna;
 use Illuminate\Http\Request;
 use App\Models\mascota;
 use App\Models\propietario;
+use App\Models\vacuna;
+use Illuminate\Support\Facades\DB;
 class CitaVacunaController extends Controller
 {
     /**
@@ -15,22 +17,36 @@ class CitaVacunaController extends Controller
      */
     public function index()
     {
-        //lo que va dentro del with tiene que ser igual al metodo que esta dentro del model mascota, es el que define la relacion hace ctrl + click al
-        // model y alla te explico
+
         $mascotas = mascota::with('propietario')->get();
-       // $propietarios = propietario::with('mascotas')->get();
-                                                //aca se van as variables de arriba
+
         return view(('citasvacunas.index'),compact('mascotas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('citasvacunas.create');
+        return view('citasvacunas.create' );
+    }
+
+
+
+
+    public function mostrar($id){
+        $mascotas = mascota::FindOrFail($id);
+
+        return view('citasvacunas.create',compact('mascotas'));
+        //return view('Cirugia.CrearCirugia');
+    }
+
+    public function validar($id){
+       // $mascotas = mascota::FindOrFail($id);
+
+        $idmascotas=DB::table('mascotas')->select('id')->get();
+
+
+        return view('citasvacunas.store',compact('mascotas'));
+
     }
 
     /**
@@ -41,7 +57,9 @@ class CitaVacunaController extends Controller
      */
     public function store(Request $request)
     {
-      $datosCita = request()->except('_token');
+
+      $datosCita = request()->except('_token','mascota_id');
+
       citaVacuna ::insert($datosCita);
       return response()->json($datosCita);
     }

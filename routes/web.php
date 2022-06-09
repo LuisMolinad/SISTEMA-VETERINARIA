@@ -71,9 +71,11 @@ Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacun
 Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
 */
 
-Route::resource('/citasvacuna', CitaVacunaController::class);
 
-
+Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
+//Route::resource('/citasvacuna', CitaVacunaController::class);
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar');
+Route::post('/guardarCitaVacuna/{id}', [CitaVacunaController::class, 'store'])->name('Cirugia.store');
 
 
 

@@ -10,7 +10,11 @@ class vacuna extends Model
     use HasFactory;
     protected $table='vacunas';
     public $timestamps = false;
-
+    protected $fillable=[
+        'nombreVacuna',
+        'descripcionVacuna',
+        'tiempoEntreDosisDia',
+    ];
     public function citaVacunas()
     {
         return $this->hasMany(citaVacuna::class);

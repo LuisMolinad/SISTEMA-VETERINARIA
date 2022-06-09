@@ -56,6 +56,8 @@ class CitaCirugiaController extends Controller
      */
     public function store(Request $request)
     {
+
+
      $datoscirugia = request()->except('_token');
       citaCirugia ::insert($datoscirugia);
       return response()->json($datoscirugia);

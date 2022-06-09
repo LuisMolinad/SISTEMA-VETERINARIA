@@ -13,12 +13,12 @@ Cita de vacunación
 
 @section('content')
 <div class="container">
-    <form action="{{ url('/citasvacuna') }}"  method="POST">
+    <form   method="POST">
         @csrf
         <div class="form-row" >
             <div class="form-group col-md-6">
                 <strong>  <label for="mascota_id"> IDMASCOTA</label></strong>
-                <input type="text" class="form-control" id="mascota_id"  name="mascota_id"  placeholder="IDMASCOTA">
+                <input type="text" class="form-control" id="mascota_id"  name="mascota_id" value = "{{$mascotas->idMascota}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="pesolb" >Peso</label></strong>
@@ -49,7 +49,7 @@ Cita de vacunación
                 <input class="form-control" type="datetime-local" name="fechaRefuerzo" id="fechaRefuerzo" >
             </div>
         </div>
-        <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+        <button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
       </form>
 </div>
 @endsection
