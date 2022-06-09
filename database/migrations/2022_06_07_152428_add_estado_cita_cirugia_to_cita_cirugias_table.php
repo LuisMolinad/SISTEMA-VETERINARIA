@@ -13,9 +13,9 @@ class AddEstadoCitaCirugiaToCitaCirugiasTable extends Migration
      */
     public function up()
     {
-        Schema::table('cita_cirugias', function (Blueprint $table) {
-            $table->boolean('estadoCitaCirugia')->nullable(true);
-        });
+       // Schema::table('cita_cirugias', function (Blueprint $table) {
+       //     $table->boolean('estadoCitaCirugia')->nullable(true);
+       // });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddEstadoCitaCirugiaToCitaCirugiasTable extends Migration
      */
     public function down()
     {
-        Schema::table('cita_cirugias', function (Blueprint $table) {
+       /* Schema::table('cita_cirugias', function (Blueprint $table) {
             $table->dropColumn('estadoCitaCirugia');
-        });
+        });*/
     }
 }
