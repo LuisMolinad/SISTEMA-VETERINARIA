@@ -1,20 +1,23 @@
 @extends('app')
 
 @section('titulo')
-Actas de defunción
+GESTIONAR CITA VACUNA
 @endsection
-
+@section('librerias')
+<!--Data tables-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @section('header')
 <br>
 <div class="container">
-    <h2>Gestionar citas de Vacunación</h2>
+    <h1>Gestionar citas de Vacunación</h1>
 </div>
 @endsection
 
 @section('content')
-<div class="container">
-    <table class="table">
-        <thead style="background-color:#FFEFCF">
+<div class="container-fluid contenedor">
+    <div class="boton crear container_btn">
+    <table class="table table-striped" style="width:100%" id="propietario" >
+        <thead class="table-dark table-header">
             <tr>
             <th scope="col">ID Mascota</th>
             <th scope="col">Nombre</th>
@@ -46,6 +49,22 @@ Actas de defunción
             </tr>
         </tbody>
     </table>
+    </div>
 </div>
 
+@endsection
+
+@section('js')
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#mascota').DataTable({
+                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]]
+            });
+        });
+    </script>
 @endsection
