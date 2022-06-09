@@ -112,7 +112,7 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 //Obtengo los datos para pintarlos en el calendario
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
-Route::post('/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
 
 
 /*---------------Propietario---------------*/

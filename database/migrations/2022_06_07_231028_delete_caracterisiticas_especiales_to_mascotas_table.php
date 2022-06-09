@@ -13,9 +13,11 @@ class DeleteCaracterisiticasEspecialesToMascotasTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::table('mascotas', function (Blueprint $table) {
             $table->dropColumn('caracteristicasEspeciales');
         });
+        */
     }
 
     /**
@@ -25,8 +27,9 @@ class DeleteCaracterisiticasEspecialesToMascotasTable extends Migration
      */
     public function down()
     {
+        /*
         Schema::table('mascotas', function (Blueprint $table) {
             $table->string('caracteristicasEspeciales',100);
-        });
+        });*/
     }
 }
