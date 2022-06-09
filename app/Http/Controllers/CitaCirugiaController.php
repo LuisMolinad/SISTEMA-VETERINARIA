@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\citaCirugia;
 use Illuminate\Http\Request;
+use App\Models\mascota;
+use App\Models\propietario;
 use PDF;
 
 class CitaCirugiaController extends Controller
@@ -15,8 +17,12 @@ class CitaCirugiaController extends Controller
      */
     public function index()
     {
+        $mascotas = mascota::with('propietario')->get();
+        // $propietarios = propietario::with('mascotas')->get();
+                                                 //aca se van as variables de arriba
+         return view(('Cirugia.GestionarCirugia'),compact('mascotas'));
        // $citaCirugia = Cirugia::paginate();
-       return view('Cirugia.GestionarCirugia'); 
+
     }
 
     /*Para el PDF */
@@ -35,7 +41,11 @@ class CitaCirugiaController extends Controller
      */
     public function create()
     {
-        return view('Cirugia.CrearCirugia');
+
+        /*
+                $propietario = Propietario::FindOrFail($id);
+        return view('propietario.edit', compact('propietario'));
+        */
     }
 
     /**
@@ -46,7 +56,9 @@ class CitaCirugiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     $datoscirugia = request()->except('_token');
+      citaCirugia ::insert($datoscirugia);
+      return response()->json($datoscirugia);
     }
 
     /**
@@ -69,6 +81,12 @@ class CitaCirugiaController extends Controller
     public function edit(citaCirugia $citaCirugia)
     {
         //
+    }
+
+    public function mostrar($id){
+        $mascotas = mascota::FindOrFail($id);
+        return view('Cirugia.CrearCirugia',compact('mascotas'));
+        //return view('Cirugia.CrearCirugia');
     }
 
     /**
