@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
+
+/****
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +30,7 @@ Route::get('/', function () {
     return view('Calendario.index');
 });
 */
+Auth::routes();
 
 Route::get('/app', function () {
     return view('app');
@@ -64,9 +69,18 @@ Route::get('crearCita/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name(
 
 
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
+//Route::resource('citaVacuna',CitaVacunaController::class);
+/*
+Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacuna.show');
 
-Route::get('citas/listaMascotas', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
-Route::get('citas/nuevaDosis', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
+Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
+*/
+
+Route::resource('/citasvacuna', CitaVacunaController::class);
+
+
+
+
 
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
@@ -88,7 +102,9 @@ Route::get('/gestionar_vacunas/agregar_vacuna', function () {
     return view('Recursos.Vacuna.AgregarVacuna');
 });
 
-Auth::routes();
+
+
+
 /*Accede al metodo index del Evento Controller*/
 Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
 //Almacenar datos por medio de Store
@@ -106,4 +122,3 @@ Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
-
