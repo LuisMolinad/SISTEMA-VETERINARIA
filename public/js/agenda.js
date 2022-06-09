@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let formulario = document.querySelector("#agregarcitasservicios");
     let formularioCaptura = document.querySelector("#operacionesservicio")
 
-    
     function getColor() {
         var colorinput = document.getElementById("color");
         console.log(formulario[5].value);
@@ -33,8 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         //Mostramos los datos consultados de la base de datos en el controller por medio de events
-        events:"http://127.0.0.1:8000/mostrar",
+        //events:"http://127.0.0.1:8000/mostrar",
+        events: "/mostrar",
 
+        
         dateClick:function(info){
             
             formulario.reset();
@@ -99,10 +100,44 @@ document.addEventListener('DOMContentLoaded', function() {
         
     });
 
-
     //Creo una funcion para que no se manejen los eventos de forma local
     function envioDeDatos(url){
 
+        //Capturo los datos del formulario
+        var formato_telefono = /^[0-9]{8}$/;
+        var telefono = formulario.telefonoServicio.value;
+
+        //Validaciones de campos
+        if(formulario.title.value == ""){
+            document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>';
+            document.getElementById("title").focus();
+            return false;
+        }else if (formulario.horaServicio.value == ""){
+            //alert("La hora es requerida");
+            document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
+            document.getElementById("horaServicio").focus();
+            return false;
+        }else if (formulario.clienteServicio.value == ""){
+            //alert("El cliente es requerido");
+            document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
+            document.getElementById("clienteServicio").focus();
+            return false;
+        }else if(formulario.telefonoServicio.value == ""){
+            //alert("El telefono es requerido");
+            document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
+            document.getElementById("telefonoServicio").focus();
+            return false;
+        }else if(!formato_telefono.test(telefono)){
+         //alert("El telefono debe tener 8 digitos");
+         document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+         return false;
+        }
+        else if (formulario.descripcion.value == ""){
+            //alert("La descripcion es requerida");
+            document.getElementById("validaragendar").innerHTML = '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
+            document.getElementById("descripcion").focus();
+            return false;
+        } 
 
         //variable para capturar la hora, esto es la ubicacion del formulario
         let posicionHora = 3;
@@ -133,5 +168,21 @@ document.addEventListener('DOMContentLoaded', function() {
             )
     }
 
+    async function recepcionDatos(url){
+    
+        const nuevaUrl = baseURL+url;
+
+        await axios.get(nuevaUrl)
+        .then(function (response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+
+    
+    }
 
   });
