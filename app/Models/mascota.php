@@ -42,7 +42,4 @@ class mascota extends Model
     {
         return $this->hasMany(citaVacuna::class);
     }
-
-
-
 }

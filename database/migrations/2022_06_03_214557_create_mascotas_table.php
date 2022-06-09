@@ -24,9 +24,9 @@ class CreateMascotasTable extends Migration
             $table->string('razaMascota',15);
             $table->string('especie',15);
             $table->string('colorMascota',15);
-            $table->string('sexoMascota',1);
-            $table->dateTime('fechaNacimiento');
-            $table->boolean('fallecidoMascota');
+            $table->string('sexoMascota',6);
+            $table->string('fechaNacimiento',12);
+            $table->string('fallecidoMascota',9);
             $table->string('caracteristicasEspeciales',100);
         });
     }

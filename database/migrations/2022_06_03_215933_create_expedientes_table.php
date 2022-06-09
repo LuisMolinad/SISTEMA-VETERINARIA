@@ -21,8 +21,7 @@ class CreateExpedientesTable extends Migration
              //convencion de laravel para llaves foraneas
              $table->foreignId('mascota_id')->constrained('mascotas');
              $table->string('causaFallecimiento',30);
-             $table->boolean('fallecidoExpediente');
-
+             $table->string('fallecidoExpediente',9);
         });
     }
 

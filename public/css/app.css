@@ -1,5 +1,6 @@
 .navbar{
     background-color: #00a00d;
+    margin-bottom: 1rem;
 }
 
 .fieldset{
@@ -17,4 +18,41 @@
 .header{
     text-align: center;
     margin-top: 2rem;
+}
+
+.boton_crear{
+    width: 250px;
+    min-width: auto;
+    font-weight: bold;
+}
+
+.container_btn{
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.table-header{
+    height: 3.5rem;
+}
+
+.contenedor{
+    max-width: 90%;
+}
+
+.logo-navbar{
+    aspect-ratio: 1;
+    max-width: 4rem;
+}
+
+.nav-link{
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+}
+
+.nav-link::after{
+    font-weight: bold;
+    color: white;
 }

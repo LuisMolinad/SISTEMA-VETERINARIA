@@ -14,7 +14,8 @@ class MascotaController extends Controller
      */
     public function index()
     {
-        return view('mascota.index');
+        $datosMascota['mascotas'] = mascota::all();
+        return view('mascota.index', $datosMascota);
     }
 
     /**
@@ -35,7 +36,9 @@ class MascotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosMascota = request()->except('_token');
+        Mascota::insert($datosMascota);
+        return redirect('/mascota');
     }
 
     /**
@@ -55,9 +58,10 @@ class MascotaController extends Controller
      * @param  \App\Models\mascota  $mascota
      * @return \Illuminate\Http\Response
      */
-    public function edit(mascota $mascota)
+    public function edit($id)
     {
-        //
+        $mascota = Mascota::FindOrFail($id);
+        return view('mascota.edit', compact('mascota'));
     }
 
     /**
@@ -67,9 +71,14 @@ class MascotaController extends Controller
      * @param  \App\Models\mascota  $mascota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mascota $mascota)
+    public function update(Request $request, $id)
     {
-        //
+        $datosMascota = request()->except(['_token', '_method']);
+        //$datosMascota = request()->all();
+        Mascota::where('id','=',$id)->update($datosMascota);
+        $mascota = Mascota::FindOrFail($id);
+        //return redirect('/mascota');
+        return response()->json($datosMascota);
     }
 
     /**
@@ -78,8 +87,9 @@ class MascotaController extends Controller
      * @param  \App\Models\mascota  $mascota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mascota $mascota)
+    public function destroy($id)
     {
-        //
+        Mascota::destroy($id);
+        return redirect('/mascota');
     }
 }

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <title>@yield('titulo')</title>
+    <link rel="shortcut icon" href="{{asset('images/logo.jpeg')}}">
+    <title>@yield('titulo')</title>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -56,6 +56,8 @@
     @yield('content')
     </main>
 </body>
+
+    @yield('js')
     <!--Date picker-->
     <!--
         <input class="date form-control" type="text" readonly="readonly">

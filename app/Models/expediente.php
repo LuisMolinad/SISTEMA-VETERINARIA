@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class expediente extends Model
 {
     use HasFactory;
+
+    protected $table='expedientes';
+    public $timestamps = false;
 }
