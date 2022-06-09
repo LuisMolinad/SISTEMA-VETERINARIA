@@ -5,6 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let formulario = document.querySelector("#agregarcitasservicios");
     let formularioCaptura = document.querySelector("#operacionesservicio")
 
+    
+    function getColor() {
+        var colorinput = document.getElementById("color");
+        console.log(formulario[5].value);
+        //Capturo por id los valores y asigno el color
+        if(formulario[5].value == 1){
+            formulario[9].value = "#6DC36D";
+        }else{
+            formulario[9].value = "#024A86";
+        }
+        //console.log(formulario[9].value);
+    }
+    
+
     var calendarEl = document.getElementById('agenda');
     
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -50,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     formularioCaptura.telefonoServicio.value = respuesta.data.telefonoServicio;
                     formularioCaptura.descripcion.value = respuesta.data.descripcion;
                     formularioCaptura.clienteServicio.value = respuesta.data.clienteServicio;
+                    formularioCaptura.tipoServicio_id.value = respuesta.data.tipoServicio_id;
                     formularioCaptura.end.value = respuesta.data.end;
                     
 
@@ -61,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     formularioCaptura.telefonoServicio.disabled = true;
                     formularioCaptura.descripcion.disabled = true;
                     formularioCaptura.clienteServicio.disabled = true;
+                    formularioCaptura.tipoServicio_id.disabled = true;
 
                     $("#eventoconsulta").modal("show");
                 }
@@ -95,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let hora = formulario[posicionHora].value;
         formulario[posicionFecha].value += " " + hora;
 
+        //Obtengo el color del evento
+        getColor();
+
         const datosformulario = new FormData(formulario);
         console.log(formulario[4].value);
         
@@ -113,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             )
     }
-
 
 
   });
