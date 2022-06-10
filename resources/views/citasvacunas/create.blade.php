@@ -20,10 +20,11 @@ Cita de vacunación
                 <strong>  <label for="mascota_id"> IDMASCOTA</label></strong>
                 <input type="text" class="form-control" id="idVisible"  name="idVisible" value = "{{$mascotas->idMascota}}" readonly="readonly">
                 <input  class="form-control" id="mascota_id"  name="mascota_id" value = "{{$mascotas->id}}" type="hidden" readonly="readonly">
+                <input  class="form-control" id="title"  name="title" value = "{{$mascotas->nombreMascota}}"  type="hidden" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="pesolb" >Peso</label></strong>
-                <input type="text" class="form-control" id="pesolb"   name="pesolb"style="width: 100px;"placeholder="lb">
+                <input type="number" class="form-control" id="pesolb"   name="pesolb"style="width: 100px;"placeholder="lb">
             </div>
         </div>
         <div class="form-row">
@@ -41,12 +42,12 @@ Cita de vacunación
                   </div>
             </div>
             <div class="form-group col-md-6">
-                <strong>   <label for="inputFechaAplicacion" style="color:black">Fecha aplicación</label></strong>
-                <input class="form-control" type="datetime-local" name="fechaAplicacion" id="inputFechaAplicacion">
+                <strong>   <label for="end" style="color:black">Fecha aplicación</label></strong>
+                <input class="form-control" type="datetime-local" name="end" id="end">
             </div>
             <div class="form-group col-md-6">
-                <strong>   <label for="inputFechaAplicacion" style="color:black">Fecha refuerzo</label></strong>
-                <input class="form-control" type="datetime-local" name="fechaRefuerzo" id="fechaRefuerzo" >
+                <strong>   <label for="start" style="color:black">Fecha refuerzo</label></strong>
+                <input class="form-control" type="datetime-local" name="start" id="start" >
             </div>
         </div>
         <!--<button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
