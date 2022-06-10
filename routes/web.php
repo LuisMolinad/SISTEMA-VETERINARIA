@@ -110,3 +110,6 @@ Route::resource('expediente', ExpedienteController::class);
 
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
+
+/*Mostrar vacunas*/
+Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);

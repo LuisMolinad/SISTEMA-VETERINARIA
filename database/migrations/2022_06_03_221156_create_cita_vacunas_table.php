@@ -16,6 +16,9 @@ class CreateCitaVacunasTable extends Migration
         Schema::create('cita_vacunas', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
+            /*$table->string('title',15);
+            $table->dateTime('start');
+            $table->dateTime("end");*/
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
             //$table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
             $table->foreignId('mascota_id')->constrained('mascotas');

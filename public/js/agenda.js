@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         //console.log(formulario[9].value);
     }
-    
 
+   
     var calendarEl = document.getElementById('agenda');
     
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -33,8 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //Mostramos los datos consultados de la base de datos en el controller por medio de events
         //events:"http://127.0.0.1:8000/mostrar",
-        events: "/mostrar",
+        //events: citaServicios,
+        
+        //Capturamos las citas de servicios, citas de vacunacion y citas de cirugias en el calendario
+        eventSources: [
 
+            //Colocar eventos
+            {
+              url: '/mostrar',
+            },
+
+            {
+                url: '/mostrarvacunas', // use the `url` property
+                color: 'yellow',    // an option!
+                textColor: 'black'  // an option!
+              }
+          ],
         
         dateClick:function(info){
             
