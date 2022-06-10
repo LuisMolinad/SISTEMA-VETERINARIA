@@ -69,7 +69,9 @@ class CitaCirugiaController extends Controller
      */
     public function show(citaCirugia $citaCirugia)
     {
-        //
+        //Obtengo las cirugias de la base de datos
+        $citaCirugia = citaCirugia::all();
+        return response()->json($citaCirugia);
     }
 
     /**

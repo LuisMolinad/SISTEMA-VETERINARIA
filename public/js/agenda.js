@@ -10,9 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(formulario[5].value);
         //Capturo por id los valores y asigno el color
         if(formulario[5].value == 1){
-            formulario[9].value = "#6DC36D";
-        }else{
+            //Servicio de corte
+            formulario[9].value = "#C82A54";
+        }else if(formulario[5].value == 2){
+            //Servicio de baño y corte
             formulario[9].value = "#024A86";
+        }else if(formulario[5].value == 3){
+            formulario[9].value = "#7A1453";
+        }else if(formulario[5].value == 4){
+            formulario[9].value = "#E36B2C";
+        }else{
+            formulario[9].value = "#8C4966";
         }
         //console.log(formulario[9].value);
     }
@@ -37,17 +45,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         //Capturamos las citas de servicios, citas de vacunacion y citas de cirugias en el calendario
         eventSources: [
-
             //Colocar eventos
             {
+                //Citas de servicios
               url: '/mostrar',
             },
 
             {
-                url: '/mostrarvacunas', // use the `url` property
-                color: 'yellow',    // an option!
-                textColor: 'black'  // an option!
-              }
+                //Citas de vacunacion
+                url: '/mostrarvacunas',
+                color: 'green',
+                textColor: 'black'  
+            },
+
+            {
+                //Citas de cirugias
+                url: '/mostrarcirugias',
+                color: 'red',
+            }
+
           ],
         
         dateClick:function(info){

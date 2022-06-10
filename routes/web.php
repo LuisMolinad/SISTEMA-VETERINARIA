@@ -111,5 +111,8 @@ Route::resource('expediente', ExpedienteController::class);
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
 
-/*Mostrar vacunas*/
+/*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
+
+/*Mostrar citas cirugias*/
+Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
