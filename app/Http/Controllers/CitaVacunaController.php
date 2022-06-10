@@ -8,6 +8,8 @@ use App\Models\mascota;
 use App\Models\propietario;
 use App\Models\vacuna;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 class CitaVacunaController extends Controller
 {
     /**
@@ -90,6 +92,7 @@ class CitaVacunaController extends Controller
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
         $citaVacuna = citaVacuna::find($id);
+        $citaVacuna->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('Y-m-d');
         return response()->json($citaVacuna);
     }
 

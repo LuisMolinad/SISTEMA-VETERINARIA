@@ -82,6 +82,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then((respuesta) => {
                         //Recupero la informacion de la base de datos y la coloco para que se muestre
                         //al momento de presionar una cita [Mostrar]
+
+
+                        formularioCaptura.tipoServicio_id.value = respuesta.data.tipoServicio_id;
+
+                        axios.get(
+                            baseURL + "/tipoServicios/" + respuesta.data.tipoServicio_id
+                        ).then((res) => {
+                            formularioCaptura.tipoServicio_id.value = res.data.nombreServicio;
+                        });
+
                         formularioCaptura.id.value = respuesta.data.id;
                         formularioCaptura.title.value = respuesta.data.title;
                         formularioCaptura.horaServicio.value =
@@ -95,8 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             respuesta.data.descripcion;
                         formularioCaptura.clienteServicio.value =
                             respuesta.data.clienteServicio;
-                        formularioCaptura.tipoServicio_id.value =
-                            respuesta.data.tipoServicio_id;
+                        
                         formularioCaptura.end.value = respuesta.data.end;
 
                         //Desactivamos para que el usuario no pueda editar
@@ -113,18 +122,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then((respuesta) => {
                         formularioCitasVacunas.mascota_id.value =
                             respuesta.data.mascota_id;
-                        axios
-                            .get(
+                        
+                            //Obtener el nombre de la vacuna
+                            axios.get(
                                 baseURL + "/vacunas/" + respuesta.data.vacuna_id
                             )
                             .then((res) => {
                                 formularioCitasVacunas.vacuna_id.value =
                                     res.data.nombreVacuna;
                             });
+
+                            //Obtengo datos que no dependen de las tablas
+                            formularioCitasVacunas.title.value = respuesta.data.title;
+                            formularioCitasVacunas.start.value = respuesta.data.start;
+                            formularioCitasVacunas.pesolb.value = respuesta.data.pesolb + " lb";
+
+
                         $("#eventoconsultavacunas").modal("show");
                     })
                     .catch((error) => {});
             }
+
+            if(evento.groupId == "citasCirugias"){
+            axios.get(baseURL + "/editarCitaCirugia/" + info.event.id)
+            .then((respuesta)=>{
+                
+            })
+            }
+
         },
     });
     calendar.render();
@@ -207,8 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
         //Obtengo el color del evento
         getColor();
 
+        console.log(formulario[11].value);
+        
         const datosformulario = new FormData(formulario);
-        console.log(formulario[4].value);
+        //console.log(formulario[4].value);
 
         const nuevaUrl = baseURL + url;
 
@@ -223,18 +250,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    async function recepcionDatos(url) {
-        const nuevaUrl = baseURL + url;
-
-        await axios
-            .get(nuevaUrl)
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
-    }
 });

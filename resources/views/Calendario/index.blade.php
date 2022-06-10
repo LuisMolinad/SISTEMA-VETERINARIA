@@ -1,4 +1,9 @@
 @extends('app')
+
+@section('titulo')
+Agenda Veterinaria
+@endsection
+
 @section('content')
     
 <div class="container">
@@ -34,7 +39,7 @@
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
                     </div>
-
+ 
                   <label for="title">Nombre de Mascota: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
                 </div>
@@ -88,6 +93,13 @@
                   <input type="date"
                     class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
                 </div>
+
+                  <div class="form-group d-none">
+                  <label for="groupId"></label>
+                  <input type="text"
+                    class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasServicios">
+                </div>
+
             </form>
             </div>
             <div class="modal-footer">
@@ -138,12 +150,10 @@
               </div>
 
               <div class="form-group">
-                <label for="tipoServicio_id">Tipo Servicio</label>
+                <label for="tipoServicio_id">Servicio a Realizar</label>
                 <input type="text"
                   class="form-control" name="tipoServicio_id" id="tipoServicio_id" aria-describedby="helpId" placeholder="">
-                <small id="helpId" class="form-text text-muted">Help text</small>
               </div>
-
 
               <div class="form-group">
                 <label for="clienteServicio">Propietario</label>

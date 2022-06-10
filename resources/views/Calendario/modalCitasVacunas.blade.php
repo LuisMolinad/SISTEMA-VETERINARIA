@@ -19,13 +19,18 @@
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
                     </div>
-  
+    
+                      <label for="title">Nombre de la mascota :</label>
+                      <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+
+                  <div class="form-group d-none">
                   <label for="mascota_id">Nombre de Mascota</label>
                   <input type="text" name="mascota_id" id="mascota_id" class="form-control" placeholder="" aria-describedby="helpId">
                 </div>
                 
                 <div class="form-group">
-                  <label for="vacuna_id">Nombre de la vacuna</label>
+                  <label for="vacuna_id">Vacuna a Aplicar :</label>
                   <input type="text"
                     class="form-control" name="vacuna_id" id="vacuna_id" aria-describedby="helpId" placeholder="">
                 </div>
@@ -38,12 +43,12 @@
                   </div>
 
                 <div class="form-group">
-                  <label for="start">Fecha</label>
+                  <label for="start">Fecha de Refuerzo :</label>
                   <input type="text"
                     class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
                 </div>
   
-                <div class="form-group">
+                <div class="form-group d-none">
                   <label for="estadoCita">Estado Cita</label>
                   <input type="text"
                     class="form-control" name="estadoCita" id="estadoCita" aria-describedby="helpId" placeholder="">
@@ -52,15 +57,12 @@
   
   
                 <div class="form-group">
-                  <label for="pesolb">Propietario</label>
+                  <label for="pesolb">Peso anterior de la Mascota :</label>
                   <input type="text"
-                    class="form-control" name="pesolb" id="pesolb" aria-describedby="helpId" placeholder="Ingrese el nombre del propietario">
+                    class="form-control" name="pesolb" id="pesolb" aria-describedby="helpId" placeholder="">
                 </div>
   
-                <div class="form-group">
-                  <label for="title">Titulo</label>
-                  <textarea class="form-control" name="title" id="title" rows="3"></textarea>
-                </div>
+                
   
             </form>
             </div>
