@@ -26,7 +26,8 @@ class CitaVacunaController extends Controller
 
     public function create()
     {
-        return view('citasvacunas.create' );
+
+        //return view('citasvacunas.create', compact('vacunas') );
     }
 
 
@@ -34,8 +35,8 @@ class CitaVacunaController extends Controller
 
     public function mostrar($id){
         $mascotas = mascota::FindOrFail($id);
-
-        return view('citasvacunas.create',compact('mascotas'));
+        $vacunas = vacuna::all();
+        return view('citasvacunas.create',compact('mascotas','vacunas'));
         //return view('Cirugia.CrearCirugia');
     }
 
@@ -58,10 +59,12 @@ class CitaVacunaController extends Controller
     public function store(Request $request)
     {
 
-      $datosCita = request()->except('_token','mascota_id');
+      $datosCita = request()->except('_token','idVisible');
 
       citaVacuna ::insert($datosCita);
-      return response()->json($datosCita);
+      //return response()->json($datosCita);
+      //echo '<script language="javascript">alert("juas");</script>';
+      return redirect('citas/index');
     }
 
     /**
