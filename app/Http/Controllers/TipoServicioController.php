@@ -53,6 +53,12 @@ class TipoServicioController extends Controller
         //
     }
 
+    public function showId($id){
+        $tipoServicio=tipoServicio::find($id);
+        return response()->json($tipoServicio);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

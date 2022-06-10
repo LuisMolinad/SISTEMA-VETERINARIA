@@ -101,6 +101,7 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId']);
 
 
 /*---------------Propietario---------------*/

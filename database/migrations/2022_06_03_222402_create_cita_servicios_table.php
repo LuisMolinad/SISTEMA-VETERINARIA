@@ -29,8 +29,8 @@ class CreateCitaServiciosTable extends Migration
             $table->string('colorServicio',8);
             $table->string('color',20);
             $table->dateTime("end");
-            $table->string('groupId')->nullable();
             $table->foreignId('tipoServicio_id')->constrained('tipo_servicios')->cascadeOnDelete();
+            $table->string('groupId')->nullable();
             $table->timestamps();
         });
     }

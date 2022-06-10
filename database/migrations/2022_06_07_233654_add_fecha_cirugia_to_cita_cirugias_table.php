@@ -14,7 +14,7 @@ class AddFechaCirugiaToCitaCirugiasTable extends Migration
     public function up()
     {
         Schema::table('cita_cirugias', function (Blueprint $table) {
-            $table->dateTime('fechaHoraCitaCirugia');
+        //$table->dateTime('fechaHoraCitaCirugia');
         });
     }
 
@@ -26,7 +26,7 @@ class AddFechaCirugiaToCitaCirugiasTable extends Migration
     public function down()
     {
         Schema::table('cita_cirugias', function (Blueprint $table) {
-            $table->dropColumn('fechaHoraCitaCirugia');
+            //$table->dropColumn('fechaHoraCitaCirugia');
         });
     }
 }
