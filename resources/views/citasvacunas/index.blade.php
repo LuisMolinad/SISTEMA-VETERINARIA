@@ -38,8 +38,9 @@
                         <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
                         <td>
                             <a role="button" class="btn btn-success" href="{{ url('/crearCitaVacuna/'.$mascota->id) }}">Crear</a>
+                           <!--
                             <button type="button" class="btn btn-warning">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>-->
                         </td>
                     </tr>
                 @endforeach

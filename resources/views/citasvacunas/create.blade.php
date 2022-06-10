@@ -24,7 +24,7 @@ Cita de vacunación
             </div>
             <div class="form-group col-md-6">
                 <strong>  <label for="pesolb" >Peso</label></strong>
-                <input type="number" class="form-control" id="pesolb"   name="pesolb"style="width: 100px;"placeholder="lb">
+                <input type="number" class="form-control" id="pesolb" maxlength="11" name="pesolb"style="width: 100px;"placeholder="lb">
             </div>
         </div>
         <div class="form-row">

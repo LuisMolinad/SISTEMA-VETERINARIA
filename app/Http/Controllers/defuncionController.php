@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\vacuna;
+use App\Models\mascota;
 class defuncionController extends Controller
 {
     /**
@@ -13,7 +14,11 @@ class defuncionController extends Controller
      */
     public function index()
     {
-        return view('Actas.defuncion');
+
+        $mascotas = mascota::with('propietario')->get();
+
+        return view(('Actas.index'),compact('mascotas'));
+       // return view('Actas.index');
     }
 
     /**
@@ -23,15 +28,17 @@ class defuncionController extends Controller
      */
     public function create()
     {
-        return view('Actas.CrearActaDefuncion');
+        //return view('Actas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function mostrar($id){
+        $mascotas = mascota::FindOrFail($id);
+        $vacunas = vacuna::all();
+        return view('Actas.create',compact('mascotas'));
+        //return view('Cirugia.CrearCirugia');
+    }
+
+
     public function store(Request $request)
     {
         //
