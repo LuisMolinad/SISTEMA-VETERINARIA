@@ -55,6 +55,8 @@ class CitaVacunaController extends Controller
     public function show(citaVacuna $citaVacuna)
     {
        // return view('citasVacunas.gestionarCitasVacunacion');
+       $citaVacuna = citaVacuna::all();
+       return response()->json($citaVacuna);
     }
 
     /**
