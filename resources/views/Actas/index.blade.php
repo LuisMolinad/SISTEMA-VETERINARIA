@@ -14,38 +14,36 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <table class="table">
-        <thead style="background-color:#FFEFCF">
-            <tr>
-            <th scope="col">ID Mascota</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Dueño</th>
-            <th scope="col">Número</th>
-            <th scope="col">Dirección</th>
-            <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($mascotas as $mascota)
+    <div class="container-fluid contenedor">
+        <table class="table table-striped" style="width:100%" id="actadefuncion">
+            <thead style="table-dark table-header">
                 <tr>
-                    <th scope="id">{{ $mascota->idMascota }}</th>
-                    <td id="nombre mascota">{{ $mascota->nombreMascota }}</td>
-                    <td id="nombre duenio">{{ $mascota->propietario->nombrePropietario }}</td>
-                    <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
-                    <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
-                    <td>
-                        <a role="button" class="btn btn-success" href="{{ url('/crear/actas/'.$mascota->id) }}">Crear</a>
-                       <!--
-                        <button type="button" class="btn btn-warning">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>-->
-                    </td>
+                    <th scope="col">ID Mascota</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Dueño</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col"></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach ($mascotas as $mascota)
+                    <tr>
+                        <th scope="id">{{ $mascota->idMascota }}</th>
+                        <td id="nombre mascota">{{ $mascota->nombreMascota }}</td>
+                        <td id="nombre duenio">{{ $mascota->propietario->nombrePropietario }}</td>
+                        <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
+                        <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
+                        <td>
+                            <a role="button" class="btn btn-success"
+                                href="{{ url('/crear/actas/' . $mascota->id) }}">Crear</a>
 
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -54,7 +52,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#citaVacuna').DataTable({
+            $('#actadefuncion').DataTable({
                 "lengthMenu": [
                     [5, 10, 25, -1],
                     [5, 10, 25, "Todos"]
@@ -66,12 +64,12 @@
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    'search':'Buscar',
+                    'search': 'Buscar',
                     'paginate': {
-                        'first':      'Primero',
-                        'last':       'Ultimo',
-                        'next':      'Siguiente',
-                        'previous':  'Anterior',
+                        'first': 'Primero',
+                        'last': 'Ultimo',
+                        'next': 'Siguiente',
+                        'previous': 'Anterior',
                     },
 
                 },

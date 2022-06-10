@@ -32,6 +32,7 @@ class defuncionController extends Controller
     }
 
     public function mostrar($id){
+
         $mascotas = mascota::FindOrFail($id);
         $vacunas = vacuna::all();
         return view('Actas.create',compact('mascotas'));
