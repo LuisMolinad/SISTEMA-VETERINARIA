@@ -60,7 +60,7 @@ class CitaCirugiaController extends Controller
 
      $datoscirugia = request()->except('_token');
       citaCirugia ::insert($datoscirugia);
-      return response()->json($datoscirugia);
+      return redirect('/citacirugia');
     }
 
     /**
