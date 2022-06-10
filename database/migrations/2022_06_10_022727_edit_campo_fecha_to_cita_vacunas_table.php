@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteColumnaFKRecordatorioToCitaVacunasTable extends Migration
+class EditCampoFechaToCitaVacunasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class DeleteColumnaFKRecordatorioToCitaVacunasTable extends Migration
     public function up()
     {
         Schema::table('cita_vacunas', function (Blueprint $table) {
-            $table->dropColumn('recordatorioid');
+            $table->renameColumn('fechaRefuerzo', 'start');
+            $table->renameColumn('fechaAplicacion', 'end');
+            $table->string('title',20);
         });
     }
 
