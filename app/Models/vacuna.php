@@ -16,7 +16,7 @@ class vacuna extends Model
         'descripcionVacuna',
         'tiempoEntreDosisDia',
     ];
-  
+
     public function citaVacunas()
     {
         return $this->hasMany(citaVacuna::class);
