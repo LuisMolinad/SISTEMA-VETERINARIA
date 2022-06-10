@@ -115,6 +115,9 @@ Route::resource('tiposervicio',TipoServicioController::class);
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
+//Obtengo los datos para pintarlos en el calendario de citas vacunas
+Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit']);
+Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId']);
 
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);

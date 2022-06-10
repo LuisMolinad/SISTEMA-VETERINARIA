@@ -55,7 +55,10 @@ class VacunaController extends Controller
     {
         //
     }
-
+    public function showId($id){
+        $vacuna=vacuna::find($id);
+        return response()->json($vacuna);
+    }
     /**
      * Show the form for editing the specified resource.
      *

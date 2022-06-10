@@ -49,6 +49,13 @@ Cita de vacunación
                 <strong>   <label for="start" style="color:black">Fecha refuerzo</label></strong>
                 <input class="form-control" type="datetime-local" name="start" id="start" >
             </div>
+
+            <div class="form-group d-none">
+              <label for=""></label>
+              <input type="text"
+                class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasVacunacion">
+            </div>
+
         </div>
         <!--<button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
         <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
