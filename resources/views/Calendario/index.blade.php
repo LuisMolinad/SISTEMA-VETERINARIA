@@ -33,7 +33,6 @@
                     <div class="form-group d-none">
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
-                      <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
 
                   <label for="title">Nombre de Mascota: </label>
@@ -44,14 +43,12 @@
                   <label for="horaServicio">Hora: </label>
                   <input type="time"
                     class="form-control" name="horaServicio" id="horaServicio" aria-describedby="helpId" placeholder="Ingrese el color de la mascota">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
                   <label for="start">Fecha: </label>
                   <input type="text"
-                    class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
+                    class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="" readonly>
                 </div>
 
                 <div class="form-group">
@@ -67,14 +64,12 @@
                   <label for="clienteServicio">Propietario: </label>
                   <input type="text"
                     class="form-control" name="clienteServicio" id="clienteServicio" aria-describedby="helpId" placeholder="Ingrese el nombre del propietario">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
                   <label for="telefonoServicio">Telefono: </label>
                   <input type="text"
                     class="form-control" name="telefonoServicio" id="telefonoServicio" aria-describedby="helpId" placeholder="Ingrese el telefono del propietario">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
@@ -86,14 +81,12 @@
                   <label for="color">Color</label>
                   <input type="text"
                     class="form-control" name="color" id="color" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group d-none">
                   <label for="end">Fin</label>
                   <input type="date"
                     class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
             </form>
             </div>
@@ -185,6 +178,6 @@
       </div>
   </div>
 </div>
-
+@extends('Calendario/modalCitasVacunas')
 
 @endsection

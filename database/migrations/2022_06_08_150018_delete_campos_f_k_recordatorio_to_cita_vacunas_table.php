@@ -14,9 +14,8 @@ class DeleteCamposFKRecordatorioToCitaVacunasTable extends Migration
     public function up()
     {
         Schema::table('cita_vacunas', function (Blueprint $table) {
-          //  $table->dropColumn('recordatorioid');recordatorioid
             $table-> dropForeign('cita_vacunas_recordatorioid_foreign');
-            //$table->dropColumn('recordatorioid');
+            $table->dropColumn('recordatorioid');
         });
     }
 

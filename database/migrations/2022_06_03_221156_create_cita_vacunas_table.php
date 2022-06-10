@@ -24,6 +24,7 @@ class CreateCitaVacunasTable extends Migration
             $table->foreignId('mascota_id')->constrained('mascotas');
            // $table->foreignId('recordatorios_id')->constrained('recordatorios')->cascadeOnDelete();
             $table->foreignId('vacuna_id')->constrained('vacunas');
+            $table->string('groupId')->nullable();
             $table->dateTime('fechaAplicacion');
             $table->dateTime('fechaRefuerzo');
         });

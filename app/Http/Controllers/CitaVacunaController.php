@@ -86,9 +86,11 @@ class CitaVacunaController extends Controller
      * @param  \App\Models\citaVacuna  $citaVacuna
      * @return \Illuminate\Http\Response
      */
-    public function edit(citaVacuna $citaVacuna)
+    public function edit($id)
     {
-        //
+        //Obtengo la informacion al darle click a un evento por medio de su id
+        $citaVacuna = citaVacuna::find($id);
+        return response()->json($citaVacuna);
     }
 
     /**
