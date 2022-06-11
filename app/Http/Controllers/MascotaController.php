@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\mascota;
+use App\Models\propietario;
 use Illuminate\Http\Request;
 
 class MascotaController extends Controller
@@ -23,9 +24,18 @@ class MascotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('mascota.create');
+        $propietario = propietario::FindOrFail($id);
+        return view('mascota.create', compact('propietario'));
+        //return view('mascota.create');
+    }
+
+    public function crear($id)
+    {
+        $propietario = propietario::FindOrFail($id);
+        return view('mascota.create', compact('propietario'));
+        //return view('mascota.create');
     }
 
     /**

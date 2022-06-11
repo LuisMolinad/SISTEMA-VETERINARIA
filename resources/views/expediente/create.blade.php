@@ -18,12 +18,12 @@ CREAR EXPEDIENTE
             <legend class="legend">Expediente</legend>
                 <div class="form-group">
                     <label for="mascota_id">Codigo mascota</label>
-                    <input type="text" maxlength="15" class="form-control" id="mascota_id" name="mascota_id" placeholder="Codigo de la mascota">
+                    <input type="text" maxlength="15" class="form-control" id="mascota_id" name="mascota_id" value="{{$mascota->id}}" readonly>
                 </div>
 
                 <div class="form-group">
                     <label for="causaFallecimiento">Causa de fallecimiento</label>
-                    <input type="text" maxlength="30" class="form-control" id="causaFallecimiento" name="causaFallecimiento" placeholder="Causa de fallecimiento de la mascota">
+                    <input type="text" maxlength="30" class="form-control" id="causaFallecimiento" name="causaFallecimiento" placeholder="Causa de fallecimiento de la mascota" required>
                 </div>
 
                 <div class="form-group">

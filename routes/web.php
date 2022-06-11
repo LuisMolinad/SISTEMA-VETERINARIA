@@ -12,6 +12,7 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
+use App\Models\mascota;
 
 /****
 
@@ -110,6 +111,9 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
+
+Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
+Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\expediente;
+use App\Models\mascota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use PDF;
@@ -33,6 +34,13 @@ class ExpedienteController extends Controller
     public function create()
     {
         return view('expediente.create');
+    }
+
+    public function crear($id)
+    {
+        $mascota = mascota::FindOrFail($id);
+        return view('expediente.create', compact('mascota'));
+        //return view('mascota.create');
     }
 
     /**
