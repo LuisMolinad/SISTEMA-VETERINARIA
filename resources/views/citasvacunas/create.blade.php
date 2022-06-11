@@ -78,24 +78,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-group d-none">
               <label for=""></label>
               <input type="text"
                 class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasVacunacion">
             </div>
-
+                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
         </div>
         <!--<button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
-        <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+
     </form>
 </div>
-            
-
-            <!--<button type="submit" href="{{ url('/guardarCitaVacuna/' . $mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
-            <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
-        </form>
-    </div>
 @endsection
 @section('js')
     <script>
@@ -119,5 +113,5 @@
                     }, false)
                 })
         })()
-    </script>      
+    </script>
 @endsection

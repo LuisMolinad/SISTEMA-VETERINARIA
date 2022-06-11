@@ -36,14 +36,10 @@ Actas de defunción
                 <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño" value = "{{$mascotas->propietario->direccionPropietario }}" readonly="readonly">
               </div>
           </div>
-        <div class="form-group">
-            <strong> <label for="InputCausaFallecimiento">Causa del fallecimiento</label> </strong>
-            <input type="text" class="form-control" style="width: 550px; height: 120px;" id="InputCausaFallecimiento" placeholder="Causa del fallecimiento">
-        </div>
-
-
+<br>
+    <div class="form-group">
         <a href="{{url('/imprimir/'.$mascotas->id)}}"  class="btn btn-primary">{{__('Imprimir')}}</a>
-
+    </div>
         </div>
       </form>
 </div>
