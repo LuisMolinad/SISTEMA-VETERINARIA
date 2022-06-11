@@ -6,6 +6,7 @@ use App\Models\citaCirugia;
 use Illuminate\Http\Request;
 use App\Models\mascota;
 use App\Models\propietario;
+use Carbon\Carbon;
 use PDF;
 
 class CitaCirugiaController extends Controller
@@ -82,9 +83,12 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
-    public function edit(citaCirugia $citaCirugia)
+    public function edit($id)
     {
-        //
+        //Obtengo la informacion al darle click a un evento por medio de su id
+        $citaCirugia = citaCirugia::find($id);
+        $citaCirugia->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaCirugia->start)->format('Y-m-d');
+        return response()->json($citaCirugia);
     }
 
     public function mostrar($id){

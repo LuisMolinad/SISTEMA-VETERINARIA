@@ -88,6 +88,12 @@ Cita de cirugía
                 </div>
             </div>    
 
+            <div class="form-group d-none">
+                <label for=""></label>
+                <input type="text"
+                  class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasCirugias">
+              </div>
+
             <br>
         
         

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let formulario = document.querySelector("#agregarcitasservicios");
     let formularioCaptura = document.querySelector("#operacionesservicio");
     let formularioCitasVacunas = document.querySelector("#agendavacunas");
+    let formularioCitasCirugias = document.querySelector("#agendacirugias");
 
     function getColor() {
         var colorinput = document.getElementById("color");
@@ -146,7 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if(evento.groupId == "citasCirugias"){
             axios.get(baseURL + "/editarCitaCirugia/" + info.event.id)
             .then((respuesta)=>{
-                
+                formularioCitasCirugias.title.value = respuesta.data.title;
+                formularioCitasCirugias.start.value = respuesta.data.start;
+                formularioCitasCirugias.conceptoCirugia.value = respuesta.data.conceptoCirugia;
+                formularioCitasCirugias.recomendacionPreoOperatoria.value = respuesta.data.recomendacionPreoOperatoria;
+
+                $("#eventoconsultacirugias").modal("show");
+
             })
             }
 
@@ -169,6 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formularioCitasVacunas.estadoCita.disabled = true;
         formularioCitasVacunas.pesolb.disabled = true;
         formularioCitasVacunas.title.disabled = true;
+        formularioCitasCirugias.title.disabled = true;
+        formularioCitasCirugias.start.disabled = true;
+        formularioCitasCirugias.conceptoCirugia.disabled = true;
+        formularioCitasCirugias.recomendacionPreoOperatoria.disabled = true;
     }
 
     //Capturamos la accion del boton
