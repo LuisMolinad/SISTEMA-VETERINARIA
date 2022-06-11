@@ -73,9 +73,11 @@ Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacun
 Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
 */
 
-Route::resource('/citasvacuna', CitaVacunaController::class);
 
-
+Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
+//Route::resource('/citasvacuna', CitaVacunaController::class);
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar');
+Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store');
 
 
 
@@ -99,6 +101,7 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId']);
 
 
 /*---------------Propietario---------------*/
@@ -113,3 +116,12 @@ Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);
 
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
+
+/*Mostrar citas vacunas*/
+Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
+//Obtengo los datos para pintarlos en el calendario de citas vacunas
+Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit']);
+Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId']);
+
+/*Mostrar citas cirugias*/
+Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);

@@ -56,9 +56,11 @@ class CitaCirugiaController extends Controller
      */
     public function store(Request $request)
     {
+
+
      $datoscirugia = request()->except('_token');
       citaCirugia ::insert($datoscirugia);
-      return response()->json($datoscirugia);
+      return redirect('/citacirugia');
     }
 
     /**
@@ -69,7 +71,9 @@ class CitaCirugiaController extends Controller
      */
     public function show(citaCirugia $citaCirugia)
     {
-        //
+        //Obtengo las cirugias de la base de datos
+        $citaCirugia = citaCirugia::all();
+        return response()->json($citaCirugia);
     }
 
     /**

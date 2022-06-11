@@ -57,6 +57,7 @@
     color: white;
 }
 
+
 .fallecido{
     background-color: #34495E;
     color: white;
@@ -65,4 +66,8 @@
 #botones-linea{
     display: flex;
     justify-content: space-around;
+
+.invisible{
+    visibility: none;
+
 }

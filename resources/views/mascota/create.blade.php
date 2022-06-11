@@ -25,19 +25,19 @@ CREAR MASCOTA
                 <legend class="legend">Mascota</legend>
                 <div class="form-group">
                     <label for="idMascota">Código de la mascota</label>
-                    <input type="text" class="form-control" id="idMascota" name="idMascota" placeholder="Ingrese el código de la mascota">
+                    <input type="text" class="form-control" id="idMascota" name="idMascota" placeholder="Ingrese el código de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="propietario_id">Id de el propietario</label>
-                    <input type="text" class="form-control" id="propietario_id" name="propietario_id" placeholder="Ingrese el id del propietario de la mascota">
+                    <input type="text" class="form-control" id="propietario_id" name="propietario_id" placeholder="Ingrese el id del propietario de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="nombreMascota">Nombre de la mascota</label>
-                    <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" placeholder="Ingrese el nombre de la mascota">
+                    <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" placeholder="Ingrese el nombre de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="razaMascota">Raza</label>
-                    <input type="text" class="form-control" id="razaMascota" name="razaMascota" placeholder="Ingrese la raza de la mascota">
+                    <input type="text" class="form-control" id="razaMascota" name="razaMascota" placeholder="Ingrese la raza de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="especie">Especie</label>
@@ -49,29 +49,29 @@ CREAR MASCOTA
                 </div>
                 <div class="form-group">
                     <label for="colorMascota">Color</label>
-                    <input type="text" class="form-control" id="colorMascota" name="colorMascota" placeholder="Ingrese el color de la mascota">
+                    <input type="text" class="form-control" id="colorMascota" name="colorMascota" placeholder="Ingrese el color de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="sexoMascota">Sexo</label>
-                    <select class="form-control" id="sexoMascota" name="sexoMascota">
+                    <select class="form-control" id="sexoMascota" name="sexoMascota" required>
                         <option>Hembra</option>
                         <option selected>Varón</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text">
+                    <input id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text" required>
                 </div>
                 <div class="form-group">
                     <label for="fallecidoMascota">Estado de la mascota</label>
-                    <select class="form-control" id="fallecidoMascota" name="fallecidoMascota">
+                    <select class="form-control" id="fallecidoMascota" name="fallecidoMascota" required>
                         <option >Fallecido</option>
                         <option selected>Vivo</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="caracteristicasEspeciales">Caracteristicas especiales</label>
-                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3" maxlength="100"></textarea>
+                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3" maxlength="100" required></textarea>
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-success mb-2">Crear</button>
