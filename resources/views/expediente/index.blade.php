@@ -58,7 +58,7 @@ GESTIONAR EXPEDIENTE
                         }
                     ?>
 
-                    >{{$expediente->mascota->propietario->                    nombrePropietario}}</td>
+                    >{{$expediente->mascota->propietario->nombrePropietario}}</td>
                     <td
 
                     <?php
@@ -67,11 +67,11 @@ GESTIONAR EXPEDIENTE
                         }
                     ?>
 
-                    class="estado">{{$expediente->fallecidoExpedien                    te}}</td>
+                    class="estado">{{$expediente->fallecidoExpediente}}</td>
                     <td
 
                     <?php
-                        if($expediente->fall                    ecidoExpediente == "Fallecido"){
+                        if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
@@ -87,10 +87,10 @@ GESTIONAR EXPEDIENTE
                         </form>
 
 
-                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{                        __('Reporte')}}</a>
+                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
 
                         <!--
-                        <form action="{{url('/expediente/pdf                    /'.$expediente->id)}}" method="get">
+                        <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
                         <button type="submit" class="btn btn-success">Reporte</button>
                         </form>
                     -->
