@@ -17,7 +17,7 @@ class PropietarioSeeder extends Seeder
     public function run()
     {
 
-      propietario::factory(250)->create();
+      propietario::factory(25)->create();
        /*  DB::table('propietarios')->insert([
             'nombrePropietario' =>Str::random(10),
             'telefonoPropietario' => $this->faker->numerify('####-####'),

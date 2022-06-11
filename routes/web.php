@@ -86,8 +86,8 @@ Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name(
 //Acta de defuncion Controller
 
 Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
-Route::get('actas/defuncion', [defuncionController::class, 'create'])->name('defuncion.create');
-
+Route::get('crear/actas/{id}', [defuncionController::class, 'mostrar'])->name('defuncion.mostrar');
+Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pdf');
 
 
 
@@ -110,6 +110,9 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
+
+Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
+Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);
 
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
