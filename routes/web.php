@@ -34,35 +34,40 @@ Route::get('/', function () {
 });
 */
 Auth::routes();
-
-Route::get('/app', function () {
+/*Route::get('/',function(){
+    return view('auth.login');
+});*/
+/*Route::get('/app', function () {
     return view('app');
+});*/
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);;
 });
 /*------------------------------------- RUTEO A SECCION expediente------------------------------------------------------- */
 Route::get('/gestionar_expediente', function () {
     return view('Expediente.GestionarExpediente');
-});
+})->middleware('auth');
 
 Route::get('/crear_expediente', function () {
     return view('Expediente.CrearExpediente');
-});
+})->middleware('auth');
 
 Route::get('/editar_expediente', function () {
     return view('Expediente.EditarExpediente');
-});
+})->middleware('auth');
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
 /*
 Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
 Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
 */
-Route::resource('citacirugia', CitaCirugiaController::class );
-Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar');
+Route::resource('citacirugia', CitaCirugiaController::class )->middleware('auth');
+Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
 //Route::resource('expediente', ExpedienteController::class);
 /*------------------------------------- PDF ---------------------------------------------------------------------------- */
 
 
-Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
+Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf')->middleware('auth');
 
 
 
@@ -75,10 +80,10 @@ Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaV
 */
 
 
-Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
+Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
 //Route::resource('/citasvacuna', CitaVacunaController::class);
-Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar');
-Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store');
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
+Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
 
 
 
@@ -86,47 +91,48 @@ Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name(
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller
 
-Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
-Route::get('crear/actas/{id}', [defuncionController::class, 'mostrar'])->name('defuncion.mostrar');
-Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pdf');
+Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index')->middleware('auth');
+Route::get('crear/actas/{id}', [defuncionController::class, 'mostrar'])->name('defuncion.mostrar')->middleware('auth');
+Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pdf')->middleware('auth');
 
 
 
 
 
 /*Accede al metodo index del Evento Controller*/
-Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
+//Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
 //Almacenar datos por medio de Store
-Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'store']);
+Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'store'])->middleware('auth');
 //Obtengo los datos para pintarlos en el calendario
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
-Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
-Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId']);
+Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit'])->middleware('auth');
+Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId'])->middleware('auth');
 
 
 /*---------------Propietario---------------*/
-Route::resource('propietario', PropietarioController::class);
+Route::resource('propietario', PropietarioController::class)->middleware('auth');
 /*---------------Mascota---------------*/
-Route::resource('mascota', MascotaController::class);
+Route::resource('mascota', MascotaController::class)->middleware('auth');
 /*---------------Expediente---------------*/
-Route::resource('expediente', ExpedienteController::class);
+Route::resource('expediente', ExpedienteController::class)->middleware('auth');
+
 
 Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 
-Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
-Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);
+Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
+Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
 
-Route::resource('vacuna',VacunaController::class);
-Route::resource('tiposervicio',TipoServicioController::class);
+Route::resource('vacuna',VacunaController::class)->middleware('auth');
+Route::resource('tiposervicio',TipoServicioController::class)->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
 //Obtengo los datos para pintarlos en el calendario de citas vacunas
-Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit']);
-Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId']);
+Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit'])->middleware('auth');
+Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId'])->middleware('auth');
 
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
-Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit']);
+Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
