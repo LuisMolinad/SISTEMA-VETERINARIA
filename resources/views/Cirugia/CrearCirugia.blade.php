@@ -29,7 +29,7 @@ Cita de cirugía
                 </div>
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputNombreMascota">Mascota</label></strong>
-                    <input type="text" class="form-control" id="inputNombreMascota" value="{{$mascotas->nombreMascota}}" readonly="readonly">
+                    <input type="text" class="form-control" id="inputNombreMascota" name = "title" value="{{$mascotas->nombreMascota}}" readonly="readonly">
 
 
                     <strong>  <label for="inputSexoMascota" >Sexo</label></strong>
@@ -74,7 +74,7 @@ Cita de cirugía
             
                 <div class="form-group col-md-6">
                     <strong>   <label for="inputFechaCirugia" style="color:black">Fecha de cirugía</label></strong>
-                    <input class="form-control" type="datetime-local" name="fechaHoraCitaCirugia" id="fechaHoraCitaCirugia" required>
+                    <input class="form-control" type="datetime-local" name="start" id="fechaHoraCitaCirugia" required>
 
                 </div>
                 <div class="form-group col-md-6">
@@ -82,7 +82,10 @@ Cita de cirugía
                     <input type="text" class="form-control" id="inputRecomendacionesPre" name="recomendacionPreoOperatoria"placeholder="Recomendaciones preoperatorias" required>
                 
                 </div>
-            
+                <div class="invisible">
+                    <strong> <label for="END">End</label></strong>
+                    <input type="text" class="form-control" id="END" name="end" readonly="readonly">
+                </div>
             </div>    
 
             <br>
