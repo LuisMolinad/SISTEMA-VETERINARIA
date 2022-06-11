@@ -108,5 +108,7 @@ Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
 
+Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
+
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
