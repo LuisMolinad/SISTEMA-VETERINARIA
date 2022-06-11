@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteCaracterisiticasEspecialesToMascotasTable extends Migration
+class EditEndNuloToCitaVacunasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class DeleteCaracterisiticasEspecialesToMascotasTable extends Migration
      */
     public function up()
     {
-        /*
-        Schema::table('mascotas', function (Blueprint $table) {
-            $table->dropColumn('caracteristicasEspeciales');
+        Schema::table('cita_vacunas', function (Blueprint $table) {
+            $table->dateTime('end')->nullable()->change();;
         });
-        */
     }
 
     /**
@@ -27,9 +25,8 @@ class DeleteCaracterisiticasEspecialesToMascotasTable extends Migration
      */
     public function down()
     {
-        /*
-        Schema::table('mascotas', function (Blueprint $table) {
-            $table->string('caracteristicasEspeciales',100);
-        });*/
+        Schema::table('cita_vacunas', function (Blueprint $table) {
+            //
+        });
     }
 }

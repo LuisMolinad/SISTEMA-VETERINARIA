@@ -10,6 +10,8 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
+use App\Http\Controllers\VacunaController;
+use App\Http\Controllers\TipoServicioController;
 
 /****
 
@@ -71,9 +73,11 @@ Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacun
 Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
 */
 
-Route::resource('/citasvacuna', CitaVacunaController::class);
 
-
+Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index');
+//Route::resource('/citasvacuna', CitaVacunaController::class);
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar');
+Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store');
 
 
 
@@ -82,20 +86,9 @@ Route::resource('/citasvacuna', CitaVacunaController::class);
 //Acta de defuncion Controller
 
 Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
-Route::get('actas/defuncion', [defuncionController::class, 'create'])->name('defuncion.create');
+Route::get('crear/actas/{id}', [defuncionController::class, 'mostrar'])->name('defuncion.mostrar');
+Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pdf');
 
-Route::get('/gestionar_servicios', function () {
-    return view('Recursos.Servicio.GestionarServicio');
-});
-Route::get('/gestionar_servicios/agregar_servicio',function(){
-    return view('Recursos.Servicio.AgregarServicio');
-});
-Route::get('/gestionar_vacunas', function () {
-    return view('Recursos.Vacuna.GestionarVacuna');
-});
-Route::get('/gestionar_vacunas/agregar_vacuna', function () {
-    return view('Recursos.Vacuna.AgregarVacuna');
-});
 
 
 
@@ -108,6 +101,7 @@ Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'st
 Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit']);
+Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId']);
 
 
 /*---------------Propietario---------------*/
@@ -116,3 +110,19 @@ Route::resource('propietario', PropietarioController::class);
 Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
+
+Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
+Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);
+
+Route::resource('vacuna',VacunaController::class);
+Route::resource('tiposervicio',TipoServicioController::class);
+
+/*Mostrar citas vacunas*/
+Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
+//Obtengo los datos para pintarlos en el calendario de citas vacunas
+Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit']);
+Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId']);
+
+/*Mostrar citas cirugias*/
+Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
+Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit']);

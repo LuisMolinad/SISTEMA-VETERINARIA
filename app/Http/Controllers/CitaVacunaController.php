@@ -6,6 +6,10 @@ use App\Models\citaVacuna;
 use Illuminate\Http\Request;
 use App\Models\mascota;
 use App\Models\propietario;
+use App\Models\vacuna;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 class CitaVacunaController extends Controller
 {
     /**
@@ -15,22 +19,37 @@ class CitaVacunaController extends Controller
      */
     public function index()
     {
-        //lo que va dentro del with tiene que ser igual al metodo que esta dentro del model mascota, es el que define la relacion hace ctrl + click al
-        // model y alla te explico
+
         $mascotas = mascota::with('propietario')->get();
-       // $propietarios = propietario::with('mascotas')->get();
-                                                //aca se van as variables de arriba
+
         return view(('citasvacunas.index'),compact('mascotas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('citasvacunas.create');
+
+        //return view('citasvacunas.create', compact('vacunas') );
+    }
+
+
+
+
+    public function mostrar($id){
+        $mascotas = mascota::FindOrFail($id);
+        $vacunas = vacuna::all();
+        return view('citasvacunas.create',compact('mascotas','vacunas'));
+        //return view('Cirugia.CrearCirugia');
+    }
+
+    public function validar($id){
+       // $mascotas = mascota::FindOrFail($id);
+
+        $idmascotas=DB::table('mascotas')->select('id')->get();
+
+
+        return view('citasvacunas.store',compact('mascotas'));
+
     }
 
     /**
@@ -41,9 +60,13 @@ class CitaVacunaController extends Controller
      */
     public function store(Request $request)
     {
-      $datosCita = request()->except('_token');
+
+      $datosCita = request()->except('_token','idVisible','end');
+
       citaVacuna ::insert($datosCita);
-      return response()->json($datosCita);
+      //return response()->json($datosCita);
+      //echo '<script language="javascript">alert("juas");</script>';
+      return redirect('/');
     }
 
     /**
@@ -55,6 +78,8 @@ class CitaVacunaController extends Controller
     public function show(citaVacuna $citaVacuna)
     {
        // return view('citasVacunas.gestionarCitasVacunacion');
+       $citaVacuna = citaVacuna::all();
+       return response()->json($citaVacuna);
     }
 
     /**
@@ -63,9 +88,12 @@ class CitaVacunaController extends Controller
      * @param  \App\Models\citaVacuna  $citaVacuna
      * @return \Illuminate\Http\Response
      */
-    public function edit(citaVacuna $citaVacuna)
+    public function edit($id)
     {
-        //
+        //Obtengo la informacion al darle click a un evento por medio de su id
+        $citaVacuna = citaVacuna::find($id);
+        $citaVacuna->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('Y-m-d');
+        return response()->json($citaVacuna);
     }
 
     /**

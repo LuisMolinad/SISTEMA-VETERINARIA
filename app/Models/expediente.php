@@ -11,4 +11,8 @@ class expediente extends Model
 
     protected $table='expedientes';
     public $timestamps = false;
+
+    public function mascota(){
+        return $this->belongsTo(mascota::class);
+    }
 }

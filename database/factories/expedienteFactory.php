@@ -14,7 +14,7 @@ class expedienteFactory extends Factory
     public function definition()
     {
         return [
-            'mascota_id'=>$this->faker->numberBetween(1,250),
+            'mascota_id'=>$this->faker->numberBetween(1,25),
             'causaFallecimiento'=>$this->faker->text(30),
             'fallecidoExpediente'=>$this->faker->randomElement(['Vivo','Fallecido'])
         ];

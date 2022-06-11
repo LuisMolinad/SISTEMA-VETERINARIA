@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFechaCirugiaToCitaCirugiasTable extends Migration
+class EditCampoFechaToCitaVacunasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddFechaCirugiaToCitaCirugiasTable extends Migration
      */
     public function up()
     {
-        Schema::table('cita_cirugias', function (Blueprint $table) {
-        //$table->dateTime('fechaHoraCitaCirugia');
+        Schema::table('cita_vacunas', function (Blueprint $table) {
+            $table->renameColumn('fechaRefuerzo', 'start');
+            $table->renameColumn('fechaAplicacion', 'end');
+            $table->string('title',20);
         });
     }
 
@@ -25,8 +27,8 @@ class AddFechaCirugiaToCitaCirugiasTable extends Migration
      */
     public function down()
     {
-        Schema::table('cita_cirugias', function (Blueprint $table) {
-            //$table->dropColumn('fechaHoraCitaCirugia');
+        Schema::table('cita_vacunas', function (Blueprint $table) {
+            //
         });
     }
 }

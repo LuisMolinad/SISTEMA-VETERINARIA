@@ -18,12 +18,13 @@ class citaServicio extends Model
         'telefonoServicio' => 'required',
         'descripcion' => 'required',
         'end' => 'required',
+        'groupId' => 'required',
         'tipoServicio_id' => 'required',
         'color' => 'required',
     ];
 
 
     protected $fillable = ['title','horaServicio', 'start','clienteServicio',
-    'telefonoServicio', 'descripcion','end','tipoServicio_id', 'color'];
+    'telefonoServicio', 'descripcion','end','groupId','tipoServicio_id', 'color'];
 
 }

@@ -9,13 +9,17 @@ class VacunaController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $datosVacuna['vacunas']=vacuna::all();
+        return view('vacuna.index',$datosVacuna);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,6 +29,7 @@ class VacunaController extends Controller
     public function create()
     {
         //
+        return view('vacuna.create');
     }
 
     /**
@@ -35,7 +40,9 @@ class VacunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosVacuna = request()->except('_token');
+        Vacuna::insert($datosVacuna);
+        return redirect('/vacuna');
     }
 
     /**
@@ -48,7 +55,10 @@ class VacunaController extends Controller
     {
         //
     }
-
+    public function showId($id){
+        $vacuna=vacuna::find($id);
+        return response()->json($vacuna);
+    }
     /**
      * Show the form for editing the specified resource.
      *

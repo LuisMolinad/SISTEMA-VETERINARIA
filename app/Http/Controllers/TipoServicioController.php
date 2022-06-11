@@ -14,7 +14,8 @@ class TipoServicioController extends Controller
      */
     public function index()
     {
-        //
+        $datosTipoServicio['tiposervicios']=tipoServicio::all();
+        return view('tiposervicio.index',$datosTipoServicio);
     }
 
     /**
@@ -25,6 +26,7 @@ class TipoServicioController extends Controller
     public function create()
     {
         //
+        return view('tiposervicio.create');
     }
 
     /**
@@ -35,7 +37,9 @@ class TipoServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosTipoServicio = request()->except('_token');
+        TipoServicio::insert($datosTipoServicio);
+        return redirect('/tiposervicio');
     }
 
     /**
@@ -48,6 +52,12 @@ class TipoServicioController extends Controller
     {
         //
     }
+
+    public function showId($id){
+        $tipoServicio=tipoServicio::find($id);
+        return response()->json($tipoServicio);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
