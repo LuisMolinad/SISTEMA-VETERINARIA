@@ -43,8 +43,6 @@ Actas de defunción
 
 
         <a href="{{url('/imprimir/'.$mascotas->id)}}"  class="btn btn-primary">{{__('Imprimir')}}</a>
-&nbsp;
-
 
         </div>
       </form>

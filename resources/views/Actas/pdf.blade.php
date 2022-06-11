@@ -15,22 +15,20 @@
     </div>
     <br>
     <br>
-    <br>
-    <br>
     <h3>Estimado/a {{ $mascotas->propietario->nombrePropietario }}:</h3>
     <br>
     <br>
     <br><br><br>
 
     <p> La veterinaria Pet's Paradise lamenta la pérdida irreparable de {{ $mascotas->nombreMascota }}
+     Nos unimos a usted y a su familia en este momento de duelo.</p>
 
-    <p> Nos unimos a usted y a su familia en este momento de duelo.
-
-
-    <p>
-        <i>“Cuándo tienes a alguien a quien amas en el cielo, tienes un pedacito de cielo en tu casa para siempre”</i>
-    </p>
-
+    <div class="center">
+        <p>
+            <i>“Cuándo tienes a alguien a quien amas en el cielo, tienes un pedacito de cielo en tu casa para
+                siempre”</i>
+        </p>
+    </div>
     <footer>
         <hr>
         <div class="container">
