@@ -53,25 +53,25 @@ GESTIONAR EXPEDIENTE
                     <td
 
                     <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
+                        if                    ($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
 
-                    >{{$expediente->mascota->propietario->nombrePropietario}}</td>
+                    >{{$expediente->mascota->propietario->                    nombrePropietario}}</td>
                     <td
 
                     <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
+                        if($expedie                    nte->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
 
-                    class="estado">{{$expediente->fallecidoExpediente}}</td>
+                    class="estado">{{$expediente->fallecidoExpedien                    te}}</td>
                     <td
 
                     <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
+                        if($expediente->fall                    ecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
@@ -87,10 +87,10 @@ GESTIONAR EXPEDIENTE
                         </form>
 
 
-                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
+                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{                        __('Reporte')}}</a>
 
                         <!--
-                        <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
+                        <form action="{{url('/expediente/pdf                    /'.$expediente->id)}}" method="get">
                         <button type="submit" class="btn btn-success">Reporte</button>
                         </form>
                     -->
@@ -104,7 +104,7 @@ GESTIONAR EXPEDIENTE
 
 @section('js')
 
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
