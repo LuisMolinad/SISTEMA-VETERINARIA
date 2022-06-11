@@ -42,7 +42,11 @@ Actas de defunción
         </div>
 
 
-        <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+        <a href="{{url('/imprimir/'.$mascotas->id)}}"  class="btn btn-primary">{{__('Imprimir')}}</a>
+&nbsp;
+
+
+        </div>
       </form>
 </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\vacuna;
 use App\Models\mascota;
+use PDF;
 class defuncionController extends Controller
 {
     /**
@@ -20,12 +21,18 @@ class defuncionController extends Controller
         return view(('Actas.index'),compact('mascotas'));
        // return view('Actas.index');
     }
+    public function pdf($id)
+    {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        //$mascotas = mascota::with('propietario')->get();
+        $mascotas = mascota::FindOrFail($id);
+
+        $pdf = PDF::loadView('Actas.pdf',['mascotas'=>$mascotas]);
+        return $pdf->stream();
+        //return view('Actas.pdf',compact('mascotas'));
+
+    }
+
     public function create()
     {
         //return view('Actas.create');

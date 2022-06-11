@@ -87,7 +87,7 @@ Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name(
 
 Route::get('actas/listadefuncion', [defuncionController::class, 'index'])->name('defuncion.index');
 Route::get('crear/actas/{id}', [defuncionController::class, 'mostrar'])->name('defuncion.mostrar');
-
+Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pdf');
 
 
 
