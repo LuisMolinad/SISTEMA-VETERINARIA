@@ -64,9 +64,9 @@ class CitaVacunaController extends Controller
       $datosCita = request()->except('_token','idVisible','end');
 
       citaVacuna ::insert($datosCita);
-      return response()->json($datosCita);
+      //return response()->json($datosCita);
       //echo '<script language="javascript">alert("juas");</script>';
-      //return redirect('citas/index');
+      return redirect('/');
     }
 
     /**
