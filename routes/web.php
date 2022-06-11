@@ -111,6 +111,9 @@ Route::resource('mascota', MascotaController::class);
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class);
 
+Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf']);
+Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter']);
+
 Route::resource('vacuna',VacunaController::class);
 Route::resource('tiposervicio',TipoServicioController::class);
 
