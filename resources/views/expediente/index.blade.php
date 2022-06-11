@@ -51,25 +51,25 @@ GESTIONAR EXPEDIENTE
                     ?>
                     >{{$expediente->mascota->nombreMascota}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
-                    
+
                     >{{$expediente->mascota->propietario->nombrePropietario}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
-                    
+
                     class="estado">{{$expediente->fallecidoExpediente}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
@@ -86,9 +86,9 @@ GESTIONAR EXPEDIENTE
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
 
-                        
+
                         <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
-                    
+
                         <!--
                         <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
                         <button type="submit" class="btn btn-success">Reporte</button>
@@ -104,7 +104,7 @@ GESTIONAR EXPEDIENTE
 
 @section('js')
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
