@@ -53,7 +53,7 @@ GESTIONAR EXPEDIENTE
                     <td
 
                     <?php
-                        if                    ($expediente->fallecidoExpediente == "Fallecido"){
+                        if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
@@ -62,7 +62,7 @@ GESTIONAR EXPEDIENTE
                     <td
 
                     <?php
-                        if($expedie                    nte->fallecidoExpediente == "Fallecido"){
+                        if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
