@@ -38,7 +38,7 @@
 }
 
 .contenedor{
-    max-width: 90%;
+    width: 90%;
 }
 
 .logo-navbar{
@@ -65,8 +65,8 @@
 #botones-linea{
     display: flex;
     justify-content: space-around;
+}
 
 .invisible{
     visibility: none;
-
 }

@@ -27,7 +27,7 @@ class CreateMascotasTable extends Migration
             $table->string('sexoMascota',6);
             $table->string('fechaNacimiento',12);
             $table->string('fallecidoMascota',9);
-            $table->string('caracteristicasEspeciales',100);
+            $table->string('caracteristicasEspeciales',100)->nullable();
         });
     }
 

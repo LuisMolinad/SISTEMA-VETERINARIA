@@ -12,8 +12,8 @@
 </head>
 <body>
     <header class="header">
-        <h1>CLINICA VETERINARIA PET'S PARADISE</h1>
-        <h2>REPORTE DE LA MASCOTA {{$expediente->mascota->idMascota}}</h2>
+        <center><h1>CLINICA VETERINARIA PET'S PARADISE</h1></center>
+        <center><h2>REPORTE DE LA MASCOTA {{$expediente->mascota->idMascota}}</h2></center>
     </header>
         <main>
 

@@ -77,8 +77,8 @@ class MascotaController extends Controller
         //$datosMascota = request()->all();
         Mascota::where('id','=',$id)->update($datosMascota);
         $mascota = Mascota::FindOrFail($id);
-        //return redirect('/mascota');
-        return response()->json($datosMascota);
+        return redirect('/mascota');
+        //return response()->json($datosMascota);
     }
 
     /**
