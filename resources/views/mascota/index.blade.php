@@ -15,9 +15,6 @@ GESTIONAR MASCOTA
 
 @section('content')
     <div class="container-fluid contenedor">
-        <div class="boton crear container_btn">
-        <a href="/mascota/create"><button type="button" class="btn btn-success boton_crear">Crear mascota</button></a>
-        </div>
         <table class="table table-striped" style="width:100%" id="mascota">
             <thead class="table-dark table-header">
                 <tr>
@@ -28,7 +25,6 @@ GESTIONAR MASCOTA
                 <th scope="col">Raza</th>
                 <th scope="col">Especie</th>
                 <th scope="col">Color</th>
-                <th scope="col"></th>
                 <th scope="col"></th>
                 </tr>
             </thead>
@@ -42,15 +38,14 @@ GESTIONAR MASCOTA
                     <td>{{$mascota->razaMascota}}</td>
                     <td>{{$mascota->especie}}</td>
                     <td>{{$mascota->colorMascota}}</td>
-                    <td>
+                    <td id = "botones-linea">
                         <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                    </td>
-                    <td>
                         <form action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        <a href="/expediente/create/{{$mascota->id}}"><button type="button" class="btn btn-success">Crear expediente</button></a>
                     </td>
                 </tr>
                 @endforeach

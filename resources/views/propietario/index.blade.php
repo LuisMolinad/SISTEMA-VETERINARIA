@@ -26,7 +26,6 @@ GESTIONAR PROPIETARIO
                 <th scope="col">Número</th>
                 <th scope="col">Dirección</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,15 +35,14 @@ GESTIONAR PROPIETARIO
                     <td>{{$propietario->nombrePropietario}}</td>
                     <td>{{$propietario->telefonoPropietario}}</td>
                     <td>{{$propietario->direccionPropietario}}</td>
-                    <td>
+                    <td id = "botones-linea">
                         <a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                    </td>
-                    <td>
                         <form action="{{url('/propietario/'.$propietario->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        <a href="/mascota/create/{{$propietario->id}}"><button type="button" class="btn btn-success">Crear mascota</button></a>
                     </td>
                 </tr>
                 @endforeach

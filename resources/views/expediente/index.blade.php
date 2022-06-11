@@ -15,9 +15,6 @@ GESTIONAR EXPEDIENTE
 
 @section('content')
     <div class="container-fluid contenedor">
-        <div class="boton crear container_btn">
-        <a href="/expediente/create"><button type="button" class="btn btn-success boton_crear">Crear expediente</button></a>
-        </div>
         <table class="table table-striped" style="width:100%" id="expediente">
             <thead class="table-dark table-header">
                 <tr>

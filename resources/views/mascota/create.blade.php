@@ -29,7 +29,7 @@ CREAR MASCOTA
                 </div>
                 <div class="form-group">
                     <label for="propietario_id">Id de el propietario</label>
-                    <input type="text" class="form-control" id="propietario_id" name="propietario_id" placeholder="Ingrese el id del propietario de la mascota" required>
+                    <input type="text" class="form-control" id="propietario_id" name="propietario_id" value="{{$propietario->id}}" required readonly>
                 </div>
                 <div class="form-group">
                     <label for="nombreMascota">Nombre de la mascota</label>
