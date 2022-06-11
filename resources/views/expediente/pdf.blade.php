@@ -7,12 +7,13 @@
     <title>Reporte {{$expediente->mascota->idMascota}}</title>
 
     <!--CSS Local-->
-    <link rel="stylesheet" href="{{asset('css/pdf.css')}}">
+    <!--
+    <link rel="stylesheet" href="{{asset('css/pdf.css')}}">-->
 </head>
 <body>
     <header class="header">
         <h1>CLINICA VETERINARIA PET'S PARADISE</h1>
-        <h2>REPORTE DE LA MASCOTA </h2>
+        <h2>REPORTE DE LA MASCOTA {{$expediente->mascota->idMascota}}</h2>
     </header>
         <main>
 

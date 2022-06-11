@@ -71,7 +71,22 @@ class ExpedienteController extends Controller
         return view('expediente.edit', compact('expediente'));
     }
 
-    
+/*
+    public function pdf()
+    {
+        $pdf = PDF::loadView('Cirugia.pdf');
+      //  $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+        //return view('Cirugia.pdf');
+    }
+    */
+
+    public function pdfConverter($id){
+        $expediente = expediente::FindOrFail($id);
+        $pdf = PDF::loadView('expediente.pdf', ['expediente'=>$expediente]);
+        return $pdf->stream();
+    }
+
     public function pdf($id){
         $expedientes = expediente::with('mascota')->get();
         $expediente = null;
@@ -82,7 +97,7 @@ class ExpedienteController extends Controller
         }
         
         return view(('expediente.pdf'), compact('expediente'));
-
+    }
         //$pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
         //return $pdf->stream();
 
@@ -97,7 +112,6 @@ class ExpedienteController extends Controller
         return $pdf->download('archivo.pdf');
         */
         //return $pdf->download('Rosalio.pdf');
-    }
 
     
 

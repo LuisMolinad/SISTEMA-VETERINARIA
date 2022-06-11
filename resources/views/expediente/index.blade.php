@@ -89,9 +89,14 @@ GESTIONAR EXPEDIENTE
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
 
+                        
+                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
+                    
+                        <!--
                         <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
                         <button type="submit" class="btn btn-success">Reporte</button>
                         </form>
+                    -->
                     </td>
                 </tr>
                 @endforeach

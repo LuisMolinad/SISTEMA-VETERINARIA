@@ -14,6 +14,6 @@ class expedienteSeeder extends Seeder
      */
     public function run()
     {
-        expediente::factory(250)->create();
+        expediente::factory(25)->create();
     }
 }
