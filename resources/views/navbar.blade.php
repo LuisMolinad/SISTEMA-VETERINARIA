@@ -45,6 +45,9 @@
                 </div>
             </li>
         </ul>
-        <a href="#"><button type="button" class="btn btn-danger">Cerrar Sesion</button></a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><button type="button" class="btn btn-danger">Cerrar Sesion</button></a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+        </form>
     </div>
     </nav>
