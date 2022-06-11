@@ -189,5 +189,7 @@ Agenda Veterinaria
   </div>
 </div>
 @extends('Calendario/modalCitasVacunas')
+@extends('Calendario/modalCitasCirugia')
+
 
 @endsection
