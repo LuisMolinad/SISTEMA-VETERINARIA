@@ -113,8 +113,8 @@ Cita de cirugía
             
             <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
         
-        <a href="{{ route('Cirugia.pdf') }}"  class="btn btn-primary btn-sm" data-placement= "left">{{__('Acta de permiso')}}  
-        </a>  
+        <a href="{{url('/CirugiaPDF/'.$mascotas->id)}}"  class="btn btn-primary btn-sm" data-placement= "left">{{__('Acta de permiso')}} </a> 
+       
     </form>
 </div>
 @endsection

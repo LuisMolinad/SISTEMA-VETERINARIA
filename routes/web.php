@@ -59,7 +59,7 @@ Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('
 /*------------------------------------- PDF ---------------------------------------------------------------------------- */
 
 
-Route::get('/CirugiaPDF', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
+Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf');
 
 
 

@@ -26,9 +26,10 @@ class CitaCirugiaController extends Controller
     }
 
     /*Para el PDF */
-    public function pdf()
+    public function pdf($id)
     {
-        $pdf = PDF::loadView('Cirugia.pdf');
+        $mascotas = mascota::FindOrFail($id);
+        $pdf = PDF::loadView('Cirugia.pdf' ,['mascotas'=>$mascotas]);
       //  $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
         //return view('Cirugia.pdf');
