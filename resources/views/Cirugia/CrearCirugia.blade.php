@@ -21,10 +21,8 @@ Cita de cirugía
         <div class="form-row" >
                 <div class="form-group col-md-6">
 
-        <div class="invisible">
                 <strong> <label for="IDMASCOTA">IDMASCOTA</label></strong>
                     <input type="text" class="form-control" id="IDMASCOTA" value = "{{$mascotas->idMascota}}" readonly="readonly">
-                     </div>
 
                     <strong> <label for="inputRazaMascota">RAZA</label></strong>
                     <input type="text" class="form-control" id="inputRazaMascota" value="{{$mascotas->razaMascota}}" readonly="readonly">

@@ -16,12 +16,12 @@ Nuevo Servicio
             <legend class="legend">Tipo de servicio</legend>
                 <div class="form-group">
                     <label for="nombreServicio">Nombre del servicio</label>
-                    <input type="text" maxlength="20" class="form-control" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del servicio">
+                    <input type="text" maxlength="20" class="form-control" id="nombreServicio" name="nombreServicio" placeholder="Ingrese el nombre del servicio" required>
                 </div>
 
                 <div class="form-group">
                     <label for="descripcionServicio">Descripción del servicio</label>
-                    <input type="text" maxlength="50" class="form-control" id="descripcionServicio" name="descripcionServicio" placeholder="Ingrese una descripción del servicio">
+                    <input type="text" maxlength="50" class="form-control" id="descripcionServicio" name="descripcionServicio" placeholder="Ingrese una descripción del servicio" required>
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-success mb-2">Crear</button>
