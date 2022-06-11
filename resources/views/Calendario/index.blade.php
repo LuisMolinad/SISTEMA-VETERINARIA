@@ -1,4 +1,9 @@
 @extends('app')
+
+@section('titulo')
+Agenda Veterinaria
+@endsection
+
 @section('content')
     
 <div class="container">
@@ -25,33 +30,30 @@
             <div class="modal-body">
                 <!--Coloco los campos de llenado -->
 
-                <form action="" id="agregarcitasservicios"> <!-- Se declara esta accion para poder capturar los datos del formulario -->
+                <form action="" id="agregarcitasservicios" name="agregarcitasservicios"> <!-- Se declara esta accion para poder capturar los datos del formulario -->
+                  <div id="validaragendar"></div>
                   {!! csrf_field() !!} <!--Captura los formularios unicamente del formulario-->
                   <div class="form-group">
 
                     <div class="form-group d-none">
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
-                      <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
-
+ 
                   <label for="title">Nombre de Mascota: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
-                  <small id="helpId" class="text-muted">Help text</small>
                 </div>
                 
                 <div class="form-group">
                   <label for="horaServicio">Hora: </label>
                   <input type="time"
                     class="form-control" name="horaServicio" id="horaServicio" aria-describedby="helpId" placeholder="Ingrese el color de la mascota">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
                   <label for="start">Fecha: </label>
                   <input type="text"
-                    class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
+                    class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="" readonly>
                 </div>
 
                 <div class="form-group">
@@ -67,14 +69,12 @@
                   <label for="clienteServicio">Propietario: </label>
                   <input type="text"
                     class="form-control" name="clienteServicio" id="clienteServicio" aria-describedby="helpId" placeholder="Ingrese el nombre del propietario">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
                   <label for="telefonoServicio">Telefono: </label>
                   <input type="text"
                     class="form-control" name="telefonoServicio" id="telefonoServicio" aria-describedby="helpId" placeholder="Ingrese el telefono del propietario">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group">
@@ -86,15 +86,20 @@
                   <label for="color">Color</label>
                   <input type="text"
                     class="form-control" name="color" id="color" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
 
                 <div class="form-group d-none">
                   <label for="end">Fin</label>
                   <input type="date"
                     class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
+
+                  <div class="form-group d-none">
+                  <label for="groupId"></label>
+                  <input type="text"
+                    class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasServicios">
+                </div>
+
             </form>
             </div>
             <div class="modal-footer">
@@ -145,12 +150,10 @@
               </div>
 
               <div class="form-group">
-                <label for="tipoServicio_id">Tipo Servicio</label>
+                <label for="tipoServicio_id">Servicio a Realizar</label>
                 <input type="text"
                   class="form-control" name="tipoServicio_id" id="tipoServicio_id" aria-describedby="helpId" placeholder="">
-                <small id="helpId" class="form-text text-muted">Help text</small>
               </div>
-
 
               <div class="form-group">
                 <label for="clienteServicio">Propietario</label>
@@ -185,6 +188,6 @@
       </div>
   </div>
 </div>
-
+@extends('Calendario/modalCitasVacunas')
 
 @endsection
