@@ -50,4 +50,4 @@
         @csrf
         </form>
     </div>
-    </nav>
+</nav>
