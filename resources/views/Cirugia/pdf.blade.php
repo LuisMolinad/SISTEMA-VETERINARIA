@@ -10,26 +10,26 @@
     <center> <h4>CLINICA VETERINARIA PET'S PARADISE</h4> </center>
         <center> <h5>AUTORIZACIÓN PARA REALIZAR TRATAMIENTO, PROCEDIMIENTO, SEDACIÓN O CIRUGÍA</h5> </center> 
               <p align="justify"><br> 
-                  Yo, _________________________________ que me identifico, 
+                  Yo, <strong>{{$mascotas->propietario->nombrePropietario }}</strong> que me identifico, 
                   con el documento (DUI, PASAPORTE, TARJETA DE RESIDENTE) _________________________________
-                  Propietario (a) del ejemplar _________________________________ Especie __________________ 
-                  Raza______________ Sexo ______________ Hago constar que he sido 
+                  Propietario (a) del ejemplar <strong>{{ $mascotas->nombreMascota }}</strong> Especie <strong>{{ $mascotas->especie}}</strong>
+                  Raza  <strong> {{$mascotas->razaMascota}}</strong> Sexo {{$mascotas->sexoMascota}} Hago constar que he sido 
                   informado por parte del personal médico veterinario de PET'S PARADISE, que mi mascota se someta a: 
                 <br>
                 <br> 
-                Por su padecimiento y como parte de su tratamiento a __________________________________
+                Por su padecimiento y como parte de su tratamiento a _______________________________________
                 <br> 
                 <br>
-                Por métodos diagnosticados se le recomienda se le someta a _______________________________________
+                Por métodos diagnosticados se le recomienda se le someta a __________________________________
                 <br> 
                 <br>
-                Por manipulación dificultosa por su temperamento se le tenga que realizar________________________
+                Por manipulación dificultosa por su temperamento se le tenga que realizar_______________________
                 <br> 
                 <br>
-                Por razones estéticas o salud bucal _________________________________________
+                Por razones estéticas o salud bucal ______________________________________________________
                 <br> 
                 <br>
-                Por control reproductivo he decidido realizar la _________________________________________________
+                Por control reproductivo he decidido realizar la ____________________________________________
                 <br> 
                 <br>
                 Por tratamiento de una herida se realice ___________________________________________________
