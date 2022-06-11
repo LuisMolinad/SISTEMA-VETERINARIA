@@ -25,7 +25,7 @@ CREAR MASCOTA
                 <legend class="legend">Mascota</legend>
                 <div class="form-group">
                     <label for="idMascota">Código de la mascota</label>
-                    <input type="text" class="form-control" id="idMascota" name="idMascota" placeholder="Ingrese el código de la mascota" required>
+                    <input type="text" class="form-control" id="idMascota" name="idMascota" pattern="[A-Z]{1}[0-9]{3}" placeholder="Ingrese el código de la mascota" required>
                 </div>
                 <div class="form-group">
                     <label for="propietario_id">Id de el propietario</label>
@@ -60,7 +60,7 @@ CREAR MASCOTA
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text" required>
+                    <input id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text" readonly="readonly" required>
                 </div>
                 <div class="form-group">
                     <label for="fallecidoMascota">Estado de la mascota</label>
@@ -71,7 +71,7 @@ CREAR MASCOTA
                 </div>
                 <div class="form-group">
                     <label for="caracteristicasEspeciales">Caracteristicas especiales</label>
-                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3" maxlength="100" required></textarea>
+                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3" maxlength="100"></textarea>
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-success mb-2">Crear</button>

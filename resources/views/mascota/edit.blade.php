@@ -26,7 +26,7 @@ CREAR MASCOTA
                 <legend class="legend">Mascota</legend>
                 <div class="form-group">
                     <label for="idMascota">Código de la mascota</label>
-                    <input value="{{$mascota->idMascota}}" type="text" class="form-control" id="idMascota" name="idMascota" placeholder="Ingrese el código de la mascota">
+                    <input value="{{$mascota->idMascota}}" type="text" class="form-control" pattern="[A-Z]{1}[0-9]{3}"  id="idMascota" name="idMascota" placeholder="Ingrese el código de la mascota">
                 </div>
                 <div class="form-group">
                     <label for="propietario_id">Id de el propietario</label>
@@ -61,7 +61,7 @@ CREAR MASCOTA
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input value="{{$mascota->fechaNacimiento}}" id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text">
+                    <input value="{{$mascota->fechaNacimiento}}" id="fechaNacimiento" name="fechaNacimiento" class="date form-control" type="text" readonly>
                 </div>
                 <div class="form-group">
                     <label for="fallecidoMascota">Estado de la mascota</label>
