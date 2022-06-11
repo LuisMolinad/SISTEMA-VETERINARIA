@@ -65,6 +65,7 @@
 #botones-linea{
     display: flex;
     justify-content: space-around;
+}
 
 .invisible{
     visibility: none;
