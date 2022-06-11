@@ -8,7 +8,7 @@ Crear expediente
     <!--Date picker-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="{{asset('js/datepicker.js')}}" defer></script>
+    <script src="{{secure_asset('js/datepicker.js')}}" defer></script>
 @endsection
 
 @section('header')
@@ -78,7 +78,7 @@ Crear expediente
             </fieldset>
             <fieldset class="fieldset">
                 <legend class="legend">Expediente</legend>
-                
+
             </fieldset>
             <button type="submit" class="btn btn-success mb-2">Crear</button>
         </form>

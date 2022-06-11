@@ -8,7 +8,7 @@
 
     <!--CSS Local-->
     <!--
-    <link rel="stylesheet" href="{{asset('css/pdf.css')}}">-->
+    <link rel="stylesheet" href="{{secure_asset('css/pdf.css')}}">-->
 </head>
 <body>
     <header class="header">
