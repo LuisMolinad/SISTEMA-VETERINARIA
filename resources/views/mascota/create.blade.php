@@ -8,7 +8,7 @@ CREAR MASCOTA
     <!--Date picker-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="{{secure_asset('js/datepicker.js')}}" defer></script>
+    <script src="{{asset('js/datepicker.js')}}" defer></script>
 @endsection
 
 

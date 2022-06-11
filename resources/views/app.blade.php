@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="{{secure_asset('images/logo.jpeg')}}">
+    <link rel="shortcut icon" href="{{asset('images/logo.jpeg')}}">
     <title>@yield('titulo')</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -24,10 +24,10 @@
     </script>
 
      <!--Scrips-->
-    <script src="{{secure_asset('js/agenda.js')}}" defer></script>
+    <script src="{{asset('js/agenda.js')}}" defer></script>
 
     <!--CSS Local-->
-    <link rel="stylesheet" href="{{secure_asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
     <!--JS Local-->
 
