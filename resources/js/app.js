@@ -1,1 +1,1 @@
-require('.app/public/js/bootstrap');
+require('./bootstrap');
