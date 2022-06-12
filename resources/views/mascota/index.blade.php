@@ -39,12 +39,12 @@ GESTIONAR MASCOTA
                     <td>{{$mascota->especie}}</td>
                     <td>{{$mascota->colorMascota}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                      <!--  <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
                         <a href="/expediente/create/{{$mascota->id}}"><button type="button" class="btn btn-success">Crear expediente</button></a>
                     </td>
                 </tr>

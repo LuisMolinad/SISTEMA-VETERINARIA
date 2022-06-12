@@ -21,16 +21,16 @@ CREAR EXPEDIENTE
                     <input type="text" maxlength="15" class="form-control" id="mascota_id" name="mascota_id" value="{{$mascota->id}}" readonly>
                 </div>
 
-                <div class="form-group">
+                <div hidden class="form-group" >
                     <label for="causaFallecimiento">Causa de fallecimiento</label>
-                    <input type="text" maxlength="30" class="form-control" id="causaFallecimiento" name="causaFallecimiento" placeholder="Causa de fallecimiento de la mascota" required>
+                    <input type="text" maxlength="30" class="form-control" id="causaFallecimiento" value="-" name="causaFallecimiento" placeholder="Causa de fallecimiento de la mascota" required>
                 </div>
 
                 <div class="form-group">
                     <label for="fallecidoExpediente">Estado del animal</label>
                     <select class="form-control" id="fallecidoExpediente" name="fallecidoExpediente">
-                        <option selected>Fallecido</option>
-                        <option>Vivo</option>
+                        <option selected>Vivo</option>
+
                     </select>
                 </div>
             </fieldset>

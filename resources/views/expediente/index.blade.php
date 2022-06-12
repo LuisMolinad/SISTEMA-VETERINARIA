@@ -78,13 +78,13 @@ GESTIONAR EXPEDIENTE
                     id = "botones-linea"
 
                     >
-                        <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                       <!-- <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
 
                         <form action="{{url('/expediente/'.$expediente->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
 
 
                         <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
