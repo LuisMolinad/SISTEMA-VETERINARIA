@@ -6,9 +6,9 @@ Agenda Veterinaria
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container">
     <!--Por medio de esta instruccion aparece la agenda-->
-    <div  id="agenda">
+    <div id="agenda">
     </div>
 </div>
 
