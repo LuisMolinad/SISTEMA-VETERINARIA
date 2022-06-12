@@ -37,14 +37,14 @@ GESTIONAR VACUNAS
                     <td>{{$vacuna->descripcionVacuna}}</td>
                     <td>{{$vacuna->tiempoEntreDosisDia}}</td>
                     <td>
-                        <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <a href="#"><button type="button" class="btn btn-warning">Editar</button></a>
                     </td>
                     <td>
-                        <form action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
+                       <!-- <form action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
                     </td>
                 </tr>
                 @endforeach
