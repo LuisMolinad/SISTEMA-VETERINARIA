@@ -14,7 +14,7 @@ GESTIONAR PROPIETARIO
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">
+    <div class="table-responsive-sm container-fluid contenedor">
         <div class="boton crear container_btn">
         <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
         </div>
