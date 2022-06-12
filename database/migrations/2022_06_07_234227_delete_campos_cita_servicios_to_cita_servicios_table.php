@@ -28,8 +28,7 @@ class DeleteCamposCitaServiciosToCitaServiciosTable extends Migration
     public function down()
     {
         Schema::table('cita_servicios', function (Blueprint $table) {
-            $table->string('razaServicio',8);
-            $table->string('colorServicio',8);
+
         });
     }
 }
