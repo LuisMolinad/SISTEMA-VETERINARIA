@@ -36,12 +36,12 @@ GESTIONAR PROPIETARIO
                     <td>{{$propietario->telefonoPropietario}}</td>
                     <td>{{$propietario->direccionPropietario}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <!--<a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form action="{{url('/propietario/'.$propietario->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form> -->
                         <a href="/mascota/create/{{$propietario->id}}"><button type="button" class="btn btn-success">Crear mascota</button></a>
                     </td>
                 </tr>

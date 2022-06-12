@@ -61,7 +61,7 @@ class CitaVacunaController extends Controller
     public function store(Request $request)
     {
 
-      $datosCita = request()->except('_token','idVisible','end');
+      $datosCita = request()->except('_token','idVisible','end','inputnombreDuenio','inputContactNumber','inputDireccion');
 
       citaVacuna ::insert($datosCita);
       //return response()->json($datosCita);
