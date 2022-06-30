@@ -65,7 +65,6 @@ CREAR MASCOTA
                 <div class="form-group">
                     <label for="fallecidoMascota">Estado de la mascota</label>
                     <select class="form-control" id="fallecidoMascota" name="fallecidoMascota" required>
-                        <option >Fallecido</option>
                         <option selected>Vivo</option>
                     </select>
                 </div>

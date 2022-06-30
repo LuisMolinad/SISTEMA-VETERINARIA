@@ -14,7 +14,7 @@ GESTIONAR PROPIETARIO
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">
+    <div class="table-responsive-sm container-fluid contenedor">
         <div class="boton crear container_btn">
         <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
         </div>
@@ -36,12 +36,12 @@ GESTIONAR PROPIETARIO
                     <td>{{$propietario->telefonoPropietario}}</td>
                     <td>{{$propietario->direccionPropietario}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <!--<a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form action="{{url('/propietario/'.$propietario->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form> -->
                         <a href="/mascota/create/{{$propietario->id}}"><button type="button" class="btn btn-success">Crear mascota</button></a>
                     </td>
                 </tr>

@@ -16,13 +16,13 @@ class CreateCitaCirugiasTable extends Migration
         Schema::create('cita_cirugias', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            $table->dateTime('fechaHoraCitaCirugia'); //Fecha hora cirugia
-            //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
+            $table->dateTime('start');
             $table->foreignId('mascota_id')->constrained('mascotas');
-           // $table->foreignId('recordatorios_id')->constrained('recordatorios')->cascadeOnDelete();
             $table->string('conceptoCirugia',30);
             $table->string('recomendacionPreoOperatoria',50);
             $table->string('groupId')->nullable();
+            $table->string('title',20);
+            $table->string('end')->nullable();
         });
     }
 

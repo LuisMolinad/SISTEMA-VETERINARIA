@@ -14,7 +14,7 @@ GESTIONAR EXPEDIENTE
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">
+    <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped" style="width:100%" id="expediente">
             <thead class="table-dark table-header">
                 <tr>
@@ -51,25 +51,25 @@ GESTIONAR EXPEDIENTE
                     ?>
                     >{{$expediente->mascota->nombreMascota}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
-                    
+
                     >{{$expediente->mascota->propietario->nombrePropietario}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
                         }
                     ?>
-                    
+
                     class="estado">{{$expediente->fallecidoExpediente}}</td>
                     <td
-                    
+
                     <?php
                         if($expediente->fallecidoExpediente == "Fallecido"){
                             echo 'class = "fallecido"';
@@ -78,17 +78,17 @@ GESTIONAR EXPEDIENTE
                     id = "botones-linea"
 
                     >
-                        <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                       <!-- <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
 
                         <form action="{{url('/expediente/'.$expediente->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
 
-                        
+
                         <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
-                    
+
                         <!--
                         <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
                         <button type="submit" class="btn btn-success">Reporte</button>

@@ -22,8 +22,16 @@
                         value="{{ $mascotas->idMascota }}" readonly="readonly">
                     <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}"
                         type="hidden" readonly="readonly">
-                    <input class="form-control" id="title" name="title" value="{{ $mascotas->nombreMascota }}"
-                        type="hidden" readonly="readonly">
+                </div>
+                <div class="form-group col-md-6">
+                    <strong> <label for="pesolb">Nombre:</label></strong>
+                    <input class="form-control" readonly="readonly" id="title" name="title" value="{{ $mascotas->nombreMascota }}">
+                    <div class="valid-feedback">
+                        Campo correcto
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor ingrese un peso en lb.
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
@@ -37,6 +45,20 @@
                     </div>
                 </div>
             </div>
+            <div class="form-row" style="background-color:#e1dff4">
+                <div class="form-group col-md-6">
+                    <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
+                  <input type="text" class="form-control" value = "{{$mascotas->propietario->nombrePropietario }}"id="inputnombreDuenio" placeholder="Nombre del dueño"  readonly="readonly">
+                </div>
+                <div class="form-group col-md-6">
+                    <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
+                  <input type="text" class="form-control" id="inputContactNumber" placeholder="Número de contacto" value = "{{$mascotas->propietario->telefonoPropietario }}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-6">
+                    <strong>   <label for="inputDireccion" style="color:black">Direccion</label></strong>
+                    <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño" value = "{{$mascotas->propietario->direccionPropietario }}" readonly="readonly">
+                  </div>
+              </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong> <label for="inputDireccion" style="color:black">Vacuna</label></strong>

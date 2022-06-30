@@ -35,14 +35,15 @@ GESTIONAR TIPO DE SERVICIO
                     <td>{{$tiposervicio->nombreServicio}}</td>
                     <td>{{$tiposervicio->descripcionServicio}}</td>
                     <td>
-                        <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                       <!-- <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a> -->
+                       <a href="#"><button type="button" class="btn btn-warning">Editar</button></a>
                     </td>
                     <td>
-                        <form action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                        <!--<form action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
                     </td>
                 </tr>
                 @endforeach

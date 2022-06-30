@@ -5,7 +5,7 @@ Agenda Veterinaria
 @endsection
 
 @section('content')
-    
+
 <div class="container">
     <!--Por medio de esta instruccion aparece la agenda-->
     <div id="agenda">
@@ -39,11 +39,11 @@ Agenda Veterinaria
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
                     </div>
- 
+
                   <label for="title">Nombre de Mascota: </label>
                   <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
                 </div>
-                
+
                 <div class="form-group">
                   <label for="horaServicio">Hora: </label>
                   <input type="time"
@@ -136,7 +136,7 @@ Agenda Veterinaria
                 <label for="title">Nombre de Mascota</label>
                 <input type="text" name="title" id="title" class="form-control" placeholder="Ingrese el nombre de la mascota" aria-describedby="helpId">
               </div>
-              
+
               <div class="form-group">
                 <label for="horaServicio">Hora</label>
                 <input type="time"
@@ -183,7 +183,7 @@ Agenda Veterinaria
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
              <!-- <button type="button" class="btn btn-primary">Modificar</button>
               <button type="button" class="btn btn-primary">Eliminar</button> -->
-          
+
           </div>
       </div>
   </div>

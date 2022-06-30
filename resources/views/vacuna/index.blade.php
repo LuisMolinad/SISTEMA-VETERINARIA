@@ -37,14 +37,14 @@ GESTIONAR VACUNAS
                     <td>{{$vacuna->descripcionVacuna}}</td>
                     <td>{{$vacuna->tiempoEntreDosisDia}}</td>
                     <td>
-                        <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <a href="#"><button type="button" class="btn btn-warning">Editar</button></a>
                     </td>
                     <td>
-                        <form action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
+                       <!-- <form action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form>-->
                     </td>
                 </tr>
                 @endforeach
@@ -62,7 +62,22 @@ GESTIONAR VACUNAS
     <script>
         $(document).ready(function () {
             $('#vacuna').DataTable({
-                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]]
+                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ records por página",
+                    "zeroRecords": "No se encuentran datos relacionados found - ",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles ",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    'search':'Buscar',
+                    'paginate': {
+                        'first':      'Primero',
+                        'last':       'Ultimo',
+                        'next':      'Siguiente',
+                        'previous':  'Anterior',
+                    },
+
+                },
             });
         });
     </script>

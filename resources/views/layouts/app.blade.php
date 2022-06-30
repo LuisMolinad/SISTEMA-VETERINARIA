@@ -26,7 +26,7 @@
     <title>@yield('titulo')</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.js" integrity="sha512-uplugzeh2/XrRr7RgSloGLHjFV0b4FqUtbT5t9Sa/XcilDr1M3+88u/c+mw6+HepH7M2C5EVmahySsyilVHI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/locales-all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -34,6 +34,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
+
     <!--Creo este script para poder englobar las url-->
     <script type="text/javascript">
     var baseURL = {!! json_encode(url('/')) !!}
@@ -48,7 +57,7 @@
     <!--div id="app"-->
         <!--nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"-->
         <nav class="navbar navbar-expand-lg navbar-dark ">
-        
+
             <!--div class="container"-->
                 <a class="navbar-brand" href="#"><img class="logo-navbar" src="{{asset('images/logo.jpeg')}}"  alt="Logo de la veterinaria"></a>
 
@@ -77,7 +86,7 @@
                                 <!--li class="nav-item active" style="padding: 0px 30px 0px ">
                                     <h3 style="color:RGB(255,255,255)">Sistema clínico veterinario Pet's Paradise</h3>
                                 </li-->
-                                <li class="nav-item" style="padding: 0px 30px 0px">
+                                <li class="nav-item active " style="padding: 0px 30px 0px">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
                                 <!--a href="{{ route('login') }}"><button type="button" class="btn btn-primary">{{ __('Iniciar sesión') }}</button></a-->
 
@@ -87,13 +96,13 @@
                             @endif
 
                             @if (Route::has('register'))
-                            <li class="nav-item" style="padding: 0px 30px 0px">
+                            <li class="nav-item active" style="padding: 0px 30px 0px">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                     <!--a href="{{ route('register') }}"><button type="button" class="btn btn-primary">{{ __('Registrarse') }}</button></a-->
                                 </li>
                             @endif
                             @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown active">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
