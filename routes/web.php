@@ -14,8 +14,14 @@ use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
 
-/****
+//Controladores para SPATIE
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
 
+
+
+/****
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +31,7 @@ use App\Models\mascota;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 /*
 Route::get('/', function () {
@@ -33,16 +39,18 @@ Route::get('/', function () {
     return view('Calendario.index');
 });
 */
+
+/* ---------------------------//Rutas de Spatie---------------------------------------------------- */
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
-/*Route::get('/',function(){
-    return view('auth.login');
-});*/
-/*Route::get('/app', function () {
-    return view('app');
-});*/
-Route::group(['middleware'=>'auth'],function(){
-    Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);;
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
+    Route::resource('roles', RolController::class);
+    Route::resource('usuarios', UsuarioController::class);
 });
+
+
 /*------------------------------------- RUTEO A SECCION expediente------------------------------------------------------- */
 Route::get('/gestionar_expediente', function () {
     return view('Expediente.GestionarExpediente');
@@ -61,7 +69,7 @@ Route::get('/editar_expediente', function () {
 Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
 Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
 */
-Route::resource('citacirugia', CitaCirugiaController::class )->middleware('auth');
+Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
 Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
 //Route::resource('expediente', ExpedienteController::class);
 /*------------------------------------- PDF ---------------------------------------------------------------------------- */
@@ -75,7 +83,6 @@ Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Ciru
 //Route::resource('citaVacuna',CitaVacunaController::class);
 /*
 Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacuna.show');
-
 Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
 */
 
@@ -124,8 +131,8 @@ Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
 
-Route::resource('vacuna',VacunaController::class)->middleware('auth');
-Route::resource('tiposervicio',TipoServicioController::class)->middleware('auth');
+Route::resource('vacuna', VacunaController::class)->middleware('auth');
+Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
@@ -136,6 +143,3 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
