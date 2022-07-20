@@ -858,7 +858,7 @@ select.form-control:not([size]):not([multiple]) {
 .card .card-header h4 {
     font-size: 16px;
     line-height: 28px;
-    color: #6777ef;
+    color:  #47c363;
     padding-right: 10px;
     margin-bottom: 0;
 }
@@ -968,7 +968,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .card.card-primary {
-    border-top: 2px solid #6777ef;
+    border-top: 2px solid #47c363;
 }
 
 .card.card-secondary {
@@ -1832,11 +1832,11 @@ h6 .badge {
 }
 
 .btn-primary:focus:active, .btn-primary.disabled:focus:active {
-    background-color: #394eea !important;
+    background-color: #47c363 !important;
 }
 
 .btn-primary:active, .btn-primary:hover, .btn-primary.disabled:active, .btn-primary.disabled:hover {
-    background-color: #394eea !important;
+    background-color:  #47c363 !important;
 }
 
 .btn-outline-primary, .btn-outline-primary.disabled {
