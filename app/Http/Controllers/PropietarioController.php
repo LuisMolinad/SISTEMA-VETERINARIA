@@ -7,6 +7,22 @@ use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
 {
+
+    function __construct()
+    {
+
+        /* 
+        Se crea este metodo para definir 
+        que acciones tiene permitido cada middlwere
+        */
+        $this->middleware(
+            'permission:ver-propietario|crear-propietario|editar-propietario|borrar-propietario',
+            ['only' => ['index']]
+        );
+        $this->middleware('permission: crear-propietario', ['only' => ['create', 'store']]);
+        $this->middleware('permission: editar-propietario', ['only' => ['edit', 'update']]);
+        $this->middleware('permission: borrar-propietario', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +31,7 @@ class PropietarioController extends Controller
     public function index()
     {
         $datosPropietario['propietarios'] = propietario::all();
-        return view('propietario.index',$datosPropietario);
+        return view('propietario.index', $datosPropietario);
     }
 
     /**
@@ -74,7 +90,7 @@ class PropietarioController extends Controller
     public function update(Request $request, $id)
     {
         $datosPropietario = request()->except(['_token', '_method']);
-        Propietario::where('id','=',$id)->update($datosPropietario);
+        Propietario::where('id', '=', $id)->update($datosPropietario);
         $propietario = Propietario::FindOrFail($id);
         return redirect('/propietario');
     }
