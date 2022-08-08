@@ -3,7 +3,8 @@
     Register
 @endsection
 @section('content')
-    <div class="card card-primary">
+<!-- TODO  decidir que hacer con el registrar fuera de la app -->
+   {{--  <div class="card card-primary">
         <div class="card-header"><h4>Register</h4></div>
 
         <div class="card-body pt-1">
@@ -78,5 +79,5 @@
     <div class="mt-5 text-muted text-center">
         Already have an account ? <a
                 href="{{ route('login') }}">SignIn</a>
-    </div>
+    </div> --}}
 @endsection
