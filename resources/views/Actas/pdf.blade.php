@@ -14,14 +14,18 @@
         <h1>Certificado de defunción </h1>
     </div>
     <br>
-    <br>
+    <div style=" float:right">
+        {{ $dt }}
+    </div>
     <h3>Estimado/a {{ $mascotas->propietario->nombrePropietario }}:</h3>
+    {{-- <h4>{{ $dt->day }}/{{ $dt->month }}/{{ $dt->year }}</h4> --}}
+
     <br>
     <br>
     <br><br><br>
 
     <p> La veterinaria Pet's Paradise lamenta la pérdida irreparable de {{ $mascotas->nombreMascota }}
-     Nos unimos a usted y a su familia en este momento de duelo.</p>
+        Nos unimos a usted y a su familia en este momento de duelo.</p>
 
     <div class="center">
         <p>

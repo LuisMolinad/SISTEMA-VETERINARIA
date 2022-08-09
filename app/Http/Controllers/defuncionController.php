@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\vacuna;
 use App\Models\mascota;
+
 use PDF;
+
+//Para obtener fecha
+use Carbon\Carbon;
+
 class defuncionController extends Controller
 {
     /**
@@ -18,16 +23,21 @@ class defuncionController extends Controller
 
         $mascotas = mascota::with('propietario')->get();
 
-        return view(('Actas.index'),compact('mascotas'));
-       // return view('Actas.index');
+        return view(('Actas.index'), compact('mascotas'));
+        // return view('Actas.index');
     }
     public function pdf($id)
     {
 
+
+        /*  fecha de elaboracion */
+        $dt = Carbon::now()->locale('es_ES')->isoFormat('dddd D MMMM YYYY');
+
+
         //$mascotas = mascota::with('propietario')->get();
         $mascotas = mascota::FindOrFail($id);
 
-        $pdf = PDF::loadView('Actas.pdf',['mascotas'=>$mascotas]);
+        $pdf = PDF::loadView('Actas.pdf', ['mascotas' => $mascotas, 'dt' => $dt]);
         return $pdf->stream();
         //return view('Actas.pdf',compact('mascotas'));
 
@@ -38,11 +48,12 @@ class defuncionController extends Controller
         //return view('Actas.create');
     }
 
-    public function mostrar($id){
+    public function mostrar($id)
+    {
 
         $mascotas = mascota::FindOrFail($id);
         $vacunas = vacuna::all();
-        return view('Actas.create',compact('mascotas'));
+        return view('Actas.create', compact('mascotas'));
         //return view('Cirugia.CrearCirugia');
     }
 
