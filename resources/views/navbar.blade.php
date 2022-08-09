@@ -65,6 +65,9 @@
                         <i class="fa fa-user"></i>Editar Perfil</a> --}}
                         <a class="dropdown-item" href="{{ route('usuarios.index') }}"> Nuevo Usuario</a>
                         <a class="dropdown-item" href="{{ route('roles.index') }}"> Roles</a>
+                      {{--   Posible nueva sección de cambio de contraseña y perfil de usuario
+                        <a class="dropdown-item has-icon edit-profile" href="#" data-id="{{ \Auth::id() }}"><i class="fa fa-user"></i>Edit Profile</a>
+                        <a class="dropdown-item has-icon" data-toggle="modal" data-target="#changePasswordModal" href="#" data-id="{{ \Auth::id() }}"><i class="fa fa-lock"> </i>Change Password</a> --}}
                         {{-- <a class="dropdown-item " data-toggle="modal" data-target="#changePasswordModal" href="#"
                         data-id="{{ \Auth::id() }}"><i class="fa fa-lock"> </i>Cambiar Contraseña</a> --}}
                     </div>
