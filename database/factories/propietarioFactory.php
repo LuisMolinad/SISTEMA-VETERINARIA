@@ -16,7 +16,7 @@ class PropietarioFactory extends Factory
     {
         return [
             'nombrePropietario'=>$this->faker->name(),
-            'telefonoPropietario'=>$this-> faker->numerify('7#######'),
+            'telefonoPropietario'=>$this-> faker->regexify('[6-7]{1}[0-9]{7}'),
             'direccionPropietario'=>$this->faker->text(30),
         ];
     }

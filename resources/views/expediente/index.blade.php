@@ -7,6 +7,11 @@ GESTIONAR EXPEDIENTE
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('header')
@@ -14,6 +19,9 @@ GESTIONAR EXPEDIENTE
 @endsection
 
 @section('content')
+
+    @include('notificacion')
+
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped" style="width:100%" id="expediente">
             <thead class="table-dark table-header">
@@ -22,78 +30,28 @@ GESTIONAR EXPEDIENTE
                 <th scope="col">ID Mascota</th>
                 <th scope="col">Nombre Mascota</th>
                 <th scope="col">Dueño</th>
-                <th scope="col">Fallecido expediente</th>
                 <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($expedientes as $expediente)
-                <tr>
-                    <td
+                <tr
                     <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
+                        if($expediente->mascota->fallecidoMascota == 'Fallecido'){
+                            echo 'class="fallecido"';
+                            echo 'style="background-color:#34495E;"';
                         }
                     ?>
-                    >{{$expediente->id}}</td>
-                    <td
-                    <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
-                        }
-                    ?>
-                    >{{$expediente->mascota->idMascota}}</td>
-                    <td
-                    <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
-                        }
-                    ?>
-                    >{{$expediente->mascota->nombreMascota}}</td>
-                    <td
-
-                    <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
-                        }
-                    ?>
-
-                    >{{$expediente->mascota->propietario->nombrePropietario}}</td>
-                    <td
-
-                    <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
-                        }
-                    ?>
-
-                    class="estado">{{$expediente->fallecidoExpediente}}</td>
-                    <td
-
-                    <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
-                            echo 'class = "fallecido"';
-                        }
-                    ?>
-                    id = "botones-linea"
-
-                    >
-                       <!-- <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-
-                        <form action="{{url('/expediente/'.$expediente->id)}}" method="post">
-                            @csrf
-                            {{method_field('DELETE')}}
-                            <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>-->
-
+                >
+                    <td>{{$expediente->id}}</td>
+                    <td>{{$expediente->mascota->idMascota}}</td>
+                    <td>{{$expediente->mascota->nombreMascota}}</td>
+                    <td>{{$expediente->mascota->propietario->nombrePropietario}}</td>
+                    <td id = "botones-linea">
+                       <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
 
                         <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
 
-                        <!--
-                        <form action="{{url('/expediente/pdf/'.$expediente->id)}}" method="get">
-                        <button type="submit" class="btn btn-success">Reporte</button>
-                        </form>
-                    -->
                     </td>
                 </tr>
                 @endforeach

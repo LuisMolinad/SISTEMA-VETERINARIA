@@ -17,9 +17,9 @@ EDITAR EXPEDIENTE
             {{method_field('PATCH')}}
             <fieldset class="fieldset">
             <legend class="legend">Expediente</legend>
-                <div class="form-group">
+                <div class="form-group none">
                     <label for="mascota_id">Codigo mascota</label>
-                    <input value="{{$expediente->mascota_id}}" type="text" maxlength="15" class="form-control" id="mascota_id" name="mascota_id" placeholder="Codigo de la mascota">
+                    <input value="{{$expediente->mascota_id}}" type="text" maxlength="15" class="form-control" id="mascota_id" name="mascota_id" placeholder="Codigo de la mascota" readonly>
                 </div>
 
                 <div class="form-group">
@@ -30,8 +30,8 @@ EDITAR EXPEDIENTE
                 <div class="form-group">
                     <label for="fallecidoExpediente">Estado del animal</label>
                     <select class="form-control" id="fallecidoExpediente" name="fallecidoExpediente">
-                        <option selected>Fallecido</option>
-                        <option>Vivo</option>
+                        <option <?php if($expediente->fallecidoExpediente == 'Fallecido'){ echo 'selected'; } ?> >Fallecido</option>
+                        <option <?php if($expediente->fallecidoExpediente == 'Vivo'){ echo 'selected'; } ?> >Vivo</option>
                     </select>
                 </div>
             </fieldset>

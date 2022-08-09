@@ -124,6 +124,10 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 
+//Ejemplo consultar JS
+Route::get('/mascota/consultar/{codigo}',[MascotaController::class, 'consultar'])->middleware('auth');
+Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
+
 
 Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);

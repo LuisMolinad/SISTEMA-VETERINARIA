@@ -19,7 +19,7 @@ class CreateMascotasTable extends Migration
             $table->bigIncrements('id');
             $table->string('idMascota',15);
             //convencion de laravel para llaves foraneas
-            $table->foreignId('propietario_id')->constrained('propietarios');
+            $table->foreignId('propietario_id')->constrained('propietarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombreMascota',15);
             $table->string('razaMascota',15);
             $table->string('especie',15);

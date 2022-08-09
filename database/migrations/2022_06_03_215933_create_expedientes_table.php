@@ -19,7 +19,7 @@ class CreateExpedientesTable extends Migration
 
              $table->bigIncrements('id');
              //convencion de laravel para llaves foraneas
-             $table->foreignId('mascota_id')->constrained('mascotas');
+             $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
              $table->string('causaFallecimiento',30);
              $table->string('fallecidoExpediente',9);
         });

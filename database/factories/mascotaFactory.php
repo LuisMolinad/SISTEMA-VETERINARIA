@@ -14,7 +14,7 @@ class mascotaFactory extends Factory
     public function definition()
     {
         return [
-            'idMascota'=>$this->faker->regexify('[A-Z]{2}[0-9]{3}'),
+            'idMascota'=>$this->faker->regexify('[A-Z]{1}[0-9]{3}'),
             'propietario_id'=>$this->faker->numberBetween(1,25),
             'nombreMascota'=>$this->faker->text(15),
             'razaMascota'=>$this->faker->text(15),

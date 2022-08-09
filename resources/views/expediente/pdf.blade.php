@@ -23,6 +23,7 @@
                     <p class="articulo"><span class="campo">ID: </span>{{$expediente->mascota->id}}</p>
                     <p class="articulo"><span class="campo">Codigo de la mascota: </span> {{$expediente->mascota->idMascota}}</p>
                     <p class="articulo"><span class="campo">Nombre de la mascota: </span> {{$expediente->mascota->nombreMascota}}</p>
+                    <p class="articulo"><span class="campo">Estado de la mascota: </span> {{$expediente->mascota->fallecidoMascota}}</p>
                     <p class="articulo"><span class="campo">Raza mascota: </span> {{$expediente->mascota->razaMascota}}</p>
                     <p class="articulo"><span class="campo">Especie: </span> {{$expediente->mascota->especie}}</p>
                     <p class="articulo"><span class="campo">Color:</span> {{$expediente->mascota->colorMascota}}</p>
@@ -40,11 +41,10 @@
                 <fieldset class="seccion">
                     <legend>Expediente</legend>
                     <p class="articulo"><span class="campo">ID: </span>{{$expediente->id}}</p>
-                    <p class="articulo"><span class="campo">Estado: </span>{{$expediente->fallecidoExpediente}}</p>
                     <?php
-                        if($expediente->fallecidoExpediente == "Fallecido"){
+                        if($expediente->mascota->fallecidoMascota == "Fallecido"){
                             echo '<p class="articulo"><span class="campo">Causa del fallecimiento: </span>' . $expediente->causaFallecimiento . '</p>';
-                        }
+                        }                        
                     ?>
                 </fieldset>
             </div>

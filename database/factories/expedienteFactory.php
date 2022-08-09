@@ -16,7 +16,7 @@ class expedienteFactory extends Factory
         return [
             'mascota_id'=>$this->faker->numberBetween(1,25),
             'causaFallecimiento'=>$this->faker->text(30),
-            'fallecidoExpediente'=>$this->faker->randomElement(['Vivo','Fallecido'])
+            //'fallecidoExpediente'=>$this->faker->randomElement(['Vivo','Fallecido'])
         ];
     }
 }
