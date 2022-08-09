@@ -14,6 +14,22 @@ class CitaServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+
+        /* 
+        Se crea este metodo para definir 
+        que acciones tiene permitido cada middlwere
+        */
+        $this->middleware(
+            'permission:ver-citasServicios|crear-citasServicios|editar-citasServicios|borrar-citasServicios',
+            ['only' => ['index']]
+        );
+        $this->middleware('permission: crear-citasServicios', ['only' => ['create', 'store']]);
+        $this->middleware('permission: editar-citasServicios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission: borrar-citasServicios', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $tipoServicios = tipoServicio::all();
@@ -69,8 +85,8 @@ class CitaServicioController extends Controller
         $citaServicio = citaServicio::find($id);
 
         //Dar formato a los campos recuperados de la base por medio de carbon
-        $citaServicio->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('Y-m-d');
-        $citaServicio->end=Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
+        $citaServicio->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('Y-m-d');
+        $citaServicio->end = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
 
         return response()->json($citaServicio);
     }

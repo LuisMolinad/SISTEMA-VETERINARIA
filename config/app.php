@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/El_Salvador',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //SPATIE
+        Spatie\Permission\PermissionServiceProvider::class,
+
     ],
 
     /*
@@ -229,7 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF'=> Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
