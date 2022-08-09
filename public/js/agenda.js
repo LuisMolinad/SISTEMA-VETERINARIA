@@ -37,6 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
 
+        //Formato de Tiempo
+        eventTimeFormat: { // like '14:30:00'
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          },
+
         //Mostramos los datos consultados de la base de datos en el controller por medio de events
         //events:"http://127.0.0.1:8000/mostrar",
         //events: citaServicios,
@@ -47,36 +54,51 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 //Citas de servicios
                 url: "/mostrar",
+                display: 'block',
             },
 
             {
                 //Citas de vacunacion
                 url: "/mostrarvacunas",
                 color: "green",
-                textColor: "black",
+                display: 'block', /*Muestra el evento con color de relleno*/
+                /*textColor: "black",*/
             },
 
             {
                 //Citas de cirugias
                 url: "/mostrarcirugias",
                 color: "red",
+                display: 'block',
             },
         ],
 
         dateClick: function (info) {
-            formulario.reset();
-            //Recupero el dia en base al seleccionado en el calendario
-            formulario.start.value = info.dateStr;
-            formulario.end.value = info.dateStr;
-
-            $("#evento").modal("show");
+            
+           formulario.reset();
+           //Recupero el dia en base al seleccionado en el calendario
+           formulario.start.value = info.dateStr;
+           formulario.end.value = info.dateStr;
+    
+           $("#evento").modal("show"); 
         },
+
+        eventDidMount: function(info) {
+            let val = selector.value; //Obtiene el valor del select
+            console.log(info.event.extendedProps)
+
+            //Agregar en todas las tablas de cirugia,servicios,vacunas un campo de filtro
+            if (!(val == info.event.extendedProps.filtercirugias || val == info.event.extendedProps.filtervacunas ||
+                val == info.event.extendedProps.filterservicios || val == "all")) {
+                info.el.style.display = "none";
+            }
+          },
 
         //Obtiene la informacion del evento seleccionado
         eventClick: function (info) {
             bloquearCampos();
             var evento = info.event;
-            console.log(evento);
+            //console.log(evento);
             if (evento.groupId == "citasServicios") {
                 axios
                     .post(baseURL + "/editar/" + info.event.id)
@@ -160,6 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
     calendar.render();
+
+    //Refresca el selector para que pueda mostrar las citas correspondientes
+    selector.addEventListener('change', function() {
+        calendar.refetchEvents();
+      });
 
     function bloquearCampos() {
         formularioCaptura.title.disabled = true;

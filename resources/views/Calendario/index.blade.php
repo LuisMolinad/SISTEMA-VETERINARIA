@@ -7,6 +7,17 @@ Agenda Veterinaria
 @section('content')
 
 <div class="container">
+
+    <!--Selector-->
+
+    <div class="container">
+      <select class="form-control col-md-4 mb-4 mt-4" id="selector">
+        <option value="all">Todas las citas</option>
+        <option value="citasVacunacion">Citas de Vacunación</option>
+        <option value="citasCirugias">Citas de Cirugía</option>
+        <option value="citasServicios">Citas de Servicios</option>
+      </select>
+
     <!--Por medio de esta instruccion aparece la agenda-->
     <div id="agenda">
     </div>
@@ -100,6 +111,13 @@ Agenda Veterinaria
                     class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasServicios">
                 </div>
 
+            <!--Esto es para realizar el filtro de servicios en la agenda-->
+            <div class="form-group d-none">
+              <label for="filterservicios"></label>
+              <input type="text"
+                class="form-control" name="filterservicios" id="filterservicios" aria-describedby="filterservicios" value="citasServicios">
+            </div>
+
             </form>
             </div>
             <div class="modal-footer">
@@ -180,10 +198,10 @@ Agenda Veterinaria
           </form>
           </div>
           <div class="modal-footer">
+              <button type="button" class="btn btn-warning">Editar</button>
+              <button type="button" class="btn btn-danger">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-             <!-- <button type="button" class="btn btn-primary">Modificar</button>
-              <button type="button" class="btn btn-primary">Eliminar</button> -->
-
+             
           </div>
       </div>
   </div>
