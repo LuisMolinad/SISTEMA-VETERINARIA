@@ -32,9 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
         locale: "es" /*Idioma espanol*/,
 
         headerToolbar: {
-            left: "prev,next,today",
+            left: "prevYear,prev,next,nextYear,today",
             center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+            //dayGridWeek, timeGridWeek, timeGridDay
+            right: "dayGridMonth,dayGridWeek,dayGridDay,listWeek",
+            //right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
 
         //Formato de Tiempo
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
 
         dateClick: function (info) {
-            
+
            formulario.reset();
            //Recupero el dia en base al seleccionado en el calendario
            formulario.start.value = info.dateStr;
