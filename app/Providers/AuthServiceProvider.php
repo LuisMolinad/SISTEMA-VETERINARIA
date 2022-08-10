@@ -28,11 +28,12 @@ class AuthServiceProvider extends ServiceProvider
         //
 
 
-        // Implicitly grant "Super Admin" role all permissions
+        // Implicitamente le da a "Administrador" Todos los permisos
+        /* Revisar mejor la documentacion de SPATIE sobre esto */
         // This works in the app by using gate-related functions like auth()->user->can() and @can()
         Gate::before(function ($user, $ability) {
-            //return $user->hasRole('Administrador') ? true : null;
-            return $user->email == 'admin@gmail.com' ?? null;
+            return $user->hasRole('Administrador') ? true : null;
+            //return $user->email == 'admin@gmail.com' ?? null;
         });
     }
 }

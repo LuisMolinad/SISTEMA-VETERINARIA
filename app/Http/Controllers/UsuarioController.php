@@ -58,6 +58,9 @@ class UsuarioController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
+        // $admin =  $input['roles'];
+
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
