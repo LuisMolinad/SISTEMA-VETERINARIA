@@ -62,7 +62,7 @@ class CitaCirugiaController extends Controller
 
      $datoscirugia = request()->except('_token');
       citaCirugia ::insert($datoscirugia);
-      return redirect('/citacirugia');
+      return redirect('/?objeto=Cirugia&accion=creo');
     }
 
     /**

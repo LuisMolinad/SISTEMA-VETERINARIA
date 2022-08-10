@@ -5,6 +5,7 @@ Agenda Veterinaria
 @endsection
 
 @section('content')
+@include('notificacion')
 
 <div class="container">
 

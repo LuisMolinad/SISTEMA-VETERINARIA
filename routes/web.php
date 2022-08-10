@@ -71,6 +71,7 @@ Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugi
 */
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
 Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
+Route::post('/guardarCitaVacuna', [CitaCirugiaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
 //Route::resource('expediente', ExpedienteController::class);
 /*------------------------------------- PDF ---------------------------------------------------------------------------- */
 
