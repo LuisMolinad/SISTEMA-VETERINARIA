@@ -53,7 +53,7 @@ class ExpedienteController extends Controller
     {
         $datosExpediente = request()->except('_token');
         Expediente::insert($datosExpediente);
-        return redirect('/expediente');
+        return redirect('/expediente?objeto=expediente&accion=creo');
     }
 
     /**
@@ -135,7 +135,7 @@ class ExpedienteController extends Controller
         $datosExpediente = request()->except(['_token', '_method']);
         Expediente::where('id','=',$id)->update($datosExpediente);
         $expediente = Expediente::FindOrFail($id);
-        return redirect('/expediente');
+        return redirect('/expediente?objeto=expediente&accion=edito');
     }
 
     /**
@@ -147,6 +147,6 @@ class ExpedienteController extends Controller
     public function destroy($id)
     {
         Expediente::destroy($id);
-        return redirect('/expediente');
+        return redirect('/expediente?objeto=expediente&accion=elimino');
     }
 }

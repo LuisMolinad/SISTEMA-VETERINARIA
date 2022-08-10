@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\mascota;
 use App\Models\propietario;
+use FontLib\Table\Type\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+
+use App\Models\expediente;
+
+
 
 class MascotaController extends Controller
 {
@@ -28,14 +34,12 @@ class MascotaController extends Controller
     {
         $propietario = propietario::FindOrFail($id);
         return view('mascota.create', compact('propietario'));
-        //return view('mascota.create');
     }
 
     public function crear($id)
     {
         $propietario = propietario::FindOrFail($id);
         return view('mascota.create', compact('propietario'));
-        //return view('mascota.create');
     }
 
     /**
@@ -48,7 +52,15 @@ class MascotaController extends Controller
     {
         $datosMascota = request()->except('_token');
         Mascota::insert($datosMascota);
-        return redirect('/mascota');
+
+        $datosExpediente = 
+            [
+                'mascota_id' => Mascota::max('id'),
+                'causaFallecimiento' => null,
+            ];
+
+        Expediente::insert($datosExpediente);
+        return redirect('/mascota?objeto=mascota&accion=creo');
     }
 
     /**
@@ -87,7 +99,7 @@ class MascotaController extends Controller
         //$datosMascota = request()->all();
         Mascota::where('id','=',$id)->update($datosMascota);
         $mascota = Mascota::FindOrFail($id);
-        return redirect('/mascota');
+        return redirect('/mascota?objeto=mascota&accion=edito');
         //return response()->json($datosMascota);
     }
 
@@ -99,7 +111,25 @@ class MascotaController extends Controller
      */
     public function destroy($id)
     {
+
+        //*Borramos el expediente
+/*         $Expediente = Expediente::where('mascota_id',$id);
+        $Expediente->delete(); */
+
         Mascota::destroy($id);
-        return redirect('/mascota');
+
+        return redirect('/mascota?objeto=mascota&accion=elimino');
+    }
+
+    //Ejemplo consultar JS
+    public function consultar($codigo){        
+        //return response()->json($codego)->header('Content-Type','application/json');
+        $vari = Mascota::where('idMascota',$codigo)->count();
+        return json_encode($vari);
+    }
+
+    public function mostrar_por_propietario($id){
+        $vari = Mascota::where('propietario_id',$id)->get();
+        return json_encode($vari);
     }
 }

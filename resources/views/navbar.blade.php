@@ -20,15 +20,18 @@
                     <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/expediente">Expediente</a>
+
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Archivo
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/propietario">Propietario</a>
+                    <a class="dropdown-item" href="/mascota">Mascota</a>
+                    <a class="dropdown-item" href="/expediente">Expediente</a>
+                </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/propietario">Propietario</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/mascota">Mascota</a>
-            </li>
+
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
