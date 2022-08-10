@@ -24,16 +24,16 @@ class SuperAdminSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
 
-        /* Creo el Rol como administrador */
+        // Creo el Rol  administrador 
         $rol = Role::create(['name' => 'Administrador']);
 
-        /* Se le dan todos los permisos pertienentes */
+        // Se le dan todos los permisos pertienentes 
         $permisos = Permission::pluck('id', 'id')->all();
 
-        /* se sincroniza el permiso al rol*/
+        //se sincroniza el permiso al rol
         $rol->syncPermissions($permisos);
 
-        /* Se asigna el rol */
+        // Se asigna el rol 
         $usuario->assignRole([$rol->id]);
 
         /*  $usuario->assignRole('Administrador'); */

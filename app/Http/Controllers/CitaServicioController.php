@@ -18,17 +18,17 @@ class CitaServicioController extends Controller
     function __construct()
     {
 
-        /* 
-        Se crea este metodo para definir 
-        que acciones tiene permitido cada middlwere
-        */
+
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada middlwere
+
         $this->middleware(
             'permission:ver-citasServicios|crear-citasServicios|editar-citasServicios|borrar-citasServicios',
             ['only' => ['index']]
         );
-        $this->middleware('permission: crear-citasServicios', ['only' => ['create', 'store']]);
-        $this->middleware('permission: editar-citasServicios', ['only' => ['edit', 'update']]);
-        $this->middleware('permission: borrar-citasServicios', ['only' => ['destroy']]);
+        $this->middleware('permission:crear-citasServicios', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-citasServicios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-citasServicios', ['only' => ['destroy']]);
     }
     public function index()
     {
