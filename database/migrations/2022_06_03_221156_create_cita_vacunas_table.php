@@ -22,6 +22,7 @@ class CreateCitaVacunasTable extends Migration
             $table->dateTime('end');
             $table->dateTime('start');
             $table->string('title',20);
+            $table->string('filtervacunas',50);
         });
     }
 

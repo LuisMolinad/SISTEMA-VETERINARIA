@@ -23,6 +23,7 @@ class CreateCitaCirugiasTable extends Migration
             $table->string('groupId')->nullable();
             $table->string('title',20);
             $table->string('end')->nullable();
+            $table->string('filtercirugias',50);
         });
     }
 
