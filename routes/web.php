@@ -117,6 +117,8 @@ Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'sho
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit'])->middleware('auth');
 Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId'])->middleware('auth');
 
+Route::post('/actualizar/{citaServicio}', [App\Http\Controllers\CitaServicioController::class, 'update'])->middleware('auth');
+Route::post('/borrar/{id}', [App\Http\Controllers\CitaServicioController::class, 'destroy'])->middleware('auth');
 
 /*---------------Propietario---------------*/
 Route::resource('propietario', PropietarioController::class)->middleware('auth');
