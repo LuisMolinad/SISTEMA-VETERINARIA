@@ -1,0 +1,79 @@
+.consultar_mascota_encabezado{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-flow: row wrap;
+
+    margin-top: 2rem;
+}
+
+.consultar_mascota_encabezado .dos_filas_centradas{
+    display: flex;
+    flex-flow: column;
+}
+
+.black_ribbon{
+    width: 30%;
+    min-width: 5rem;
+}
+
+.header2{
+    margin: 0.5rem auto;
+}
+
+.header3{
+    margin: 0.5rem auto;
+}
+
+.header4{
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.nombres_encabezado{
+    flex-basis: 80%;
+}
+
+.black_ribbon_container{
+    flex-basis: 20%;
+}
+
+.consultar_mascota_datos{
+
+    margin: 1.5rem auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.consultar_mascota_datos article{
+    width: 40%;
+    min-width: 25rem;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.consultar_mascota_datos article , .caracteristicas_especiales{
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.caracteristicas_especiales{
+    margin: 2rem 0.25rem;
+}
+
+.consultar_mascota_datos article ul{
+    list-style: none;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.consultar_mascota_datos article ul li {
+    font-size: large;
+    margin: 0.25rem auto;
+}
+
+.caracteristicas_especiales article p{
+    font-size: large;
+}
