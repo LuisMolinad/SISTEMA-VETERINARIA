@@ -69,9 +69,10 @@ class MascotaController extends Controller
      * @param  \App\Models\mascota  $mascota
      * @return \Illuminate\Http\Response
      */
-    public function show(mascota $mascota)
+    public function show($id)
     {
-        //
+        $mascota = Mascota::FindOrFail($id);
+        return view('mascota.show', compact('mascota'));
     }
 
     /**

@@ -41,9 +41,8 @@ GESTIONAR CITA CIRUGÍA
                         <td id="direccion  duenio">{{$mascota->propietario->direccionPropietario}}</td>
                         <td>
                             <a role="button" class="btn btn-success" href="{{ url('/crearCita/'.$mascota->id) }}">Crear</a>
-                            <button type="button" class="btn btn-warning">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
+                            <button type="button" class="btn btn-info">Gestionar</button>
+                            </td>
                     </tr>
 
             @endforeach
