@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
     //Obtenemos los campos del formulario
     let formulario = document.querySelector("#agregarcitasservicios");
     let formularioCaptura = document.querySelector("#operacionesservicio");
+
+    //formulario para editar citas de servicios
+    let formularioEdit = document.querySelector("#editarServicio");
+
     let formularioCitasVacunas = document.querySelector("#agendavacunas");
     let formularioCitasCirugias = document.querySelector("#agendacirugias");
 
     function getColor() {
         var colorinput = document.getElementById("color");
-        console.log(formulario[5].value);
+        //console.log(formulario[5].value);
         //Capturo por id los valores y asigno el color
         if (formulario[5].value == 1) {
             //Servicio de corte
@@ -15,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (formulario[5].value == 2) {
             //Servicio de baño y corte
             formulario[9].value = "#024A86";
-        } else if (formulario[5].value == 3) {
+        } else if (formulario[5].value == 3 ) {
             formulario[9].value = "#7A1453";
         } else if (formulario[5].value == 4) {
             formulario[9].value = "#E36B2C";
@@ -23,6 +27,22 @@ document.addEventListener("DOMContentLoaded", function () {
             formulario[9].value = "#8C4966";
         }
         //console.log(formulario[9].value);
+
+        if (formularioEdit[5].value == 1) {
+            //Servicio de corte
+            formularioEdit[9].value = "#C82A54";
+        } else if (formularioEdit[5].value == 2) {
+            //Servicio de baño y corte
+            formularioEdit[9].value = "#024A86";
+        } else if (formularioEdit[5].value == 3 ) {
+            formularioEdit[9].value = "#7A1453";
+        } else if (formularioEdit[5].value == 4) {
+            formularioEdit[9].value = "#E36B2C";
+        } else {
+            formularioEdit[9].value = "#8C4966";
+        }
+
+
     }
 
     var calendarEl = document.getElementById("agenda");
@@ -87,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         eventDidMount: function(info) {
             let val = selector.value; //Obtiene el valor del select
-            console.log(info.event.extendedProps)
+            //console.log(info.event.extendedProps)
 
             //Agregar en todas las tablas de cirugia,servicios,vacunas un campo de filtro
             if (!(val == info.event.extendedProps.filtercirugias || val == info.event.extendedProps.filtervacunas ||
@@ -98,6 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //Obtiene la informacion del evento seleccionado
         eventClick: function (info) {
+
+            //Cuando utilizo el formularioCaptura es para el consultar/eliminar
+            //Cuando utilizo el formularioEdit es para el editar
+
             bloquearCampos();
             var evento = info.event;
             //console.log(evento);
@@ -111,10 +135,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         formularioCaptura.tipoServicio_id.value = respuesta.data.tipoServicio_id;
 
+                        //Debo de ver como capturar el valor del id en el select
+                        formularioEdit.tipoServicio_id.value = respuesta.data.tipoServicio_id;
+                        
+
                         axios.get(
                             baseURL + "/tipoServicios/" + respuesta.data.tipoServicio_id
                         ).then((res) => {
                             formularioCaptura.tipoServicio_id.value = res.data.nombreServicio;
+                            //ver si captura, en ves de value, se debe de poner option
+                            formularioEdit.tipoServicio_id.option = res.data.nombreServicio;
+                            console.log(formularioEdit.tipoServicio_id.option)
                         });
 
                         formularioCaptura.id.value = respuesta.data.id;
@@ -133,8 +164,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         formularioCaptura.end.value = respuesta.data.end;
 
-                        //Desactivamos para que el usuario no pueda editar
 
+                        //Editar
+                        formularioEdit.id.value = respuesta.data.id;
+                        formularioEdit.title.value = respuesta.data.title;
+                        formularioEdit.horaServicio.value = respuesta.data.horaServicio;
+                        formularioEdit.start.value = respuesta.data.start; //Fecha de servicio
+                        formularioEdit.clienteServicio.value =respuesta.data.clienteServicio;
+                        formularioEdit.telefonoServicio.value =respuesta.data.telefonoServicio;
+                        formularioEdit.descripcion.value =respuesta.data.descripcion;
+                        formularioEdit.clienteServicio.value = respuesta.data.clienteServicio;
+                        formularioEdit.end.value = respuesta.data.end;
+                        //Con este campo obtengo el color de la cita de servicio
+                        formularioEdit.color.value = respuesta.data.color;
+
+
+                        //Desactivamos para que el usuario no pueda editar
                         $("#eventoconsulta").modal("show");
                     })
                     .catch((error) => {
@@ -211,13 +256,55 @@ document.addEventListener("DOMContentLoaded", function () {
         formularioCitasCirugias.recomendacionPreoOperatoria.disabled = true;
     }
 
-    //Capturamos la accion del boton
+    //Capturamos la accion del boton agregar
     document
         .getElementById("btnguardar")
         .addEventListener("click", function () {
             //console.log(formulario.title.value);
             envioDeDatos("/agregar");
         });
+
+        
+
+    document
+        .getElementById("btneliminar")
+        .addEventListener("click", function () {
+            //console.log(formulario.title.value);
+
+            Swal.fire({
+                title: 'Esta seguro que desea eliminar la cita de servicio de la mascota ' + formularioEdit.title.value + '?',
+                text: "No podra revertir esta decision!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, borralo!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Se elimino de manera exitosa',
+                        'El registro de ' + formularioEdit.title.value + ' se ha eliminado.',
+                        'success'
+                    ).then((result)=>{
+                        envioDatosD("/borrar/" + formularioCaptura.id.value);
+                    });
+                }
+              })
+            return false;
+        });    
+
+    //Capturamos la accion del boton actualizar    
+    document
+        .getElementById("btneditar")
+        .addEventListener("click", function () {
+        //console.log(formulario.title.value);
+
+        //activo los campos para editar
+        //formularioCaptura.title.disabled = false;
+
+        envioDatosEdit("/actualizar/"+ formularioEdit.id.value);
+        console.log("valor del id " + formularioEdit.id.value)
+    });
 
     //Creo una funcion para que no se manejen los eventos de forma local
     function envioDeDatos(url) {
@@ -272,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //Obtengo el color del evento
         getColor();
 
-        console.log(formulario[11].value);
+       //console.log(formulario[11].value);
         
         const datosformulario = new FormData(formulario);
         //console.log(formulario[4].value);
@@ -284,10 +371,119 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((respuesta) => {
                 calendar.refetchEvents();
                 $("#evento").modal("hide");
+                document.getElementById("guardadocorrectamente").innerHTML =
+                '<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha guardado la cita de servicio correctamente</div>';
             })
             .catch((error) => {
                 if (error.response.data);
             });
     }
 
+    //Esta funcion maneja el modal de eliminar
+    function envioDatosD(url) {
+
+        const datosformularioCaptura = new FormData(formularioCaptura);
+        console.log(formularioCaptura[1].value);
+        console.log(formularioCaptura[4].value);
+
+        const nuevaUrlED = baseURL + url;
+
+        axios.post(nuevaUrlED, datosformularioCaptura).then((respuesta) => {
+                calendar.refetchEvents();
+                $("#eventoconsulta").modal("hide");
+                //document.getElementById("eliminadocorrectamente").innerHTML =
+                //'<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha eliminado la cita de servicio correctamente</div>';
+            })
+            .catch((error) => {
+                if (error.response.data);
+                console.log("ERRRR:: ",error.response.data);
+            });
+    }
+
+
+    //Esta funcion maneja el modal de editar
+    function envioDatosEdit(url) {
+
+        //Capturo los datos del formulario
+        var formato_telefono = /^[0-9]{8}$/;
+        var telefono = formularioEdit.telefonoServicio.value;
+
+        //Validaciones de campos
+        if (formularioEdit.title.value == "") {
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>';
+            document.getElementById("title").focus();
+            return false;
+        } else if (formularioEdit.horaServicio.value == "") {
+            //alert("La hora es requerida");
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
+            document.getElementById("horaServicio").focus();
+            return false;
+        } else if (formularioEdit.clienteServicio.value == "") {
+            //alert("El cliente es requerido");
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
+            document.getElementById("clienteServicio").focus();
+            return false;
+        } else if (formularioEdit.telefonoServicio.value == "") {
+            //alert("El telefono es requerido");
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
+            document.getElementById("telefonoServicio").focus();
+            return false;
+        } else if (!formato_telefono.test(telefono)) {
+            //alert("El telefono debe tener 8 digitos");
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+            return false;
+        } else if (formularioEdit.descripcion.value == "") {
+            //alert("La descripcion es requerida");
+            document.getElementById("validareditaragendar").innerHTML =
+                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
+            document.getElementById("descripcion").focus();
+            return false;
+        }
+
+        //variable para capturar la hora, esto es la ubicacion del formulario
+        let posicionHora = 3;
+        let posicionFecha = 4;
+
+        let hora = formularioEdit[posicionHora].value;
+        formularioEdit[posicionFecha].value += " " + hora;
+        
+
+        //Obtengo el color del evento
+        getColor();
+
+        //console.log(formularioCaptura[11].value);
+        
+        const datosformularioCaptura = new FormData(formularioEdit);
+        console.log(formularioEdit[1].value);
+        console.log(formularioEdit[4].value);
+
+        const nuevaUrlED = baseURL + url;
+
+        axios.post(nuevaUrlED, datosformularioCaptura).then((respuesta) => {
+                calendar.refetchEvents();
+                $("#eventoeditar").modal("hide");
+                //document.getElementById("editadocorrectamente").innerHTML =
+                //'<div class="alert alert-warning"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha editado la cita de servicio correctamente</div>';
+            })
+            .catch((error) => {
+                if (error.response.data);
+                //console.log("ERRRR:: ",error.response.data);
+            });
+    }
+
+    //Funcion para mostrar el modal de editar
+    $(document).on('click', '#btniraeditar', function() {
+        $("#eventoeditar").modal("show");
+        $("#eventoconsulta").modal("hide");
+        
+    });
+
 });
+
+
+
