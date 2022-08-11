@@ -14,7 +14,7 @@ class CitaServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    /* 
     function __construct()
     {
 
@@ -29,7 +29,7 @@ class CitaServicioController extends Controller
         $this->middleware('permission:crear-citasServicios', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-citasServicios', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-citasServicios', ['only' => ['destroy']]);
-    }
+    } */
     public function index()
     {
         $tipoServicios = tipoServicio::all();

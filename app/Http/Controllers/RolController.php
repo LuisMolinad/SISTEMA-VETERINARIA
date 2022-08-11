@@ -15,10 +15,10 @@ class RolController extends Controller
     function __construct()
     {
 
-        /* 
-        Se crea este metodo para definir 
-        que acciones tiene permitido cada middlwere
-        */
+
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada permiso
+
         $this->middleware(
             'permission:ver-rol|crear-rol|editar-rol|borrar-rol',
             ['only' => ['index']]
