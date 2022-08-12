@@ -278,7 +278,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, borralo!'
+                confirmButtonText: 'Si, borralo!',
+                cancelButtonText: 'No'
               }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire(
@@ -299,11 +300,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .addEventListener("click", function () {
         //console.log(formulario.title.value);
 
-        //activo los campos para editar
-        //formularioCaptura.title.disabled = false;
-
-        envioDatosEdit("/actualizar/"+ formularioEdit.id.value);
-        console.log("valor del id " + formularioEdit.id.value)
+        envioDatosEdit("/actualizar/"+ formularioEdit.id.value);   
+        //console.log("valor del id " + formularioEdit.id.value)
     });
 
     //Creo una funcion para que no se manejen los eventos de forma local
@@ -314,8 +312,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //Validaciones de campos
         if (formulario.title.value == "") {
-            document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>';
+                document.getElementById("validaragendar").innerHTML =
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' + 
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
+                'Por favor ingrese el nombre de la mascota!</div>';    
             document.getElementById("title").focus();
             return false;
         } else if (formulario.horaServicio.value == "") {
@@ -371,8 +371,17 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((respuesta) => {
                 calendar.refetchEvents();
                 $("#evento").modal("hide");
+
+                //crea el elemento de la alerta una vez se guarda el registro
                 document.getElementById("guardadocorrectamente").innerHTML =
-                '<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha guardado la cita de servicio correctamente</div>';
+                '<div class="alert alert-success alert-dismissible fade show" role="alert">' + 
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
+                'La cita de servicio ha sido guardada exitosamente!</div>';
+                
+                //Para que aparezca el mensaje una vez agregado
+                $("#guardadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
+                    $("#guardadocorrectamente").slideUp(500);
+                })
             })
             .catch((error) => {
                 if (error.response.data);
@@ -391,8 +400,18 @@ document.addEventListener("DOMContentLoaded", function () {
         axios.post(nuevaUrlED, datosformularioCaptura).then((respuesta) => {
                 calendar.refetchEvents();
                 $("#eventoconsulta").modal("hide");
-                //document.getElementById("eliminadocorrectamente").innerHTML =
-                //'<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha eliminado la cita de servicio correctamente</div>';
+
+                //crea el elemento de la alerta una vez se eliminado el registro
+                document.getElementById("eliminadocorrectamente").innerHTML =
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' + 
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
+                'La cita de servicio ha sido eliminada exitosamente!</div>';
+
+                //Para que aparezca el mensaje una vez Eliminado
+                $("#eliminadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
+                    $("#eliminadocorrectamente").slideUp(500);
+                })
+                
             })
             .catch((error) => {
                 if (error.response.data);
@@ -467,8 +486,18 @@ document.addEventListener("DOMContentLoaded", function () {
         axios.post(nuevaUrlED, datosformularioCaptura).then((respuesta) => {
                 calendar.refetchEvents();
                 $("#eventoeditar").modal("hide");
-                //document.getElementById("editadocorrectamente").innerHTML =
-                //'<div class="alert alert-warning"><a href="" class="close" data-dismiss="alert">&times;</a>Se ha editado la cita de servicio correctamente</div>';
+
+                 //crea el elemento de la alerta una vez se editado el registro
+                document.getElementById("editadocorrectamente").innerHTML =
+                '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
+                'La cita de servicio ha sido actualizada exitosamente!</div>';
+
+                //Para que aparezca el mensaje una vez editado
+            $("#editadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
+                $("#editadocorrectamente").slideUp(500);
+            }) 
+
             })
             .catch((error) => {
                 if (error.response.data);
@@ -483,6 +512,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
     });
 
+    
 });
 
 
