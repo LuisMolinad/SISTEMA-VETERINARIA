@@ -17,7 +17,7 @@ class citaServicio extends Model
         'clienteServicio' => 'required',
         'telefonoServicio' => 'required',
         'descripcion' => 'required',
-        'end' => 'required',
+        'end' => 'nullable',
         'groupId' => 'required',
         'filterservicios' => 'required',
         'tipoServicio_id' => 'required',

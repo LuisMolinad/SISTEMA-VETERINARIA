@@ -25,8 +25,8 @@ class TipoServicioSeeder extends Seeder
                     'descripcionServicio'=> 'Servicio de corte y baño a mascotas que se programa según disponibilidad',
                 ],
                 [
-                    'nombreServicio'=> 'Limpieza dental',
-                    'descripcionServicio'=> 'Servicio de limpieza dental a mascotas que se programa según disponibilidad',
+                    'nombreServicio'=> 'Baño',
+                    'descripcionServicio'=> 'Servicio de baño para mascotas que se programa según disponibilidad',
                 ],
             ];
 
