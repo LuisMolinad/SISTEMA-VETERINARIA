@@ -10,6 +10,7 @@ use PDF;
 
 //Para obtener fecha
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class defuncionController extends Controller
 {
@@ -17,6 +18,13 @@ class defuncionController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     */
+
+    /* 
+        El siguiente metodo es utilizado para diferentes tareas
+        1. Cargar los datos del duenio con mascota
+        2. devolver a la vista dichos campos relacionados con duenio y mascota
+
      */
     public function index()
     {
@@ -26,6 +34,13 @@ class defuncionController extends Controller
         return view(('Actas.index'), compact('mascotas'));
         // return view('Actas.index');
     }
+    /* 
+        El siguiente metodo es utilizado para diferentes tareas en la vista DEL PDF ACTAS.PDF
+        1. Cargar un pdf con los datos obtenidos de la relacion de mascotas con duenio
+        2. Captura el id de la mascota seleccionada y actualiza el estado de esta a fallecido
+        3. Fecha de elaboracion del acta de defuncion ()
+
+     */
     public function pdf($id)
     {
 
@@ -34,9 +49,18 @@ class defuncionController extends Controller
         $dt = Carbon::now()->locale('es_ES')->isoFormat('dddd D MMMM YYYY');
 
 
-        //$mascotas = mascota::with('propietario')->get();
+
+        //Obtengo los datos de mascota
         $mascotas = mascota::FindOrFail($id);
 
+        //Capturo el id de la mascota seleccionada
+        $idFallecido = $mascotas->id;
+
+        //Actualizo el campo
+        $affected = DB::table('mascotas')
+            ->where('id', $idFallecido)
+            ->update(['fallecidoMascota' => 'Fallecido']);
+        //Se cargan los datos 
         $pdf = PDF::loadView('Actas.pdf', ['mascotas' => $mascotas, 'dt' => $dt]);
         return $pdf->stream();
         //return view('Actas.pdf',compact('mascotas'));
@@ -47,12 +71,15 @@ class defuncionController extends Controller
     {
         //return view('Actas.create');
     }
-
+    /* 
+        El siguiente metodo es utilizado para diferentes tareas en la vista ACTAS.CREATE
+        1. Cargar los datos obtenidos de la relacion de mascotas con duenio
+     */
     public function mostrar($id)
     {
 
         $mascotas = mascota::FindOrFail($id);
-        $vacunas = vacuna::all();
+        //$vacunas = vacuna::all();
         return view('Actas.create', compact('mascotas'));
         //return view('Cirugia.CrearCirugia');
     }
