@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
             //Servicio de baño y corte
             formulario[9].value = "#024A86";
         } else if (formulario[5].value == 3 ) {
-            formulario[9].value = "#7A1453";
-        } else if (formulario[5].value == 4) {
+            //formulario[9].value = "#7A1453";
             formulario[9].value = "#E36B2C";
         } else {
             formulario[9].value = "#8C4966";
@@ -35,8 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             //Servicio de baño y corte
             formularioEdit[9].value = "#024A86";
         } else if (formularioEdit[5].value == 3 ) {
-            formularioEdit[9].value = "#7A1453";
-        } else if (formularioEdit[5].value == 4) {
+            //formularioEdit[9].value = "#7A1453";
             formularioEdit[9].value = "#E36B2C";
         } else {
             formularioEdit[9].value = "#8C4966";
@@ -58,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "dayGridMonth,dayGridWeek,dayGridDay,listWeek",
             //right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
+        editable: true, //para que puedan moverse los eventos
+        //dayMaxEvents: true, // cuando se encuentran muchos eventos se mostrara una burbuja
 
         //Formato de Tiempo
         eventTimeFormat: { // like '14:30:00'
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
            formulario.reset();
            //Recupero el dia en base al seleccionado en el calendario
            formulario.start.value = info.dateStr;
-           formulario.end.value = info.dateStr;
+           //formulario.end.value = info.dateStr;
     
            $("#evento").modal("show"); 
         },
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             bloquearCampos();
             var evento = info.event;
-            //console.log(evento);
+            console.log(evento);
             if (evento.groupId == "citasServicios") {
                 axios
                     .post(baseURL + "/editar/" + info.event.id)
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         formularioEdit.telefonoServicio.value =respuesta.data.telefonoServicio;
                         formularioEdit.descripcion.value =respuesta.data.descripcion;
                         formularioEdit.clienteServicio.value = respuesta.data.clienteServicio;
-                        formularioEdit.end.value = respuesta.data.end;
+                        //formularioEdit.end.value = respuesta.data.end;
                         //Con este campo obtengo el color de la cita de servicio
                         formularioEdit.color.value = respuesta.data.color;
 
@@ -299,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("btneditar")
         .addEventListener("click", function () {
         //console.log(formulario.title.value);
-
         envioDatosEdit("/actualizar/"+ formularioEdit.id.value);   
         //console.log("valor del id " + formularioEdit.id.value)
     });
@@ -313,39 +312,43 @@ document.addEventListener("DOMContentLoaded", function () {
         //Validaciones de campos
         if (formulario.title.value == "") {
                 document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' + 
-                '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
-                'Por favor ingrese el nombre de la mascota!</div>';    
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>'; 
+                guardarvalidado();
             document.getElementById("title").focus();
             return false;
         } else if (formulario.horaServicio.value == "") {
             //alert("La hora es requerida");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
-            document.getElementById("horaServicio").focus();
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
+                guardarvalidado();
+                document.getElementById("horaServicio").focus();
             return false;
         } else if (formulario.clienteServicio.value == "") {
             //alert("El cliente es requerido");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
-            document.getElementById("clienteServicio").focus();
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
+                guardarvalidado();
+                document.getElementById("clienteServicio").focus();
             return false;
         } else if (formulario.telefonoServicio.value == "") {
             //alert("El telefono es requerido");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
-            document.getElementById("telefonoServicio").focus();
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
+                guardarvalidado();
+                document.getElementById("telefonoServicio").focus();
             return false;
         } else if (!formato_telefono.test(telefono)) {
             //alert("El telefono debe tener 8 digitos");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
-            return false;
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+                guardarvalidado();
+                return false;
         } else if (formulario.descripcion.value == "") {
             //alert("La descripcion es requerida");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
-            document.getElementById("descripcion").focus();
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
+                guardarvalidado();
+                document.getElementById("descripcion").focus();
             return false;
         }
 
@@ -430,36 +433,42 @@ document.addEventListener("DOMContentLoaded", function () {
         //Validaciones de campos
         if (formularioEdit.title.value == "") {
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>';
-            document.getElementById("title").focus();
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre de la mascota</div>';
+                editarvalidado();
+                document.getElementById("title").focus();
             return false;
         } else if (formularioEdit.horaServicio.value == "") {
             //alert("La hora es requerida");
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese la hora</div>';
+                editarvalidado();
             document.getElementById("horaServicio").focus();
             return false;
         } else if (formularioEdit.clienteServicio.value == "") {
             //alert("El cliente es requerido");
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el nombre del Propietario</div>';
+                editarvalidado();
             document.getElementById("clienteServicio").focus();
             return false;
         } else if (formularioEdit.telefonoServicio.value == "") {
             //alert("El telefono es requerido");
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese el numero de telefono del Propietario</div>';
+                editarvalidado();
             document.getElementById("telefonoServicio").focus();
             return false;
         } else if (!formato_telefono.test(telefono)) {
             //alert("El telefono debe tener 8 digitos");
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+                editarvalidado();
             return false;
         } else if (formularioEdit.descripcion.value == "") {
             //alert("La descripcion es requerida");
             document.getElementById("validareditaragendar").innerHTML =
-                '<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>Porfavor ingrese una observacion</div>';
+                editarvalidado();
             document.getElementById("descripcion").focus();
             return false;
         }
@@ -470,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let hora = formularioEdit[posicionHora].value;
         formularioEdit[posicionFecha].value += " " + hora;
-        
+        console.log(formularioEdit[posicionFecha].value)
 
         //Obtengo el color del evento
         getColor();
@@ -478,8 +487,8 @@ document.addEventListener("DOMContentLoaded", function () {
         //console.log(formularioCaptura[11].value);
         
         const datosformularioCaptura = new FormData(formularioEdit);
-        console.log(formularioEdit[1].value);
-        console.log(formularioEdit[4].value);
+        //console.log(formularioEdit[1].value);
+        
 
         const nuevaUrlED = baseURL + url;
 
@@ -512,6 +521,17 @@ document.addEventListener("DOMContentLoaded", function () {
         
     });
 
+    function guardarvalidado(){
+        $("#validaragendar").fadeTo(2000,500).slideUp(500,function(){
+            $("#validaragendar").slideUp(500);
+        })
+    }
+
+    function editarvalidado(){
+        $("#validareditaragendar").fadeTo(2000,500).slideUp(500,function(){
+            $("#validareditaragendar").slideUp(500);
+        })
+    }
     
 });
 
