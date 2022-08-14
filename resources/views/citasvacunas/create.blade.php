@@ -4,6 +4,17 @@
     Cita de vacunación
 @endsection
 
+@section('librerias')
+<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!--CSS para recordatorios -->
+        <link rel="stylesheet" href="{{asset('css/recordatorio.css')}}">
+    <!--Fin del CSS para recordatorios -->
+    <!--JS para recordatorios -->
+        <script src=" {{asset('js/recordatorio.js')}} "></script>
+    <!--Fin del JS para recordatorios -->
+<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+@endsection
+
 @section('header')
     <br>
     <div class="container">
@@ -52,7 +63,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-                  <input type="text" class="form-control" id="inputContactNumber" placeholder="Número de contacto" value = "{{$mascotas->propietario->telefonoPropietario }}" readonly="readonly">
+                  <input type="text" class="form-control" name="inputContactNumber" id="inputContactNumber" placeholder="Número de contacto" value = "{{$mascotas->propietario->telefonoPropietario }}" readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
                     <strong>   <label for="inputDireccion" style="color:black">Direccion</label></strong>
@@ -91,7 +102,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="start" required>
+                    <input class="form-control" type="datetime-local" name="start" id="start" onchange="actualizar_mensaje_al_crear_vacuna()" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -113,6 +124,8 @@
                 <input type="text" class="form-control" name="filtervacunas" id="filtervacunas" aria-describedby="filtervacunas"
                     value="citasVacunacion">
             </div>
+
+            @include('layouts.crear_recordatorio')
 
                 <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
         </div>

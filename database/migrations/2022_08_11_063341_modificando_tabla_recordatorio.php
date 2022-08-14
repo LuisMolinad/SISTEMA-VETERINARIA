@@ -28,6 +28,10 @@ class ModificandoTablaRecordatorio extends Migration
         Schema::table('cita_cirugias', function(Blueprint $table){
             $table->foreignId('recordatorio_id')->constrained('recordatorios')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
+
+        Schema::table('cita_vacunas', function(Blueprint $table){
+            $table->foreignId('recordatorio_id')->constrained('recordatorios')->onDelete('cascade')->onUpdate('cascade')->nullable();
+        });
     }
 
     /**
@@ -50,6 +54,10 @@ class ModificandoTablaRecordatorio extends Migration
         });
 
         Schema::table('cita_cirugias', function(Blueprint $table){
+            $table->dropColumn('recordatorio_id');
+        });
+
+        Schema::table('cita_vacunas', function(Blueprint $table){
             $table->dropColumn('recordatorio_id');
         });
     }

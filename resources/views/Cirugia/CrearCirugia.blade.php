@@ -26,7 +26,7 @@ Cita de cirugía
 <div class="container">
     <form action="{{url('/citacirugia')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
         @csrf
-     <fieldset class="fieldset">
+     <fieldset class="fieldset fieldset-no-linea">
         <br>
         <center> <h5>Datos generales de la mascota</h5> </center>
         <br>
@@ -143,8 +143,6 @@ Cita de cirugía
                 <input type="text"
                   class="form-control" name="filtercirugias" id="filtercirugias" aria-describedby="filtercirugias" value="citasCirugias">
               </div>
-
-            <br>
 
             @include('layouts.crear_recordatorio')
 
