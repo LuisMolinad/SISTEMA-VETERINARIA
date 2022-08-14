@@ -43,3 +43,5 @@ function actualizar_mensaje_al_crear_vacuna(){
         mensaje.innerHTML = '';
     }
 }
+
+setTimeout(actualizar_mensaje_al_crear, 10);

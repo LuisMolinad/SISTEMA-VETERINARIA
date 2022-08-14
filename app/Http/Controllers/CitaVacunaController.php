@@ -86,7 +86,7 @@ class CitaVacunaController extends Controller
                         'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
                         'dias_de_anticipacion' => request('dias_de_anticipacion'),
                         'fecha' => request('start'),
-                        'concepto' => 'la vacunacion de ' . $variable,
+                        'concepto' => 'la vacuna de ' . $variable,
                         'nombre' => request('title'),
                         'id_mascota' => request('idVisible'),
                         'telefono' => request('inputContactNumber')

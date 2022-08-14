@@ -60,9 +60,24 @@ class RecordatorioController extends Controller
      * @param  \App\Models\recordatorio  $recordatorio
      * @return \Illuminate\Http\Response
      */
-    public function edit(recordatorio $recordatorio)
+    public function edit($id)
     {
-        //
+        $maroma = recordatorio::FindOrFail($id);
+        $mascota = mascota::where('idMascota', $maroma->id_mascota)->get();
+
+        $informacion = [
+            'recordatorio' => recordatorio::FindOrFail($id),
+            'mascota' => $mascota
+        ];
+
+/*         $informacion = [
+            'recordatorio' => recordatorio::FindOrFail($id),
+        ]; */
+
+        //$recordatorio = recordatorio::FindOrFail($id);
+
+        return view('recordatorio.edit', compact('informacion'));
+        //return view('recordatorio.edit', compact('recordatorio'));
     }
 
     /**
@@ -72,9 +87,22 @@ class RecordatorioController extends Controller
      * @param  \App\Models\recordatorio  $recordatorio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, recordatorio $recordatorio)
+    public function update(Request $request, $id)
     {
-        //
+        $datosRecordatorio = 
+        [
+            'id' => $id,
+            'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            'dias_de_anticipacion' => request('dias_de_anticipacion'),
+            'fecha' => request('start'),
+            'concepto' => request('ConceptoCirugia'),
+            'nombre' => request('title'),
+            'id_mascota' => request('idmascota'),
+            'telefono' => request('telefono')
+        ];
+
+        recordatorio::where('id', $id)->update($datosRecordatorio);
+        return redirect('/recordatorio?objeto=recordatorio&accion=edito');
     }
 
     /**

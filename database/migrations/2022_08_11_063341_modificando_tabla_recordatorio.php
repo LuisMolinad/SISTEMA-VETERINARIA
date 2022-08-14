@@ -16,7 +16,7 @@ class ModificandoTablaRecordatorio extends Migration
         Schema::table('recordatorios', function(Blueprint $table){
             $table->integer('estado');
             $table->integer('dias_de_anticipacion');
-            $table->date('fecha');
+            $table->dateTime('fecha');
             $table->string('concepto');
             $table->dropColumn('mensajeRecordatorio');
             $table->dropColumn('fechaRecordatorio');

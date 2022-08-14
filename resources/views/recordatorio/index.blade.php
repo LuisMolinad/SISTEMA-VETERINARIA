@@ -45,7 +45,14 @@ GESTIONAR RECORDATORIOS
                             echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
                         ?> 
                     </td>
-                    <td></td>
+                    <td id = "botones-linea">
+                        <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+{{--                         <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
+                            @csrf
+                            {{method_field('DELETE')}}
+                            <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form> --}}
+                    </td>
                 </tr>
             @endforeach
         </tbody>
