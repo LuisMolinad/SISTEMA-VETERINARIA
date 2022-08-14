@@ -6,6 +6,7 @@ use App\Models\citaCirugia;
 use Illuminate\Http\Request;
 use App\Models\mascota;
 use App\Models\propietario;
+use App\Models\recordatorio;
 use Carbon\Carbon;
 use PDF;
 
@@ -58,11 +59,36 @@ class CitaCirugiaController extends Controller
      */
     public function store(Request $request)
     {
+        $datoscirugia = [
+            'recordatorio-id' => recordatorio::max('id') + 1,
+            'start' => request('start'),
+            'mascota_id' => request('mascota_id'),
+            'conceptoCirugia' => request('conceptoCirugia'),
+            'recomendacionPreoOperatoria' => request('recomendacionPreoOperatoria'),
+            'end' => request('end'),
+            'groupId'=>request('groupId'),
+            'filtercirugias' =>request('filtercirugias'),
+            'title' => request('title')
+        ];
 
+        //Recordatorio
+        if(request('dias_de_anticipacion') != 0){
+            $datosRecordatorio = 
+            [
+                'id' => recordatorio::max('id') + 1,
+                'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+                'dias_de_anticipacion' => request('dias_de_anticipacion'),
+                'fecha' => request('start'),
+                'concepto' => request('conceptoCirugia')
+            ];
 
-     $datoscirugia = request()->except('_token');
-      citaCirugia ::insert($datoscirugia);
-      return redirect('/?objeto=Cirugia&accion=creo');
+            recordatorio::insert($datosRecordatorio);
+        }
+        //Finaliza recordatorio
+
+        citaCirugia ::insert($datoscirugia);
+
+        return redirect('/?objeto="cita&accion=creo');
     }
 
     /**

@@ -16,6 +16,7 @@ use App\Models\mascota;
 
 //Controladores para SPATIE
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 
@@ -148,3 +149,8 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
+
+/*Recordatorio*/
+Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
+Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
+Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');

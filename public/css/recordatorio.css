@@ -1,0 +1,21 @@
+.recordatorio_crear_seccion{
+    background-color: #e1dff4;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#mensaje-recordatorio span{
+    color: red;
+    font-weight: bold;
+}
+
+#mensaje-recordatorio{
+    background-color: white;
+    width: 100%;
+    min-height: 5rem;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    padding: 0.5rem;
+}
