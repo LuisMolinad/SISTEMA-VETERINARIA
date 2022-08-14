@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\citaCirugia;
+use App\Models\citaVacuna;
 use App\Models\mascota;
 use App\Models\propietario;
 use App\Models\recordatorio;
@@ -111,9 +112,18 @@ class RecordatorioController extends Controller
      * @param  \App\Models\recordatorio  $recordatorio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(recordatorio $recordatorio)
+    public function destroy($id)
     {
-        //
+        $datosRecordatorio = 
+        [
+            'dias_de_anticipacion' => 0,
+        ];
+
+        recordatorio::where('id', $id)->update($datosRecordatorio);
+/*         citaVacuna::FindOrFail('recordatorio_id', $id)->update($dato);
+        citaCirugia::FindOrFail('recordatorio_id', $id)->update($dato); */
+
+        return redirect('/recordatorio?objeto=recordatorio&accion=elimino');
     }
 
     public function enviar_mensaje(Request $request){
