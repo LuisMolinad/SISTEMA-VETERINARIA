@@ -22,30 +22,32 @@ GESTIONAR RECORDATORIOS
             <th scope="col">Id mascota</th>
             <th scope="col">Nombre</th>
             <th scope="col">Concepto</th>
-            <th scope="col">Numero</th>
+            <th scope="col">Telefono</th>
             <th scope="col">Fecha y hora de la cita</th>
             <th scope="col">Fecha a enviar el recordatorio</th>
             <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <?php
-                        //echo date("d-m-Y --- h:i", strtotime($recordatorio->fecha));
-                    ?>
-                </td>
-                <td> 
-                    <?php 
-                        //echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
-                    ?> 
-                </td>
-                <td> </td>
-            </tr>
+            @foreach ($recordatorios as $recordatorio)
+                <tr>
+                    <td> {{$recordatorio->id_mascota}} </td>
+                    <td> {{$recordatorio->nombre}} </td>
+                    <td> {{$recordatorio->concepto}} </td>
+                    <td> {{$recordatorio->telefono}} </td>
+                    <td>
+                        <?php
+                            echo date("d-m-Y --- h:i", strtotime($recordatorio->fecha));
+                        ?>
+                    </td>
+                    <td> 
+                        <?php 
+                            echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
+                        ?> 
+                    </td>
+                    <td></td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

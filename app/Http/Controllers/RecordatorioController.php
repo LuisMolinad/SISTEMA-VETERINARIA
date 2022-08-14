@@ -18,7 +18,8 @@ class RecordatorioController extends Controller
      */
     public function index()
     {
-        return view('recordatorio.index');
+        $recordatorios = recordatorio::all();
+        return view('recordatorio.index', compact('recordatorios'));
     }
 
     /**

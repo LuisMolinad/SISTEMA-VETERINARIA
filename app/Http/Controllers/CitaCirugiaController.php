@@ -59,18 +59,6 @@ class CitaCirugiaController extends Controller
      */
     public function store(Request $request)
     {
-        $datoscirugia = [
-            'recordatorio-id' => recordatorio::max('id') + 1,
-            'start' => request('start'),
-            'mascota_id' => request('mascota_id'),
-            'conceptoCirugia' => request('conceptoCirugia'),
-            'recomendacionPreoOperatoria' => request('recomendacionPreoOperatoria'),
-            'end' => request('end'),
-            'groupId'=>request('groupId'),
-            'filtercirugias' =>request('filtercirugias'),
-            'title' => request('title')
-        ];
-
         //Recordatorio
         if(request('dias_de_anticipacion') != 0){
             $datosRecordatorio = 
@@ -79,16 +67,45 @@ class CitaCirugiaController extends Controller
                 'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
                 'dias_de_anticipacion' => request('dias_de_anticipacion'),
                 'fecha' => request('start'),
-                'concepto' => request('conceptoCirugia')
+                'concepto' => request('conceptoCirugia'),
+                'nombre' => request('title'),
+                'id_mascota' => request('idmascota'),
+                'telefono' => request('telefono')
+            ];
+
+            $datoscirugia = [
+                'recordatorio_id' => recordatorio::max('id') + 1,
+                'start' => request('start'),
+                'mascota_id' => request('mascota_id'),
+                'conceptoCirugia' => request('conceptoCirugia'),
+                'recomendacionPreoOperatoria' => request('recomendacionPreoOperatoria'),
+                'end' => request('end'),
+                'groupId'=>request('groupId'),
+                'filtercirugias' =>request('filtercirugias'),
+                'title' => request('title')
             ];
 
             recordatorio::insert($datosRecordatorio);
+            citaCirugia ::insert($datoscirugia);
+        }
+        else if(request('dias_de_anticipacion') == 0){
+            $datoscirugia = [
+                'recordatorio_id' => null,
+                'start' => request('start'),
+                'mascota_id' => request('mascota_id'),
+                'conceptoCirugia' => request('conceptoCirugia'),
+                'recomendacionPreoOperatoria' => request('recomendacionPreoOperatoria'),
+                'end' => request('end'),
+                'groupId'=>request('groupId'),
+                'filtercirugias' =>request('filtercirugias'),
+                'title' => request('title')
+            ];
+
+            citaCirugia ::insert($datoscirugia);
         }
         //Finaliza recordatorio
 
-        citaCirugia ::insert($datoscirugia);
-
-        return redirect('/?objeto="cita&accion=creo');
+        return redirect('/?objeto=cita&accion=creo');
     }
 
     /**

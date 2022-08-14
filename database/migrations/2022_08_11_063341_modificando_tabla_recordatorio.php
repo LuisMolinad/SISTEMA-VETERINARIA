@@ -20,6 +20,13 @@ class ModificandoTablaRecordatorio extends Migration
             $table->string('concepto');
             $table->dropColumn('mensajeRecordatorio');
             $table->dropColumn('fechaRecordatorio');
+            $table->string('nombre');
+            $table->string('telefono');
+            $table->string('id_mascota');
+        });
+
+        Schema::table('cita_cirugias', function(Blueprint $table){
+            $table->foreignId('recordatorio_id')->constrained('recordatorios')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
     }
 
@@ -35,8 +42,15 @@ class ModificandoTablaRecordatorio extends Migration
             $table->dropColumn('dias_de_anticipacion');
             $table->dropColumn('fecha');
             $table->dropColumn('concepto',20);
+            $table->dropColumn('nombre');
+            $table->dropColumn('telefono');
+            $table->dropColumn('id_mascota');
             $table->string('mensajeRecordatorio',250);
             $table->date('fechaRecordatorio');
+        });
+
+        Schema::table('cita_cirugias', function(Blueprint $table){
+            $table->dropColumn('recordatorio_id');
         });
     }
 }
