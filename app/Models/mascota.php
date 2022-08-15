@@ -12,7 +12,7 @@ class mascota extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $table='mascotas';
+    protected $table = 'mascotas';
     public $timestamps = false;
     protected $fillable = [
 
@@ -21,7 +21,7 @@ class mascota extends Model
         'nombreMascota',
         'razaMascota',
         'especie',
-        'colorMascota',
+        'colMascota',
         'sexoMascota',
         //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),
         'fechaNacimiento',
@@ -29,17 +29,17 @@ class mascota extends Model
     ];
 
 
-        //ha este metodo me refiero, una mascota tiene muchos propietarios
+    //ha este metodo me refiero, una mascota tiene muchos propietarios
     public function propietario()
     {
         return $this->belongsTo(propietario::class);
     }
 
 
-    //relacion con citavacuna
+    //relacion con citavacuna, reclama los campos extra como suyos
 
-    public function citaVacunas()
+    public function citas()
     {
-        return $this->hasMany(citaVacuna::class);
+        return $this->belongsToMany(vacuna::class, 'citaVacunas')->withPivot('pesolb', 'end', 'start');
     }
 }

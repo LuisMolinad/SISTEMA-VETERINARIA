@@ -10,6 +10,7 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
+use App\Http\Controllers\gestionCitasVacunacionController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
@@ -90,8 +91,11 @@ Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaV
 
 Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
 //Route::resource('/citasvacuna', CitaVacunaController::class);
-Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('citaVacuna.mostrar')->middleware('auth');
 Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
+
+//Gestionar citas vacunacion
+Route::get('/citas/index/gestion/{id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
 
 
 
@@ -128,7 +132,7 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 
 //Ejemplo consultar JS
-Route::get('/mascota/consultar/{codigo}',[MascotaController::class, 'consultar'])->middleware('auth');
+Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');
 Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
 
 
