@@ -7,7 +7,9 @@ use App\Models\citaVacuna;
 use App\Models\mascota;
 use App\Models\propietario;
 use App\Models\recordatorio;
+use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\Process\Process;
 
 class RecordatorioController extends Controller
@@ -116,12 +118,20 @@ class RecordatorioController extends Controller
     {
         $datosRecordatorio = 
         [
-            'dias_de_anticipacion' => 0,
+            'dias_de_anticipacion' => null,
         ];
 
-        recordatorio::where('id', $id)->update($datosRecordatorio);
-/*         citaVacuna::FindOrFail('recordatorio_id', $id)->update($dato);
-        citaCirugia::FindOrFail('recordatorio_id', $id)->update($dato); */
+        recordatorio::destroy($id);
+/*         citaVacuna::where('recordatorio_id', $id)->update($datosRecordatorio);
+        citaCirugia::where('recordatorio_id', $id)->update($datosRecordatorio); */
+
+        try{
+            citaVacuna::where('recordatorio_id', $id)->update($datosRecordatorio);
+            citaCirugia::where('recordatorio_id', $id)->update($datosRecordatorio);
+        }
+        catch(Exception $e){
+            $e->getMessage();
+        }
 
         return redirect('/recordatorio?objeto=recordatorio&accion=elimino');
     }
@@ -181,10 +191,10 @@ class RecordatorioController extends Controller
         $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if($codigoRespuesta === 200){
-            return redirect('/?mj=Mensaje%20enviado%20correctamente');
+            return redirect('/recordatorio?mj=Mensaje%20enviado%20correctamente');
         }
         else{
-            return redirect('/?mj=Mensaje%20no%20enviado');
+            return redirect('/recordatorio?mj=Mensaje%20no%20enviado');
         }
         
         curl_close($ch);
@@ -192,5 +202,79 @@ class RecordatorioController extends Controller
 
     public function enviar_mensaje_ui(){
         return view('recordatorio.enviar_mensaje_ui');
+    }
+
+    public function enviar_mensaje_masivo(Request $request){
+        //Variables
+        $id = request('id');
+        $url = env('FB_URL');
+        $cuerpo = [
+        "messaging_product" => "whatsapp",
+        "to" => "503".request('telefono'),
+        "type" => "template",
+            "template" => [
+            "name" => "info2",
+                "language" => [
+                    "code" => "es_MX",
+                ],
+                "components"=>[
+                    [
+                    "type" => "body",
+                        "parameters"=>[
+                            [
+                                "type" => "text",
+                                "text" => request('concepto'),
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => request('nombre_mascota'),
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => request('fecha'),
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ];
+
+        $data = json_encode($cuerpo);
+        //Comenzar a crear el objeto de la peticion
+        $ch = curl_init($url);
+
+        $codigo_autorizacion = env('FB_Authorization_code');
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer '. $codigo_autorizacion,
+                ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        //Ejecutamos la peticion
+        $resultado = curl_exec($ch);
+
+        #Vemos si el codigo es 200, si lo es todo nice
+        $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if($codigoRespuesta === 200){
+            $datosRecordatorio = 
+            [
+                'estado' => 1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            ];
+    
+            recordatorio::where('id', $id)->update($datosRecordatorio);
+        }
+        else{
+            $datosRecordatorio = 
+            [
+                'estado' => -1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            ];
+    
+            recordatorio::where('id', $id)->update($datosRecordatorio);
+        }
+        
+        curl_close($ch);
     }
 }

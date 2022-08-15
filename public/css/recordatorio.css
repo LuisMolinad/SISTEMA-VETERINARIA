@@ -19,3 +19,11 @@
 
     padding: 0.5rem;
 }
+
+.mensaje_no_enviado{
+    background-color: lightcoral;
+}
+
+.mensaje_enviado{
+    background-color: lightgreen;
+}

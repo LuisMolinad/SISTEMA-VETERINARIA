@@ -153,4 +153,5 @@ Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaControlle
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
+Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
