@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-    GESTIONAR CITA VACUNA
+    Gestionar citas de Vacunación
 @endsection
 
 @section('librerias')
@@ -10,7 +10,7 @@
 @endsection
 
 @section('header')
-    <h1 class="header">Gestionar citas de Vacunación</h1>
+    <h2 class="header">Gestionar citas de Vacunación de {{ $mascotas->nombreMascota }} ID: {{ $mascotas->idMascota }}</h2>
 @endsection
 
 @section('content')
@@ -19,31 +19,25 @@
         <table class="table table-striped" id="citaVacuna">
             <thead class="table-dark table-header">
                 <tr>
-                    <th scope="col">ID Mascota</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Dueño</th>
-                    <th scope="col">Número</th>
-                    <th scope="col">Dirección</th>
+                    <th scope="col">Vacuna</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Fecha Aplicación</th>
+                    <th scope="col">Fecha Refuerzo</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <!-- $mascota->propietario(es el nombre del metodo que esta en el model que define la relacion)->nombrePropietario(el nombre de la columna en la bd)-->
             <tbody>
-                @foreach ($mascotas as $mascota)
+                @foreach ($mascotas->citas as $registro)
                     <tr>
-                        <th scope="id">{{ $mascota->idMascota }}</th>
-                        <td id="nombre mascota">{{ $mascota->nombreMascota }}</td>
-                        <td id="nombre duenio">{{ $mascota->propietario->nombrePropietario }}</td>
-                        <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
-                        <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
+                        <th scope="id">{{ $registro->nombreVacuna }}</th>
+                        <th scope="id">{{ $registro->pivot->pesolb }}</th>
+                        <th scope="id">{{ $registro->pivot->end }}</th>
+                        <th scope="id">{{ $registro->pivot->start }}</th>
                         <td>
-                            <a role="button"
-                                class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
-
-                            <a type="button" class="btn btn-dark"
-                                href="{{ route('gestionVacuna.index', $mascota->id) }}">Gestionar</a>
-                            {{-- <a href="{{ route('cashbooktransactions.apply', $transaction->id) }}"
-                                class="btn btn-warning">Apply</a> --}}
+                            <button type="button" class="btn btn-info">Consultar</button>
+                            <button type="button" class="btn btn-warning">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
 
                         </td>
                     </tr>

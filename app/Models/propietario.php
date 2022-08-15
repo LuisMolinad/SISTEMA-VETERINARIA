@@ -9,9 +9,9 @@ use App\Models\mascota;
 
 class propietario extends Model
 {
-    use HasFactory,Notifiable;
+    use HasFactory, Notifiable;
 
-    protected $table='propietarios';
+    protected $table = 'propietarios';
     public $timestamps = false;
     protected $fillable = [
         'nombrePropietario',
@@ -22,5 +22,4 @@ class propietario extends Model
     {
         return $this->hasMany(mascota::class);
     }
-
 }
