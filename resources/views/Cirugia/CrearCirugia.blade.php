@@ -4,6 +4,17 @@
 Cita de cirugía
 @endsection
 
+@section('librerias')
+<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!--CSS para recordatorios -->
+        <link rel="stylesheet" href="{{asset('css/recordatorio.css')}}">
+    <!--Fin del CSS para recordatorios -->
+    <!--JS para recordatorios -->
+        <script src=" {{asset('js/recordatorio.js')}} "></script>
+    <!--Fin del JS para recordatorios -->
+<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+@endsection
+
 @section('header')
 <br>
 <div class="container">
@@ -15,7 +26,7 @@ Cita de cirugía
 <div class="container">
     <form action="{{url('/citacirugia')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
         @csrf
-     <fieldset class="fieldset">
+     <fieldset class="fieldset fieldset-no-linea">
         <br>
         <center> <h5>Datos generales de la mascota</h5> </center>
         <br>
@@ -23,7 +34,7 @@ Cita de cirugía
                 <div class="form-group col-md-6">
 
                 <strong> <label for="IDMASCOTA">IDMASCOTA</label></strong>
-                    <input type="text" class="form-control" id="IDMASCOTA" value = "{{$mascotas->idMascota}}" readonly="readonly">
+                    <input type="text" class="form-control" name="idmascota" id="IDMASCOTA" value = "{{$mascotas->idMascota}}" readonly="readonly">
 
                     <strong> <label for="inputRazaMascota">RAZA</label></strong>
                     <input type="text" class="form-control" id="inputRazaMascota" value="{{$mascotas->razaMascota}}" readonly="readonly">
@@ -55,7 +66,7 @@ Cita de cirugía
                 </div>
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-                <input type="text" class="form-control" id="inputContactNumber" value="{{$mascotas->propietario->telefonoPropietario}}" readonly="readonly">
+                <input type="text" class="form-control" name="telefono" id="inputContactNumber" value="{{$mascotas->propietario->telefonoPropietario}}" readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
                     <strong>   <label for="inputDireccion" style="color:black">Dirección</label></strong>
@@ -71,7 +82,7 @@ Cita de cirugía
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong>   <label for="ConceptoCirugia" style="color:black">Concepto de cirugía</label></strong>
-                    <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" required></textarea>
+                    <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" onchange="actualizar_mensaje_al_crear()" required></textarea>
                 
                     <div class="invalid-feedback">
                         Por favor ingrese información sobre el concepto de cirugía
@@ -85,7 +96,7 @@ Cita de cirugía
 
                 <div class="form-group col-md-6">
                     <strong>   <label for="inputFechaCirugia" style="color:black">Fecha de cirugía</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="fechaHoraCitaCirugia" required>
+                    <input class="form-control" type="datetime-local" name="start" id="fechaHoraCitaCirugia" onchange="actualizar_mensaje_al_crear()" required>
 
                     <div class="valid-feedback">
                         Fecha correcta
@@ -93,8 +104,6 @@ Cita de cirugía
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
                     </div>
-                
-                
                 </div>
 
 
@@ -135,7 +144,8 @@ Cita de cirugía
                   class="form-control" name="filtercirugias" id="filtercirugias" aria-describedby="filtercirugias" value="citasCirugias">
               </div>
 
-            <br>
+            @include('layouts.crear_recordatorio')
+
             <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-success mb-2">Guardar</button>
 
 

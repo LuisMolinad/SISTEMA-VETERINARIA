@@ -18,6 +18,7 @@ use App\Models\mascota;
 
 //Controladores para SPATIE
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
@@ -154,10 +155,17 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
+Route::get('/cirugia/record', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
 
+/*Recordatorio*/
+Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
+Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
+Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
+Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
 //Citas de Limpieza dental
 //ruta de los data-table
 Route::resource('citaLimpiezaDental', CitaLimpiezaDentalController::class)->middleware('auth');
 //ruta para entrar a la interfaz de agregar
 Route::get('/crearCitaLimpiezaDental/{id}', [CitaLimpiezaDentalController::class, 'mostrar'])->name('citasLimpiezaDental.mostrar')->middleware('auth');
+

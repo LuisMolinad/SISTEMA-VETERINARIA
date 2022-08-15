@@ -136,3 +136,7 @@
 .none{
     display: none;
 }
+
+.fieldset-no-linea{
+    border: none;
+}

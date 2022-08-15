@@ -22,6 +22,10 @@
                 </div>
             </li>
 
+            <li class="nav-item active active">
+                <a class="nav-link" href="/recordatorio">Recordatorios <span class="sr-only">(current)</span></a>
+            </li>
+
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Registros clinicos

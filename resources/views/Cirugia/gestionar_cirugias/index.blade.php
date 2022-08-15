@@ -1,21 +1,16 @@
 @extends('app')
 
 @section('titulo')
-GESTIONAR MASCOTA
+GESTIONAR CIRUGIA
 @endsection
 
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-
-<!-- Llamamos al sweetalert -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Llamamos nuestro documento de sweetalert -->
-<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('header')
-<h1 class="header">GESTIONAR MASCOTA</h1>
+<h1 class="header">GESTIONAR CIRUGIA</h1>
 @endsection
 
 @section('content')
@@ -26,34 +21,27 @@ GESTIONAR MASCOTA
         <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
-                <th scope="col">N°</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Recomendacion Pre-operatoria</th>
                 <th scope="col">Codigo</th>
-                <th scope="col">Propietario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Raza</th>
-                <th scope="col">Especie</th>
-                <th scope="col">Color</th>
-                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($mascotas as $mascota)
+                @foreach ($datos as $dato)
                 <tr>
-                    <td>{{$mascota->id}}</td>
-                    <td>{{$mascota->idMascota}}</td>
-                    <td>{{$mascota->propietario->nombrePropietario}}</td>
-                    <td>{{$mascota->nombreMascota}}</td>
-                    <td>{{$mascota->razaMascota}}</td>
-                    <td>{{$mascota->especie}}</td>
-                    <td>{{$mascota->colorMascota}}</td>
+                    <td>{{$dato->conceptoCirugia}}</td>
+                    <td>{{$dato->start}}</td>
+                    <td>{{$dato->recomendacionPreoOperatoria}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ url('/mascota/'.$mascota) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                        {{$dato->mascota_id}}
+{{--                         <a href="{{ url('/mascota/'.$mascota) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
                       <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
                 @endforeach
