@@ -7,6 +7,12 @@ Agenda Veterinaria
 @section('librerias')
 <!-- Libreria de Sweet Alert2-->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--Date picker-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="{{asset('js/datepickeragenda.js')}}" defer></script>
+
 @endsection
 
 @section('content')
@@ -273,8 +279,8 @@ Agenda Veterinaria
 
               <div class="form-group">
                 <label for="start">Fecha</label>
-                <input type="text"
-                  class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+                <input type="datepicker"
+                  class="date form-control" name="start" id="start" aria-describedby="helpId" placeholder="" readonly>
               </div>
 
               <div class="form-group">

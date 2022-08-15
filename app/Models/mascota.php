@@ -42,4 +42,11 @@ class mascota extends Model
     {
         return $this->belongsToMany(vacuna::class, 'citaVacunas')->withPivot('pesolb', 'end', 'start');
     }
+
+    //relacion con citas de limpieza dental
+    public function citaLimpiezaDental()
+    {
+        return $this->hasMany(citaLimpiezaDental::class);
+    }
+
 }
