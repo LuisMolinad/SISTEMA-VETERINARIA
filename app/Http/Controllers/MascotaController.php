@@ -99,7 +99,6 @@ class MascotaController extends Controller
         $datosMascota = request()->except(['_token', '_method']);
         //$datosMascota = request()->all();
         Mascota::where('id','=',$id)->update($datosMascota);
-        $mascota = Mascota::FindOrFail($id);
         return redirect('/mascota?objeto=mascota&accion=edito');
         //return response()->json($datosMascota);
     }
