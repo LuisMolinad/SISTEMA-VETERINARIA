@@ -18,6 +18,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
                     <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
+                    <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
                 </div>
             </li>
 

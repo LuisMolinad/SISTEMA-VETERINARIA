@@ -10,6 +10,8 @@ use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
+use App\Http\Controllers\gestionCitasVacunacionController;
+use App\Http\Controllers\CitaLimpiezaDentalController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
@@ -19,8 +21,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-
-
+use App\Models\citaLimpiezaDental;
 
 /****
 /*
@@ -91,8 +92,11 @@ Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaV
 
 Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
 //Route::resource('/citasvacuna', CitaVacunaController::class);
-Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
+Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('citaVacuna.mostrar')->middleware('auth');
 Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
+
+//Gestionar citas vacunacion
+Route::get('/citas/index/gestion/{id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
 
 
 
@@ -118,6 +122,8 @@ Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'sho
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit'])->middleware('auth');
 Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId'])->middleware('auth');
 
+Route::post('/actualizar/{citaServicio}', [App\Http\Controllers\CitaServicioController::class, 'update'])->middleware('auth');
+Route::post('/borrar/{id}', [App\Http\Controllers\CitaServicioController::class, 'destroy'])->middleware('auth');
 
 /*---------------Propietario---------------*/
 Route::resource('propietario', PropietarioController::class)->middleware('auth');
@@ -127,7 +133,7 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 
 //Ejemplo consultar JS
-Route::get('/mascota/consultar/{codigo}',[MascotaController::class, 'consultar'])->middleware('auth');
+Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');
 Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
 
 
@@ -156,3 +162,10 @@ Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensa
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
 Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
+
+//Citas de Limpieza dental
+//ruta de los data-table
+Route::resource('citaLimpiezaDental', CitaLimpiezaDentalController::class)->middleware('auth');
+//ruta para entrar a la interfaz de agregar
+Route::get('/crearCitaLimpiezaDental/{id}', [CitaLimpiezaDentalController::class, 'mostrar'])->name('citasLimpiezaDental.mostrar')->middleware('auth');
+

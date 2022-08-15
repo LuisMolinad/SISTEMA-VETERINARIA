@@ -23,7 +23,7 @@ class CitaVacunaController extends Controller
 
         $mascotas = mascota::with('propietario')->get();
 
-        return view(('citasvacunas.index'),compact('mascotas'));
+        return view(('citasvacunas.index'), compact('mascotas'));
     }
 
 
@@ -36,21 +36,22 @@ class CitaVacunaController extends Controller
 
 
 
-    public function mostrar($id){
+    public function mostrar($id)
+    {
         $mascotas = mascota::FindOrFail($id);
         $vacunas = vacuna::all();
-        return view('citasvacunas.create',compact('mascotas','vacunas'));
+        return view('citasvacunas.create', compact('mascotas', 'vacunas'));
         //return view('Cirugia.CrearCirugia');
     }
 
-    public function validar($id){
-       // $mascotas = mascota::FindOrFail($id);
+    public function validar($id)
+    {
+        // $mascotas = mascota::FindOrFail($id);
 
-        $idmascotas=DB::table('mascotas')->select('id')->get();
+        $idmascotas = DB::table('mascotas')->select('id')->get();
 
 
-        return view('citasvacunas.store',compact('mascotas'));
-
+        return view('citasvacunas.store', compact('mascotas'));
     }
 
     /**
@@ -130,7 +131,6 @@ class CitaVacunaController extends Controller
                 //Finaliza recordatorio
         
                 return redirect('/?objeto=cita&accion=creo');
-
     }
 
     /**
@@ -141,9 +141,9 @@ class CitaVacunaController extends Controller
      */
     public function show(citaVacuna $citaVacuna)
     {
-       // return view('citasVacunas.gestionarCitasVacunacion');
-       $citaVacuna = citaVacuna::all();
-       return response()->json($citaVacuna);
+        // return view('citasVacunas.gestionarCitasVacunacion');
+        $citaVacuna = citaVacuna::all();
+        return response()->json($citaVacuna);
     }
 
     /**
@@ -156,7 +156,7 @@ class CitaVacunaController extends Controller
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
         $citaVacuna = citaVacuna::find($id);
-        $citaVacuna->start=Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('Y-m-d');
+        $citaVacuna->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('Y-m-d');
         return response()->json($citaVacuna);
     }
 

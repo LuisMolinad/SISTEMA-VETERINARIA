@@ -13,16 +13,18 @@ class CreateCitaVacunasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cita_vacunas', function (Blueprint $table) {
+        Schema::create('citaVacunas', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            $table->foreignId('mascota_id')->constrained('mascotas');
-            $table->foreignId('vacuna_id')->constrained('vacunas');
-            $table->string('groupId')->nullable();
-            $table->dateTime('end');
+            $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('vacuna_id')->constrained('vacunas')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('estadoCita')->nullable(true);
+            $table->string('groupId')->nullable(true);
+            $table->dateTime('end')->nullable(true);
             $table->dateTime('start');
-            $table->string('title',20);
-            $table->string('filtervacunas',50);
+            $table->string('title', 20);
+            $table->string('filtervacunas', 50);
+            $table->integer('pesolb')->nullable(true);
         });
     }
 
@@ -33,6 +35,6 @@ class CreateCitaVacunasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cita_vacunas');
+        Schema::dropIfExists('citaVacunas');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\mascota;
 use App\Models\vacuna;
 
@@ -9,26 +10,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class citaVacuna extends Model
 {
+    /* 
+    La tabla que define este modelo cumple la funcion de ser la tabla intermedia entre vacuna y mascota
+    */
     use HasFactory;
-    protected $table='cita_vacunas';
+    protected $table = 'citaVacunas';
     public $timestamps = false;
-    protected $fillable =[
+    protected $fillable = [
         'mascota_id',
         'vacuna_id',
-        'fechaAplicacion',
-        'fechaRefuerzo',
+        'end',
+        'start',
         'estadoCita',
         'pesolb',
     ];
-
-
-    public function mascota()
-    {
-        return $this->belongsTo(mascota::class);
-    }
-    public function vacunas()
-    {
-        return $this->belongsTo(vacuna::class);
-    }
-
 }

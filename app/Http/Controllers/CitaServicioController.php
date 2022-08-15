@@ -86,7 +86,7 @@ class CitaServicioController extends Controller
 
         //Dar formato a los campos recuperados de la base por medio de carbon
         $citaServicio->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('Y-m-d');
-        $citaServicio->end = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
+        //$citaServicio->end = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
 
         return response()->json($citaServicio);
     }
@@ -101,6 +101,9 @@ class CitaServicioController extends Controller
     public function update(Request $request, citaServicio $citaServicio)
     {
         //
+        request()->validate(citaServicio::$rules);
+        $citaServicio->update($request->all());
+        return response()->json($citaServicio);
     }
 
     /**
@@ -109,8 +112,10 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(citaServicio $citaServicio)
+    public function destroy($id)
     {
         //
+        $citaServicio = citaServicio::find($id)->delete();
+        return response()->json($citaServicio);
     }
 }

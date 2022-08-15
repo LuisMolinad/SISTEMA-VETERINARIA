@@ -31,12 +31,13 @@
                     <strong> <label for="mascota_id"> IDMASCOTA</label></strong>
                     <input type="text" class="form-control" id="idVisible" name="idVisible"
                         value="{{ $mascotas->idMascota }}" readonly="readonly">
-                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}"
-                        type="hidden" readonly="readonly">
+                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}" type="hidden"
+                        readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Nombre:</label></strong>
-                    <input class="form-control" readonly="readonly" id="title" name="title" value="{{ $mascotas->nombreMascota }}">
+                    <input class="form-control" readonly="readonly" id="title" name="title"
+                        value="{{ $mascotas->nombreMascota }}">
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -59,17 +60,20 @@
             <div class="form-row" style="background-color:#e1dff4">
                 <div class="form-group col-md-6">
                     <strong> <label for="inputnombreDuenio"style="color:black">Dueño</label> </strong>
-                  <input type="text" class="form-control" value = "{{$mascotas->propietario->nombrePropietario }}"id="inputnombreDuenio" placeholder="Nombre del dueño"  readonly="readonly">
+                    <input type="text" class="form-control" value="{{ $mascotas->propietario->nombrePropietario }}"
+                        id="inputnombreDuenio" placeholder="Nombre del dueño" readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
                   <input type="text" class="form-control" name="inputContactNumber" id="inputContactNumber" placeholder="Número de contacto" value = "{{$mascotas->propietario->telefonoPropietario }}" readonly="readonly">
+
                 </div>
                 <div class="form-group col-md-6">
-                    <strong>   <label for="inputDireccion" style="color:black">Direccion</label></strong>
-                    <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño" value = "{{$mascotas->propietario->direccionPropietario }}" readonly="readonly">
-                  </div>
-              </div>
+                    <strong> <label for="inputDireccion" style="color:black">Direccion</label></strong>
+                    <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño"
+                        value="{{ $mascotas->propietario->direccionPropietario }}" readonly="readonly">
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong> <label for="inputDireccion" style="color:black">Vacuna</label></strong>
@@ -113,17 +117,18 @@
             </div>
 
             <div class="form-group d-none">
-              <label for=""></label>
-              <input type="text"
-                class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasVacunacion">
+                <label for=""></label>
+                <input type="text" class="form-control" name="groupId" id="groupId" aria-describedby="helpId"
+                    value="citasVacunacion">
             </div>
 
             <!--Este es el campo para filtro-->
             <div class="form-group d-none">
                 <label for=""></label>
-                <input type="text" class="form-control" name="filtervacunas" id="filtervacunas" aria-describedby="filtervacunas"
-                    value="citasVacunacion">
+                <input type="text" class="form-control" name="filtervacunas" id="filtervacunas"
+                    aria-describedby="filtervacunas" value="citasVacunacion">
             </div>
+
 
             @include('layouts.crear_recordatorio')
 
@@ -132,7 +137,7 @@
         <!--<button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
 
     </form>
-</div>
+    </div>
 @endsection
 @section('js')
     <script>
