@@ -11,6 +11,7 @@ use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
 use App\Http\Controllers\gestionCitasVacunacionController;
+use App\Http\Controllers\CitaLimpiezaDentalController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
@@ -19,8 +20,7 @@ use App\Models\mascota;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-
-
+use App\Models\citaLimpiezaDental;
 
 /****
 /*
@@ -154,3 +154,10 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
+
+
+//Citas de Limpieza dental
+//ruta de los data-table
+Route::resource('citaLimpiezaDental', CitaLimpiezaDentalController::class)->middleware('auth');
+//ruta para entrar a la interfaz de agregar
+Route::get('/crearCitaLimpiezaDental/{id}', [CitaLimpiezaDentalController::class, 'mostrar'])->name('citasLimpiezaDental.mostrar')->middleware('auth');
