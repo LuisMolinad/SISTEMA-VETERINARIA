@@ -82,20 +82,17 @@ Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Ciru
 
 
 /*------------------------------------- Citas Vacunas---------------------------------------------------------------------------- */
-//Route::resource('citaVacuna',CitaVacunaController::class);
-/*
-Route::get('citas/show', [CitaVacunaController::class, 'show'])->name('citaVacuna.show');
-Route::get('citas/create', [CitaVacunaController::class, 'create'])->name('citaVacuna.create');
-*/
+
 
 
 Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
-//Route::resource('/citasvacuna', CitaVacunaController::class);
 Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('citaVacuna.mostrar')->middleware('auth');
 Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
 
 //Gestionar citas vacunacion
-Route::get('/citas/index/gestion/{id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
+Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class, 'show'])->name('gestionVacuna.show')->middleware('auth');
+//Consulta de cita vacunaciion
+Route::get('/citas/index/consulta/{id}/{nombreVacuna}/{pesolb}/{start}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
 
 
 

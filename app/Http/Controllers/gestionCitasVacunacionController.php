@@ -12,31 +12,15 @@ use Illuminate\Support\Facades\DB;
 class gestionCitasVacunacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Muestra los datos de la mascota para la seccion consultar de gestioncitaVacion
      */
-    public function index($id)
+
+    /* public function index($id, $nombreVacuna, $pesolb, $end, $start) */
+    public function index($id, $nombreVacuna, $pesolb, $start)
     {
-        //$mascotas = mascota::with('propietario')->get();
         $mascotas = mascota::find($id);
-        // $vacunas = vacuna::with('vacuna')->get();
-
-        //Creo que cita vacuna debo llamar todo y llamar lo que necesito por medio de las relaciones que hay en los m[etodos de cada uno]
-        // $citaVacunas = citaVacuna::where('mascota_id', $mascotas->id)->get();
-        // $citaVacunas = citaVacuna::find(1);
-        // $citaVacunas = citaVacuna::all();
-        // $vacuna = vacuna::where('id', $citaVacunas)->get('nombreVacuna');
-        /*  foreach ($mascotas->citaVacunas as  $citaVacuna) {
-            return ($citaVacuna->nombreVacuna);
-        } */
-
-
-
-        //Flight::where('active', 1)
-        /*  foreach ($citaVacuna as $vacuna)
-            return var_dump($vacuna->vacunas->nombreVacuna); */
-        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas'));
+        //  return view('citasvacunas.gestionCitasVacunas.index', compact('mascota', 'nombreVacuna', 'pesolb', 'end', 'start'));
+        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas', 'nombreVacuna', 'pesolb', 'start'));
     }
 
     /**
@@ -60,15 +44,14 @@ class gestionCitasVacunacionController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    //Funcion para el boton gestionar, muestra las vacunas de cada mascota, conecta 
     public function show($id)
     {
-        //
+        //$mascotas = mascota::with('propietario')->get();
+        $mascotas = mascota::find($id);
+
+        return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'));
     }
 
     /**

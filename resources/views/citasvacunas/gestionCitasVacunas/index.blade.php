@@ -1,83 +1,64 @@
 @extends('app')
 
 @section('titulo')
-    Gestionar citas de Vacunación
+    CONSULTAR CITA VACUNA
 @endsection
 
 @section('librerias')
-    <!--Data tables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href=" {{ asset('css/mascota_consultar.css') }} ">
 @endsection
 
 @section('header')
-    <h2 class="header">Gestionar citas de Vacunación de {{ $mascotas->nombreMascota }} ID: {{ $mascotas->idMascota }}</h2>
+    <h1 class="header"> Cita Vacuna</h1>
 @endsection
 
 @section('content')
-    <div class="table-responsive-sm container-fluid contenedor">
+    <div class="container consultar_mascota">
+        <section class="consultar_mascota_encabezado">
+            <div class="dos_filas_centradas nombres_encabezado">
+                <h2 class="header2"> <strong>{{ $mascotas->idMascota }} -- {{ $mascotas->nombreMascota }}</strong> </h2>
+                <h3 class="header3"> {{ $mascotas->propietario->nombrePropietario }} </h3>
+            </div>
+            @if ($mascotas->fallecidoMascota == 'Fallecido')
+                <div class="black_ribbon_container">
+                    <img class="black_ribbon" src="{{ asset('/img/black_ribon.webp') }}" alt="Liston negro">
+                </div>
+            @endif
+        </section>
 
-        <table class="table table-striped" id="citaVacuna">
-            <thead class="table-dark table-header">
-                <tr>
-                    <th scope="col">Vacuna</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Fecha Aplicación</th>
-                    <th scope="col">Fecha Refuerzo</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <!-- $mascota->propietario(es el nombre del metodo que esta en el model que define la relacion)->nombrePropietario(el nombre de la columna en la bd)-->
-            <tbody>
-                @foreach ($mascotas->citas as $registro)
-                    <tr>
-                        <th scope="id">{{ $registro->nombreVacuna }}</th>
-                        <th scope="id">{{ $registro->pivot->pesolb }}</th>
-                        <th scope="id">{{ $registro->pivot->end }}</th>
-                        <th scope="id">{{ $registro->pivot->start }}</th>
-                        <td>
-                            <button type="button" class="btn btn-info">Consultar</button>
-                            <button type="button" class="btn btn-warning">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+        <section class="consultar_mascota_datos">
+            <article>
+                <h4 class="header4">Información Vacunación</h4>
+                <ul>
+                    <li><strong>Vacuna: </strong> {{ $nombreVacuna }}</li>
+                    {{-- <li><strong>Fecha Aplicación: </strong>{{ $end }}</li> --}}
+                    <li><strong>Fecha Refuerzo: </strong>{{ $start }}</li>
+                </ul>
+            </article>
+            <article>
+                <h4 class="header4">Datos Generales de la Mascota</h4>
+                <ul>
 
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    <li><strong>IDMASCOTA: </strong> {{ $mascotas->idMascota }} </li>
+                    <li><strong>Nombre: </strong> {{ $mascotas->nombreMascota }}</li>
+                    <li><strong>Peso: </strong> {{ $pesolb }}</li>
+                </ul>
+            </article>
+        </section>
 
+        <section class="caracteristicas_especiales">
+            <article>
+                <h4 class="header4">Recordatorio</h4>
+                <p> Mensaje de recordatorio </p>
+            </article>
+            <article>
+                <h4 class="header4">Contacto</h4>
+                <ul>
+                    <li><strong>Dueño: </strong> {{ $mascotas->propietario->nombrePropietario }}</li>
+                    <li><strong>Telefono: </strong> {{ $mascotas->propietario->telefonoPropietario }}</li>
+                    <li><strong>Direccion: </strong>{{ $mascotas->propietario->direccionPropietario }} </li>
+                </ul>
+            </article>
+        </section>
     </div>
-@endsection
-@section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#citaVacuna').DataTable({
-                "lengthMenu": [
-                    [5, 10, 25, -1],
-                    [5, 10, 25, "Todos"]
-                ],
-
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ records por página",
-                    "zeroRecords": "No se encuentran datos relacionados found - ",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No hay registros disponibles ",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    'search': 'Buscar',
-                    'paginate': {
-                        'first': 'Primero',
-                        'last': 'Ultimo',
-                        'next': 'Siguiente',
-                        'previous': 'Anterior',
-                    },
-
-                },
-            });
-
-
-        });
-    </script>
 @endsection

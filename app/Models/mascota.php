@@ -29,15 +29,15 @@ class mascota extends Model
     ];
 
 
-    //ha este metodo me refiero, una mascota tiene muchos propietarios
+    //Define que el campo propietario-id pertenece a la tabla propietario relaciob uno a muchos
     public function propietario()
     {
         return $this->belongsTo(propietario::class);
     }
 
 
-    //relacion con citavacuna, reclama los campos extra como suyos
-
+    //relacion con citavacuna, reclama los campos extra como suyos ->withPivot('pesolb', 'end', 'start');
+    //Define la relacion muchos a muchos, identifica que su id estara  dentro de la tabla citasVacunas como fk
     public function citas()
     {
         return $this->belongsToMany(vacuna::class, 'citaVacunas')->withPivot('pesolb', 'end', 'start');
