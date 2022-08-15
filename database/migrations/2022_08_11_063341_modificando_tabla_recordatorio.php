@@ -29,7 +29,7 @@ class ModificandoTablaRecordatorio extends Migration
             $table->integer('recordatorio_id')->nullable();
         });
 
-        Schema::table('cita_vacunas', function(Blueprint $table){
+        Schema::table('citaVacunas', function(Blueprint $table){
             $table->integer('recordatorio_id')->nullable();
         });
     }
@@ -57,7 +57,7 @@ class ModificandoTablaRecordatorio extends Migration
             $table->dropColumn('recordatorio_id');
         });
 
-        Schema::table('cita_vacunas', function(Blueprint $table){
+        Schema::table('citaVacunas', function(Blueprint $table){
             $table->dropColumn('recordatorio_id');
         });
     }
