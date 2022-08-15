@@ -171,4 +171,11 @@ class CitaCirugiaController extends Controller
     {
         //
     }
+
+    public function gestionar_cirugias_por_mascota(){
+        $mascota_id = request('id');
+        $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
+
+        return view('Cirugia.gestionar_cirugias.index', compact('datos'));
+    }
 }
