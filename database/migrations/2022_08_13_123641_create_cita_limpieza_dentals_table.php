@@ -23,7 +23,8 @@ class CreateCitaLimpiezaDentalsTable extends Migration
             $table->string('title',20);
             $table->string('end')->nullable();
             $table->string('filterLimpiezaDental',50);
-            $table->timestamps();
+            $table->integer('recordatorio_id')->nullable();
+            //$table->timestamps();
         });
     }
 
