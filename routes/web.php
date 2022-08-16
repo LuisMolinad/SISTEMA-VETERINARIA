@@ -169,3 +169,7 @@ Route::resource('citaLimpiezaDental', CitaLimpiezaDentalController::class)->midd
 //ruta para entrar a la interfaz de agregar
 Route::get('/crearCitaLimpiezaDental/{id}', [CitaLimpiezaDentalController::class, 'mostrar'])->name('citasLimpiezaDental.mostrar')->middleware('auth');
 Route::post('/guardarCitaLimpieza', [CitaLimpiezaDentalController::class, 'store'])->name('citasLimpiezaDental.store')->middleware('auth');
+//Obtengo los datos para pintarlos en el calendario de cita de limpieza dental
+Route::get('/editarCitaLimpiezaDental/{id}', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'edit'])->middleware('auth');
+//mostrar las citas de limpieza dental en la agenda
+Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'show']);

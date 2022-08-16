@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let formularioCitasVacunas = document.querySelector("#agendavacunas");
     let formularioCitasCirugias = document.querySelector("#agendacirugias");
+    let formularioCitasDentales = document.querySelector("#agendaDental");
 
     function getColor() {
         var colorinput = document.getElementById("color");
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "dayGridMonth,dayGridWeek,dayGridDay,listWeek",
             //right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
-        editable: true, //para que puedan moverse los eventos
+        //editable: true, //para que puedan moverse los eventos
         //dayMaxEvents: true, // cuando se encuentran muchos eventos se mostrara una burbuja
 
         //Formato de Tiempo
@@ -93,6 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 color: "red",
                 display: 'block',
             },
+
+            {
+                //Citas de limpieza dental
+                url: "/mostrarlimpiezadental",
+                color: "#7A1453",
+                display: 'block',
+            },
+
         ],
 
         dateClick: function (info) {
@@ -111,7 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Agregar en todas las tablas de cirugia,servicios,vacunas un campo de filtro
             if (!(val == info.event.extendedProps.filtercirugias || val == info.event.extendedProps.filtervacunas ||
-                val == info.event.extendedProps.filterservicios || val == "all")) {
+                val == info.event.extendedProps.filterservicios || 
+                val == info.event.extendedProps.filterLimpiezaDental||val == "all")) {
                 info.el.style.display = "none";
             }
           },
@@ -226,6 +236,16 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             }
 
+            if(evento.groupId == "citasLimpiezaDental"){
+                axios.get(baseURL + "/editarCitaLimpiezaDental/" + info.event.id)
+                .then((respuesta)=>{
+                    formularioCitasDentales.title.value = respuesta.data.title;
+                    formularioCitasDentales.start.value = respuesta.data.start;
+                    $("#eventoconsultadental").modal("show");
+                })
+            }
+
+
         },
     });
     calendar.render();
@@ -254,6 +274,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formularioCitasCirugias.start.disabled = true;
         formularioCitasCirugias.conceptoCirugia.disabled = true;
         formularioCitasCirugias.recomendacionPreoOperatoria.disabled = true;
+        formularioCitasDentales.start.disabled = true;
+        formularioCitasDentales.title.disabled = true;
     }
 
     //Capturamos la accion del boton agregar
