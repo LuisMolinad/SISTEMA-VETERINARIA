@@ -28,6 +28,7 @@ Agenda Veterinaria
         <option value="citasVacunacion">Citas de Vacunación</option>
         <option value="citasCirugias">Citas de Cirugía</option>
         <option value="citasServicios">Citas de Servicios</option>
+        <option value="citasLimpiezaDental">Citas de Limpieza Dental</option>
       </select>
 
       <div id="guardadocorrectamente"></div>
@@ -349,6 +350,6 @@ Agenda Veterinaria
 
 @extends('Calendario/modalCitasVacunas')
 @extends('Calendario/modalCitasCirugia')
-
+@extends('Calendario/modalCitasDental')
 
 @endsection
