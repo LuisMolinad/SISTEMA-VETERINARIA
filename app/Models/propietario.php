@@ -18,6 +18,7 @@ class propietario extends Model
         'telefonoPropietario',
         'direccionPropietario',
     ];
+    //Relacion de uno a muchos
     public function mascotas()
     {
         return $this->hasMany(mascota::class);

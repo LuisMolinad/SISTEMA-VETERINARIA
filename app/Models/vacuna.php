@@ -17,7 +17,7 @@ class vacuna extends Model
         'descripcionVacuna',
         'tiempoEntreDosisDia',
     ];
-
+    //Define la relacion muchos a muchos, identifica que su id estara  dentro de la tabla citasVacunas como fk
     public function mascota()
     {
         return $this->belongsToMany(mascota::class, 'citaVacunas');

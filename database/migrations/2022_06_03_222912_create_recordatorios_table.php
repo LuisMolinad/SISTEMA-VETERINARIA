@@ -17,12 +17,25 @@ class CreateRecordatoriosTable extends Migration
             //para borrado en cascada
             $table->engine = "InnoDB";
 
-           $table->bigIncrements('id');
-           //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-          // $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
-           $table->string('mensajeRecordatorio',150);
-           $table->dateTime('fechaRecordatorio');
+            $table->bigIncrements('id');
+            $table->integer('estado');
+            $table->integer('dias_de_anticipacion');
+            $table->dateTime('fecha');
+            $table->string('concepto');
+            $table->string('nombre');
+            $table->string('telefono');
+            $table->string('id_mascota');
+            //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
+            // $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();
 
+
+        });
+        Schema::table('cita_cirugias', function (Blueprint $table) {
+            $table->integer('recordatorio_id')->nullable();
+        });
+
+        Schema::table('citaVacunas', function (Blueprint $table) {
+            $table->integer('recordatorio_id')->nullable();
         });
     }
 
@@ -34,5 +47,13 @@ class CreateRecordatoriosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('recordatorios');
+
+        Schema::table('cita_cirugias', function (Blueprint $table) {
+            $table->dropColumn('recordatorio_id');
+        });
+
+        Schema::table('citaVacunas', function (Blueprint $table) {
+            $table->dropColumn('recordatorio_id');
+        });
     }
 }
