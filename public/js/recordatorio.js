@@ -24,7 +24,7 @@ function actualizar_mensaje_al_crear(){
 
 function actualizar_mensaje_al_crear_vacuna(){
     //* Obtenemos las variables de la pagina
-    var concepto = document.querySelector('#vacuna_id').value;
+    //var concepto = document.querySelector('#vacuna_id').value;
     var nombre = document.querySelector('#nombreMascota').value;
     var fecha_hora = document.querySelector('#start').value;
     var mensaje = document.querySelector('#mensaje-recordatorio');
@@ -65,5 +65,3 @@ function actualizarMensaje_al_crear_limpieza(){
         mensaje.innerHTML = '';
     }
 }
-
-setTimeout(actualizar_mensaje_al_crear, 10);
