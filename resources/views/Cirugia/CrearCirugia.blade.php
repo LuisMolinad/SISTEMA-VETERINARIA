@@ -126,7 +126,7 @@ Cita de cirugía
                 <label for=""></label>
                 <input type="text"
                   class="form-control" name="groupId" id="groupId" aria-describedby="helpId" value="citasCirugias">
-              </div>
+            </div>
 
                <!--Esto es para realizar el filtro de cirugias en la agenda-->
             <div class="form-group d-none">
