@@ -69,7 +69,7 @@ class CitaLimpiezaDentalController extends Controller
         return redirect('/?objeto=cita&accion=creo');
     }
 
-    public function show(citaLimpiezaDental $citaLimpieza)
+    public function showCalendar(citaLimpiezaDental $citaLimpieza)
     {
         //Consultamos los datos almacenados en la base de datos
         $citaLimpieza = citaLimpiezaDental::all();

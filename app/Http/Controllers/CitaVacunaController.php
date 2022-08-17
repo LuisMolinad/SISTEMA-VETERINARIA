@@ -138,7 +138,7 @@ class CitaVacunaController extends Controller
      * @param  \App\Models\citaVacuna  $citaVacuna
      * @return \Illuminate\Http\Response
      */
-    public function show(citaVacuna $citaVacuna)
+    public function showCalendar(citaVacuna $citaVacuna)
     {
         // return view('citasVacunas.gestionarCitasVacunacion');
         $citaVacuna = citaVacuna::all();
