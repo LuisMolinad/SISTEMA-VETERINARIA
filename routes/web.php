@@ -173,3 +173,6 @@ Route::post('/guardarCitaLimpieza', [CitaLimpiezaDentalController::class, 'store
 Route::get('/editarCitaLimpiezaDental/{id}', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'edit'])->middleware('auth');
 //mostrar las citas de limpieza dental en la agenda
 Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'show']);
+
+//ruta para recuperar el id de la mascota
+Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'showId'])->middleware('auth');

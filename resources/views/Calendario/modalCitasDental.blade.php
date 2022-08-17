@@ -13,15 +13,20 @@
   
                 <form action="" id="agendaDental"> <!-- Se declara esta accion para poder capturar los datos del formulario -->
                   {!! csrf_field() !!} <!--Captura los formularios unicamente del formulario-->
-                  <div class="form-group">
   
                     <div class="form-group d-none">
                       <label for="id">ID</label>
                       <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
                     </div>
-    
-                      <label for="title">Nombre de la mascota: </label>
+                    
+                    <div class="form-group">
+                      <label for="title">Id de la mascota: </label>
                       <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="title">Nombre de la mascota: </label>
+                      <input type="text" name="nombreMascota" id="nombreMascota" class="form-control" placeholder="" aria-describedby="helpId">
                     </div>
 
                   <div class="form-group d-none">

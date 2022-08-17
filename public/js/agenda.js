@@ -195,13 +195,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     .catch((error) => {
                         if (error.response.data);
                     });
+
+
             }
             if (evento.groupId == "citasVacunacion") {
                 axios
                     .get(baseURL + "/editarCitaVacuna/" + info.event.id)
                     .then((respuesta) => {
                         formularioCitasVacunas.mascota_id.value =
-                            respuesta.data.mascota_id;
+                            respuesta.data.mascota_id;  
                         
                             //Obtener el nombre de la vacuna
                             axios.get(
@@ -211,6 +213,15 @@ document.addEventListener("DOMContentLoaded", function () {
                                 formularioCitasVacunas.vacuna_id.value =
                                     res.data.nombreVacuna;
                             });
+
+                            //Obtengo el id de la mascota
+                            axios.get(
+                                baseURL +"/mascotas/" + respuesta.data.mascota_id
+                            ).then((res)=>{
+                                idCaptureMascota = res.data.nombreMascota;
+                                formularioCitasVacunas.nombreMascota.value = idCaptureMascota;
+                                //console.log(idCaptureMascota)
+                            })
 
                             //Obtengo datos que no dependen de las tablas
                             formularioCitasVacunas.title.value = respuesta.data.title;
@@ -226,6 +237,16 @@ document.addEventListener("DOMContentLoaded", function () {
             if(evento.groupId == "citasCirugias"){
             axios.get(baseURL + "/editarCitaCirugia/" + info.event.id)
             .then((respuesta)=>{
+
+                //Obtengo el id de la mascota
+                axios.get(
+                    baseURL +"/mascotas/" + respuesta.data.mascota_id
+                ).then((res)=>{
+                    idCaptureMascota = res.data.nombreMascota;
+                    formularioCitasCirugias.nombreMascota.value = idCaptureMascota;
+                    //console.log(idCaptureMascota)
+                })
+
                 formularioCitasCirugias.title.value = respuesta.data.title;
                 formularioCitasCirugias.start.value = respuesta.data.start;
                 formularioCitasCirugias.conceptoCirugia.value = respuesta.data.conceptoCirugia;
@@ -239,6 +260,15 @@ document.addEventListener("DOMContentLoaded", function () {
             if(evento.groupId == "citasLimpiezaDental"){
                 axios.get(baseURL + "/editarCitaLimpiezaDental/" + info.event.id)
                 .then((respuesta)=>{
+
+                    //Obtengo el id de la mascota
+                    axios.get(
+                        baseURL +"/mascotas/" + respuesta.data.mascota_id
+                    ).then((res)=>{
+                        idCaptureMascota = res.data.nombreMascota;
+                        formularioCitasDentales.nombreMascota.value = idCaptureMascota;
+                        //console.log(idCaptureMascota)
+                })
                     formularioCitasDentales.title.value = respuesta.data.title;
                     formularioCitasDentales.start.value = respuesta.data.start;
                     $("#eventoconsultadental").modal("show");
@@ -270,12 +300,15 @@ document.addEventListener("DOMContentLoaded", function () {
         formularioCitasVacunas.estadoCita.disabled = true;
         formularioCitasVacunas.pesolb.disabled = true;
         formularioCitasVacunas.title.disabled = true;
+        formularioCitasVacunas.nombreMascota.disabled = true;
         formularioCitasCirugias.title.disabled = true;
         formularioCitasCirugias.start.disabled = true;
         formularioCitasCirugias.conceptoCirugia.disabled = true;
         formularioCitasCirugias.recomendacionPreoOperatoria.disabled = true;
+        formularioCitasCirugias.nombreMascota.disabled = true;
         formularioCitasDentales.start.disabled = true;
         formularioCitasDentales.title.disabled = true;
+        formularioCitasDentales.nombreMascota.disabled = true;
     }
 
     //Capturamos la accion del boton agregar
