@@ -20,7 +20,7 @@
             <thead class="table-dark table-header">
                 <tr>
                     {{-- <th scope="col" style="display:none;">id</th> --}}
-                    <th scope="col">id</th>
+                    <th scope="col" style="display:none;">id</th>
                     <th scope="col">Vacuna</th>
                     <th scope="col">Peso</th>
                     <th scope="col">Fecha Aplicación</th>
@@ -33,7 +33,7 @@
                 @foreach ($mascotas->citas as $registro)
                     <tr>
                         {{-- <th scope="id" style="display:none;">{{ $registro->pivot->id }} --}}
-                        <th scope="id">{{ $registro->pivot->id }}</th>
+                        <th scope="id" style="display:none;">{{ $registro->pivot->id }}</th>
                         <th scope="id">{{ $registro->nombreVacuna }}</th>
                         <th scope="id">{{ $registro->pivot->pesolb }}</th>
                         <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
@@ -53,10 +53,13 @@
                                 Consultar</a>
                             @if ($mascotas->fallecidoMascota == 'Vivo')
                                 <a type="button" class="btn btn-warning"
-                                    href="{{ route('gestionVacuna.edit', [$mascotas->id]) }}">
+                                    href="{{ route('gestionVacuna.edit', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
                                     Editar</a>
                             @endif
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <a type="button" class="btn btn-danger"
+                                href="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}">
+                                Eliminar</a>
+                            {{-- <button type="button" class="btn btn-danger">Eliminar</button> --}}
 
                         </th>
                     </tr>
