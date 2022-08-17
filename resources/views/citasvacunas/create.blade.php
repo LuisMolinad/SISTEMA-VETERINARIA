@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/recordatorio.css') }}">
     <!--Fin del CSS para recordatorios -->
     <!--JS para recordatorios -->
-    <script src=" {{ asset('js/recordatorio.js') }} "></script>
+    <script src="{{ asset('js/recordatorio.js') }}"></script>
     <!--Fin del JS para recordatorios -->
     <!-- Cualquier duda o comentario comunicarse con Rosalio -->
 @endsection
@@ -31,13 +31,15 @@
                     <strong> <label for="mascota_id"> IDMASCOTA</label></strong>
                     <input type="text" class="form-control" id="title" name="title"
                         value="{{ $mascotas->idMascota }}" readonly="readonly">
-                        <input class="form-control" id="idVisible" name="idVisible" value="{{ $mascotas->idMascota }}"  type="hidden">
-                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}" type="hidden" >
+                    <input class="form-control" id="idVisible" name="idVisible" value="{{ $mascotas->idMascota }}"
+                        type="hidden">
+                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}"
+                        type="hidden">
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Nombre:</label></strong>
-                  <input class="form-control" readonly="readonly" id="nombreMascota"
-                        value="{{ $mascotas->nombreMascota }}"> 
+                    <input class="form-control" readonly="readonly" id="nombreMascota"
+                        value="{{ $mascotas->nombreMascota }}">
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -108,8 +110,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="start"
-                        onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                    <input class="form-control" type="datetime-local" name="start" id="start" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -132,15 +133,37 @@
                     aria-describedby="filtervacunas" value="citasVacunacion">
             </div>
 
+            <section class="recordatorio_crear_seccion">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
+                        <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
+                            onchange="actualizar_mensaje_al_crear();" onclick="funcionesOnClick();">
+                            <option value="0" selected>No, no deseo un recordatorio</option>
+                            <option value="1">1 dias de anticipacion</option>
+                            <option value="2">2 dias de anticipacion</option>
+                            <option value="3">3 dias de anticipacion</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <!--Validacion -->
+                            Por favor ingrese información sobre el concepto de cirugía
+                        </div>
+                        <div class="valid-feedback">
+                            Dato válido sobre concepto de cirugía
+                        </div> <!-- Fin de la validacion -->
+                    </div>
 
-            @include('layouts.crear_recordatorio')
+                    <div class="form-group col-md-6">
+                        <strong> <label style="color:black">Pre visualizacion del mensaje</label></strong>
+                        <div id="mensaje-recordatorio">
+                            <div id="mensaje-recordatorio-limpieza">
+                            </div>
+                        </div>
+                    </div>
+            </section>
 
             <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
         </form>
-
-        <!--<button type="submit" href="{{ url('/guardarCitaVacuna/' . $mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
-
-
     </div>
 @endsection
 @section('js')
@@ -148,10 +171,8 @@
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict'
-
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.querySelectorAll('.needs-validation')
-
             // Loop over them and prevent submission
             Array.prototype.slice.call(forms)
                 .forEach(function(form) {
@@ -160,10 +181,14 @@
                             event.preventDefault()
                             event.stopPropagation()
                         }
-
                         form.classList.add('was-validated')
                     }, false)
                 })
         })()
+
+
+        function funcionesOnClick() {
+            actualizar_mensaje_al_crear_vacuna();
+        }
     </script>
 @endsection
