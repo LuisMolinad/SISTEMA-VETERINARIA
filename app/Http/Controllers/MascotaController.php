@@ -132,4 +132,11 @@ class MascotaController extends Controller
         $vari = Mascota::where('propietario_id',$id)->get();
         return json_encode($vari);
     }
+
+    //consultar id mascota para la agenda.
+    public function showId($id){
+        $mascota=mascota::find($id);
+        return response()->json($mascota);
+    }
+
 }
