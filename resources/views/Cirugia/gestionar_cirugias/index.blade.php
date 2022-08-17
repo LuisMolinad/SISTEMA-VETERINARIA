@@ -7,6 +7,10 @@ GESTIONAR CIRUGIA
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('header')
@@ -15,16 +19,16 @@ GESTIONAR CIRUGIA
 
 @section('content')
 
-    @include('notificacion')
-
+    
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
-                <th scope="col">Concepto</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Recomendacion Pre-operatoria</th>
-                <th scope="col">Codigo</th>
+                @include('notificacion')
+                <th scope="col">Concepto de cirugía</th>
+                <th scope="col">Fecha de realización</th>
+                <th scope="col">Recomendaciones Preoperatorias</th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,15 +38,24 @@ GESTIONAR CIRUGIA
                     <td>{{$dato->start}}</td>
                     <td>{{$dato->recomendacionPreoOperatoria}}</td>
                     <td id = "botones-linea">
-                        {{$dato->mascota_id}}
-{{--                         <a href="{{ url('/mascota/'.$mascota) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                      <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                        <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
+                    
+                            
+                            <a href="{{ url('/citacirugia/gestionarCirugia/consultar/')}}"><button type="button" class="btn btn-info">Consultar</button></a>
+
+                            <button type="button" class="btn btn-warning">Editar</button>
+
+
+                            <form id="EditForm{{$dato->id}}" action="{{url('/citacirugia/'.$dato->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
-                            <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form> --}}
-                    </td>
+                            <button onclick="return alerta_eliminar_cirugia('{{$dato->title}}','{{$dato->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+
+
+
+
+
+                            <button type="button" class="btn btn-primary">Receta Postoperatoria</button>
                 </tr>
                 @endforeach
             </tbody>

@@ -118,3 +118,36 @@ function alerta_eliminar_general( nombre, id){
 
     return false;
 }
+
+
+
+function alerta_eliminar_cirugia( nombre, id){
+    var formulario = $('#EditForm'+id);
+    
+    
+
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar la cita de cirugia de la mascota ' + nombre + '?',
+        text: "¡No podrá revertir esta decisión!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'No',
+        confirmButtonText: 'Si, deseo borrarlo'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                '¡Se eliminará!',
+                'El registro de la cita de cirugia de ' + nombre + ' será eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}

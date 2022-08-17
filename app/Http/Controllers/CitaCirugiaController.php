@@ -114,11 +114,16 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
-    public function show(citaCirugia $citaCirugia)
+    public function show($id)
     {
-        //Obtengo las cirugias de la base de datos
-        $citaCirugia = citaCirugia::all();
-        return response()->json($citaCirugia);
+        $mascota_id = Mascota::find($id);
+        $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
+        return view('Cirugia.gestionar_cirugias.show', compact('datos'));
+
+
+        // $mascota_id = Mascota::FindOrFail($id);
+        // $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
+        // return view('Cirugia.gestionar_cirugias.show', compact('datos'));
     }
 
     /**
@@ -167,9 +172,14 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(citaCirugia $citaCirugia)
+    public function destroy($id)
     {
-        //
+            
+        $registro = citaCirugia::FindOrFail($id)->get('mascota_id');
+
+        
+        citaCirugia::destroy($id);
+        return redirect('/citacirugia/gestionarCirugia/record?id='. $registro[0]->mascota_id.'&objeto=cita&accion=elimino');
     }
 
     public function gestionar_cirugias_por_mascota(){
