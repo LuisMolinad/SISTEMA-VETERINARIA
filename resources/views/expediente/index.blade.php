@@ -26,7 +26,6 @@ GESTIONAR EXPEDIENTE
         <table class="table table-striped" style="width:100%" id="expediente">
             <thead class="table-dark table-header">
                 <tr>
-                <th scope="col">ID</th>
                 <th scope="col">ID Mascota</th>
                 <th scope="col">Nombre Mascota</th>
                 <th scope="col">Dueño</th>
@@ -43,7 +42,6 @@ GESTIONAR EXPEDIENTE
                         }
                     ?>
                 >
-                    <td>{{$expediente->id}}</td>
                     <td>{{$expediente->mascota->idMascota}}</td>
                     <td>{{$expediente->mascota->nombreMascota}}</td>
                     <td>{{$expediente->mascota->propietario->nombrePropietario}}</td>
