@@ -40,7 +40,7 @@ class mascota extends Model
     //Define la relacion muchos a muchos, identifica que su id estara  dentro de la tabla citasVacunas como fk
     public function citas()
     {
-        return $this->belongsToMany(vacuna::class, 'citaVacunas')->withPivot('pesolb', 'end', 'start');
+        return $this->belongsToMany(vacuna::class, 'citaVacunas')->withPivot('id', 'pesolb', 'end', 'start')->withTimestamps();
     }
 
     //relacion con citas de limpieza dental
@@ -48,5 +48,4 @@ class mascota extends Model
     {
         return $this->hasMany(citaLimpiezaDental::class);
     }
-
 }

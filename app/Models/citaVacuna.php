@@ -23,5 +23,11 @@ class citaVacuna extends Model
         'start',
         'estadoCita',
         'pesolb',
+        'created_at',
+        'updated_at',
+        'title',
+        'filtervacunas',
+
+
     ];
 }

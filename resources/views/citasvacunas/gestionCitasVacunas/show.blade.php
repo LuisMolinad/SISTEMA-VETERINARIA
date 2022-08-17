@@ -19,6 +19,8 @@
         <table class="table table-striped" id="citaVacuna">
             <thead class="table-dark table-header">
                 <tr>
+                    {{-- <th scope="col" style="display:none;">id</th> --}}
+                    <th scope="col">id</th>
                     <th scope="col">Vacuna</th>
                     <th scope="col">Peso</th>
                     <th scope="col">Fecha Aplicación</th>
@@ -30,12 +32,14 @@
             <tbody>
                 @foreach ($mascotas->citas as $registro)
                     <tr>
+                        {{-- <th scope="id" style="display:none;">{{ $registro->pivot->id }} --}}
+                        <th scope="id">{{ $registro->pivot->id }}</th>
                         <th scope="id">{{ $registro->nombreVacuna }}</th>
                         <th scope="id">{{ $registro->pivot->pesolb }}</th>
                         <th scope="id">{{ $registro->pivot->end }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
-                        <td>
-                            <a type="button" class="btn btn-info"
+                        <th>
+                            {{-- <a type="button" class="btn btn-info"
                                 href="{{ route('gestionVacuna.index', [
                                     $mascotas->id,
                                     $registro->nombreVacuna,
@@ -43,11 +47,17 @@
                                     /*  'end' => $registro->pivot->end, */
                                     'start' => $registro->pivot->start,
                                 ]) }}">
+                                Consultar</a> --}}
+                            <a type="button" class="btn btn-info"
+                                href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
                                 Consultar</a>
-                            <button type="button" class="btn btn-warning">Editar</button>
+
+                            <a type="button" class="btn btn-warning"
+                                href="{{ route('gestionVacuna.edit', [$mascotas->id]) }}">
+                                Editar</a>
                             <button type="button" class="btn btn-danger">Eliminar</button>
 
-                        </td>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

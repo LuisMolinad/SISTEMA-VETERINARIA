@@ -30,18 +30,18 @@
             <article>
                 <h4 class="header4">Información Vacunación</h4>
                 <ul>
-                    <li><strong>Vacuna: </strong> {{ $nombreVacuna }}</li>
+                    <li><strong>Vacuna: </strong> {{ $vacuna->nombreVacuna }}</li>
                     {{-- <li><strong>Fecha Aplicación: </strong>{{ $end }}</li> --}}
-                    <li><strong>Fecha Refuerzo: </strong>{{ $start }}</li>
+                    <li><strong>Fecha Refuerzo: </strong>{{ $idcitaVacuna->start }}</li>
                 </ul>
             </article>
             <article>
                 <h4 class="header4">Datos Generales de la Mascota</h4>
                 <ul>
 
-                    <li><strong>IDMASCOTA: </strong> {{ $mascotas->idMascota }} </li>
+                    <li><strong>IDMASCOTA: </strong> {{ $mascotas->idMascota }}</li>
                     <li><strong>Nombre: </strong> {{ $mascotas->nombreMascota }}</li>
-                    <li><strong>Peso: </strong> {{ $pesolb }}</li>
+                    <li><strong>Peso: </strong>{{ $idcitaVacuna->pesolb }} </li>
                 </ul>
             </article>
         </section>
