@@ -37,11 +37,13 @@
                         <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
                         <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
                         <td>
-                            <a role="button"
-                                class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
-
+                            @if ($mascota->fallecidoMascota == 'Vivo')
+                                <a role="button"
+                                    class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
+                            @endif
                             <a type="button" class="btn btn-dark"
                                 href="{{ route('gestionVacuna.show', $mascota->id) }}">Gestionar</a>
+
                             {{-- <a href="{{ route('cashbooktransactions.apply', $transaction->id) }}"
                                 class="btn btn-warning">Apply</a> --}}
 

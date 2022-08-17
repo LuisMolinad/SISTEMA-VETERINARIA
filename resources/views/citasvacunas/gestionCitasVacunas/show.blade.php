@@ -51,10 +51,11 @@
                             <a type="button" class="btn btn-info"
                                 href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
                                 Consultar</a>
-
-                            <a type="button" class="btn btn-warning"
-                                href="{{ route('gestionVacuna.edit', [$mascotas->id]) }}">
-                                Editar</a>
+                            @if ($mascotas->fallecidoMascota == 'Vivo')
+                                <a type="button" class="btn btn-warning"
+                                    href="{{ route('gestionVacuna.edit', [$mascotas->id]) }}">
+                                    Editar</a>
+                            @endif
                             <button type="button" class="btn btn-danger">Eliminar</button>
 
                         </th>
