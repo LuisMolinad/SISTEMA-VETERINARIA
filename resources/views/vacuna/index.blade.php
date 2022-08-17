@@ -14,14 +14,14 @@ GESTIONAR VACUNAS
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">
-        <div class="boton crear container_btn">
-        <a href="/vacuna/create"><button type="button" class="btn btn-success boton_crear">Crear vacuna</button></a>
-        </div>
+    <div class="container-fluid contenedor">       
+            <div class="boton crear container_btn">
+            <a href="/vacuna/create"><button type="button" class="btn btn-success boton_crear">Crear vacuna</button></a>
+            </div>
         <table class="table table-striped" style="width:100%" id="vacuna">
             <thead class="table-dark table-header">
                 <tr>
-                <th scope="col">Número</th>
+                <th scope="col">N°</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Tiempo entre dosis</th>
@@ -54,7 +54,6 @@ GESTIONAR VACUNAS
 @endsection
 
 @section('js')
-
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -76,7 +75,6 @@ GESTIONAR VACUNAS
                         'next':      'Siguiente',
                         'previous':  'Anterior',
                     },
-
                 },
             });
         });

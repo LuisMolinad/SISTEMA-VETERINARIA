@@ -17,8 +17,8 @@ class CreateTipoServiciosTable extends Migration
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-            $table->string('nombreServicio');
-            $table->string('descripcionServicio');
+            $table->string('nombreServicio',255);
+            $table->string('descripcionServicio',255);
         });
     }
 

@@ -25,7 +25,6 @@ class TipoServicioController extends Controller
      */
     public function create()
     {
-        //
         return view('tiposervicio.create');
     }
 
@@ -48,9 +47,10 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
-    public function show(tipoServicio $tipoServicio)
+    public function show($id)
     {
-        //
+        $tipoServicio=tipoServicio::findOrFail($id);
+        return view('tiposervicio.consultar', ['tipoServicio'=>$tipoServicio]);
     }
 
     public function showId($id){
@@ -65,9 +65,10 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(tipoServicio $tipoServicio)
+    public function edit($id)
     {
-        //
+        $tipoServicio = tipoServicio::find($id);
+        return view('tipoServicio.edit',compact('tipoServicio'));
     }
 
     /**
@@ -77,9 +78,11 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tipoServicio $tipoServicio)
+    public function update(Request $request, $id)
     {
-        //
+        $datosTipoServicio = request()->except(['_token','_method']);
+        TipoServicio::where('id','=',$id)->update($datosTipoServicio);
+        return redirect('/tiposervicio');
     }
 
     /**

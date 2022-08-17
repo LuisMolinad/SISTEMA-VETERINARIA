@@ -14,8 +14,8 @@ class UpdateSizeDescripcionToVacunasTable extends Migration
     public function up()
     {
         Schema::table('vacunas', function (Blueprint $table) {
-            $table->string('descripcionVacuna',250)->change();
-            $table->string('nombreVacuna',50)->change();
+            $table->string('descripcionVacuna',255)->change();
+            $table->string('nombreVacuna',255)->change();
         });
     }
 
@@ -27,8 +27,8 @@ class UpdateSizeDescripcionToVacunasTable extends Migration
     public function down()
     {
         Schema::table('vacunas', function (Blueprint $table) {
-            $table->string('descripcionVacuna',50)->change();
-            $table->string('nombreVacuna',20)->change();
+            $table->string('descripcionVacuna',255)->change();
+            $table->string('nombreVacuna',255)->change();
         });
     }
 }
