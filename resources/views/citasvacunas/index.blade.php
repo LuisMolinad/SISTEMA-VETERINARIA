@@ -24,6 +24,7 @@
                     <th scope="col">Dueño</th>
                     <th scope="col">Número</th>
                     <th scope="col">Dirección</th>
+                    <th scope="col" style="display:none;">Estado</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                         <td id="nombre duenio">{{ $mascota->propietario->nombrePropietario }}</td>
                         <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
                         <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
+                        <td id="direccion  duenio" style="display:none;">{{ $mascota->fallecidoMascota }}</td>
                         <td>
                             @if ($mascota->fallecidoMascota == 'Vivo')
                                 <a role="button"
@@ -65,8 +67,13 @@
             $('#citaVacuna').DataTable({
                 "lengthMenu": [
                     [5, 10, 25, -1],
-                    [5, 10, 25, "Todos"]
+                    [5, 10, 25, "Todos"],
+
                 ],
+                order: [
+                    [5, 'desc']
+                ],
+
 
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
