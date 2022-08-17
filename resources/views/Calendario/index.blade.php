@@ -16,12 +16,12 @@ Agenda Veterinaria
 @endsection
 
 @section('content')
-@include('notificacion')
+
 
 <div class="container">
 
     <!--Selector-->
-
+  
     <div class="container">
       <select class="form-control col-md-4 mb-4 mt-4" id="selector">
         <option value="all">Todas las citas</option>
@@ -34,7 +34,7 @@ Agenda Veterinaria
       <div id="guardadocorrectamente"></div>
       <div id="editadocorrectamente"></div>
       <div id="eliminadocorrectamente"></div>
-
+      @include('notificacion')
     <!--Por medio de esta instruccion aparece la agenda-->
     <div id="agenda">
     </div>

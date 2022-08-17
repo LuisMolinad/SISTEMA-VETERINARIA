@@ -67,17 +67,10 @@ Route::get('/editar_expediente', function () {
 })->middleware('auth');
 /*------------------------------------- RUTEO A SECCION CITAS------------------------------------------------------- */
 /*-------------------------------------CITAS CIRUGIA ---------------------------------------------------------------------------- */
-/*
-Route::get('/GestionarCirugia', [CitaCirugiaController::class, 'index'])->name('Cirugia.index');
-Route::get('/crearCita', [CitaCirugiaController::class, 'create'])->name('Cirugia.create');
-*/
-Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
-Route::get('/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
-Route::post('/guardarCitaVacuna', [CitaCirugiaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
-//Route::resource('expediente', ExpedienteController::class);
-/*------------------------------------- PDF ---------------------------------------------------------------------------- */
 
-
+Route::resource('citacirugia/', CitaCirugiaController::class)->middleware('auth');
+Route::get('citacirugia/crearCita/{id}', [CitaCirugiaController::class, 'mostrar'])->name('Cirugia.mostrar')->middleware('auth');
+Route::post('/citacirugia', [CitaCirugiaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
 Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Cirugia.pdf')->middleware('auth');
 
 
@@ -155,7 +148,9 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
-Route::get('/cirugia/record', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
+Route::get('/citacirugia/gestionarCirugia/record/', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
+Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
+Route::get('/citacirugia/gestionarCirugia/consultar/', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);

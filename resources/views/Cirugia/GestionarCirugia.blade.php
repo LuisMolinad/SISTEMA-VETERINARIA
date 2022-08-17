@@ -40,8 +40,8 @@ GESTIONAR CITA CIRUGÍA
                         <td id="telefono duenio">{{$mascota->propietario->telefonoPropietario}}</td>
                         <td id="direccion  duenio">{{$mascota->propietario->direccionPropietario}}</td>
                         <td>
-                            <a role="button" class="btn btn-success" href="{{ url('/crearCita/'.$mascota->id) }}">Crear</a>
-                            <a href="{{url('cirugia/record?id='.$mascota->id)}}"><button type="button" class="btn btn-info">Gestionar</button></a>
+                            <a role="button" class="btn btn-success" href="{{ url('citacirugia/crearCita/'.$mascota->id) }}">Crear</a>
+                            <a href="{{url('/citacirugia/gestionarCirugia/record?id='.$mascota->id)}}"><button type="button" class="btn btn-dark">Gestionar</button></a>
                             </td>
                     </tr>
 

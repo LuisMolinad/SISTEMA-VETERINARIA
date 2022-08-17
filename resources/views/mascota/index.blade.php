@@ -47,7 +47,7 @@ GESTIONAR MASCOTA
                     <td>{{$mascota->especie}}</td>
                     <td>{{$mascota->colorMascota}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ url('/mascota/'.$mascota->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                        <a href="{{ url('/mascota/'.$mascota) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
                       <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
