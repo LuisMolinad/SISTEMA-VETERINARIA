@@ -36,7 +36,7 @@
                         <th scope="id">{{ $registro->pivot->id }}</th>
                         <th scope="id">{{ $registro->nombreVacuna }}</th>
                         <th scope="id">{{ $registro->pivot->pesolb }}</th>
-                        <th scope="id">{{ $registro->pivot->end }}</th>
+                        <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
                         <th>
                             {{-- <a type="button" class="btn btn-info"

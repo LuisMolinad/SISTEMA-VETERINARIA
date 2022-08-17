@@ -99,6 +99,8 @@ class CitaVacunaController extends Controller
                 'mascota_id' => request('mascota_id'),
                 'groupId' => request('groupId'),
                 //'end' => request('end'),
+                //capturo la fecha de aplicacionde la vacuna
+                'fechaAplicacion' => request('end'),
                 'groupId' => request('groupId'),
                 'filtervacunas' => request('filtervacunas'),
                 'title' => request('title'),
