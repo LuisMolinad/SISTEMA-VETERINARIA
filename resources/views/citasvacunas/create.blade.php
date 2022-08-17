@@ -5,14 +5,14 @@
 @endsection
 
 @section('librerias')
-<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!-- Cualquier duda o comentario comunicarse con Rosalio -->
     <!--CSS para recordatorios -->
-        <link rel="stylesheet" href="{{asset('css/recordatorio.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/recordatorio.css') }}">
     <!--Fin del CSS para recordatorios -->
     <!--JS para recordatorios -->
-        <script src=" {{asset('js/recordatorio.js')}} "></script>
+    <script src=" {{ asset('js/recordatorio.js') }} "></script>
     <!--Fin del JS para recordatorios -->
-<!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!-- Cualquier duda o comentario comunicarse con Rosalio -->
 @endsection
 
 @section('header')
@@ -48,7 +48,7 @@
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
                     <input type="number" class="form-control" id="pesolb" maxlength="11" name="pesolb"
-                        style="width: 100px;" placeholder="lb" required>
+                        style="width: 100px;" placeholder="lb" min="1" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -64,8 +64,10 @@
                         id="inputnombreDuenio" placeholder="Nombre del dueño" readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
-                    <strong>  <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
-                  <input type="text" class="form-control" name="inputContactNumber" id="inputContactNumber" placeholder="Número de contacto" value = "{{$mascotas->propietario->telefonoPropietario }}" readonly="readonly">
+                    <strong> <label for="inputContactNumber" style="color:black">Número de contacto</label></strong>
+                    <input type="text" class="form-control" name="inputContactNumber" id="inputContactNumber"
+                        placeholder="Número de contacto" value="{{ $mascotas->propietario->telefonoPropietario }}"
+                        readonly="readonly">
 
                 </div>
                 <div class="form-group col-md-6">
@@ -106,7 +108,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="start" onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                    <input class="form-control" type="datetime-local" name="start" id="start"
+                        onchange="actualizar_mensaje_al_crear_vacuna()" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -132,11 +135,12 @@
 
             @include('layouts.crear_recordatorio')
 
-                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
-        </div>
-        <!--<button type="submit" href="{{ url('/guardarCitaVacuna/'.$mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
+            <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+        </form>
 
-    </form>
+        <!--<button type="submit" href="{{ url('/guardarCitaVacuna/' . $mascotas->id) }}" style="float: right; width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>-->
+
+
     </div>
 @endsection
 @section('js')

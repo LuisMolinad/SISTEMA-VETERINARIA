@@ -86,7 +86,9 @@ Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name(
 //Gestionar citas vacunacion
 Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class, 'show'])->name('gestionVacuna.show')->middleware('auth');
 //Consulta de cita vacunaciion
-Route::get('/citas/index/consulta/{id}/{nombreVacuna}/{pesolb}/{start}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
+Route::get('/citas/index/consulta/{id}/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
+//Editar Cita Vacunacion
+Route::get('/citas/edit/{id}', [gestionCitasVacunacionController::class, 'edit'])->name('gestionVacuna.edit')->middleware('auth');
 
 
 

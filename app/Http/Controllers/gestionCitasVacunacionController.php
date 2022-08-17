@@ -13,14 +13,22 @@ class gestionCitasVacunacionController extends Controller
 {
     /**
      * Muestra los datos de la mascota para la seccion consultar de gestioncitaVacion
+     * 
+     * 
      */
 
-    /* public function index($id, $nombreVacuna, $pesolb, $end, $start) */
-    public function index($id, $nombreVacuna, $pesolb, $start)
+
+    public function index($id, $citaVacuna_id)
     {
         $mascotas = mascota::find($id);
-        //  return view('citasvacunas.gestionCitasVacunas.index', compact('mascota', 'nombreVacuna', 'pesolb', 'end', 'start'));
-        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas', 'nombreVacuna', 'pesolb', 'start'));
+
+        $idcitaVacuna = citaVacuna::find($citaVacuna_id);
+
+        $vacuna = vacuna::find($idcitaVacuna->vacuna_id);
+
+
+
+        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas', 'vacuna', 'idcitaVacuna'));
     }
 
     /**
@@ -62,7 +70,9 @@ class gestionCitasVacunacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mascotas = mascota::find($id);
+        $vacunas = vacuna::all();
+        return view('citasvacunas.gestionCitasVacunas.edit', compact('mascotas', 'vacunas'));
     }
 
     /**
