@@ -109,7 +109,7 @@ Route::get('/imprimir/{id}', [defuncionController::class, 'pdf'])->name('Acta.pd
 //Almacenar datos por medio de Store
 Route::post('/agregar', [App\Http\Controllers\CitaServicioController::class, 'store'])->middleware('auth');
 //Obtengo los datos para pintarlos en el calendario
-Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'show']);
+Route::get('/mostrar', [App\Http\Controllers\CitaServicioController::class, 'showCalendar']);
 //Al momento de dar click a un evento del calendario se mostrara su contenido
 Route::post('/editar/{id}', [App\Http\Controllers\CitaServicioController::class, 'edit'])->middleware('auth');
 Route::get('/tipoServicios/{id}', [App\Http\Controllers\TipoServicioController::class, 'showId'])->middleware('auth');
@@ -142,13 +142,13 @@ Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth
 // Route::get('/tiposervicio/{id}/ver', [TipoServicioController::class,'show'])->name('tiposervicios.show')->middleware('auth');
 
 /*Mostrar citas vacunas*/
-Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'show']);
+Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'showCalendar']);
 //Obtengo los datos para pintarlos en el calendario de citas vacunas
 Route::get('/editarCitaVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'edit'])->middleware('auth');
 Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'showId'])->middleware('auth');
 
 /*Mostrar citas cirugias*/
-Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'show']);
+Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'showCalendar']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
 Route::get('/citacirugia/gestionarCirugia/record/', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
@@ -169,7 +169,7 @@ Route::post('/guardarCitaLimpieza', [CitaLimpiezaDentalController::class, 'store
 //Obtengo los datos para pintarlos en el calendario de cita de limpieza dental
 Route::get('/editarCitaLimpiezaDental/{id}', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'edit'])->middleware('auth');
 //mostrar las citas de limpieza dental en la agenda
-Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'show']);
+Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalController::class, 'showCalendar']);
 
 //ruta para recuperar el id de la mascota
 Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'showId'])->middleware('auth');

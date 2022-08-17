@@ -66,7 +66,7 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
-    public function show(citaServicio $citaServicio)
+    public function showCalendar(citaServicio $citaServicio)
     {
         //Consultamos los datos almacenados en la base de datos
         $citaServicio = citaServicio::all();

@@ -188,4 +188,13 @@ class CitaCirugiaController extends Controller
 
         return view('Cirugia.gestionar_cirugias.index', compact('datos'));
     }
+
+    //Se utiliza para mostrar las citas en el calendario
+    public function showCalendar(citaCirugia $citaCirugia)
+    {
+        //Consultamos los datos almacenados en la base de datos
+        $citaCirugia = citaCirugia::all();
+        return response()->json($citaCirugia);
+    }
+
 }
