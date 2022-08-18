@@ -88,7 +88,7 @@ class CitaVacunaController extends Controller
                     'dias_de_anticipacion' => request('dias_de_anticipacion'),
                     'fecha' => request('start'),
                     'concepto' => 'la vacuna de ' . $variable,
-                    'nombre' => request('title'),
+                    'nombre' => request('nombre_mascota'),
                     'id_mascota' => request('idVisible'),
                     'telefono' => request('inputContactNumber')
                 ];

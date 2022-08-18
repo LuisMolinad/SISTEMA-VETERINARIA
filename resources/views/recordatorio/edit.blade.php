@@ -168,4 +168,9 @@ Editar recordatorio
                 })
         })()
     </script>
+    <script>
+        window.onload = () =>{
+            actualizar_mensaje_al_crear();
+        };
+    </script>
 @endsection

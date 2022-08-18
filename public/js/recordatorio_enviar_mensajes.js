@@ -32,3 +32,12 @@ function enviar_mensajes(){
 
     location.reload();
 }
+
+function eliminar_mensajes(){
+    fetch('recordatorio/eliminar_masivo')
+    .then(()=>{
+        console.log('Se elimino bien');
+    })
+
+    location.reload();
+}

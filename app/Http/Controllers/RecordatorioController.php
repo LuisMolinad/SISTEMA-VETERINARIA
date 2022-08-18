@@ -145,7 +145,7 @@ class RecordatorioController extends Controller
         "to" => "503".request('telefono'),
         "type" => "template",
             "template" => [
-            "name" => "info2",
+            "name" => "informes_veterinaria_pet_paradise",
                 "language" => [
                     "code" => "es_MX",
                 ],
@@ -213,7 +213,7 @@ class RecordatorioController extends Controller
         "to" => "503".request('telefono'),
         "type" => "template",
             "template" => [
-            "name" => "info2",
+            "name" => "informes_veterinaria_pet_paradise",
                 "language" => [
                     "code" => "es_MX",
                 ],
@@ -276,5 +276,20 @@ class RecordatorioController extends Controller
         }
         
         curl_close($ch);
+    }
+
+    function eliminar_de_un_jalon(){
+
+        //*Eliminar mensajes enviados
+        $mensajes_a_eliminar_enviados = recordatorio::all()->where('estado', '=', '1');
+        foreach($mensajes_a_eliminar_enviados as $id){
+            recordatorio::destroy($id->id);
+        }
+
+        //*Eliminar mensajes no enviados
+        $mensajes_a_eliminar_no_enviados = recordatorio::all()->where('estado', '=', '-1');
+        foreach($mensajes_a_eliminar_no_enviados as $id){
+            recordatorio::destroy($id->id);
+        }
     }
 }

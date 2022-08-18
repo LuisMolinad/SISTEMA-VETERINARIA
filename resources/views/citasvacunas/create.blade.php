@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Nombre:</label></strong>
-                    <input class="form-control" readonly="readonly" id="nombreMascota"
+                    <input class="form-control" name="nombre_mascota" readonly="readonly" id="nombreMascota"
                         value="{{ $mascotas->nombreMascota }}">
                     <div class="valid-feedback">
                         Campo correcto

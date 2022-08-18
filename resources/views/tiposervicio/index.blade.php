@@ -15,7 +15,7 @@ GESTIONAR TIPO DE SERVICIO
 
 @section('content')
     <div class="container-fluid contenedor">
-        <div class="boton crear container_btn">
+        <div class="boton crear container_btn_hend">
             <a href="/tiposervicio/create"><button type="button" class="btn btn-success boton_crear">Crear tipo de servicio</button></a>
         </div>
         <table class="table table-striped" style="width:100%" id="tiposervicio">
