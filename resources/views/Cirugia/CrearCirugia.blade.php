@@ -42,7 +42,9 @@ Cita de cirugía
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputNombreMascota">Mascota</label></strong>
 
+
                     <input type="text" class="form-control" id="inputNombreMascota" name = "nombre_mascota" value="{{$mascotas->nombreMascota}}" readonly="readonly">
+
 
                     <strong>  <label for="inputSexoMascota" >Sexo</label></strong>
                     <input type="text" class="form-control" id="inputSexoMascota" value="{{$mascotas->sexoMascota}}" style="width: 180px;" readonly="readonly">

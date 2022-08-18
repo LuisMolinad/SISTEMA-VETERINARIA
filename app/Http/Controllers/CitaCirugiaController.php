@@ -20,10 +20,7 @@ class CitaCirugiaController extends Controller
     public function index()
     {
         $mascotas = mascota::with('propietario')->get();
-        // $propietarios = propietario::with('mascotas')->get();
-                                                 //aca se van as variables de arriba
-         return view(('Cirugia.GestionarCirugia'),compact('mascotas'));
-       // $citaCirugia = Cirugia::paginate();
+        return view(('Cirugia.GestionarCirugia'),compact('mascotas'));
 
     }
 
@@ -32,10 +29,8 @@ class CitaCirugiaController extends Controller
     {
         $mascotas = mascota::FindOrFail($id);
         $pdf = PDF::loadView('Cirugia.pdf' ,['mascotas'=>$mascotas]);
-      //  $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
-        //return view('Cirugia.pdf');
-    }
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -116,14 +111,20 @@ class CitaCirugiaController extends Controller
      */
     public function show($id)
     {
-        $mascota_id = Mascota::find($id);
-        $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
-        return view('Cirugia.gestionar_cirugias.show', compact('datos'));
+        
+        $maroma = citaCirugia::FindOrFail($id);
+        $mascota = mascota::where('id', $maroma->mascota_id)->with('propietario')->get();
 
+        $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
 
-        // $mascota_id = Mascota::FindOrFail($id);
-        // $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
-        // return view('Cirugia.gestionar_cirugias.show', compact('datos'));
+        $datos = [
+            'mascotas' => $mascota,
+            'citaCirugias' => citaCirugia::where('id',$id)->get(),
+            'propietarios' => $propietario
+        ];
+
+       return view('Cirugia.gestionar_cirugias.show', compact('datos'));
+       
     }
 
     /**
@@ -132,6 +133,7 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
@@ -141,16 +143,9 @@ class CitaCirugiaController extends Controller
     }
 
     public function mostrar($id){
-        //$mascotas = mascota::FindOrFail($id);
-      //  return view('Cirugia.CrearCirugia',compact('mascotas'));
-       
-    /*  public function show($id)
-{
-    $item = MenuItem::with('variant')->findOrFail($id);
-    return $item;
-}*/
+    
         $mascotas=mascota::with('propietario')->findOrFail($id);
-
+       
         return view('Cirugia.CrearCirugia',compact('mascotas'));
     }
 

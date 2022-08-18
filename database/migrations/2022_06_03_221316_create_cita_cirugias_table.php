@@ -17,7 +17,7 @@ class CreateCitaCirugiasTable extends Migration
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->dateTime('start');
-            $table->foreignId('mascota_id')->constrained('mascotas');
+            $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('conceptoCirugia',30);
             $table->string('recomendacionPreoOperatoria',50);
             $table->string('groupId')->nullable();
