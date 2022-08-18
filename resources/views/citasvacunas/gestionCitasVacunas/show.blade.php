@@ -7,6 +7,10 @@
 @section('librerias')
     <!--Data tables-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
 @endsection
 
 @section('header')
@@ -39,15 +43,7 @@
                         <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
                         <th>
-                            {{-- <a type="button" class="btn btn-info"
-                                href="{{ route('gestionVacuna.index', [
-                                    $mascotas->id,
-                                    $registro->nombreVacuna,
-                                    $registro->pivot->pesolb,
-                                    /*  'end' => $registro->pivot->end, */
-                                    'start' => $registro->pivot->start,
-                                ]) }}">
-                                Consultar</a> --}}
+
                             <a type="button" class="btn btn-info"
                                 href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
                                 Consultar</a>
@@ -57,7 +53,8 @@
                                     Editar</a>
                             @endif
                             <a type="button" class="btn btn-danger"
-                                href="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}">
+                                href="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}"
+                                onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $mascotas->nombreMascota }}');">
                                 Eliminar</a>
                             {{-- <button type="button" class="btn btn-danger">Eliminar</button> --}}
 
