@@ -23,7 +23,7 @@ GESTIONAR PROPIETARIO
     @include('notificacion')
 
     <div class="table-responsive-sm container-fluid contenedor">
-        <div class="boton crear container_btn">
+        <div class="boton crear container_btn_hend">
         <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
         </div>
         <table class="table table-striped" style="width:100%" id="propietario">

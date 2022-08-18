@@ -158,6 +158,7 @@ Route::get('/citacirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::cl
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
 Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
+Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon']);
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
 //Citas de Limpieza dental

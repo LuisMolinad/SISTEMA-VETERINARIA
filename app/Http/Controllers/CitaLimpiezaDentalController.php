@@ -33,8 +33,8 @@ class CitaLimpiezaDentalController extends Controller
                 'dias_de_anticipacion' => request('dias_de_anticipacion'),
                 'fecha' => request('start'),
                 'concepto' => 'La limpieza dental',
-                'nombre' => request('title'),
-                'id_mascota' => request('idmascota'),
+                'nombre' => request('nombre_mascota'),
+                'id_mascota' => request('title'),
                 'telefono' => request('telefono')
             ];
 

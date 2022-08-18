@@ -43,7 +43,7 @@ Cita de Limpieza dental
                     <div class="form-group col-md-6">
                         <strong>  <label for="inputNombreMascota">Nombre</label></strong>
     
-                        <input type="text" class="form-control" id="inputMascota" name = "idmascota" value="{{$mascotas->nombreMascota}}" readonly="readonly">
+                        <input type="text" class="form-control" id="inputMascota" name = "nombre_mascota" value="{{$mascotas->nombreMascota}}" readonly="readonly">
     
                         <strong>  <label for="inputSexoMascota">Sexo</label></strong>
                         <input type="text" class="form-control" id="inputSexoMascota" value="{{$mascotas->sexoMascota}}" style="width: 180px;" readonly="readonly">

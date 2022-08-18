@@ -42,7 +42,9 @@ Cita de cirugía
                 <div class="form-group col-md-6">
                     <strong>  <label for="inputNombreMascota">Mascota</label></strong>
 
-                    <input type="text" class="form-control" id="inputNombreMascota"  value="{{$mascotas->nombreMascota}}" readonly="readonly">
+
+                    <input type="text" class="form-control" id="inputNombreMascota" name = "nombre_mascota" value="{{$mascotas->nombreMascota}}" readonly="readonly">
+
 
                     <strong>  <label for="inputSexoMascota" >Sexo</label></strong>
                     <input type="text" class="form-control" id="inputSexoMascota" value="{{$mascotas->sexoMascota}}" style="width: 180px;" readonly="readonly">
@@ -96,7 +98,7 @@ Cita de cirugía
 
                 <div class="form-group col-md-6">
                     <strong>   <label for="inputFechaCirugia" style="color:black">Fecha de cirugía</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="fechaHoraCitaCirugia" onchange="actualizar_mensaje_al_crear()" required>
+                    <input class="form-control" type="datetime-local" name="start" id="fechaHoraCitaCirugia"onchange="actualizar_mensaje_al_crear()" required>
 
                     <div class="valid-feedback">
                         Fecha correcta
@@ -144,7 +146,7 @@ Cita de cirugía
                   class="form-control" name="filtercirugias" id="filtercirugias" aria-describedby="filtercirugias" value="citasCirugias">
               </div>
 
-            @include('layouts.crear_recordatorio')
+              @include('layouts.crear_recordatorio')
 
             <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-success mb-2">Guardar</button>
 
