@@ -152,7 +152,7 @@ Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::clas
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
 Route::get('/citacirugia/gestionarCirugia/record/', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
-Route::get('/citacirugia/gestionarCirugia/consultar/', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
+Route::get('/citacirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
