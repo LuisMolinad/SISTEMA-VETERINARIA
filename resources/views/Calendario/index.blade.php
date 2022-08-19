@@ -34,7 +34,7 @@ Agenda Veterinaria
       <div id="guardadocorrectamente"></div>
       <div id="editadocorrectamente"></div>
       <div id="eliminadocorrectamente"></div>
-      @include('notificacion')
+      @include('layouts.notificacion')
     <!--Por medio de esta instruccion aparece la agenda-->
     <div id="agenda">
     </div>

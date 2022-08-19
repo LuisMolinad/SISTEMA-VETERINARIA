@@ -53,7 +53,8 @@ class ExpedienteController extends Controller
     {
         $datosExpediente = request()->except('_token');
         Expediente::insert($datosExpediente);
-        return redirect('/expediente?objeto=expediente&accion=creo');
+        //return redirect('/expediente?objeto=expediente&accion=creo');
+        return redirect('/expediente')->with('success', 'Expediente creado correctamente');
     }
 
     /**

@@ -148,3 +148,15 @@
 .fieldset-no-linea{
     border: none;
 }
+
+.css-alerta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.texto-alerta{
+    margin: 0.5rem auto;
+    font-size: x-large;
+}

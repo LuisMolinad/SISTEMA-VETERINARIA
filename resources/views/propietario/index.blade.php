@@ -20,7 +20,7 @@ GESTIONAR PROPIETARIO
 
 @section('content')
 
-    @include('notificacion')
+    @include('layouts.notificacion')
 
     <div class="table-responsive-sm container-fluid contenedor">
         <div class="boton crear container_btn_hend">

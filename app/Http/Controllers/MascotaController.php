@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 use App\Models\expediente;
-
-
+use Exception;
 
 class MascotaController extends Controller
 {
@@ -56,11 +55,11 @@ class MascotaController extends Controller
         $datosExpediente = 
             [
                 'mascota_id' => Mascota::max('id'),
-                'causaFallecimiento' => null,
             ];
 
         Expediente::insert($datosExpediente);
-        return redirect('/mascota?objeto=mascota&accion=creo');
+        
+        return redirect('/mascota')->with('success', 'Mascota creada correctamente');
     }
 
     /**
@@ -118,7 +117,8 @@ class MascotaController extends Controller
 
         Mascota::destroy($id);
 
-        return redirect('/mascota?objeto=mascota&accion=elimino');
+        //return redirect('/mascota?objeto=mascota&accion=elimino');
+        return redirect('/mascota')->with('danger', 'Mascota eliminada correctamente');
     }
 
     //Ejemplo consultar JS

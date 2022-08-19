@@ -42,7 +42,8 @@ class PropietarioController extends Controller
     {
         $datosPropietario = request()->except('_token');
         Propietario::insert($datosPropietario);
-        return redirect('/propietario?objeto=propietario&accion=creo');
+        //return redirect('/propietario?objeto=propietario&accion=creo');
+        return redirect('/propietario')->with('success', 'Propietario creado correctamente');
     }
 
     /**
