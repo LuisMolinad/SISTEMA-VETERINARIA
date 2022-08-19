@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\citaLimpiezaDental;
 use Illuminate\Http\Request;
 use App\Models\mascota;
+use App\Models\propietario;
 use App\Models\recordatorio;
 use Carbon\Carbon;
 
@@ -88,5 +89,21 @@ class CitaLimpiezaDentalController extends Controller
         return response()->json($citaLimpieza);
     }
 
+
+    public function gestionar_limpiezas_por_mascota($id){
+        $mascotas = mascota::find($id);
+        //return ($mascotas);
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.index', compact('mascotas'));
+    }
+    
+    //Consultar citas dentales
+    public function show($id, $citaLimpieza_id){
+       
+        $mascotas = mascota::find($id);
+        $idcitaLimpiezaDental = citaLimpiezaDental::find($citaLimpieza_id);
+
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('mascotas', 'idcitaLimpiezaDental'));
+
+    }
 
 }
