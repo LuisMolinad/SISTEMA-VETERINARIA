@@ -88,10 +88,11 @@ Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class,
 //Consulta de cita vacunaciion
 Route::get('/citas/index/consulta/{id}/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
 //Editar Cita Vacunacion
-Route::get('/citas/edit/{id}', [gestionCitasVacunacionController::class, 'edit'])->name('gestionVacuna.edit')->middleware('auth');
-
-
-
+Route::get('/citas/edit/{id}/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'edit'])->name('gestionVacuna.edit')->middleware('auth');
+//actualizar
+Route::post('actualizarCitaVacuna/{idCita}/{idmascota}', [gestionCitasVacunacionController::class, 'update'])->name('citaVacuna.update')->middleware('auth');
+//Eliminar
+Route::get('/citas/delete/gestion/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'destroy'])->name('gestionVacuna.delete')->middleware('auth');
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller

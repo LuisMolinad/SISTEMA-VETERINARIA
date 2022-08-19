@@ -161,8 +161,9 @@
                         </div>
                     </div>
             </section>
-
-            <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+            <div class="form-group col-md-6">
+                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+            </div>
         </form>
     </div>
 @endsection

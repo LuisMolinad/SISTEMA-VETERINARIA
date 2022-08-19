@@ -68,11 +68,15 @@ class gestionCitasVacunacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $citaVacuna_id)
     {
         $mascotas = mascota::find($id);
-        $vacunas = vacuna::all();
-        return view('citasvacunas.gestionCitasVacunas.edit', compact('mascotas', 'vacunas'));
+        $idcitaVacuna = citaVacuna::find($citaVacuna_id);
+        //obtenergo la id de vacuna
+        $idVacuna = vacuna::find($idcitaVacuna->vacuna_id);
+        // return ($idVacuna);
+        //$vacunas = vacuna::all();
+        return view('citasvacunas.gestionCitasVacunas.edit', compact('mascotas', 'idVacuna', 'idcitaVacuna'));
     }
 
     /**
@@ -82,9 +86,17 @@ class gestionCitasVacunacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idCita, $idmascota)
     {
-        //
+        // $datosCitaVacuna = request();
+        $citaVacuna = citaVacuna::find($idCita);
+        $citaVacuna->start = request('start');
+        $citaVacuna->fechaAplicacion = request('end');
+        $citaVacuna->update();
+
+        $mascotas = mascota::find($idmascota);
+
+        return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'));
     }
 
     /**
@@ -93,8 +105,18 @@ class gestionCitasVacunacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($citaVacuna_id)
+
     {
-        //
+        //$idcitaVacuna = citaVacuna::find($citaVacuna_id);
+        $idcitaVacuna = citaVacuna::find($citaVacuna_id);
+        //saco el id de la mascota antes de eliminar
+        $mascotas = mascota::find($idcitaVacuna->mascota_id);
+
+        //elimino el registro de la cita
+        $idcitaVacuna->delete();
+
+        //retorno a la vista show
+        return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'));
     }
 }

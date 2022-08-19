@@ -99,6 +99,8 @@ class CitaVacunaController extends Controller
                 'mascota_id' => request('mascota_id'),
                 'groupId' => request('groupId'),
                 //'end' => request('end'),
+                //capturo la fecha de aplicacionde la vacuna
+                'fechaAplicacion' => request('end'),
                 'groupId' => request('groupId'),
                 'filtervacunas' => request('filtervacunas'),
                 'title' => request('title'),
@@ -117,6 +119,7 @@ class CitaVacunaController extends Controller
                 'mascota_id' => request('mascota_id'),
                 'groupId' => request('groupId'),
                 //'end' => request('end'),
+                'fechaAplicacion' => request('end'),
                 'groupId' => request('groupId'),
                 'filtervacunas' => request('filtervacunas'),
                 'title' => request('title'),
@@ -128,7 +131,6 @@ class CitaVacunaController extends Controller
             citaVacuna::insert($datosVacuna);
         }
         //Finaliza recordatorio
-
         //return redirect('/?objeto=cita&accion=creo');
         return redirect('/')->with('success', 'Cita creada correctamente');
     }
