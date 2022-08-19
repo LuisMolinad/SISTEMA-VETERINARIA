@@ -31,8 +31,9 @@
                 <h4 class="header4">Información Vacunación</h4>
                 <ul>
                     <li><strong>Vacuna: </strong> {{ $vacuna->nombreVacuna }}</li>
-                    {{-- <li><strong>Fecha Aplicación: </strong>{{ $end }}</li> --}}
+                    <li><strong>Fecha Aplicación: </strong>{{ $idcitaVacuna->fechaAplicacion }}</li>
                     <li><strong>Fecha Refuerzo: </strong>{{ $idcitaVacuna->start }}</li>
+
                 </ul>
             </article>
             <article>

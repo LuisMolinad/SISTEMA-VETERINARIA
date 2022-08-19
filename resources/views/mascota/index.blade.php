@@ -20,7 +20,7 @@ GESTIONAR MASCOTA
 
 @section('content')
 
-    @include('notificacion')
+    @include('layouts.notificacion')
 
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped"  id="mascota">

@@ -24,8 +24,10 @@
 
 @section('content')
     <div class="container">
-        <form action="" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('citaVacuna.update', ['idCita' => $idcitaVacuna->id, 'idmascota' => $mascotas->id]) }}"
+            method="POST" class="needs-validation" novalidate>
             @csrf
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong> <label for="mascota_id"> IDMASCOTA</label></strong>
@@ -40,7 +42,8 @@
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
                     <input type="number" class="form-control" id="pesolb" maxlength="11" name="pesolb"
-                        style="width: 100px;" placeholder="lb" min="1" required>
+                        style="width: 100px;" placeholder="lb" min="1" readonly="readonly"
+                        value="{{ $idcitaVacuna->pesolb }}" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -76,9 +79,7 @@
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
                         <select class="custom-select" id="vacuna_id" name='vacuna_id' required>
-                            @foreach ($vacunas as $vacuna)
-                                <option value="{{ $vacuna->id }}">{{ $vacuna->nombreVacuna }}</option>
-                            @endforeach
+                            <option value="{{ $idVacuna->id }}">{{ $idVacuna->nombreVacuna }}</option>
                         </select>
                         <div class="valid-feedback">
                             Campo correcto
@@ -90,7 +91,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="end" style="color:black">Fecha aplicación</label></strong>
-                    <input class="form-control" type="datetime-local" name="end" id="end" required>
+                    <input class="form-control" type="datetime-local" name="end" id="end"
+                        value="{{ $idcitaVacuna->fechaAplicacion }}" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -101,7 +103,7 @@
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
                     <input class="form-control" type="datetime-local" name="start" id="start"
-                        onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                        value="{{ $idcitaVacuna->start }}" onchange="actualizar_mensaje_al_crear_vacuna()" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
