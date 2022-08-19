@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 use App\Models\expediente;
-
-
+use Exception;
 
 class MascotaController extends Controller
 {
@@ -56,11 +55,15 @@ class MascotaController extends Controller
         $datosExpediente = 
             [
                 'mascota_id' => Mascota::max('id'),
-                'causaFallecimiento' => null,
             ];
 
         Expediente::insert($datosExpediente);
-        return redirect('/mascota?objeto=mascota&accion=creo');
+        
+        return redirect('/mascota/msg/guardar');
+    }
+
+    public function mostrar_guardar(){
+        return redirect('/mascota')->with('success', 'Mascota creada correctamente');
     }
 
     /**
@@ -97,10 +100,13 @@ class MascotaController extends Controller
     public function update(Request $request, $id)
     {
         $datosMascota = request()->except(['_token', '_method']);
-        //$datosMascota = request()->all();
         Mascota::where('id','=',$id)->update($datosMascota);
-        return redirect('/mascota?objeto=mascota&accion=edito');
-        //return response()->json($datosMascota);
+        
+        return redirect('/mascota/msg/editar');
+    }
+
+    public function mostrar_editar(){
+        return redirect('/mascota')->with('warning', 'Mascota editada correctamente');
     }
 
     /**
@@ -118,7 +124,8 @@ class MascotaController extends Controller
 
         Mascota::destroy($id);
 
-        return redirect('/mascota?objeto=mascota&accion=elimino');
+        //return redirect('/mascota?objeto=mascota&accion=elimino');
+        return redirect('/mascota')->with('danger', 'Mascota eliminada correctamente');
     }
 
     //Ejemplo consultar JS

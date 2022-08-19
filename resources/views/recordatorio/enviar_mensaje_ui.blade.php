@@ -47,7 +47,7 @@ Enviar mensaje
             </div>
         </div>
 
-        <label for="fecha" style="color:black">Fecha de cirugía</label>
+        <label for="fecha" style="color:black">Fecha de la cita</label>
         <input class="form-control" type="datetime-local" name="fecha" id="fecha" required>
 
         <div class="valid-feedback">
