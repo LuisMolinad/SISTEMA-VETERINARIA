@@ -136,7 +136,8 @@ class ExpedienteController extends Controller
         $datosExpediente = request()->except(['_token', '_method']);
         Expediente::where('id','=',$id)->update($datosExpediente);
         $expediente = Expediente::FindOrFail($id);
-        return redirect('/expediente?objeto=expediente&accion=edito');
+        //return redirect('/expediente?objeto=expediente&accion=edito');
+        return redirect('/expediente')->with('warning', 'El expediente se edito correctamente');
     }
 
     /**

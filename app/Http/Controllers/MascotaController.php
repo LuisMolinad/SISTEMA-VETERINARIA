@@ -59,6 +59,10 @@ class MascotaController extends Controller
 
         Expediente::insert($datosExpediente);
         
+        return redirect('/mascota/msg/guardar');
+    }
+
+    public function mostrar_guardar(){
         return redirect('/mascota')->with('success', 'Mascota creada correctamente');
     }
 
@@ -96,10 +100,13 @@ class MascotaController extends Controller
     public function update(Request $request, $id)
     {
         $datosMascota = request()->except(['_token', '_method']);
-        //$datosMascota = request()->all();
         Mascota::where('id','=',$id)->update($datosMascota);
-        return redirect('/mascota?objeto=mascota&accion=edito');
-        //return response()->json($datosMascota);
+        
+        return redirect('/mascota/msg/editar');
+    }
+
+    public function mostrar_editar(){
+        return redirect('/mascota')->with('warning', 'Mascota editada correctamente');
     }
 
     /**
