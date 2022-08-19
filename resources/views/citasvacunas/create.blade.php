@@ -85,7 +85,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
-                        <select class="custom-select" id="vacuna_id" name='vacuna_id' required>
+                        <select class="custom-select" id="vacuna_id" name='vacuna_id' onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
                                 <option value="{{ $vacuna->id }}">{{ $vacuna->nombreVacuna }}</option>
                             @endforeach
@@ -110,7 +110,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" id="start" required>
+                    <input class="form-control" type="datetime-local" name="start" onchange="actualizar_mensaje_al_crear_vacuna()" id="start" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -138,7 +138,7 @@
                     <div class="form-group col-md-6">
                         <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
                         <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
-                            onchange="actualizar_mensaje_al_crear();" onclick="funcionesOnClick();">
+                            onchange="actualizar_mensaje_al_crear_vacuna();" onclick="actualizar_mensaje_al_crear_vacuna();">
                             <option value="0" selected>No, no deseo un recordatorio</option>
                             <option value="1">1 dias de anticipacion</option>
                             <option value="2">2 dias de anticipacion</option>

@@ -161,6 +161,7 @@ Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensa
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
 Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
 Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon']);
+Route::get('/recordatorio/reenviar/{id}', [RecordatorioController::class, 'reenviar'])->middleware('auth');
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
 //Citas de Limpieza dental

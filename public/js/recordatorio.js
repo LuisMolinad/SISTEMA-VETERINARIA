@@ -4,7 +4,7 @@ function actualizar_mensaje_al_crear(){
     //* Obtenemos las variables de la pagina
     var concepto = document.querySelector('#ConceptoCirugia').value;
     var nombre = document.querySelector('#inputNombreMascota').value;
-    var fecha_hora = document.querySelector('#fechaHoraCitaCirugia').value;
+    var fecha_hora = formatear_fecha(document.querySelector('#fechaHoraCitaCirugia').value);
     var mensaje = document.querySelector('#mensaje-recordatorio');
     var dias_de_anticipacion = document.getElementById('dias_de_anticipacion');
 
@@ -27,7 +27,7 @@ function actualizar_mensaje_al_crear_vacuna(){
     //* Obtenemos las variables de la pagina
     //var concepto = document.querySelector('#vacuna_id').value;
     var nombre = document.querySelector('#nombreMascota').value;
-    var fecha_hora = document.querySelector('#start').value;
+    var fecha_hora = formatear_fecha(document.querySelector('#start').value);
     var mensaje = document.querySelector('#mensaje-recordatorio');
     var dias_de_anticipacion = document.getElementById('dias_de_anticipacion');
 
@@ -50,7 +50,7 @@ function actualizar_mensaje_al_crear_vacuna(){
 function actualizarMensaje_al_crear_limpieza(){
     //* Obtenemos las variables de la pagina
     var nombre = document.querySelector('#inputMascota').value;
-    var fecha_hora = document.querySelector('#fechaHoraCitaLimpieza').value;
+    var fecha_hora = formatear_fecha(document.querySelector('#fechaHoraCitaLimpieza').value);
     var mensaje = document.querySelector('#mensaje-recordatorio');
     var dias_de_anticipacion = document.getElementById('dias_de_anticipacion');
 
@@ -67,4 +67,35 @@ function actualizarMensaje_al_crear_limpieza(){
     if(dias_de_anticipacion.value == 0 || fecha_hora == ''){
         mensaje.innerHTML = '';
     }
+}
+
+function formatear_fecha(fecha){
+    var dia = '', mes = '', anio= '', hora = '';
+    var nueva_fecha = '';
+    var i = 0;
+
+    try{
+        for(var i = 0 ; i < fecha.length ; i++){
+            if(i<4){
+                anio += fecha[i];
+            }
+            else if(i>4 && i<7){
+                mes += fecha[i];
+            }
+            else if(i>7 && i<10){
+                dia += fecha[i];
+            }
+            else if(i>10){
+                hora += fecha[i];
+            }
+        }
+
+        nueva_fecha = dia + '/' + mes + '/' + anio + ' --- ' + hora;
+    }
+    catch(exception){
+        nueva_fecha = fecha;
+        console.log(exception)
+    }
+
+    return nueva_fecha;
 }

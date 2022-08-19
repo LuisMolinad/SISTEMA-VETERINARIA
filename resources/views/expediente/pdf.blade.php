@@ -31,6 +31,7 @@
                     <p class="articulo"><span class="campo">Fecha de nacimiento: </span> {{$expediente->mascota->fechaNacimiento}}</p>
                     <p class="articulo"><span class="campo">Caracteristicas especiales:</span><br>{{$expediente->mascota->caracteristicasEspeciales}}</p>
                 </fieldset>
+                <br>
                 <fieldset class="seccion">
                     <legend>Propietario de la mascota</legend>
                     <p class="articulo"><span class="campo">ID: </span>{{$expediente->mascota->propietario->id}}</p>
@@ -38,6 +39,7 @@
                     <p class="articulo"><span class="campo">Telefono: </span>{{$expediente->mascota->propietario->telefonoPropietario}}</p>
                     <p class="articulo"><span class="campo">Direccion: </span>{{$expediente->mascota->propietario->direccionPropietario}}</p>
                 </fieldset>
+                <br>
                 <fieldset class="seccion">
                     <legend>Expediente</legend>
                     <p class="articulo"><span class="campo">ID: </span>{{$expediente->id}}</p>
