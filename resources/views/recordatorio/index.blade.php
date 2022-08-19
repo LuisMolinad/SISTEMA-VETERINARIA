@@ -18,14 +18,11 @@ GESTIONAR RECORDATORIOS
 
 @section('content')
 
-@include('notificacion')
+@include('layouts.notificacion')
 
 <div class="table-responsive-sm container-fluid contenedor">
-    <div class="boton crear container_btn">
+    <div class="boton crear container_btn_hend">
     <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
-    </div>
-    <div class="boton crear container_btn">
-        <button type="button" onclick="enviar_mensajes()" class="btn btn-success boton_crear">Enviar mensajes</button>
     </div>
     <table class="table table-striped" style="width:100%" id="recordatorio">
         <thead class="table-dark table-header">
@@ -69,16 +66,30 @@ GESTIONAR RECORDATORIOS
                         </td>
         
                             @if ($recordatorio->estado == 0)
-                            <td id = "botones-linea">
-                                <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                                <form {{-- id="EditForm{{$mascota->id}}" --}} action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('DELETE')}}
-                                    {{-- <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button> --}}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            @else
-                                <td>
+                                <td id = "botones-linea">
+                                    <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                    <form {{-- id="EditForm{{$mascota->id}}" --}} action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        {{-- <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button> --}}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                            @elseif($recordatorio->estado == 1)
+                                <td id = "botones-linea">
+                                    <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                    </form>
+                            @elseif ($recordatorio->estado == -1)
+                                <td id = "botones-linea">
+                                    <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
+                                    <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                    <form {{-- id="EditForm{{$mascota->id}}" --}} action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        {{-- <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button> --}}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
                             @endif
                         </td>
                     </tr>
@@ -102,6 +113,10 @@ GESTIONAR RECORDATORIOS
             @endforeach
         </tbody>
     </table>
+    <div class="boton crear container_btn_hstart">
+        <button type="button" onclick="enviar_mensajes()" class="btn btn-success boton_opcional">Enviar mensajes</button>
+        <button type="button" onclick="eliminar_mensajes()" class="btn btn-danger boton_opcional">Eliminar mensajes enviados</button>
+    </div>
 </div>
 
 @endsection
@@ -118,7 +133,7 @@ GESTIONAR RECORDATORIOS
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
-                    "zeroRecords": "No se encuentran datos relacionados, encontrados - ",
+                    "zeroRecords": "No hay registros en la base de datos",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",

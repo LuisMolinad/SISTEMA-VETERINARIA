@@ -18,7 +18,7 @@ class CreatePropietariosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombrePropietario',30);
             $table->string('telefonoPropietario',8);
-            $table->string('direccionPropietario',30);
+            $table->string('direccionPropietario',30)->nullable();
         });
     }
 

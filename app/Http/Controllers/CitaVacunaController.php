@@ -88,7 +88,7 @@ class CitaVacunaController extends Controller
                     'dias_de_anticipacion' => request('dias_de_anticipacion'),
                     'fecha' => request('start'),
                     'concepto' => 'la vacuna de ' . $variable,
-                    'nombre' => request('title'),
+                    'nombre' => request('nombre_mascota'),
                     'id_mascota' => request('idVisible'),
                     'telefono' => request('inputContactNumber')
                 ];
@@ -131,8 +131,8 @@ class CitaVacunaController extends Controller
             citaVacuna::insert($datosVacuna);
         }
         //Finaliza recordatorio
-
-        return redirect('/')->with('success', 'Cita Creada');
+        //return redirect('/?objeto=cita&accion=creo');
+        return redirect('/')->with('success', 'Cita creada correctamente');
     }
 
     /**

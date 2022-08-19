@@ -5,7 +5,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <strong>   <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
-            <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion" onclick="funcionesOnClick();">
+            <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion" onclick="actualizarMensaje_al_crear_limpieza();">
                 <option value="0" selected>No, no deseo un recordatorio</option>
                 <option value="1">1 dias de anticipacion</option>
                 <option value="2">2 dias de anticipacion</option>
@@ -26,13 +26,3 @@
         </div>
     </div>
 </section>
-
-@section('js')
-    <script>
-        function funcionesOnClick(){
-            //actualizar_mensaje_al_crear_vacuna(); 
-            actualizarMensaje_al_crear_limpieza();
-    }
-
-    </script>
-@endsection

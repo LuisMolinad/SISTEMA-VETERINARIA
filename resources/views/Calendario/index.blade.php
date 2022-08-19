@@ -17,9 +17,7 @@
 
 @section('content')
     <div class="container">
-
         <!--Selector-->
-
         <div class="container">
             <select class="form-control col-md-4 mb-4 mt-4" id="selector">
                 <option value="all">Todas las citas</option>
