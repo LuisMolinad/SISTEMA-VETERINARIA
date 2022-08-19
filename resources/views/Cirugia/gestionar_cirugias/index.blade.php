@@ -24,7 +24,7 @@ GESTIONAR CIRUGIA
         <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
-                @include('notificacion')
+                @include('layouts.notificacion')
                 <th scope="col">Concepto de cirugía</th>
                 <th scope="col">Fecha de realización</th>
                 <th scope="col">Recomendaciones Preoperatorias</th>

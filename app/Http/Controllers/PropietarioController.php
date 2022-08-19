@@ -42,7 +42,8 @@ class PropietarioController extends Controller
     {
         $datosPropietario = request()->except('_token');
         Propietario::insert($datosPropietario);
-        return redirect('/propietario?objeto=propietario&accion=creo');
+        //return redirect('/propietario?objeto=propietario&accion=creo');
+        return redirect('/propietario')->with('success', 'Propietario creado correctamente');
     }
 
     /**
@@ -80,7 +81,8 @@ class PropietarioController extends Controller
         $datosPropietario = request()->except(['_token', '_method']);
         Propietario::where('id','=',$id)->update($datosPropietario);
         $propietario = Propietario::FindOrFail($id);
-        return redirect('/propietario?objeto=propietario&accion=edito');
+        //return redirect('/propietario?objeto=propietario&accion=edito');
+        return redirect('/propietario')->with('warning', 'Propietario editado correctamente');
     }
 
     /**
@@ -91,14 +93,7 @@ class PropietarioController extends Controller
      */
     public function destroy($id)
     {   
-/*         $Mascota = mascota::where('propietario_id', $id);
-        $mascota_get = mascota::where('propietario_id', $id)->value('id');
-
-        $expediente = expediente::where('mascota_id', $mascota_get);
-        $expediente->delete();
-
-        $Mascota->delete(); */
         Propietario::destroy($id);
-        return redirect('/propietario?objeto=propietario&accion=elimino');
+        return redirect('/propietario')->with('danger', 'Propietario eliminado correctamente');
     }
 }

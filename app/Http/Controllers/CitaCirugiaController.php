@@ -100,7 +100,8 @@ class CitaCirugiaController extends Controller
         }
         //Finaliza recordatorio
 
-        return redirect('/?objeto=cita&accion=creo');
+        //return redirect('/?objeto=cita&accion=creo');
+        return redirect('/')->with('success', 'Cita creada correctamente');
     }
 
     /**

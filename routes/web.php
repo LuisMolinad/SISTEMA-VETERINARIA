@@ -125,13 +125,15 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 
 //Ejemplo consultar JS
+//Mascota
 Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');
 Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
-
-
 Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
-Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
+Route::get('/mascota/msg/editar',[MascotaController::class, 'mostrar_editar']);
+Route::get('/mascota/msg/guardar',[MascotaController::class, 'mostrar_guardar']);
 
+//Expediente
+Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
 
@@ -159,6 +161,7 @@ Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensa
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
 Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
 Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon']);
+Route::get('/recordatorio/reenviar/{id}', [RecordatorioController::class, 'reenviar'])->middleware('auth');
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
 //Citas de Limpieza dental

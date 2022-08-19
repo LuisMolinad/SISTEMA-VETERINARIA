@@ -20,7 +20,7 @@ GESTIONAR EXPEDIENTE
 
 @section('content')
 
-    @include('notificacion')
+    @include('layouts.notificacion')
 
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped" style="width:100%" id="expediente">
