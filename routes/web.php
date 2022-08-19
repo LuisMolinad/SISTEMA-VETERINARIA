@@ -178,3 +178,9 @@ Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalCon
 
 //ruta para recuperar el id de la mascota
 Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'showId'])->middleware('auth');
+
+
+//Rutas Limpieza dental
+//Route::get('/citaLimpiezaDental/gestion/record/{id}', [\App\Http\Controllers\CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->middleware('auth');
+Route::get('/citaLimpiezaDental/index/gestion/{id}', [CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->name('GestionLimpieza.index')->middleware('auth');
+Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'show'])->name('GestionLimpieza.show')->middleware('auth');

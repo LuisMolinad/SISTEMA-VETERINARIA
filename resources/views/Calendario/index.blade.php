@@ -364,7 +364,6 @@
                 </div>
             </div>
         </div>
-
         @extends('Calendario/modalCitasVacunas')
         @extends('Calendario/modalCitasCirugia')
         @extends('Calendario/modalCitasDental')
