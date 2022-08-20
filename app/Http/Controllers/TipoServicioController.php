@@ -38,7 +38,11 @@ class TipoServicioController extends Controller
     {
         $datosTipoServicio = request()->except('_token');
         TipoServicio::insert($datosTipoServicio);
-        return redirect('/tiposervicio');
+        // return redirect('/tiposervicio');
+        $accion="guardar";
+        $objeto="tipo servicio";
+        $datosTipoServicio['tiposervicios']=tipoServicio::all();
+        return view('tiposervicio.index',$datosTipoServicio,);
     }
 
     /**
@@ -83,6 +87,7 @@ class TipoServicioController extends Controller
         $datosTipoServicio = request()->except(['_token','_method']);
         TipoServicio::where('id','=',$id)->update($datosTipoServicio);
         return redirect('/tiposervicio');
+
     }
 
     /**
@@ -91,8 +96,9 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tipoServicio $tipoServicio)
+    public function destroy($id)
     {
-        //
+        TipoServicio::destroy($id);
+        return redirect('/tiposervicio');
     }
 }
