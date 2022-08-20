@@ -17,7 +17,6 @@ Nuevo Servicio
             <br>
             <label>{{$tipoServicio->nombreServicio}}</label>
         </div>
-
         <div class="form-group">
             <label for="descripcionServicio"><strong>Descripción del servicio</strong></label>
             <br>

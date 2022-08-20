@@ -142,7 +142,8 @@ Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middle
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
 /*------------------------------------- Rutas de servicios ------------------------------------------------------- */
 Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
-// Route::get('/tiposervicio/{id}/ver', [TipoServicioController::class,'show'])->name('tiposervicios.show')->middleware('auth');
+//Recuperar citas de servicios para eliminar el tipo de servicio
+Route::get('/consultarCitasServicioPorIdServicio/{id}', [App\Http\Controllers\CitaServicioController::class,'consultarCitasServicioPorIdServicio'])->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'showCalendar']);
