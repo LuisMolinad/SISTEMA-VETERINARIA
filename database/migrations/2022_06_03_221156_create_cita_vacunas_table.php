@@ -23,6 +23,7 @@ class CreateCitaVacunasTable extends Migration
             $table->dateTime('end')->nullable(true);
             $table->dateTime('start');
             $table->string('title', 20);
+            $table->dateTime('fechaAplicacion');
             $table->string('filtervacunas', 50);
             $table->integer('pesolb')->nullable(true);
             $table->timestamp('created_at')->useCurrent();

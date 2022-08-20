@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\citaLimpiezaDental;
 use Illuminate\Http\Request;
 use App\Models\mascota;
+use App\Models\propietario;
 use App\Models\recordatorio;
 use Carbon\Carbon;
 
@@ -33,8 +34,8 @@ class CitaLimpiezaDentalController extends Controller
                 'dias_de_anticipacion' => request('dias_de_anticipacion'),
                 'fecha' => request('start'),
                 'concepto' => 'La limpieza dental',
-                'nombre' => request('title'),
-                'id_mascota' => request('idmascota'),
+                'nombre' => request('nombre_mascota'),
+                'id_mascota' => request('title'),
                 'telefono' => request('telefono')
             ];
 
@@ -66,7 +67,8 @@ class CitaLimpiezaDentalController extends Controller
         }
         //Finaliza recordatorio
 
-        return redirect('/?objeto=cita&accion=creo');
+        //return redirect('/?objeto=cita&accion=creo');
+        return redirect('/')->with('success', 'Cita creada correctamente');
     }
 
     public function showCalendar(citaLimpiezaDental $citaLimpieza)
@@ -88,5 +90,21 @@ class CitaLimpiezaDentalController extends Controller
         return response()->json($citaLimpieza);
     }
 
+
+    public function gestionar_limpiezas_por_mascota($id){
+        $mascotas = mascota::find($id);
+        //return ($mascotas);
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.index', compact('mascotas'));
+    }
+    
+    //Consultar citas dentales
+    public function show($id, $citaLimpieza_id){
+       
+        $mascotas = mascota::find($id);
+        $idcitaLimpiezaDental = citaLimpiezaDental::find($citaLimpieza_id);
+
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('mascotas', 'idcitaLimpiezaDental'));
+
+    }
 
 }

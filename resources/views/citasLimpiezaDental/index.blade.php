@@ -40,6 +40,7 @@ Gestionar limpieza dental
                 <td id="direccionpropietario">{{$mascota->propietario->direccionPropietario}}</td>
                 <td>
                     <a role="button" class="btn btn-success" href={{ url('/crearCitaLimpiezaDental/'.$mascota->id) }}>Crear</a>
+                    <a href="{{ route('GestionLimpieza.index', $mascota->id) }}"><button type="button" class="btn btn-dark">Gestionar</button></a>
                 </td>
             </tr>
             @endforeach

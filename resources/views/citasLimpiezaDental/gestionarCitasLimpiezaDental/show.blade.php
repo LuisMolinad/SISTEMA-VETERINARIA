@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-    CONSULTAR CITA VACUNA
+Consultar Cita Limpieza dental
 @endsection
 
 @section('librerias')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('header')
-    <h1 class="header"> Cita Vacuna</h1>
+    <h1 class="header"> Cita de Limpieza dental</h1>
 @endsection
 
 @section('content')
@@ -28,21 +28,17 @@
 
         <section class="consultar_mascota_datos">
             <article>
-                <h4 class="header4">Información Vacunación</h4>
+                <h4 class="header4">Información de Limpieza dental</h4>
                 <ul>
-                    <li><strong>Vacuna: </strong> {{ $vacuna->nombreVacuna }}</li>
-                    <li><strong>Fecha Aplicación: </strong>{{ $idcitaVacuna->fechaAplicacion }}</li>
-                    <li><strong>Fecha Refuerzo: </strong>{{ $idcitaVacuna->start }}</li>
-
+                    <li><strong>Fecha: </strong>{{ $idcitaLimpiezaDental->start }}</li>
                 </ul>
             </article>
             <article>
                 <h4 class="header4">Datos Generales de la Mascota</h4>
                 <ul>
 
-                    <li><strong>IDMASCOTA: </strong> {{ $mascotas->idMascota }}</li>
+                    <li><strong>idMascota: </strong> {{ $mascotas->idMascota }}</li>
                     <li><strong>Nombre: </strong> {{ $mascotas->nombreMascota }}</li>
-                    <li><strong>Peso: </strong>{{ $idcitaVacuna->pesolb }} </li>
                 </ul>
             </article>
         </section>

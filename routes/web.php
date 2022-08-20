@@ -88,10 +88,11 @@ Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class,
 //Consulta de cita vacunaciion
 Route::get('/citas/index/consulta/{id}/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'index'])->name('gestionVacuna.index')->middleware('auth');
 //Editar Cita Vacunacion
-Route::get('/citas/edit/{id}', [gestionCitasVacunacionController::class, 'edit'])->name('gestionVacuna.edit')->middleware('auth');
-
-
-
+Route::get('/citas/edit/{id}/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'edit'])->name('gestionVacuna.edit')->middleware('auth');
+//actualizar
+Route::post('actualizarCitaVacuna/{idCita}/{idmascota}', [gestionCitasVacunacionController::class, 'update'])->name('citaVacuna.update')->middleware('auth');
+//Eliminar
+Route::get('/citas/delete/gestion/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'destroy'])->name('gestionVacuna.delete')->middleware('auth');
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller
@@ -125,13 +126,15 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 
 //Ejemplo consultar JS
+//Mascota
 Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');
 Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
-
-
 Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
-Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
+Route::get('/mascota/msg/editar',[MascotaController::class, 'mostrar_editar']);
+Route::get('/mascota/msg/guardar',[MascotaController::class, 'mostrar_guardar']);
 
+//Expediente
+Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
 
@@ -153,12 +156,14 @@ Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::clas
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
 Route::get('/citacirugia/gestionarCirugia/record/', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
-Route::get('/citacirugia/gestionarCirugia/consultar/', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
+Route::get('/citacirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
 Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
 Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
+Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon']);
+Route::get('/recordatorio/reenviar/{id}', [RecordatorioController::class, 'reenviar'])->middleware('auth');
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
 //Citas de Limpieza dental
@@ -174,3 +179,9 @@ Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalCon
 
 //ruta para recuperar el id de la mascota
 Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'showId'])->middleware('auth');
+
+
+//Rutas Limpieza dental
+//Route::get('/citaLimpiezaDental/gestion/record/{id}', [\App\Http\Controllers\CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->middleware('auth');
+Route::get('/citaLimpiezaDental/index/gestion/{id}', [CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->name('GestionLimpieza.index')->middleware('auth');
+Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'show'])->name('GestionLimpieza.show')->middleware('auth');

@@ -26,14 +26,6 @@ EDITAR EXPEDIENTE
                     <label for="causaFallecimiento">Causa de fallecimiento</label>
                     <input value="{{$expediente->causaFallecimiento}}" type="text" maxlength="30" class="form-control" id="causaFallecimiento" name="causaFallecimiento" placeholder="Causa de fallecimiento de la mascota">
                 </div>
-
-                <div class="form-group">
-                    <label for="fallecidoExpediente">Estado del animal</label>
-                    <select class="form-control" id="fallecidoExpediente" name="fallecidoExpediente">
-                        <option <?php if($expediente->fallecidoExpediente == 'Fallecido'){ echo 'selected'; } ?> >Fallecido</option>
-                        <option <?php if($expediente->fallecidoExpediente == 'Vivo'){ echo 'selected'; } ?> >Vivo</option>
-                    </select>
-                </div>
             </fieldset>
             <button type="submit" class="btn btn-success mb-2">Editar expediente</button>
         </form>

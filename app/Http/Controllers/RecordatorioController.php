@@ -95,7 +95,7 @@ class RecordatorioController extends Controller
         $datosRecordatorio = 
         [
             'id' => $id,
-            'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            //'estado' => 0, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
             'dias_de_anticipacion' => request('dias_de_anticipacion'),
             'fecha' => request('start'),
             'concepto' => request('ConceptoCirugia'),
@@ -137,15 +137,15 @@ class RecordatorioController extends Controller
     }
 
     public function enviar_mensaje(Request $request){
-        
         //Variables
+        $id = request('id');
         $url = env('FB_URL');
         $cuerpo = [
         "messaging_product" => "whatsapp",
         "to" => "503".request('telefono'),
         "type" => "template",
             "template" => [
-            "name" => "info2",
+            "name" => "informes_veterinaria_pet_paradise",
                 "language" => [
                     "code" => "es_MX",
                 ],
@@ -163,7 +163,7 @@ class RecordatorioController extends Controller
                             ],
                             [
                                 "type" => "text",
-                                "text" => request('fecha'),
+                                "text" => date("d-m-Y --- h:i", strtotime(request('fecha'))),
                             ],
                         ]
                     ]
@@ -191,10 +191,10 @@ class RecordatorioController extends Controller
         $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if($codigoRespuesta === 200){
-            return redirect('/recordatorio?mj=Mensaje%20enviado%20correctamente');
+            return redirect('/recordatorio')->with('primary', 'Mensaje enviado satisfactoriamente');
         }
         else{
-            return redirect('/recordatorio?mj=Mensaje%20no%20enviado');
+            return redirect('/recordatorio')->with('dark', 'El mensaje no se pudo enviar');
         }
         
         curl_close($ch);
@@ -213,7 +213,7 @@ class RecordatorioController extends Controller
         "to" => "503".request('telefono'),
         "type" => "template",
             "template" => [
-            "name" => "info2",
+            "name" => "informes_veterinaria_pet_paradise",
                 "language" => [
                     "code" => "es_MX",
                 ],
@@ -276,5 +276,104 @@ class RecordatorioController extends Controller
         }
         
         curl_close($ch);
+    }
+
+    function eliminar_de_un_jalon(){
+
+        try{
+            //*Eliminar mensajes enviados
+            $mensajes_a_eliminar_enviados = recordatorio::all()->where('estado', '=', '1');
+            foreach($mensajes_a_eliminar_enviados as $id){
+            recordatorio::destroy($id->id);
+            }
+
+            //*Eliminar mensajes no enviados
+            /*$mensajes_a_eliminar_no_enviados = recordatorio::all()->where('estado', '=', '-1');
+            foreach($mensajes_a_eliminar_no_enviados as $id){
+                recordatorio::destroy($id->id);
+            }*/
+
+            return redirect('/recordatorio')->with('dark', 'Los recordatorios enviados se han borrado satisfactoriamente');
+        }
+        catch (Exception $e){
+            return redirect('/recordatorio')->with('dark', 'Los recordatorios no se han borrado');
+        }
+    }
+
+    public function reenviar($id){
+        $recordatorio = recordatorio::where('id', $id)->get();
+
+        //Variables
+        $url = env('FB_URL');
+        $cuerpo = [
+        "messaging_product" => "whatsapp",
+        "to" => "503".$recordatorio['0']->telefono,
+        "type" => "template",
+            "template" => [
+            "name" => "informes_veterinaria_pet_paradise",
+                "language" => [
+                    "code" => "es_MX",
+                ],
+                "components"=>[
+                    [
+                    "type" => "body",
+                        "parameters"=>[
+                            [
+                                "type" => "text",
+                                "text" => $recordatorio['0']->concepto,
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => $recordatorio['0']->nombre,
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => $recordatorio['0']->fecha,
+                            ],
+                        ]
+                    ]
+                ],
+            ],
+        ];
+
+        $data = json_encode($cuerpo);
+        //Comenzar a crear el objeto de la peticion
+        $ch = curl_init($url);
+
+        $codigo_autorizacion = env('FB_Authorization_code');
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer '. $codigo_autorizacion,
+                ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        //Ejecutamos la peticion
+        $resultado = curl_exec($ch);
+
+        #Vemos si el codigo es 200, si lo es todo nice
+        $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if($codigoRespuesta === 200){
+            $datosRecordatorio = 
+            [
+                'estado' => 1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            ];
+    
+            recordatorio::where('id', $id)->update($datosRecordatorio);
+        }
+        else{
+            $datosRecordatorio = 
+            [
+                'estado' => -1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            ];
+    
+            recordatorio::where('id', $id)->update($datosRecordatorio);
+        }
+
+        curl_close($ch);
+
+        return redirect('/recordatorio');
     }
 }

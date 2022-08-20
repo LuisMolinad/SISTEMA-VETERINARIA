@@ -7,6 +7,10 @@
 @section('librerias')
     <!--Data tables-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
 @endsection
 
 @section('header')
@@ -20,7 +24,7 @@
             <thead class="table-dark table-header">
                 <tr>
                     {{-- <th scope="col" style="display:none;">id</th> --}}
-                    <th scope="col">id</th>
+                    <th scope="col" style="display:none;">id</th>
                     <th scope="col">Vacuna</th>
                     <th scope="col">Peso</th>
                     <th scope="col">Fecha Aplicación</th>
@@ -33,31 +37,42 @@
                 @foreach ($mascotas->citas as $registro)
                     <tr>
                         {{-- <th scope="id" style="display:none;">{{ $registro->pivot->id }} --}}
-                        <th scope="id">{{ $registro->pivot->id }}</th>
+                        <th scope="id" style="display:none;">{{ $registro->pivot->id }}</th>
                         <th scope="id">{{ $registro->nombreVacuna }}</th>
                         <th scope="id">{{ $registro->pivot->pesolb }}</th>
-                        <th scope="id">{{ $registro->pivot->end }}</th>
+                        <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
-                        <th>
-                            {{-- <a type="button" class="btn btn-info"
-                                href="{{ route('gestionVacuna.index', [
-                                    $mascotas->id,
-                                    $registro->nombreVacuna,
-                                    $registro->pivot->pesolb,
-                                    /*  'end' => $registro->pivot->end, */
-                                    'start' => $registro->pivot->start,
-                                ]) }}">
-                                Consultar</a> --}}
+                        <td id="botones-linea">
+
                             <a type="button" class="btn btn-info"
                                 href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
                                 Consultar</a>
+                            @if ($mascotas->fallecidoMascota == 'Vivo')
+                                <a type="button" class="btn btn-warning"
+                                    href="{{ route('gestionVacuna.edit', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
+                                    Editar</a>
+                            @endif
+                            {{-- <a type="button" class="btn btn-danger"
+                                href="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}"
+                                onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $mascotas->nombreMascota }}');">
+                                Eliminar</a> --}}
+                            <form id="EditForm{{ $registro->pivot->id }}"
+                                action="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}">
 
-                            <a type="button" class="btn btn-warning"
-                                href="{{ route('gestionVacuna.edit', [$mascotas->id]) }}">
-                                Editar</a>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                                {{ method_field('DELETE') }}
+                                <button
+                                    onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $registro->pivot->id }}')"
+                                    type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
 
-                        </th>
+                            {{-- <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
+                            @csrf
+                            {{method_field('DELETE')}}
+                            <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form> --}}
+                            {{-- <button type="button" class="btn btn-danger">Eliminar</button> --}}
+
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

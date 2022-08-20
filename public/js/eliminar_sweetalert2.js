@@ -139,63 +139,83 @@ function alerta_eliminar_tiposervicio( nombre, id){
             .then(response=>{
                 return response.json();
             })
-            .then(response=>{
-                var itemArray=[];
-                response.forEach(element=>{
-                    itemArray.push(element.telefonoServicio);
+            .then(response => {
+
+                var texto_del_array = 'Las mascotas de ' + nombre + ' son: ';
+
+                response.forEach(element => {
+                    itemArray.push( element.nombreMascota );
                 });
-                return itemArray
-            })
-            .then(itemArray=>{
-                    if(itemArray.length==1){
-                    Swal.fire(
-                        'No se puede eliminar',
-                        'Existe una cita creada del tipo de servicio '+nombre,
-                        'error'
-                    )
+
+                //texto_del_array = itemArray.toString();
+
+/*                 itemArray.forEach(element=>{
+                    texto_del_array += "<b>" + element + "<b> ";
+                }) */
+
+                for(var a = 0; a < itemArray.length; a++){
+                    if(a < itemArray.length - 1){
+                        texto_del_array += "<b>" + itemArray[a] + ",<b> ";
+                    }
+                    else if(a == itemArray.length - 1){
+                        texto_del_array += "<b>" + itemArray[a] + ".<b> ";
+                    }
                 }
-                else if(itemArray.length>1){
-                    Swal.fire(
-                        'No se puede eliminar',
-                        'Existen '+itemArray.length+' citas creadas del tipo de servicio '+nombre,
-                        'error'
-                    )
+
+                return texto_del_array;
+            })
+            .then(texto_del_array=>{
+                if(texto_del_array != 'Las mascotas de ' + nombre + ' son: '){
+
+                    Swal.fire({
+                        title: 'Al borrar a ' + nombre + ' tambien lo haran sus mascotas',
+                        html: texto_del_array,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, borralo',
+                        cancelButtonText: 'No, cancelar'
+                    })
+                    .then(result=>{
+                        if(result.isConfirmed){
+                            formulario.submit();
+                        }
+                    })
                 }
                 else{
                     Swal.fire(
-                        'Se eliminará',
-                        'El tipo de servicio '+nombre+' será eliminado',
+                        'Se eliminara!',
+                        'El registro de ' + nombre + ' sera eliminado.',
                         'success'
                     ).then((result)=>{
                         formulario.submit();
-                    })
+                    });
                 }
             })
         }
       })
+
     return false;
 }
 
-function alerta_eliminar_cirugia( nombre, id){
+function alerta_eliminar_citaVacuna( nombreVacuna,id){
     var formulario = $('#EditForm'+id);
     
-    
-
     Swal.fire({
-        title: '¿Está seguro que desea eliminar la cita de cirugia de la mascota ' + nombre + '?',
-        text: "¡No podrá revertir esta decisión!",
+        title: 'Esta seguro que desea eliminar la cita de vacunación de:  ' + nombreVacuna + '?',
+        text: "No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'No',
-        confirmButtonText: 'Si, deseo borrarlo'
+        confirmButtonText: 'Si, borralo!'
       }).then((result) => {
         if (result.isConfirmed) {
 
             Swal.fire(
-                '¡Se eliminará!',
-                'El registro de la cita de cirugia de ' + nombre + ' será eliminado.',
+                'Se eliminara!',
+                'El registro de la cita de vacuna para ' + nombreVacuna + ' sera eliminado.',
                 'success'
             ).then((result)=>{
                 formulario.submit();
