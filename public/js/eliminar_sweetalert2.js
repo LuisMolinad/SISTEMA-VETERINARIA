@@ -6,6 +6,8 @@
 Esta mostrara un mensaje que consultara si quiere eliminar el expediente, si el usuario lo acepta se borrara, de lo contrario no.
 */
 
+const { Warning } = require("postcss");
+
 function alerta_eliminar_propietario( nombre, id){
     var formulario = $('#EditForm'+id);
     
@@ -119,26 +121,21 @@ function alerta_eliminar_general( nombre, id){
     return false;
 }
 
-function alerta_eliminar_servicio( nombre, id){
-    var formulario = $('#EditForm'+id);
+function alerta_eliminar_tiposervicio( nombre, id){
+    var formulario = $('#BorrarForm'+id);
     
-    
-
     Swal.fire({
-        title: 'Esta seguro que desea eliminar a ' + nombre + '?',
-        text: "No podra revertir esta decision!",
+        title: '¿Está seguro que desea eliminar el tipo de servicio ' + nombre + '?',
+        text: "¡No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!',
+        confirmButtonText: 'Si, borrar',
         cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-
-            var itemArray = [];
-
-            fetch('/mascota/consultar_por_propietario/'+id)
+            fetch('/consultarCitasServicioPorIdServicio/'+id)
             .then(response=>{
                 return response.json();
             })
@@ -202,37 +199,6 @@ function alerta_eliminar_servicio( nombre, id){
     return false;
 }
 
-function alerta_eliminar_cirugia( nombre, id){
-    var formulario = $('#EditForm'+id);
-    
-    
-
-    Swal.fire({
-        title: '¿Está seguro que desea eliminar la cita de cirugia de la mascota ' + nombre + '?',
-        text: "¡No podrá revertir esta decisión!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'No',
-        confirmButtonText: 'Si, deseo borrarlo'
-      }).then((result) => {
-        if (result.isConfirmed) {
-
-            Swal.fire(
-                '¡Se eliminará!',
-                'El registro de la cita de cirugia de ' + nombre + ' será eliminado.',
-                'success'
-            ).then((result)=>{
-                formulario.submit();
-            });
-
-        }
-      })
-
-    return false;
-}
-
 function alerta_eliminar_citaVacuna( nombreVacuna,id){
     var formulario = $('#EditForm'+id);
     
@@ -255,6 +221,60 @@ function alerta_eliminar_citaVacuna( nombreVacuna,id){
                 formulario.submit();
             });
 
+        }
+      })
+
+    return false;
+}
+
+function alerta_deshabilitar_tiposervicio( nombre, id){
+    var formulario = $('#DeshabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea deshabilitar el servicio ' + nombre + '?',
+        text: "No se eliminarán las citas creadas de este servicio, pero ya no podrá crearlas.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, deshabilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se deshabilitará!',
+                'El servicio '+nombre+' será deshabilitado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+        }
+      })
+
+    return false;
+}
+
+function alerta_habilitar_tiposervicio( nombre, id){
+    var formulario = $('#HabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea habilitar el servicio ' + nombre + '?',
+        text: "Al habilitarlo, podrá crear citas de este servicio.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, habilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se habilitará!',
+                'El servicio '+nombre+' será habilitado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
         }
       })
 

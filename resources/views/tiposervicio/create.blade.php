@@ -28,6 +28,7 @@ Nuevo Servicio
                 <div class="form-group">
                     <label for="descripcionServicio"><strong>Descripción del servicio</strong></label>
                     <input type="text" maxlength="255" class="form-control" id="descripcionServicio" name="descripcionServicio" placeholder="Ingrese una descripción del servicio" required>
+                    <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="1">
                     <div class="valid-feedback">
                         Dato válido
                     </div>

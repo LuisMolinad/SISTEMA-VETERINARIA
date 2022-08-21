@@ -142,7 +142,8 @@ Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middle
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
 /*------------------------------------- Rutas de servicios ------------------------------------------------------- */
 Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
-// Route::get('/tiposervicio/{id}/ver', [TipoServicioController::class,'show'])->name('tiposervicios.show')->middleware('auth');
+//Recuperar citas de servicios para eliminar el tipo de servicio
+Route::get('/consultarCitasServicioPorIdServicio/{id}', [App\Http\Controllers\CitaServicioController::class,'consultarCitasServicioPorIdServicio'])->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'showCalendar']);
@@ -178,3 +179,9 @@ Route::get('/mostrarlimpiezadental', [App\Http\Controllers\CitaLimpiezaDentalCon
 
 //ruta para recuperar el id de la mascota
 Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'showId'])->middleware('auth');
+
+
+//Rutas Limpieza dental
+//Route::get('/citaLimpiezaDental/gestion/record/{id}', [\App\Http\Controllers\CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->middleware('auth');
+Route::get('/citaLimpiezaDental/index/gestion/{id}', [CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->name('GestionLimpieza.index')->middleware('auth');
+Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'show'])->name('GestionLimpieza.show')->middleware('auth');

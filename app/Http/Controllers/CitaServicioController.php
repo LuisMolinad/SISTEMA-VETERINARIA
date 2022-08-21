@@ -118,4 +118,10 @@ class CitaServicioController extends Controller
         $citaServicio = citaServicio::find($id)->delete();
         return response()->json($citaServicio);
     }
+
+    public function consultarCitasServicioPorIdServicio($id){
+        $citasServicio = citaServicio::where('tipoServicio_id',$id)->get();
+        // return json_encode($citasServicio);
+        return response()->json($citasServicio);
+    }
 }

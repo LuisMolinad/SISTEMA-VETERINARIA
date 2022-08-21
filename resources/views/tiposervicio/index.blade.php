@@ -7,6 +7,10 @@ GESTIONAR TIPO DE SERVICIO
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('header')
@@ -27,11 +31,19 @@ GESTIONAR TIPO DE SERVICIO
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tiposervicios as $tiposervicio)
-                <tr>
+                <tr
+                    <?php
+                            if($tiposervicio->disponibilidadServicio == False){
+                                echo 'class="fallecido"';
+                                echo 'style="background-color:#34495E;"';
+                            }
+                    ?>
+                >
                     <td>{{$tiposervicio->id}}</td>
                     <td>{{$tiposervicio->nombreServicio}}</td>
                     <td>{{$tiposervicio->descripcionServicio}}</td>
@@ -42,16 +54,45 @@ GESTIONAR TIPO DE SERVICIO
                        <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                     </td>
                     <td>
-                        <form action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                        @if($tiposervicio->disponibilidadServicio == True)
+                            <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                                @csrf
+                                {{method_field('PATCH')}}
+                                <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="0">
+                                <button onclick="return alerta_deshabilitar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-secondary">Deshabilitar</button>
+                            </form>
+                        @else
+                            <form id="HabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                                @csrf
+                                {{method_field('PATCH')}}
+                                <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="1">
+                                <button onclick="return alerta_habilitar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-secondary" style="width:110px">Habilitar</button>
+                            </form>
+                        @endif
+                    </td>
+                    <td> 
+                        <form id="BorrarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
-                            <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form> 
+                            <button onclick="return alerta_eliminar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <!-- Botón para abrir y cerrar ayuda -->
+    <a href="javascript:ayuda()" class="boton_ayuda" id="boton_ayuda"></a>
+    <!-- Contenedor de ayuda -->
+    <div class="ventana_ayuda" id="ventana_ayuda">
+        <strong>Ayuda</strong>
+        <br>
+        <br>
+        Gestiona los tipos de servicios que se ofrecen en citas de servicios.
+        <br>
+        <br>
+        Usa los botones "Habilitar" o "Deshabilitar" para gestionar los servicios que se ofrecen en las citas de servicios.
     </div>
 @endsection
 
@@ -81,5 +122,20 @@ GESTIONAR TIPO DE SERVICIO
                 },
             });
         });
+    </script>
+    <!-- Función para abrir y cerrar la ayuda -->
+    <script>
+        function ayuda(){
+            const element=document.getElementById("ventana_ayuda");
+            const display = window.getComputedStyle(element).display;
+            if(display == "none"){
+                document.getElementById("ventana_ayuda").style.display="block";
+                document.getElementById("boton_ayuda").style.backgroundColor="#037b0d";
+            }
+            else{
+                document.getElementById("ventana_ayuda").style.display="none";
+                document.getElementById("boton_ayuda").style.backgroundColor="#00a00d";
+            }
+        }
     </script>
 @endsection

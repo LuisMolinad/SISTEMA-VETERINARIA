@@ -16,9 +16,9 @@ class CreateTipoServiciosTable extends Migration
         Schema::create('tipo_servicios', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
             $table->string('nombreServicio',255);
             $table->string('descripcionServicio',255);
+            $table->boolean('disponibilidadServicio');
         });
     }
 
