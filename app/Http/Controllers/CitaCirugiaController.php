@@ -117,11 +117,13 @@ class CitaCirugiaController extends Controller
         $mascota = mascota::where('id', $cita->mascota_id)->with('propietario')->get();
 
        $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
+       $recordatorio = recordatorio::where('id', $cita->recordatorio_id)->first();
 
          $datos = [
              'mascotas' => $mascota,
              'citaCirugias' => citaCirugia::where('id',$id)->get(),
-           'propietarios' => $propietario
+             'propietarios' => $propietario,
+             'recordatorios' => $recordatorio
          ];
 
        return view('Cirugia.gestionar_cirugias.show', compact('datos'));

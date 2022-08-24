@@ -61,7 +61,15 @@
             <section class="caracteristicas_especiales">
                 <article>
                     <h4 class="header4">Recordatorio</h4>
-                    <p> Mensaje de recordatorio </p>
+                    <p> {{$datos['recordatorios']->concepto}} </p>
+                    <p>
+                        @php
+                            echo date("d-m-Y", strtotime($datos['recordatorios']->fecha . " - " . $datos['recordatorios']->dias_de_anticipacion . " days"));
+                        @endphp    
+                    </p>
+                    <p>
+                        Dias de anticipacion: {{$datos['recordatorios']->dias_de_anticipacion}}
+                    </p>
                 </article>
             </section>
 
