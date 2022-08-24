@@ -26,6 +26,9 @@
                 <option value="citasServicios">Citas de Servicios</option>
                 <option value="citasLimpiezaDental">Citas de Limpieza Dental</option>
             </select>
+            <!--El no eterno Katya-->
+            @include('layouts.notificacion')
+
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -34,7 +37,6 @@
             <div id="guardadocorrectamente"></div>
             <div id="editadocorrectamente"></div>
             <div id="eliminadocorrectamente"></div>
-            @include('notificacion')
             <!--Por medio de esta instruccion aparece la agenda-->
             <div id="agenda">
             </div>

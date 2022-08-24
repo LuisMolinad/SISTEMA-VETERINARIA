@@ -19,12 +19,11 @@ GESTIONAR CIRUGIA
 
 @section('content')
 
-    
+@include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
-                @include('layouts.notificacion')
                 <th scope="col">Concepto de cirugía</th>
                 <th scope="col">Fecha de realización</th>
                 <th scope="col">Recomendaciones Preoperatorias</th>
