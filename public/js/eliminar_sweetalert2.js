@@ -280,3 +280,32 @@ function alerta_habilitar_tiposervicio( nombre, id){
 
     return false;
 }
+
+function alerta_eliminar_cirugia( nombre,id){
+    var formulario = $('#EditForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar la cita de cirugía de:  ' + nombre + '?',
+        text: "Se eliminará la cita de cirugía de la mascota y no podrá revertir dicha acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                '¡Se eliminará!',
+                'El registro de la cita de cirugía para ' + nombre + ' será eliminada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}

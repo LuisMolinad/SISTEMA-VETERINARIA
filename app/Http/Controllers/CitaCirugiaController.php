@@ -113,19 +113,21 @@ class CitaCirugiaController extends Controller
     public function show($id)
     {
         
-        $maroma = citaCirugia::FindOrFail($id);
-        $mascota = mascota::where('id', $maroma->mascota_id)->with('propietario')->get();
+      $cita = citaCirugia::FindOrFail($id);
+        $mascota = mascota::where('id', $cita->mascota_id)->with('propietario')->get();
 
-        $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
+       $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
 
-        $datos = [
-            'mascotas' => $mascota,
-            'citaCirugias' => citaCirugia::where('id',$id)->get(),
-            'propietarios' => $propietario
-        ];
+         $datos = [
+             'mascotas' => $mascota,
+             'citaCirugias' => citaCirugia::where('id',$id)->get(),
+           'propietarios' => $propietario
+         ];
 
        return view('Cirugia.gestionar_cirugias.show', compact('datos'));
        
+   
+
     }
 
     /**
@@ -157,9 +159,16 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, citaCirugia $citaCirugia)
+    public function update(Request $request, $id)
     {
-        //
+
+
+        $datosCirugia = request()->except(['_token', '_method']);
+        citaCirugia::where('id','=',$id)->update($datosCirugia);
+        
+        return redirect('/citacirugia/gestionarCirugia/');
+
+
     }
 
     /**
@@ -170,19 +179,26 @@ class CitaCirugiaController extends Controller
      */
     public function destroy($id)
     {
-            
-        $registro = citaCirugia::FindOrFail($id)->get('mascota_id');
+                
+       $registro = citaCirugia::FindOrFail($id)->get('mascota_id');
 
-        
         citaCirugia::destroy($id);
-        return redirect('/citacirugia/gestionarCirugia/record?id='. $registro[0]->mascota_id.'&objeto=cita&accion=elimino');
+      //return redirect('/citacirugia/gestionarCirugia/record?id='. $registro[0]->mascota_id.'&objeto=cita&accion=elimino');
+    return redirect('/citacirugia/index/gestionarCirugia/'. $registro[0]->mascota_id);
     }
 
-    public function gestionar_cirugias_por_mascota(){
+    public function gestionar_cirugias_por_mascota($id){
+       // $mascotas = mascota::FindOrFail($id);
         $mascota_id = request('id');
         $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
+       //return view('Cirugia.gestionar_cirugias.index', compact('datos','mascotas'));
+       // return view('Cirugia.gestionar_cirugias.index', compact('mascotas'));
 
-        return view('Cirugia.gestionar_cirugias.index', compact('datos'));
+       $mascotas = mascota::find($id);
+       //return ($mascotas);
+       return view('Cirugia.gestionar_cirugias.index', compact('mascotas','datos'));
+
+
     }
 
     //Se utiliza para mostrar las citas en el calendario
@@ -193,4 +209,21 @@ class CitaCirugiaController extends Controller
         return response()->json($citaCirugia);
     }
 
+    //Se utiliza para actualizar cita
+     public function editarCirugia($id)
+    {
+        $cita = citaCirugia::FindOrFail($id);
+        $mascota = mascota::where('id', $cita->mascota_id)->with('propietario')->get();
+
+        $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
+
+        $datos = [
+            'mascotas' => $mascota,
+            'citaCirugias' => citaCirugia::where('id',$id)->get(),
+            'propietarios' => $propietario
+        ];
+
+        return view('Cirugia.gestionar_cirugias.edit', compact('datos'));
+
+    }
 }
