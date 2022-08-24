@@ -154,9 +154,11 @@ Route::get('/vacunas/{id}', [App\Http\Controllers\VacunaController::class, 'show
 /*Mostrar citas cirugias*/
 Route::get('/mostrarcirugias', [App\Http\Controllers\CitaCirugiaController::class, 'showCalendar']);
 Route::get('/editarCitaCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'edit'])->middleware('auth');
-Route::get('/citacirugia/gestionarCirugia/record/', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->middleware('auth');
+Route::get('/citacirugia/index/gestionarCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'gestionar_cirugias_por_mascota'])->name('GestionCirugia.index')->middleware('auth');
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
-Route::get('/citacirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
+Route::get('/citacirugia/consultarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
+Route::get('/citacirugia/editarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'editarCirugia'])->middleware('auth');
+Route::post('citacirugia/{id}', [CitaCirugiaController::class, 'update'])->name('update')->middleware('auth');
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);

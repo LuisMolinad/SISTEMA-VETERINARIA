@@ -14,17 +14,16 @@ GESTIONAR CIRUGIA
 @endsection
 
 @section('header')
-<h1 class="header">GESTIONAR CIRUGIA</h1>
+<h1 class="header">GESTIONAR CIRUGIA {{ $mascotas->nombreMascota }} ID: {{ $mascotas->idMascota }}</h1>
 @endsection
 
 @section('content')
 
-    
+@include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
         <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
-                @include('layouts.notificacion')
                 <th scope="col">Concepto de cirugía</th>
                 <th scope="col">Fecha de realización</th>
                 <th scope="col">Recomendaciones Preoperatorias</th>
@@ -38,15 +37,15 @@ GESTIONAR CIRUGIA
                     <td>{{$dato->start}}</td>
                     <td>{{$dato->recomendacionPreoOperatoria}}</td>
                     <td id = "botones-linea">
- 
-                            <a href="{{ url('/citacirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
-                            <button type="button" class="btn btn-warning">Editar</button>
+                            <button type="button" class="btn btn-primary">Receta Postoperatoria</button>
+                            <a href="{{ url('/citacirugia/consultarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
+                            <a href="{{ url('/citacirugia/editarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-warning">Editar</button></a>
                             <form id="EditForm{{$dato->id}}" action="{{url('/citacirugia/'.$dato->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_cirugia('{{$dato->title}}','{{$dato->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
-                            <button type="button" class="btn btn-primary">Receta Postoperatoria</button>
+                            
                  </tr>
                 @endforeach
             </tbody>

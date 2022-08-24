@@ -84,7 +84,7 @@ Cita de cirugía
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong>   <label for="ConceptoCirugia" style="color:black">Concepto de cirugía</label></strong>
-                    <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" onchange="actualizar_mensaje_al_crear()" required></textarea>
+                    <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" onchange="actualizar_mensaje_al_crear()" placeholder="Motivo de la cirugía" required></textarea>
                 
                     <div class="invalid-feedback">
                         Por favor ingrese información sobre el concepto de cirugía
@@ -112,7 +112,7 @@ Cita de cirugía
 
                 <div class="form-group col-md-6">
                     <strong>   <label for="RecomendacionesPre" style="color:black">Recomendaciones preoperatorias</label></strong>
-                    <textarea class="form-control" id="ecomendacionesPre" name="recomendacionPreoOperatoria" rows="3" maxlength="100" required></textarea>
+                    <textarea class="form-control" id="ecomendacionesPre" name="recomendacionPreoOperatoria" rows="3" maxlength="100" placeholder="Recomendaciones a tomar en cuenta antes de la cirugía"  required></textarea>
                
                     <div class="invalid-feedback">
                         Por favor ingrese información sobre la recomendaciones preoperatorias pertinentes
