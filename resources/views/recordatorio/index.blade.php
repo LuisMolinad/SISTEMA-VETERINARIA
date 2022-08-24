@@ -21,9 +21,33 @@ GESTIONAR RECORDATORIOS
 @include('layouts.notificacion')
 
 <div class="table-responsive-sm container-fluid contenedor">
-    <div class="boton crear container_btn_hend">
-    <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
+    
+    <div class="banner_recordatorio">
+        <div class="banner_01">
+            <p><span class="mensaje_enviado_c"></span>Mensajes enviados</p>
+            <p><span class="mensaje_no_enviado_c"></span>Mensajes no enviados</p>
+            <p><span class="mensaje_proximo_a_enviar_c"></span>Mensajes proximos a enviar</p>
+        </div>
+
+        <div class="banner_02">
+            <div>
+                <label for="estado_mensaje">Estado de mensaje</label>
+                <select name="estado_mensaje" id="selector_estado_mensaje">
+                    <option value=""></option>
+                    <option value="0">Mensajes proximos a enviar</option>
+                    <option value="2">No enviados</option>
+                    <option value="1">Enviados</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="banner_03">
+            <div class="boton crear container_btn_hend">
+                <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
+            </div>
+        </div>
     </div>
+
     <table class="table table-striped" style="width:100%" id="recordatorio">
         <thead class="table-dark table-header">
             <tr>
@@ -34,6 +58,7 @@ GESTIONAR RECORDATORIOS
             <th scope="col">Fecha y hora de la cita</th>
             <th scope="col">Fecha a enviar el recordatorio</th>
             <th scope="col"></th>
+            <th class="none" scope="col">Estado</th>
             </tr>
         </thead>
         <tbody>
@@ -92,6 +117,13 @@ GESTIONAR RECORDATORIOS
                                     </form>
                             @endif
                         </td>
+                        <td id="estado_funcion_filtrar" class="none">
+                            @if ($recordatorio->estado == -1)
+                                2
+                            @else
+                            {{$recordatorio->estado}}
+                            @endif
+                        </td>
                     </tr>
                     <p class="none dato_id"> {{$recordatorio->id}} </p>
                     <p class="none dato_estado"> {{$recordatorio->estado}} </p>
@@ -129,7 +161,7 @@ GESTIONAR RECORDATORIOS
 
     <script>
         $(document).ready(function () {
-            $('#recordatorio').DataTable({
+            var table_recordatorio = $('#recordatorio').DataTable({
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
@@ -146,6 +178,25 @@ GESTIONAR RECORDATORIOS
                     },
 
                 },
+                "order":[5, "desc"]
+            });
+
+            const selector = document.querySelector('#selector_estado_mensaje');
+            selector.addEventListener('change', ()=>{
+/*                 if(selector.value == 0){
+
+                    table_recordatorio
+                    .columns( 7 )
+                    .search( 0 )
+                    .draw();
+
+                    console.log('0');
+                } */
+
+                table_recordatorio
+                    .columns( 7 )
+                    .search( selector.value )
+                    .draw();
             });
         });
     </script>

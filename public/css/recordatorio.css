@@ -27,3 +27,57 @@
 .mensaje_enviado{
     background-color: lightgreen;
 }
+
+.mensaje_enviado_c{
+    background-color: lightgreen;
+}
+
+.mensaje_no_enviado_c{
+    background-color: lightcoral;
+}
+
+.mensaje_proximo_a_enviar_c{
+
+}
+
+.mensaje_enviado_c, .mensaje_no_enviado_c, .mensaje_proximo_a_enviar_c{
+    border: 1px solid #000;
+    padding: 0.25rem 1rem;
+    margin-right: 1rem;
+}
+
+.banner_recordatorio{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.banner_01, .banner_02, .banner_03{
+    flex: 1;
+    margin: 0.5rem;
+    /*border: 1px solid #000;*/
+    padding: 1rem;
+}
+
+.banner_01, .banner_02, .banner_03{
+    display: flex;
+    flex-direction: column;
+}
+
+.banner_01{
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.banner_02{
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_03{
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.banner_02 label, .banner_02 option{
+    font-size: large;
+}
