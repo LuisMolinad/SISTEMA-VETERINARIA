@@ -105,7 +105,7 @@ class RecordatorioController extends Controller
         ];
 
         recordatorio::where('id', $id)->update($datosRecordatorio);
-        return redirect('/recordatorio?objeto=recordatorio&accion=edito');
+        return redirect('/recordatorio')->with('warning', 'El recordatorio se ha editado correctamente');
     }
 
     /**
@@ -133,7 +133,7 @@ class RecordatorioController extends Controller
             $e->getMessage();
         }
 
-        return redirect('/recordatorio?objeto=recordatorio&accion=elimino');
+        return redirect('/recordatorio')->with('danger', 'El recordatorio se ha eliminado correctamente');
     }
 
     public function enviar_mensaje(Request $request){
