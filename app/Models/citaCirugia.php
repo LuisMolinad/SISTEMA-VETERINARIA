@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class citaCirugia extends Model
 {
     use HasFactory;
+    public function mascota()
+    {
+        return $this->belongsTo(mascota::class);
+    }
 }

@@ -48,4 +48,9 @@ class mascota extends Model
     {
         return $this->hasMany(citaLimpiezaDental::class);
     }
+    //relacion con citas de cirugía
+    public function citaCirugia()
+    {
+        return $this->hasMany(citaCirugia::class);
+    }
 }

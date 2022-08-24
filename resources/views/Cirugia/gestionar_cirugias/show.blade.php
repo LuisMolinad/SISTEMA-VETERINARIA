@@ -58,13 +58,27 @@
                 </article>
             </section>
 
-            <section class="caracteristicas_especiales">
-                <article>
-                    <h4 class="header4">Recordatorio</h4>
-                    <p> Mensaje de recordatorio </p>
-                </article>
-            </section>
-            <a href="{{url('/citacirugia/gestionarCirugia/record?id='.$mascota->id)}}"><button type="button" class="btn btn-secondary">Regresar</button></a>
+            @if ($datos['recordatorios'] != null)
+                <section class="caracteristicas_especiales">
+                    <article>
+                        <h4 class="header4">Recordatorio</h4>
+                        <p> {{$datos['recordatorios']->concepto}} </p>
+                        <p>
+                            @php
+                                echo date("d-m-Y", strtotime($datos['recordatorios']->fecha . " - " . $datos['recordatorios']->dias_de_anticipacion . " days"));
+                            @endphp    
+                        </p>
+                        <p>
+                            Dias de anticipacion: {{$datos['recordatorios']->dias_de_anticipacion}}
+                        </p>
+                    </article>
+                </section>
+            @endif
+
+            <a href="{{url('/CirugiaPDF/'.$mascota->id)}}"  class="btn btn-primary" data-placement= "right">{{__('Acta de permiso')}} </a> 
+            <br>
+            <br>
+            <a href="{{ route('GestionCirugia.index', $mascota->id) }}"><button type="button" class="btn btn-secondary">Regresar</button></a>
                 @endforeach
             @endforeach
         @endforeach

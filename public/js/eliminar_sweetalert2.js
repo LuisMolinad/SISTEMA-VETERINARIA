@@ -139,58 +139,36 @@ function alerta_eliminar_tiposervicio( nombre, id){
             .then(response=>{
                 return response.json();
             })
-            .then(response => {
-
-                var texto_del_array = 'Las mascotas de ' + nombre + ' son: ';
-
-                response.forEach(element => {
-                    itemArray.push( element.nombreMascota );
+            .then(response=>{
+                var itemArray=[];
+                response.forEach(element=>{
+                    itemArray.push(element.telefonoServicio);
                 });
-
-                //texto_del_array = itemArray.toString();
-
-/*                 itemArray.forEach(element=>{
-                    texto_del_array += "<b>" + element + "<b> ";
-                }) */
-
-                for(var a = 0; a < itemArray.length; a++){
-                    if(a < itemArray.length - 1){
-                        texto_del_array += "<b>" + itemArray[a] + ",<b> ";
-                    }
-                    else if(a == itemArray.length - 1){
-                        texto_del_array += "<b>" + itemArray[a] + ".<b> ";
-                    }
-                }
-
-                return texto_del_array;
+                return itemArray
             })
-            .then(texto_del_array=>{
-                if(texto_del_array != 'Las mascotas de ' + nombre + ' son: '){
-
-                    Swal.fire({
-                        title: 'Al borrar a ' + nombre + ' tambien lo haran sus mascotas',
-                        html: texto_del_array,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si, borralo',
-                        cancelButtonText: 'No, cancelar'
-                    })
-                    .then(result=>{
-                        if(result.isConfirmed){
-                            formulario.submit();
-                        }
-                    })
+            .then(itemArray=>{
+                if(itemArray.length==1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existe una cita creada del tipo de servicio '+nombre,
+                    'error'
+                )
+            }
+            else if(itemArray.length>1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existen '+itemArray.length+' citas creadas del tipo de servicio '+nombre,
+                    'error'
+                )
                 }
                 else{
                     Swal.fire(
-                        'Se eliminara!',
-                        'El registro de ' + nombre + ' sera eliminado.',
+                        'Se eliminará',
+                        'El tipo de servicio '+nombre+' será eliminado',
                         'success'
                     ).then((result)=>{
                         formulario.submit();
-                    });
+                    })
                 }
             })
         }
@@ -275,6 +253,35 @@ function alerta_habilitar_tiposervicio( nombre, id){
             ).then((result)=>{
                 formulario.submit();
             });
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_cirugia( nombre,id){
+    var formulario = $('#EditForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar la cita de cirugía de:  ' + nombre + '?',
+        text: "Se eliminará la cita de cirugía de la mascota y no podrá revertir dicha acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                '¡Se eliminará!',
+                'El registro de la cita de cirugía para ' + nombre + ' será eliminada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
         }
       })
 
