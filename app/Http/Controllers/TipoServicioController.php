@@ -72,7 +72,7 @@ class TipoServicioController extends Controller
     public function edit($id)
     {
         $tipoServicio = tipoServicio::find($id);
-        return view('tipoServicio.edit',compact('tipoServicio'));
+        return view('tiposervicio.edit',compact('tipoServicio'));
     }
 
     /**

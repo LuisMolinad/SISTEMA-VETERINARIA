@@ -114,7 +114,7 @@ class CitaVacunaController extends Controller
         } else if (request('dias_de_anticipacion') == 0) {
 
             $datosVacuna = [
-                'recordatorio_id' => recordatorio::max('id') + 1,
+                'recordatorio_id' => null,
                 'start' => request('start'),
                 'mascota_id' => request('mascota_id'),
                 'groupId' => request('groupId'),
