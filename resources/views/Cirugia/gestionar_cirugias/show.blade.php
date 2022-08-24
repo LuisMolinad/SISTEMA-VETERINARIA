@@ -58,20 +58,22 @@
                 </article>
             </section>
 
-            <section class="caracteristicas_especiales">
-                <article>
-                    <h4 class="header4">Recordatorio</h4>
-                    <p> {{$datos['recordatorios']->concepto}} </p>
-                    <p>
-                        @php
-                            echo date("d-m-Y", strtotime($datos['recordatorios']->fecha . " - " . $datos['recordatorios']->dias_de_anticipacion . " days"));
-                        @endphp    
-                    </p>
-                    <p>
-                        Dias de anticipacion: {{$datos['recordatorios']->dias_de_anticipacion}}
-                    </p>
-                </article>
-            </section>
+            @if ($datos['recordatorios'] != null)
+                <section class="caracteristicas_especiales">
+                    <article>
+                        <h4 class="header4">Recordatorio</h4>
+                        <p> {{$datos['recordatorios']->concepto}} </p>
+                        <p>
+                            @php
+                                echo date("d-m-Y", strtotime($datos['recordatorios']->fecha . " - " . $datos['recordatorios']->dias_de_anticipacion . " days"));
+                            @endphp    
+                        </p>
+                        <p>
+                            Dias de anticipacion: {{$datos['recordatorios']->dias_de_anticipacion}}
+                        </p>
+                    </article>
+                </section>
+            @endif
 
             <a href="{{url('/CirugiaPDF/'.$mascota->id)}}"  class="btn btn-primary" data-placement= "right">{{__('Acta de permiso')}} </a> 
             <br>
