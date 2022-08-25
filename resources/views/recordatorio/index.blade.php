@@ -50,7 +50,8 @@ GESTIONAR RECORDATORIOS
                     <label for="filtro_por_dia">Seleccionar dia: </label>
                     <input type="date" name="filtro_por_dia" id="filtro_por_dia">
                 </div>
-                {{-- <button type="button" id="btn_limpiar" class="btn btn-secondary">Limpiar</button> --}}
+{{--                 <br>
+                <button type="button" id="btn_limpiar" class="btn btn-secondary">Limpiar filtros</button> --}}
             </div>
         </div>
 
@@ -207,21 +208,18 @@ GESTIONAR RECORDATORIOS
                     .search( formatear_fecha(filtro_fecha.value) )
                     .draw();
 
-                    console.log( formatear_fecha(filtro_fecha.value) )
+                    console.log( formatear_fecha(filtro_fecha.value))
+                    console.log(filtro_fecha.value);
             });
 
-/*             const btn_limpiar = document.querySelector('#btn_limpiar');
+/*             btn_limpiar = document.querySelector('#btn_limpiar');
             btn_limpiar.addEventListener('click', ()=>{
-
-                table_recordatorio
-                    .columns( 7 )
-                    .search( '' )
-                    .draw();
 
                 filtro_fecha.value = '';
                 selector.value = '';
 
-                console.log('simon');
+                table_recordatorio.draw();
+
             }); */
         });
 
@@ -229,6 +227,11 @@ GESTIONAR RECORDATORIOS
             var dia = '', mes = '', anio= '';
             var nueva_fecha = [];
             var i = 0;
+
+
+            if(fecha == ''){
+                return '';
+            }
 
             try{
                 for(var i = 0 ; i < fecha.length ; i++){
@@ -242,7 +245,6 @@ GESTIONAR RECORDATORIOS
                         dia += fecha[i];
                     }
                 }
-
                 nueva_fecha = dia + '-' + mes + '-' + anio;
             }
             catch(exception){
