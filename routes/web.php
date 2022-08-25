@@ -146,6 +146,7 @@ Route::get('/consultarCitasVacunaPorIdVacuna/{id}', [App\Http\Controllers\CitaVa
 Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
 //Recuperar citas de servicios para eliminar el tipo de servicio
 Route::get('/consultarCitasServicioPorIdServicio/{id}', [App\Http\Controllers\CitaServicioController::class,'consultarCitasServicioPorIdServicio'])->middleware('auth');
+Route::patch('/tiposervicio/{id}/{accion}',[TipoServicioController::class,'update'])->name('Tiposervicio.update')->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'showCalendar']);
