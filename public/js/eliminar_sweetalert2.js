@@ -177,11 +177,11 @@ function alerta_eliminar_tiposervicio( nombre, id){
     return false;
 }
 
-function alerta_eliminar_citaVacuna( nombreVacuna,id){
+function alerta_eliminar_citaVacuna( nombreVacuna,id,nombreMascota){
     var formulario = $('#EditForm'+id);
     
     Swal.fire({
-        title: 'Esta seguro que desea eliminar la cita de vacunación de:  ' + nombreVacuna + '?',
+        title: 'Esta seguro que desea eliminar la cita de vacunación de  <strong>' + nombreVacuna + '</strong> para  <strong>' + nombreMascota +'</strong>?',
         text: "No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,

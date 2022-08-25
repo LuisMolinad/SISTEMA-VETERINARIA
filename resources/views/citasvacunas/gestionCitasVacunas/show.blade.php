@@ -18,6 +18,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
 
         <table class="table table-striped" id="citaVacuna">
@@ -61,7 +62,7 @@
 
                                 {{ method_field('DELETE') }}
                                 <button
-                                    onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $registro->pivot->id }}')"
+                                    onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $registro->pivot->id }}','{{ $mascotas->nombreMascota }}')"
                                     type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
 
@@ -89,8 +90,8 @@
         $(document).ready(function() {
             $('#citaVacuna').DataTable({
                 "lengthMenu": [
-                    [10, 20, 30, -1],
-                    [10, 20, 30, "Todos"]
+                    [5, 10, 15, -1],
+                    [5, 10, 15, "Todos"]
                 ],
 
                 "language": {

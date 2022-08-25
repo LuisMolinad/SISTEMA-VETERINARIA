@@ -74,5 +74,7 @@
                 </ul>
             </article>
         </section>
-    </div>
-@endsection
+        <div>
+            <a type="button" class="btn">regresar </a>
+        </div>
+    @endsection

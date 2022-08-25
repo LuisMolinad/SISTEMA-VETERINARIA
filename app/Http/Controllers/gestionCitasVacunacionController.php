@@ -116,12 +116,13 @@ class gestionCitasVacunacionController extends Controller
         //$idcitaVacuna = citaVacuna::find($citaVacuna_id);
         $idcitaVacuna = citaVacuna::find($citaVacuna_id);
         //saco el id de la mascota antes de eliminar
-        $mascotas = mascota::find($idcitaVacuna->mascota_id);
+        $id = mascota::find($idcitaVacuna->mascota_id);
 
         //elimino el registro de la cita
         $idcitaVacuna->delete();
 
         //retorno a la vista show
-        return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'));
+        // return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'))->with('warning', 'Mascota eliminada correctamente');
+        return redirect()->action([gestionCitasVacunacionController::class, 'show'], ['id' => $id])->with('danger', 'Mascota eliminada correctamente');
     }
 }
