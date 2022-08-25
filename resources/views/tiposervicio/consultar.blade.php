@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-Nuevo Servicio
+Consultar Servicio
 @endsection
 
 @section('header')

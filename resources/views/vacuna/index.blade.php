@@ -27,25 +27,30 @@ GESTIONAR VACUNAS
                 <th scope="col">Tiempo entre dosis</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($vacunas as $vacuna)
-                <tr>
+                <tr
+                    <?php
+                        if($vacuna->disponibilidadVacuna == False){
+                            echo 'class="fallecido"';
+                            echo 'style="background-color:#34495E;"';
+                        }
+                    ?>
+                >
                     <td>{{$vacuna->id}}</td>
                     <td>{{$vacuna->nombreVacuna}}</td>
                     <td>{{$vacuna->descripcionVacuna}}</td>
                     <td>{{$vacuna->tiempoEntreDosisDia}}</td>
                     <td>
-                        <a href="#"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <a href="{{ route('vacuna.show',$vacuna->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>   
                     </td>
                     <td>
-                       <!-- <form action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
-                            @csrf
-                            {{method_field('DELETE')}}
-                            <button onclick="return confirm('Quieres borrar?')" type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>-->
-                    </td>
+                        <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                     </td>
                 </tr>
                 @endforeach
             </tbody>

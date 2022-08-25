@@ -51,9 +51,10 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function show(vacuna $vacuna)
+    public function show($id)
     {
-        //
+        $vacuna=vacuna::findOrFail($id);
+        return view('vacuna.consultar', ['vacuna'=>$vacuna]);
     }
     public function showId($id){
         $vacuna=vacuna::find($id);
@@ -65,9 +66,10 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function edit(vacuna $vacuna)
+    public function edit($id)
     {
-        //
+        $vacuna = vacuna::find($id);
+        return view('vacuna.edit',compact('vacuna'));
     }
 
     /**
@@ -77,9 +79,11 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, vacuna $vacuna)
+    public function update(Request $request, $id)
     {
-        //
+        $datosVacuna = request()->except(['_token','_method']);
+        vacuna::where('id','=',$id)->update($datosVacuna);
+        return \redirect('/vacuna');
     }
 
     /**
