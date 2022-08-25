@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\citaVacuna;
 use App\Models\mascota;
 use App\Models\propietario;
+use App\Models\recordatorio;
 use App\Models\vacuna;
 use Illuminate\Support\Facades\DB;
 
@@ -26,9 +27,13 @@ class gestionCitasVacunacionController extends Controller
 
         $vacuna = vacuna::find($idcitaVacuna->vacuna_id);
 
+        $idRecordatorio = recordatorio::find($idcitaVacuna->recordatorio_id);
+        //return ($idRecordatorio);
 
 
-        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas', 'vacuna', 'idcitaVacuna'));
+
+
+        return view('citasvacunas.gestionCitasVacunas.index', compact('mascotas', 'vacuna', 'idcitaVacuna', 'idRecordatorio'));
     }
 
     /**

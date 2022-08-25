@@ -29,11 +29,11 @@
             <!--El no eterno Katya-->
             @include('layouts.notificacion')
 
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
-            @endif
+            @endif --}}
             <div id="guardadocorrectamente"></div>
             <div id="editadocorrectamente"></div>
             <div id="eliminadocorrectamente"></div>
@@ -44,8 +44,8 @@
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                  Launch
-                                </button>-->
+                                      Launch
+                                    </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"

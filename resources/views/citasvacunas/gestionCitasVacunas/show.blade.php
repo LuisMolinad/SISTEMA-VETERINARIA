@@ -89,8 +89,8 @@
         $(document).ready(function() {
             $('#citaVacuna').DataTable({
                 "lengthMenu": [
-                    [5, 10, 25, -1],
-                    [5, 10, 25, "Todos"]
+                    [10, 20, 30, -1],
+                    [10, 20, 30, "Todos"]
                 ],
 
                 "language": {
