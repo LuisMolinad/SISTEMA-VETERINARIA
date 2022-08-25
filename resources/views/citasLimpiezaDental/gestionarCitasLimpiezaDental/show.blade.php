@@ -6,6 +6,7 @@ Consultar Cita Limpieza dental
 
 @section('librerias')
     <link rel="stylesheet" href=" {{ asset('css/mascota_consultar.css') }} ">
+    <script src=" {{asset('js/recordatorio.js')}} "></script>
 @endsection
 
 @section('header')
@@ -44,10 +45,21 @@ Consultar Cita Limpieza dental
         </section>
 
         <section class="caracteristicas_especiales">
+       
             <article>
+                @if ($recordatorio != null)
                 <h4 class="header4">Recordatorio</h4>
-                <p> Mensaje de recordatorio </p>
+                <p>
+                @php
+                    echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));   
+                @endphp
+                </p>
+                <p>Dias de Antipación: {{$recordatorio->dias_de_anticipacion}}</p>
+                @endif
+                
             </article>
+            
+
             <article>
                 <h4 class="header4">Contacto</h4>
                 <ul>

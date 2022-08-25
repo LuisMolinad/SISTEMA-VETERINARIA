@@ -102,9 +102,35 @@ class CitaLimpiezaDentalController extends Controller
        
         $mascotas = mascota::find($id);
         $idcitaLimpiezaDental = citaLimpiezaDental::find($citaLimpieza_id);
+        $recordatorio = recordatorio::where('id', $idcitaLimpiezaDental->recordatorio_id)->first();
 
-        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('mascotas', 'idcitaLimpiezaDental'));
+
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('mascotas', 'idcitaLimpiezaDental', 'recordatorio'));
 
     }
+
+
+    /*public function showRecordatorios($id){
+
+        //Obtenemos la citas de LimpiezaDental
+        $citaLimpieza = citaLimpiezaDental::FindOrFail($id);
+        
+
+        $datos=[
+            'citaLimpieza' => citaLimpiezaDental::where('id',$id)->get(),
+            'recordatorios' => $recordatorio
+        ];
+
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('datos'));
+
+    }*/
+
+    /*
+    public function editRecordatorioLimpieza($id){
+        //Recupero todos los recordatorios de la base de datos
+        $recordatorio = recordatorio::find($id);
+        return response()->json($recordatorio);
+    }
+    */
 
 }
