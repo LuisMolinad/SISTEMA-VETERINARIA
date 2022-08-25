@@ -33,6 +33,7 @@ GESTIONAR VACUNAS
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -73,6 +74,13 @@ GESTIONAR VACUNAS
                                 <button onclick="return alerta_habilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary" style="width:110px">Habilitar</button>
                             </form>
                         @endif
+                    </td>
+                    <td> 
+                        <form id="BorrarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
+                            @csrf
+                            {{method_field('DELETE')}}
+                            <button onclick="return alerta_eliminar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

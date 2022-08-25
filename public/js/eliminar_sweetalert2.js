@@ -341,3 +341,59 @@ function alerta_habilitar_vacuna( nombre, id){
 
     return false;
 }
+
+function alerta_eliminar_vacuna( nombre, id){
+    var formulario = $('#BorrarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar la vacuna ' + nombre + '?',
+        text: "¡No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borrar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('/consultarCitasVacunaPorIdVacuna/'+id)
+            .then(response=>{
+                return response.json();
+            })
+            .then(response=>{
+                var itemArray=[];
+                response.forEach(element=>{
+                    itemArray.push(element.telefonoServicio);
+                });
+                return itemArray
+            })
+            .then(itemArray=>{
+                if(itemArray.length==1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existe una cita creada de la vacuna '+nombre,
+                    'error'
+                )
+            }
+            else if(itemArray.length>1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existen '+itemArray.length+' citas creadas de la vacuna '+nombre,
+                    'error'
+                )
+                }
+                else{
+                    Swal.fire(
+                        'Se eliminará',
+                        'La vacuna '+nombre+' será eliminada',
+                        'success'
+                    ).then((result)=>{
+                        formulario.submit();
+                    })
+                }
+            })
+        }
+      })
+
+    return false;
+}

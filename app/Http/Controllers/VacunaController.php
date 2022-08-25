@@ -106,8 +106,9 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function destroy(vacuna $vacuna)
+    public function destroy($id)
     {
-        //
+        Vacuna::destroy($id);
+        return redirect('/vacuna')->with('danger','Se ha eliminado la vacuna correctamente');
     }
 }

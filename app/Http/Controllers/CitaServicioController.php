@@ -119,9 +119,9 @@ class CitaServicioController extends Controller
         return response()->json($citaServicio);
     }
 
+    //Función para consultar citas de un servicio especifico
     public function consultarCitasServicioPorIdServicio($id){
         $citasServicio = citaServicio::where('tipoServicio_id',$id)->get();
-        // return json_encode($citasServicio);
         return response()->json($citasServicio);
     }
 }
