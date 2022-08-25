@@ -21,7 +21,6 @@ class VacunaSeeder extends Seeder
                     'descripcionVacuna'=> 'Vacuna contra la rabia obligatoria',
                     'tiempoEntreDosisDia'=> 365,
                     'disponibilidadVacuna' => 1
-
                 ],
                 [
                     'nombreVacuna'=> 'Parvovirus',
@@ -34,6 +33,12 @@ class VacunaSeeder extends Seeder
                     'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
                     'tiempoEntreDosisDia'=> 365,
                     'disponibilidadVacuna' => 1
+                ],
+                [
+                    'nombreVacuna'=> 'Inmunodeficiencia viral felina (VIF)',
+                    'descripcionVacuna'=> 'Vacuna contra la inmunodeficiencia viral felina. Actualmente, la vacuna ha dejeado de ser usada a nivel mundial, debido se detectan anticuerpos en animales que han recibido esta vacuna',
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna'=>'0',
                 ],
             ];
 
