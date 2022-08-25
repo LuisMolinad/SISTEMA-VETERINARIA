@@ -18,7 +18,7 @@ class CreateCitaLimpiezaDentalsTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('start');
             //Establezco la relación con la tabla mascota
-            $table->foreignId('mascota_id')->constrained('mascotas');
+            $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
             $table->string('groupId')->nullable();
             $table->string('title',20);
             $table->string('end')->nullable();

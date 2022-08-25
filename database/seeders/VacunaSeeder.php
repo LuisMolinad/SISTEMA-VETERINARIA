@@ -19,18 +19,21 @@ class VacunaSeeder extends Seeder
                 [
                     'nombreVacuna'=> 'Rabia',
                     'descripcionVacuna'=> 'Vacuna contra la rabia obligatoria',
-                    'tiempoEntreDosisDia'=> 365
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna' => 1
 
                 ],
                 [
                     'nombreVacuna'=> 'Parvovirus',
                     'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
-                    'tiempoEntreDosisDia'=> 365
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna' => 1
                 ],
                 [
                     'nombreVacuna'=> 'Moquillo-Hepatitis',
                     'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
-                    'tiempoEntreDosisDia'=> 365
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna' => 1
                 ],
             ];
 
