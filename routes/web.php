@@ -140,6 +140,7 @@ Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middle
 
 /*------------------------------------- Rutas de vacunas ------------------------------------------------------- */
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
+Route::patch('/vacuna/{id}/{accion}',[VacunaController::class,'update'])->name('Vacuna.update')->middleware('auth');
 /*------------------------------------- Rutas de servicios ------------------------------------------------------- */
 Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
 //Recuperar citas de servicios para eliminar el tipo de servicio

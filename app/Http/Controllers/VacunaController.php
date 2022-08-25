@@ -42,7 +42,7 @@ class VacunaController extends Controller
     {
         $datosVacuna = request()->except('_token');
         Vacuna::insert($datosVacuna);
-        return redirect('/vacuna');
+        return redirect('/vacuna')->with('success', 'Vacuna creada correctamente');;
     }
 
     /**
@@ -79,11 +79,25 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $accion)
     {
         $datosVacuna = request()->except(['_token','_method']);
         vacuna::where('id','=',$id)->update($datosVacuna);
-        return \redirect('/vacuna');
+        // if ($accion == 0){
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // } elseif ($accion == 1){
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // } else {
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // }
+        // return redirect('/vacuna')->with('success',$mensaje);
+        if ($accion == "editar"){
+            return redirect('/vacuna')->with('warning','Se ha editado la vacuna correctamente');
+        } elseif ($accion == "deshabilitar"){
+            return redirect('/vacuna')->with('warning','Se ha deshabilitado la vacuna correctamente');
+        } else {
+            return redirect('/vacuna')->with('warning','Se ha habilitado la vacuna correctamente');
+        }
     }
 
     /**

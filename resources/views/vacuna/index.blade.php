@@ -7,6 +7,10 @@ GESTIONAR VACUNAS
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('header')
@@ -14,10 +18,11 @@ GESTIONAR VACUNAS
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">       
-            <div class="boton crear container_btn_hend">
+    @include('layouts.notificacion')
+    <div class="container-fluid contenedor">   
+        <div class="boton crear container_btn_hend">
             <a href="/vacuna/create"><button type="button" class="btn btn-success boton_crear">Crear vacuna</button></a>
-            </div>
+        </div>
         <table class="table table-striped" style="width:100%" id="vacuna">
             <thead class="table-dark table-header">
                 <tr>
@@ -25,7 +30,6 @@ GESTIONAR VACUNAS
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Tiempo entre dosis</th>
-                <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -51,6 +55,25 @@ GESTIONAR VACUNAS
                     <td>
                         <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                      </td>
+                    <td>
+                        @if($vacuna->disponibilidadVacuna == True)
+                            {{-- <form id="DeshabilitarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id."deshabilitar")}}" method="post"> --}}
+                            <form id="DeshabilitarForm{{$vacuna->id}}" action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"deshabilitar"])}}" method="post">
+                                    @csrf
+                                {{method_field('PATCH')}}
+                                <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="0">
+                                <button onclick="return alerta_deshabilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary">Deshabilitar</button>
+                            </form>
+                        @else
+                            {{-- <form id="HabilitarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id."habilitar")}}" method="post"> --}}
+                            <form id="HabilitarForm{{$vacuna->id}}" action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"habilitar"])}}" method="post">                            
+                                @csrf
+                                {{method_field('PATCH')}}
+                                <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="1">
+                                <button onclick="return alerta_habilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary" style="width:110px">Habilitar</button>
+                            </form>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -287,3 +287,57 @@ function alerta_eliminar_cirugia( nombre,id){
 
     return false;
 }
+
+function alerta_deshabilitar_vacuna( nombre, id){
+    var formulario = $('#DeshabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea deshabilitar la vacuna ' + nombre + '?',
+        text: "No se eliminarán las citas creadas de esta vacuna, pero ya no podrá crearlas.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, deshabilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se deshabilitará!',
+                'La vacuna '+nombre+' será deshabilitada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+        }
+      })
+
+    return false;
+}
+
+function alerta_habilitar_vacuna( nombre, id){
+    var formulario = $('#HabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea habilitar la vacuna ' + nombre + '?',
+        text: "Al habilitarla, podrá crear citas de esta vacuna.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, habilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se habilitará!',
+                'La vacuna '+nombre+' será habilitada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+        }
+      })
+
+    return false;
+}

@@ -5,7 +5,7 @@ Nueva vacuna
 @endsection
 
 @section('header')
-    <h1 class="header">Crear tipo de vacuna</h1>
+    <h1 class="header">Crear vacuna</h1>
 @endsection
 
 @section('content')
@@ -40,6 +40,7 @@ Nueva vacuna
                 <div class="form-group">
                     <label for="tiempoEntreDosisDia"><strong>Tiempo entre dósis</strong></label>
                     <input type="number" min="1" class="form-control" id="tiempoEntreDosisDia" name="tiempoEntreDosisDia" placeholder="Ingrese el tiempo entre dosis de la vacuna en días" required>
+                    <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="1">
                     <div class="valid-feedback">
                         Dato válido
                     </div>
