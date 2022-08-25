@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\citaCirugia;
+use App\Models\citaLimpiezaDental;
 use App\Models\citaVacuna;
 use App\Models\mascota;
 use App\Models\propietario;
@@ -105,7 +106,7 @@ class RecordatorioController extends Controller
         ];
 
         recordatorio::where('id', $id)->update($datosRecordatorio);
-        return redirect('/recordatorio?objeto=recordatorio&accion=edito');
+        return redirect('/recordatorio')->with('warning', 'El recordatorio se ha editado correctamente');
     }
 
     /**
@@ -128,12 +129,13 @@ class RecordatorioController extends Controller
         try{
             citaVacuna::where('recordatorio_id', $id)->update($datosRecordatorio);
             citaCirugia::where('recordatorio_id', $id)->update($datosRecordatorio);
+            citaLimpiezaDental::where('recordatorio_id', $id)->update($datosRecordatorio);
         }
         catch(Exception $e){
             $e->getMessage();
         }
 
-        return redirect('/recordatorio?objeto=recordatorio&accion=elimino');
+        return redirect('/recordatorio')->with('danger', 'El recordatorio se ha eliminado correctamente');
     }
 
     public function enviar_mensaje(Request $request){
@@ -281,22 +283,25 @@ class RecordatorioController extends Controller
     function eliminar_de_un_jalon(){
 
         try{
+
+            $contador = 0;
+
             //*Eliminar mensajes enviados
             $mensajes_a_eliminar_enviados = recordatorio::all()->where('estado', '=', '1');
             foreach($mensajes_a_eliminar_enviados as $id){
             recordatorio::destroy($id->id);
+            
+            $contador +=1;
             }
 
-            //*Eliminar mensajes no enviados
-            /*$mensajes_a_eliminar_no_enviados = recordatorio::all()->where('estado', '=', '-1');
-            foreach($mensajes_a_eliminar_no_enviados as $id){
-                recordatorio::destroy($id->id);
-            }*/
+            if($contador == 0){
+                return redirect('/recordatorio')->with('info', 'No hay recordatorios para borrar');    
+            }
 
-            return redirect('/recordatorio')->with('dark', 'Los recordatorios enviados se han borrado satisfactoriamente');
+            return redirect('/recordatorio')->with('info', 'Los recordatorios enviados se han borrado satisfactoriamente');
         }
         catch (Exception $e){
-            return redirect('/recordatorio')->with('dark', 'Los recordatorios no se han borrado');
+            return redirect('/recordatorio')->with('info', 'Los recordatorios no se han borrado');
         }
     }
 
@@ -362,6 +367,8 @@ class RecordatorioController extends Controller
             ];
     
             recordatorio::where('id', $id)->update($datosRecordatorio);
+
+            return redirect('/recordatorio')->with('info', 'El mensaje se reenvio correctamente');
         }
         else{
             $datosRecordatorio = 
@@ -370,10 +377,12 @@ class RecordatorioController extends Controller
             ];
     
             recordatorio::where('id', $id)->update($datosRecordatorio);
+
+            return redirect('/recordatorio')->with('info', 'Hubo un error en el reenvio del mensaje, favor revisar datos');
         }
 
         curl_close($ch);
 
-        return redirect('/recordatorio');
+        //return redirect('/recordatorio');
     }
 }

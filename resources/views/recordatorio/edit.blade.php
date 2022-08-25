@@ -109,6 +109,11 @@ Editar recordatorio
                         <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion" onchange="actualizar_mensaje_al_crear();" onclick="actualizar_mensaje_al_crear_vacuna()">
                             <option 
                             <?php
+                                if($informacion['recordatorio']->dias_de_anticipacion == 1) {echo 'selected';}
+                            ?> 
+                            value="1">1 dias de anticipacion</option>
+                            <option 
+                            <?php
                                 if($informacion['recordatorio']->dias_de_anticipacion == 2) {echo 'selected';}
                             ?> 
                                 value="2">2 dias de anticipacion</option>
@@ -117,11 +122,6 @@ Editar recordatorio
                                 if($informacion['recordatorio']->dias_de_anticipacion == 3) {echo 'selected';}
                             ?> 
                             value="3">3 dias de anticipacion</option>
-                            <option 
-                            <?php
-                                if($informacion['recordatorio']->dias_de_anticipacion == 1) {echo 'selected';}
-                            ?> 
-                            value="1">1 dias de anticipacion</option>
                         </select>
                         <div class="invalid-feedback"> <!--Validacion -->
                             Por favor ingrese información sobre el concepto de cirugía
