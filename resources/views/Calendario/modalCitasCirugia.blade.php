@@ -1,6 +1,6 @@
 <!-- Modal unicamente para mostrar informacion, este se actualizara para el editar/borrar-->
 <div class="modal fade" id="eventoconsultacirugias" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Datos Cita Cirugia</h5>
