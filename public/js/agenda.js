@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
         //events:"http://127.0.0.1:8000/mostrar",
         //events: citaServicios,
 
+        //Para que no de el error pasada las 11:00 pm
+        nextDayThreshold: '23:00:00',
+
         //Capturamos las citas de servicios, citas de vacunacion y citas de cirugias en el calendario
         eventSources: [
             //Colocar eventos
@@ -557,6 +560,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
                 'La cita de servicio ha sido actualizada exitosamente!</div>';
 
+                document.body.style.overflow="auto";
+
                 //Para que aparezca el mensaje una vez editado
             $("#editadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
                 $("#editadocorrectamente").slideUp(500);
@@ -571,9 +576,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Funcion para mostrar el modal de editar
     $(document).on('click', '#btniraeditar', function() {
+        document.body.style.overflow="hidden";
         $("#eventoeditar").modal("show");
         $("#eventoconsulta").modal("hide");
-        
+
+    });
+
+     //Funcion para mostrar el scroll si no se modifica.
+     $(document).on('click', '#btncerrarEdit', function() {
+        document.body.style.overflow="auto";
     });
 
     function guardarvalidado(){
