@@ -109,28 +109,4 @@ class CitaLimpiezaDentalController extends Controller
 
     }
 
-
-    /*public function showRecordatorios($id){
-
-        //Obtenemos la citas de LimpiezaDental
-        $citaLimpieza = citaLimpiezaDental::FindOrFail($id);
-        
-
-        $datos=[
-            'citaLimpieza' => citaLimpiezaDental::where('id',$id)->get(),
-            'recordatorios' => $recordatorio
-        ];
-
-        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('datos'));
-
-    }*/
-
-    /*
-    public function editRecordatorioLimpieza($id){
-        //Recupero todos los recordatorios de la base de datos
-        $recordatorio = recordatorio::find($id);
-        return response()->json($recordatorio);
-    }
-    */
-
 }

@@ -44,13 +44,13 @@
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                      Launch
-                                    </button>-->
+                                              Launch
+                                            </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable " role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Agendar Cita de Servicio</h5>
@@ -156,7 +156,7 @@
         <!-- Modal unicamente para mostrar informacion y para el borrar-->
         <div class="modal fade" id="eventoconsulta" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Datos Cita</h5>
@@ -260,7 +260,7 @@
         <!-- Modal unicamente actualizar-->
         <div class="modal fade" id="eventoeditar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Editar Cita de Servicio</h5>
@@ -271,7 +271,7 @@
                     <div class="modal-body">
                         <!--Coloco los campos de llenado -->
 
-                        <form action="" id="editarServicio">
+                        <form action="" id="editarServicio" name="editarServicio">
                             <!-- Se declara esta accion para poder capturar los datos del formulario -->
                             <div id="validareditaragendar"></div>
                             {!! csrf_field() !!}
@@ -357,11 +357,10 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="btncerrarEdit">Cerrar</button>
                         <button type="button" class="btn btn-success" id="btneditar">Guardar</button>
                         <!--<button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>-->
-
-
                     </div>
                 </div>
             </div>

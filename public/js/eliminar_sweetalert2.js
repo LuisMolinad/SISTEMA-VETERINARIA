@@ -6,7 +6,7 @@
 Esta mostrara un mensaje que consultara si quiere eliminar el expediente, si el usuario lo acepta se borrara, de lo contrario no.
 */
 
-const { Warning } = require("postcss");
+//const { Warning } = require("postcss");
 
 function alerta_eliminar_propietario( nombre, id){
     var formulario = $('#EditForm'+id);
@@ -85,6 +85,65 @@ function alerta_eliminar_propietario( nombre, id){
                     });
                 }
             })
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_general( nombre, id){
+    var formulario = $('#EditForm'+id);
+    
+    
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar a ' + nombre + '?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El registro de ' + nombre + ' sera eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_recordatorio(id){
+    var formulario = $('#EditForm'+id);
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar el recordatorio?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El recordatorio sera eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+                console.log('a');
+            });
+
         }
       })
 
@@ -282,6 +341,116 @@ function alerta_eliminar_cirugia( nombre,id){
                 formulario.submit();
             });
 
+        }
+      })
+
+    return false;
+}
+
+function alerta_deshabilitar_vacuna( nombre, id){
+    var formulario = $('#DeshabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea deshabilitar la vacuna ' + nombre + '?',
+        text: "No se eliminarán las citas creadas de esta vacuna, pero ya no podrá crearlas.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, deshabilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se deshabilitará!',
+                'La vacuna '+nombre+' será deshabilitada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+        }
+      })
+
+    return false;
+}
+
+function alerta_habilitar_vacuna( nombre, id){
+    var formulario = $('#HabilitarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea habilitar la vacuna ' + nombre + '?',
+        text: "Al habilitarla, podrá crear citas de esta vacuna.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, habilitar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                '¡Se habilitará!',
+                'La vacuna '+nombre+' será habilitada.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_vacuna( nombre, id){
+    var formulario = $('#BorrarForm'+id);
+    
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar la vacuna ' + nombre + '?',
+        text: "¡No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borrar',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('/consultarCitasVacunaPorIdVacuna/'+id)
+            .then(response=>{
+                return response.json();
+            })
+            .then(response=>{
+                var itemArray=[];
+                response.forEach(element=>{
+                    itemArray.push(element.telefonoServicio);
+                });
+                return itemArray
+            })
+            .then(itemArray=>{
+                if(itemArray.length==1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existe una cita creada de la vacuna '+nombre,
+                    'error'
+                )
+            }
+            else if(itemArray.length>1){
+                Swal.fire(
+                    'No se puede eliminar',
+                    'Existen '+itemArray.length+' citas creadas de la vacuna '+nombre,
+                    'error'
+                )
+                }
+                else{
+                    Swal.fire(
+                        'Se eliminará',
+                        'La vacuna '+nombre+' será eliminada',
+                        'success'
+                    ).then((result)=>{
+                        formulario.submit();
+                    })
+                }
+            })
         }
       })
 

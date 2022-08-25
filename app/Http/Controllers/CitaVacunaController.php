@@ -184,4 +184,10 @@ class CitaVacunaController extends Controller
     {
         //
     }
+
+    //Función para consultar citas de una vacuna especifica
+    public function consultarCitasVacunaPorIdVacuna($id){
+        $citasVacuna = citaVacuna::where('vacuna_id',$id)->get();
+        return response()->json($citasVacuna);
+    }
 }

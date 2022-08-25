@@ -20,6 +20,7 @@ class CreateVacunasTable extends Migration
             $table->string('nombreVacuna',20);
             $table->string('descripcionVacuna',50);
             $table->integer('tiempoEntreDosisDia',0,360);
+            $table->boolean('disponibilidadVacuna');
         });
     }
 
