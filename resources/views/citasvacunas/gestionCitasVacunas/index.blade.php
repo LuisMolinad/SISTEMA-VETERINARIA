@@ -46,12 +46,35 @@
                 </ul>
             </article>
         </section>
+        @if ($idRecordatorio != null)
+            <section class="consultar_recordatorio">
+                <article>
+
+                    <h4 class="header4">Recordatorio</h4>
+
+                    <li><strong>Fecha de programada del recordatorio: </strong>
+                        {{ $idRecordatorio->fecha }}</li>
+                    <li><strong>Días de anticipación para el recordatorio: </strong>
+                        {{ $idRecordatorio->dias_de_anticipacion }}
+
+                    </li>
+
+                    <p><strong>Mensaje a enviar:</strong></p>
+                    <p><strong>Veterinaria Pet Paradise le informa</strong></p>
+                    <p>Que la cita para <strong>{{ $mascotas->nombreMascota }} </strong> de
+                        <strong>{{ $vacuna->nombreVacuna }}</strong> esta
+                        agendada
+                        para
+                        la fecha y hora <span> <strong>{{ $idcitaVacuna->start }} </strong></span>. En caso de algun
+                        incoveniente favor
+                        comunicarse al
+                        whatsapp +50370959194.<br><br>Att: Veterinaria Pets Paradise
+                    <p>
+                </article>
+            </section>
+        @endif
 
         <section class="caracteristicas_especiales">
-            <article>
-                <h4 class="header4">Recordatorio</h4>
-                <p> Mensaje de recordatorio </p>
-            </article>
             <article>
                 <h4 class="header4">Contacto</h4>
                 <ul>
@@ -61,5 +84,8 @@
                 </ul>
             </article>
         </section>
-    </div>
-@endsection
+        <div style="padding: 1cm">
+            <a type="button" class="btn btn-secondary"
+                href="{{ route('gestionVacuna.show', $mascotas->id) }}">Regresar</a>
+        </div>
+    @endsection

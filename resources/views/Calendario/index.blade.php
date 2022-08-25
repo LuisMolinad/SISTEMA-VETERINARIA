@@ -29,13 +29,11 @@
             <!--El no eterno Katya-->
             @include('layouts.notificacion')
 
-            <!--
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
-            @endif
-            -->
+            @endif --}}
             <div id="guardadocorrectamente"></div>
             <div id="editadocorrectamente"></div>
             <div id="eliminadocorrectamente"></div>
@@ -46,8 +44,8 @@
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                  Launch
-                                </button>-->
+                                              Launch
+                                            </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
@@ -157,7 +155,7 @@
 
         <!-- Modal unicamente para mostrar informacion y para el borrar-->
         <div class="modal fade" id="eventoconsulta" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-            aria-hidden="true" >
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -251,7 +249,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="btniraeditar">Editar</button>
                         <button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                     </div>
                 </div>
@@ -359,7 +357,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btncerrarEdit">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="btncerrarEdit">Cerrar</button>
                         <button type="button" class="btn btn-success" id="btneditar">Guardar</button>
                         <!--<button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>-->
                     </div>
