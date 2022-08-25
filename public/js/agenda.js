@@ -194,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         //Desactivamos para que el usuario no pueda editar
                         $("#eventoconsulta").modal("show");
+                        document.body.style.overflow="hidden";
                     })
                     .catch((error) => {
                         if (error.response.data);
