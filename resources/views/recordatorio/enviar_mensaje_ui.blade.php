@@ -12,6 +12,9 @@ Enviar mensaje
 @endsection
 
 @section('content')
+
+@include('layouts.notificacion')
+
 <div class="container">
     <form action="{{url('/recodatorio/enviar/')}}" method="GET" enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="form-group">
