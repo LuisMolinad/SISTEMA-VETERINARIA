@@ -18,6 +18,7 @@ use App\Models\mascota;
 
 //Controladores para SPATIE
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
@@ -190,6 +191,6 @@ Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimp
 
 
 //Ruta Receta postoperatoria 
-Route::get('/citacirugia/crearRecetaPostoperatoria/{id}', [App\Http\Controllers\RecetasPostoperatoriaController::class, 'mostrar'])->name('recetaPost.mostrar')->middleware('auth');
-//Route::get('RecetaPostoperatoriaPDF/{id}', [RecetasPostoperatoriaController::class, 'pdf'])->name('RecetaPostoperatoria.pdf')->middleware('auth');
-//Route::get('/imprimirRecetaPost/{id}', [RecetasPostoperatoriaController::class, 'pdf'])->name('RecetaPost.pdf')->middleware('auth');
+//Route::get('/citacirugia/crearRecetaPostoperatoria/{id}', [App\Http\Controllers\RecetasPostoperatoriaController::class, 'mostrar'])->name('recetaPost.mostrar')->middleware('auth');
+Route::get('/citacirugia/crear_receta_postoperatoria/{id}', [RecetasPostoperatoriaController::class, 'create']);
+Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::class, 'guardar_bd']);

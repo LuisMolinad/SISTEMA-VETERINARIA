@@ -12,29 +12,37 @@ use PDF;
 
 class RecetasPostoperatoriaController extends Controller
 {
-    public function mostrar($id)
-    {
-        $receta = RecetasPostoperatoria::where('id',$id)->get();
-        $cita = citaCirugia::FindOrFail($receta);
-        $mascota = mascota::where('id', $cita->mascota_id)->with('propietario')->get();
 
-        $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
+    public function create($id){
+
+        $cita_cirugia = citaCirugia::where('id', $id)->first();
+        
+        $datos = [
+            'mascota'=> mascota::where('id', $cita_cirugia->mascota_id )->first(),
+            'cita_cirugia'=> $cita_cirugia
+        ];
+
+        return view('RecetaPostoperatoria.create', compact('datos'));
+    }
+
+    public function guardar_bd(Request $request){
 
         $datos = [
-            'mascotas' => $mascota,
-            'citaCirugias' => citaCirugia::where('id',$id)->get(),
-            'propietarios' => $propietario,
-            'receta' => RecetasPostoperatoria::where('id',$id)->get()
+            'pesoReceta' => request('pesoReceta'),
+            'tratamientoAplicarReceta' => request('tratamientoAplicarReceta')
         ];
-        
-       return view('RecetaPost.create', compact('datos','cita'));
 
+        RecetasPostoperatoria::insert($datos);
 
-        // $mascotas=mascota::with('propietario')->findOrFail($id);
-     
-        // return view('RecetaPostoperatoria.create',compact('mascotas'));
+        $datos_cirugia = [
+            'recetaPost_id'=> RecetasPostoperatoria::max('id')
+        ];
 
+        citaCirugia::where('id', request('cita_id'))->update($datos_cirugia);
+
+        return redirect('/')->with('success', 'Receta post operatoria creada con exito');
     }
+
     public function pdf($id)
     {
         $mascotas = mascota::FindOrFail($id);
