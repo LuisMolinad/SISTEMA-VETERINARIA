@@ -101,7 +101,7 @@ class CitaCirugiaController extends Controller
         //Finaliza recordatorio
 
         //return redirect('/?objeto=cita&accion=creo');
-        return redirect('/')->with('success', 'Cita creada correctamente');
+        return redirect('/')->with('success', 'Cita de cirugía creada correctamente');
     }
 
     /**
@@ -164,12 +164,25 @@ class CitaCirugiaController extends Controller
     public function update(Request $request, $id)
     {
 
+        $datosCitaCirugia = 
+        [
+            'id' => $id,
+            'conceptoCirugia' => request('conceptoCirugia'),
+            'start' => request('start'),
+            'recomendacionPreoOperatoria' => request('recomendacionPreoOperatoria'),
+        ];
+        citaCirugia::where('id', $id)->update($datosCitaCirugia);
 
-        $datosCirugia = request()->except(['_token', '_method']);
-        citaCirugia::where('id','=',$id)->update($datosCirugia);
-        
-        return redirect('/citacirugia/gestionarCirugia/');
-
+        $mascota_id=citaCirugia::where('id',$id)->get('mascota_id')->first();
+        // $datos =  [
+        //     $mascota_id = request('id'),
+        //     $datos = citaCirugia::all()->where('mascota_id', $mascota_id),
+        //     $mascotas = mascota::find($id),
+        // ];
+       // return redirect('GestionCirugia.update');
+       //Me falta que me mande a la vista
+       return redirect('citacirugia/index/gestionarCirugia/'.$mascota_id->mascota_id)->with('warning', 'Cita de cirugía ha sido editada correctamente');
+      
 
     }
 
@@ -185,20 +198,14 @@ class CitaCirugiaController extends Controller
        $registro = citaCirugia::where('id',$id)->get('mascota_id');
 
         citaCirugia::destroy($id);
-      //return redirect('/citacirugia/gestionarCirugia/record?id='. $registro[0]->mascota_id.'&objeto=cita&accion=elimino');
-    return redirect('/citacirugia/index/gestionarCirugia/'. $registro[0]->mascota_id)->with('danger', 'Cita de cirugía eliminada correctamente');
+        return redirect('/citacirugia/index/gestionarCirugia/'. $registro[0]->mascota_id)->with('danger', 'Cita de cirugía eliminada correctamente');
     }
 
     public function gestionar_cirugias_por_mascota($id){
-       // $mascotas = mascota::FindOrFail($id);
         $mascota_id = request('id');
         $datos = citaCirugia::all()->where('mascota_id', $mascota_id);
-       //return view('Cirugia.gestionar_cirugias.index', compact('datos','mascotas'));
-       // return view('Cirugia.gestionar_cirugias.index', compact('mascotas'));
-
-       $mascotas = mascota::find($id);
-       //return ($mascotas);
-       return view('Cirugia.gestionar_cirugias.index', compact('mascotas','datos'));
+        $mascotas = mascota::find($id);
+        return view('Cirugia.gestionar_cirugias.index', compact('mascotas','datos'));
 
 
     }
@@ -224,8 +231,8 @@ class CitaCirugiaController extends Controller
             'citaCirugias' => citaCirugia::where('id',$id)->get(),
             'propietarios' => $propietario
         ];
-
-        return view('Cirugia.gestionar_cirugias.edit', compact('datos'));
+        
+       return view('Cirugia.gestionar_cirugias.edit', compact('datos','cita'));
 
     }
 }

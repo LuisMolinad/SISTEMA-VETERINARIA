@@ -23,7 +23,8 @@ Editar cita de cirugía
 @endsection
 @section('content')
 <div class="container">
-    <form action="{{(url('/citacirugia/'))}}"  method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+<form action="{{route('GestionCirugia.update',$cita->id)}}"
+ method="POST" class="needs-validation" novalidate>
         @csrf
         
         <fieldset class="fieldset fieldset-no-linea">
