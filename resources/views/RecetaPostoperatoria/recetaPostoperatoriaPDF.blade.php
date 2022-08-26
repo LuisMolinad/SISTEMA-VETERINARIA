@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receta postoperatoria de NOMBRE</title>
+    <title>Receta postoperatoria de {{$nombre}}</title>
 </head>
 <body>
   
@@ -26,17 +26,17 @@
          <br> 
 
          <p align="right">
-                 Fecha:   
+                 Fecha:   {{$fecha}}
          </p> 
          
          <p align="justify">
-                Paciente: nombre del paciente                   Peso:  peso lb
+                Paciente: {{$nombre}}                   Peso: {{$datos['pesoReceta']}}
          
                 <br>
                 <br>
        
                 R/
-                TEXTOOOOO
+                {{$datos['tratamientoAplicarReceta']}}
 
 
                 <br>

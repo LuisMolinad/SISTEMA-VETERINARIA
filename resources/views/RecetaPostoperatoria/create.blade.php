@@ -50,6 +50,7 @@ Receta postoperatoria
 
                                 <center> <h5>Información de cirugía</h5> </center>
 
+                                <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <strong>   <label for="ConceptoCirugia">Concepto de cirugía</label></strong>
                                         <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" readonly="readonly"> {{$datos['cita_cirugia']->conceptoCirugia}} </textarea>
@@ -62,11 +63,12 @@ Receta postoperatoria
                                         @endphp" readonly="readonly">
 
                                     </div>
+                                </div>
 
                                 <br>
                                 <br>
                                 
-                                <div class="form-group col-md-6"  style="background-color:#e1dff4">
+                                <div class="form-group col-md-12"  style="background-color:#e1dff4">
                                 <br>
                                     <strong>   <label for="tratamientoAplicarReceta" style="color:black">Tratamiento a aplicar</label></strong>
                                     <textarea class="form-control" id="tratamientoAplicarReceta" name="tratamientoAplicarReceta" rows="3" maxlength="100" placeholder="Tratamiento para el paciente"  required></textarea>
@@ -78,7 +80,7 @@ Receta postoperatoria
                                         Dato válido sobre el tratamiento a aplicar
                                 </div>
                                 <br>
-                                <div class="form-group col-md-6"  style="color:black">
+                                <div class="form-group col-md-12"  style="color:black">
                                     <strong> <label for="pesoReceta" style="color:black">Peso</label></strong>
                                     <input type="number" class="form-control" id="pesoReceta" maxlength="11" name="pesoReceta"
                                         style="width: 100px;" placeholder="lb" min="1" required>

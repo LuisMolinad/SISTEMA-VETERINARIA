@@ -15,7 +15,7 @@ class CreateRecetasPostoperatoriasTable extends Migration
     {
         Schema::create('recetas_postoperatorias', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            //$table->timestamps();
             $table->string('tratamientoAplicarReceta', 255);
             $table->integer('pesoReceta')->nullable(true);
         });

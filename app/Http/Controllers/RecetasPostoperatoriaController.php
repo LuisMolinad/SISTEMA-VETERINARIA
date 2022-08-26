@@ -19,7 +19,7 @@ class RecetasPostoperatoriaController extends Controller
         
         $datos = [
             'mascota'=> mascota::where('id', $cita_cirugia->mascota_id )->first(),
-            'cita_cirugia'=> $cita_cirugia
+            'cita_cirugia'=> $cita_cirugia,
         ];
 
         return view('RecetaPostoperatoria.create', compact('datos'));
@@ -29,8 +29,9 @@ class RecetasPostoperatoriaController extends Controller
 
         $datos = [
             'pesoReceta' => request('pesoReceta'),
-            'tratamientoAplicarReceta' => request('tratamientoAplicarReceta')
+            'tratamientoAplicarReceta' => request('tratamientoAplicarReceta'),
         ];
+
 
         RecetasPostoperatoria::insert($datos);
 
@@ -40,7 +41,13 @@ class RecetasPostoperatoriaController extends Controller
 
         citaCirugia::where('id', request('cita_id'))->update($datos_cirugia);
 
-        return redirect('/')->with('success', 'Receta post operatoria creada con exito');
+        //Variables externas a pasar
+        $nombre = request('nombre_mascota');
+        $fecha = date('d-m-Y', time());
+
+        //return redirect('/')->with('success', 'Receta post operatoria creada con exito');
+        $pdf = PDF::loadView('RecetaPostoperatoria.recetaPostoperatoriaPDF', compact('datos', 'nombre', 'fecha'));
+        return $pdf->stream();
     }
 
     public function pdf($id)
