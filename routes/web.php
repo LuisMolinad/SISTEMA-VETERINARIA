@@ -81,7 +81,7 @@ Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Ciru
 
 Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
 Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('citaVacuna.mostrar')->middleware('auth');
-Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
+Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('citaVacuna.store')->middleware('auth');
 
 //Gestionar citas vacunacion
 Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class, 'show'])->name('gestionVacuna.show')->middleware('auth');
@@ -130,8 +130,8 @@ Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');
 Route::get('/mascota/consultar_por_propietario/{id}', [MascotaController::class, 'mostrar_por_propietario'])->middleware('auth');
 Route::get('/mascota/create/{id}', [MascotaController::class, 'crear']);
-Route::get('/mascota/msg/editar',[MascotaController::class, 'mostrar_editar']);
-Route::get('/mascota/msg/guardar',[MascotaController::class, 'mostrar_guardar']);
+Route::get('/mascota/msg/editar', [MascotaController::class, 'mostrar_editar']);
+Route::get('/mascota/msg/guardar', [MascotaController::class, 'mostrar_guardar']);
 
 //Expediente
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
@@ -140,13 +140,13 @@ Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middle
 
 /*------------------------------------- Rutas de vacunas ------------------------------------------------------- */
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
-Route::patch('/vacuna/{id}/{accion}',[VacunaController::class,'update'])->name('Vacuna.update')->middleware('auth');
-Route::get('/consultarCitasVacunaPorIdVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class,'consultarCitasVacunaPorIdVacuna'])->middleware('auth');
+Route::patch('/vacuna/{id}/{accion}', [VacunaController::class, 'update'])->name('Vacuna.update')->middleware('auth');
+Route::get('/consultarCitasVacunaPorIdVacuna/{id}', [App\Http\Controllers\CitaVacunaController::class, 'consultarCitasVacunaPorIdVacuna'])->middleware('auth');
 /*------------------------------------- Rutas de servicios ------------------------------------------------------- */
 Route::resource('tiposervicio', TipoServicioController::class)->middleware('auth');
 //Recuperar citas de servicios para eliminar el tipo de servicio
-Route::get('/consultarCitasServicioPorIdServicio/{id}', [App\Http\Controllers\CitaServicioController::class,'consultarCitasServicioPorIdServicio'])->middleware('auth');
-Route::patch('/tiposervicio/{id}/{accion}',[TipoServicioController::class,'update'])->name('Tiposervicio.update')->middleware('auth');
+Route::get('/consultarCitasServicioPorIdServicio/{id}', [App\Http\Controllers\CitaServicioController::class, 'consultarCitasServicioPorIdServicio'])->middleware('auth');
+Route::patch('/tiposervicio/{id}/{accion}', [TipoServicioController::class, 'update'])->name('Tiposervicio.update')->middleware('auth');
 
 /*Mostrar citas vacunas*/
 Route::get('/mostrarvacunas', [App\Http\Controllers\CitaVacunaController::class, 'showCalendar']);
@@ -161,7 +161,7 @@ Route::get('/citacirugia/index/gestionarCirugia/{id}', [\App\Http\Controllers\Ci
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
 Route::get('/citacirugia/consultarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
 Route::get('/citacirugia/editarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'editarCirugia'])->middleware('auth');
-Route::post('citacirugia/{id}', [CitaCirugiaController::class, 'update'])->name('update')->middleware('auth');
+Route::post('citacirugia/{id}', [CitaCirugiaController::class, 'update'])->name('Cirugia.update')->middleware('auth');
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
