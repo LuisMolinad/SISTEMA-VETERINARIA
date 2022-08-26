@@ -8,6 +8,7 @@ use App\Models\mascota;
 use App\Models\propietario;
 use App\Models\recordatorio;
 use Carbon\Carbon;
+use Exception;
 use PDF;
 
 class CitaCirugiaController extends Controller
@@ -173,6 +174,7 @@ class CitaCirugiaController extends Controller
         ];
         citaCirugia::where('id', $id)->update($datosCitaCirugia);
 
+
         $mascota_id=citaCirugia::where('id',$id)->get('mascota_id')->first();
         // $datos =  [
         //     $mascota_id = request('id'),
@@ -181,6 +183,22 @@ class CitaCirugiaController extends Controller
         // ];
        // return redirect('GestionCirugia.update');
        //Me falta que me mande a la vista
+
+       try{
+        $datosRecordatorio=[
+            'concepto' => request('conceptoCirugia'),
+            'fecha' => request('start'),
+            'dias_de_anticipacion'=>request('dias_de_anticipacion')
+        ];
+    
+           $recordatorio_id = citaCirugia::where('id', $id)->first();
+    
+           recordatorio::where('id', $recordatorio_id->recordatorio_id )->update($datosRecordatorio);
+       }
+       catch(Exception $exception){
+        $exception->getMessage();
+       }
+       
        return redirect('citacirugia/index/gestionarCirugia/'.$mascota_id->mascota_id)->with('warning', 'Cita de cirugía ha sido editada correctamente');
       
 
@@ -223,13 +241,14 @@ class CitaCirugiaController extends Controller
     {
         $cita = citaCirugia::FindOrFail($id);
         $mascota = mascota::where('id', $cita->mascota_id)->with('propietario')->get();
-
         $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
+        $recordatorio = recordatorio::where('id', $cita->recordatorio_id)->first();
 
         $datos = [
             'mascotas' => $mascota,
             'citaCirugias' => citaCirugia::where('id',$id)->get(),
-            'propietarios' => $propietario
+            'propietarios' => $propietario,
+            'recordatorio' => $recordatorio
         ];
         
        return view('Cirugia.gestionar_cirugias.edit', compact('datos','cita'));
