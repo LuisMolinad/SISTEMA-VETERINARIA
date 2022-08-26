@@ -19,11 +19,8 @@ Receta postoperatoria
                 <form action="{{url('/receta_post_operatoria/guardar')}}" method="GET" class="needs-validation" novalidate>
                         
                         <fieldset class="fieldset fieldset-no-linea">
-                        <br>
-{{--                         @foreach($datos['mascotas'] as $mascota)
-                            @foreach($datos['citaCirugias'] as $citaCirugia) --}}
                             <center> <h5>Datos generales de la mascota</h5> </center>
-                            <br>
+
                             <div class="form-row" >
                                     <div class="form-group col-md-6">
 
@@ -51,30 +48,26 @@ Receta postoperatoria
 
                                 </div>
 
-
-                                <br>
-                                <br>
-
                                 <center> <h5>Información de cirugía</h5> </center>
-                                <br>
+
                                     <div class="form-group col-md-6">
-                                    <strong>   <label for="ConceptoCirugia">Concepto de cirugía</label></strong>
-                                    <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" readonly="readonly"> {{$datos['cita_cirugia']->conceptoCirugia}} </textarea>
-                                    <input type="text" name="cita_id" class="none" value="{{$datos['cita_cirugia']->id}}">
-                                </div>    
-                            
-                                <div class="form-group col-md-6">
-                                    <strong>   <label for="inputFechaCirugia">Fecha de cirugía</label></strong>
-                                    <input class="form-control" type="text" name="start" id="fechaHoraCitaCirugia" value = 
-                                    "@php
-                                        echo date("d-m-Y  h:i", strtotime($datos['cita_cirugia']->start));
-                                    @endphp" readonly="readonly">
-                                </div>
+                                        <strong>   <label for="ConceptoCirugia">Concepto de cirugía</label></strong>
+                                        <textarea class="form-control" id="ConceptoCirugia" name="conceptoCirugia" rows="3" maxlength="100" readonly="readonly"> {{$datos['cita_cirugia']->conceptoCirugia}} </textarea>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <strong>   <label for="inputFechaCirugia" >Fecha de cirugía</label></strong>
+                                        <input class="form-control" type="text" name="start" id="fechaHoraCitaCirugia" value = 
+                                        "@php
+                                            echo date("d-m-Y  h:i", strtotime($datos['cita_cirugia']->start));
+                                        @endphp" readonly="readonly">
+
+                                    </div>
 
                                 <br>
                                 <br>
                                 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6"  style="background-color:#e1dff4">
+                                <br>
                                     <strong>   <label for="tratamientoAplicarReceta" style="color:black">Tratamiento a aplicar</label></strong>
                                     <textarea class="form-control" id="tratamientoAplicarReceta" name="tratamientoAplicarReceta" rows="3" maxlength="100" placeholder="Tratamiento para el paciente"  required></textarea>
                             
@@ -84,25 +77,24 @@ Receta postoperatoria
                                     <div class="valid-feedback">
                                         Dato válido sobre el tratamiento a aplicar
                                 </div>
-
-                                <div class="form-group col-md-6">
+                                <br>
+                                <div class="form-group col-md-6"  style="color:black">
                                     <strong> <label for="pesoReceta" style="color:black">Peso</label></strong>
                                     <input type="number" class="form-control" id="pesoReceta" maxlength="11" name="pesoReceta"
                                         style="width: 100px;" placeholder="lb" min="1" required>
                                     <div class="valid-feedback">
                                         Campo correcto
                                     </div>
+                                  
                                     <div class="invalid-feedback">
                                         Por favor ingrese un peso de la mascota en lb.
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-success mb-2">Crear receta post operatoria</button>
-{{--                                 <div class="form-group">
-                                    <a href="{{ url('/imprimir/' . $mascotas->id) }}" class="btn btn-primary">{{ __('Imprimir') }}</a>
-                                </div> --}}
-{{--                              @endforeach
-                         @endforeach --}}
+                                <br>
+                                </div>
+                              <button type="submit" class="btn btn-success mb-2">Crear receta post operatoria</button>
+                              <br>
+                              <br>
                 </form>
             </div>
     @endsection
