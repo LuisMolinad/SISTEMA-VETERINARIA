@@ -94,6 +94,7 @@ class CitaLimpiezaDentalController extends Controller
     public function gestionar_limpiezas_por_mascota($id){
         $mascotas = mascota::find($id);
         //return ($mascotas);
+        //Me dirige al catalogo
         return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.index', compact('mascotas'));
     }
     
@@ -107,6 +108,16 @@ class CitaLimpiezaDentalController extends Controller
 
         return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.show',compact('mascotas', 'idcitaLimpiezaDental', 'recordatorio'));
 
+    }
+
+    public function destroy($citalimpieza_id){
+    
+        $idcitaLimpieza = citaLimpiezaDental::find($citalimpieza_id);
+        $id = mascota::find($idcitaLimpieza->mascota_id);
+        /*$recordatorio = recordatorio::find($idcitaLimpieza->recordatorio_id)->first();*/
+        $idcitaLimpieza->delete();
+
+        return redirect()->action([CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'], ['id' => $id])->with('danger', 'Cita Limpieza Eliminada');
     }
 
 }

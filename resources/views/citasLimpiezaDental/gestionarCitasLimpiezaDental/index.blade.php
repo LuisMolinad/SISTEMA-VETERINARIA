@@ -7,6 +7,11 @@ Gestionar Limpieza Dental
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
+
 @endsection
 
 @section('header')
@@ -14,6 +19,9 @@ Gestionar Limpieza Dental
 @endsection
 
 @section('content')
+
+<!--Notificacion-->
+@include('layouts.notificacion')
 
 <div class="table-responsive-sm container-fluid contenedor">
     <table class="table table-striped" id="catalogomascota">
@@ -30,6 +38,12 @@ Gestionar Limpieza Dental
                     <td>{{$cita->start}}</td>
                     <td id="actions">
                         <a href="{{ route('GestionLimpieza.show', [$mascotas->id, 'citaLimpieza_id' => $cita->id]) }}"><button type="button" class="btn btn-info">Consultar</button></a>
+                        <form id="EditForm{{$cita->id}}"
+                            action="{{ route('GestionLimpieza.delete', ['citaLimpieza_id' => $cita->id]) }}">
+
+                            {{ method_field('DELETE') }}
+                            <button onclick="return alerta_eliminar_citaLimpieza('{{ $cita->id }}')" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

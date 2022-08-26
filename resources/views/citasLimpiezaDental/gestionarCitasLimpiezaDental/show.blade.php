@@ -45,21 +45,6 @@ Consultar Cita Limpieza dental
         </section>
 
         <section class="caracteristicas_especiales">
-       
-            <article>
-                @if ($recordatorio != null)
-                <h4 class="header4">Recordatorio</h4>
-                <p>
-                @php
-                    echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));   
-                @endphp
-                </p>
-                <p>Dias de Antipación: {{$recordatorio->dias_de_anticipacion}}</p>
-                @endif
-                
-            </article>
-            
-
             <article>
                 <h4 class="header4">Contacto</h4>
                 <ul>
@@ -69,5 +54,31 @@ Consultar Cita Limpieza dental
                 </ul>
             </article>
         </section>
+
+        <section class="caracteristicas_especiales">
+       
+            <article>
+                @if ($recordatorio != null)
+                <h4 class="header4">Recordatorio</h4>
+                <p><strong>Fecha programada del recordatorio: </strong>
+                @php
+                    echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));   
+                @endphp
+                </p>
+                <p> <strong>Dias de Antipación para enviar el recordatorio: </strong> {{$recordatorio->dias_de_anticipacion}}</p>
+
+                <p><strong>Mensaje a enviar:</strong></p>
+                    <p><strong>Veterinaria Pet Paradise le informa</strong></p>
+                    <p>Que la cita para <strong>{{ $mascotas->nombreMascota }} </strong> de
+                    <strong>limpieza dental</strong> esta agendada para
+                    la fecha y hora <span> <strong>{{ $idcitaLimpiezaDental->start }} </strong></span>. En caso de algun
+                    incoveniente favor comunicarse al whatsapp +50370959194.<br><br>Att: Veterinaria Pets Paradise
+                    <p>
+
+                @endif
+                
+            </article>
+        </section>
+
     </div>
 @endsection

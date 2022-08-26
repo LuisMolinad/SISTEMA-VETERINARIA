@@ -190,3 +190,4 @@ Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'sh
 //Route::get('/citaLimpiezaDental/gestion/record/{id}', [\App\Http\Controllers\CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->middleware('auth');
 Route::get('/citaLimpiezaDental/index/gestion/{id}', [CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->name('GestionLimpieza.index')->middleware('auth');
 Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'show'])->name('GestionLimpieza.show')->middleware('auth');
+Route::get('/citaLimpiezaDental/delete/gestion/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'destroy'])->name('GestionLimpieza.delete')->middleware('auth');
