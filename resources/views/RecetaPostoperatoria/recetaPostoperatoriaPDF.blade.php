@@ -7,49 +7,89 @@
     <title>Receta postoperatoria de {{$nombre}}</title>
 </head>
 <body>
-  
-    <h4>PET'S PARADISE</h4> 
-     ______________________________________________
-    <h5>El mejor amigo de su mejor amigo</h5> 
-    <br>
-    Dra. Flor de María Flamento
-        MEDICO VETERINARIA
-         J.V.P.M.V No. 62
 
-         <p align="right">
-                  Calle El Jabalí Polig "D"-14 No. 7,
-                  Colonia Jardines del Volcán.
-                  Tel.: 2278-2114  Cel.: 7095-9194   
-         </p> 
+    <div style=" float:left" >
+    <font color="green"> <h2><u><i> &nbsp;&nbsp;Pet's Paradise &nbsp;&nbsp; </i></u></h2> </font>
+    </div>
+    <div style=" float:right" >
+        <p align="right" style="color:green;">
+                 Calle El Jabalí Polig "D"-14 No. 7,<br>
+                 Colonia Jardines del Volcán.<br>
+                 <strong>Tel.: 2278-2114  Cel.: 7095-9194 </strong>  <br>
+        </p> 
+    </div>
 
-         <br>
-         <br> 
+    <div style="width: 500px; float: right; padding-left: 10px;">
+    <p style="color:green;"><i><br> <br> El mejor amigo de su mejor amigo </i> </p> 
+    </div>
 
-         <p align="right">
-                 Fecha:   {{$fecha}}
-         </p> 
+
+    <div>
+    <p align="left" style="color:green;"><i>  Dra. Flor de María Flamento</i>
+                        <br> &nbsp;&nbsp;&nbsp;MEDICO VETERINARIA<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; J.V.P.M.V No. 62 <br> <br></p>
+    </div>
+
+
+    <div style=" float:right" >
+        <p align="right" style="color:green;">
+       <strong> Fecha: </strong>   {{$fecha}} <br> <br>
+        </p> 
+    </div>
+
+
+    <div style=" float:left" >
+        <br><br><br> <font color="green"> <strong>  Paciente: </strong> </font>  {{$nombre}} 
+                     <font color="green"> <strong>  Peso: </strong> </font>  {{$datos['pesoReceta']}}
+    </div>
          
-         <p align="justify">
-                Paciente: {{$nombre}}                   Peso: {{$datos['pesoReceta']}}
          
-                <br>
-                <br>
-       
-                R/
-                {{$datos['tratamientoAplicarReceta']}}
+    <div style=" float:justify" >
+            <br><br><br> <br><br><br><font color="green"> <strong>  R/ </strong>  <br><br></font>   
+            
+            {{$datos['tratamientoAplicarReceta']}}
+            <br><br><br> <br><br><br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p align="left" style="color:green;">
+                <strong>  Cita: _______________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M.V. __________________________________</strong>  </font>  
+               <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  SELLO Y FIRMA
+            </p>   
+      
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+   
+          
+            <hr style="color:green;">
+
+    </div>
 
 
-                <br>
-                <br>
+    
 
-                Cita: __________________________________________    M.V. ___________________________________________________
-                                                                                         FIRMA Y SELLO
-        
-                <br>
-                <br>
-                ____________________________________________________________________________________________________________
-       
-        </p>
 
 
 </body>

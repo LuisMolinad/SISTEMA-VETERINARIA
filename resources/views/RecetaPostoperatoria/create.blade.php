@@ -94,7 +94,7 @@ Receta postoperatoria
                                 </div>
                                 <br>
                                 </div>
-                              <button type="submit" class="btn btn-success mb-2">Crear receta post operatoria</button>
+                              <button type="submit" class="btn btn-primary mb-2">Crear receta postoperatoria</button>
                               <br>
                               <br>
                 </form>
