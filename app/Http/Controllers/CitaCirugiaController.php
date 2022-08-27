@@ -212,10 +212,20 @@ class CitaCirugiaController extends Controller
      */
     public function destroy($id)
     {
-                
-       $registro = citaCirugia::where('id',$id)->get('mascota_id');
+
+        //Recordatorio destroy
+        try{
+            $recordatorio_id = citaCirugia::where('id',$id)->first();
+            recordatorio::destroy($recordatorio_id->recordatorio_id);
+        }
+        catch(Exception $e){
+
+        }
+
+        $registro = citaCirugia::where('id',$id)->get('mascota_id');
 
         citaCirugia::destroy($id);
+
         return redirect('/citacirugia/index/gestionarCirugia/'. $registro[0]->mascota_id)->with('danger', 'Cita de cirugía eliminada correctamente');
     }
 
