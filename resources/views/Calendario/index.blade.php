@@ -29,11 +29,6 @@
             <!--El no eterno Katya-->
             @include('layouts.notificacion')
 
-            {{-- @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif --}}
             <div id="guardadocorrectamente"></div>
             <div id="editadocorrectamente"></div>
             <div id="eliminadocorrectamente"></div>

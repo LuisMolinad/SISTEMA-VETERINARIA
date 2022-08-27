@@ -23,7 +23,8 @@ Editar cita de cirugía
 @endsection
 @section('content')
 <div class="container">
-    <form action="{{(url('/citacirugia/'))}}"  method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+<form action="{{route('GestionCirugia.update',$cita->id)}}"
+ method="POST" class="needs-validation" novalidate>
         @csrf
         
         <fieldset class="fieldset fieldset-no-linea">
@@ -150,7 +151,60 @@ Editar cita de cirugía
                             class="form-control" name="filtercirugias" id="filtercirugias" aria-describedby="filtercirugias" value="citasCirugias">
                         </div>
 
-                        @include('layouts.crear_recordatorio')
+                        @if ($datos['recordatorio'] != null)
+                        <!--Recordatorio-->
+                        <br>
+                        <center>
+                            <h5>Recordatorio</h5>
+                        </center>
+                        <br>
+                        <section class="recordatorio_crear_seccion">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
+                                    <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
+                                        onchange="actualizar_mensaje_al_crear();" onclick="actualizar_mensaje_al_crear_vacuna();">
+                                        <option value="1"
+                                        @php
+                                            if($datos['recordatorio']->dias_de_anticipacion == 1){
+                                                echo 'selected';
+                                            }
+                                        @endphp
+                                        >1 dias de anticipacion</option>
+                                        <option value="2"
+                                        @php
+                                            if($datos['recordatorio']->dias_de_anticipacion == 2){
+                                                echo 'selected';
+                                            }
+                                        @endphp
+                                        >2 dias de anticipacion</option>
+                                        <option value="3"
+                                        @php
+                                            if($datos['recordatorio']->dias_de_anticipacion == 3){
+                                                echo 'selected';
+                                            }
+                                        @endphp
+                                        >3 dias de anticipacion</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <!--Validacion -->
+                                        Por favor ingrese información sobre el concepto de cirugía
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Dato válido sobre concepto de cirugía
+                                    </div> <!-- Fin de la validacion -->
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <strong> <label style="color:black">Pre visualizacion del mensaje</label></strong>
+                                    <div id="mensaje-recordatorio">
+                                        <div id="mensaje-recordatorio-limpieza">
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                        <!--Fin del recordatorio -->
+                        @endif
 
                         <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-success mb-2">Guardar</button>
                  
@@ -188,5 +242,10 @@ Editar cita de cirugía
                     }, false)
                 })
         })()
+    </script>
+    <script>
+        $(document).ready(() =>{
+            actualizar_mensaje_al_crear();
+        });
     </script>
 @endsection

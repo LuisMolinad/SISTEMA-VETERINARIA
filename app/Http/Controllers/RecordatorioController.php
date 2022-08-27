@@ -119,7 +119,7 @@ class RecordatorioController extends Controller
     {
         $datosRecordatorio = 
         [
-            'dias_de_anticipacion' => null,
+            'recordatorio_id' => null,
         ];
 
         recordatorio::destroy($id);
@@ -193,10 +193,10 @@ class RecordatorioController extends Controller
         $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if($codigoRespuesta === 200){
-            return redirect('/recordatorio')->with('primary', 'Mensaje enviado satisfactoriamente');
+            return redirect('/recordatorio/enviar_ui')->with('primary', 'Mensaje enviado satisfactoriamente');
         }
         else{
-            return redirect('/recordatorio')->with('dark', 'El mensaje no se pudo enviar');
+            return redirect('/recordatorio/enviar_ui')->with('dark', 'El mensaje no se pudo enviar');
         }
         
         curl_close($ch);
