@@ -54,7 +54,7 @@ class TipoServicioController extends Controller
     public function show($id)
     {
         $tipoServicio=tipoServicio::findOrFail($id);
-        return view('tiposervicio.consultar', ['tipoServicio'=>$tipoServicio]);
+        return view('tiposervicio.show', ['tipoServicio'=>$tipoServicio]);
     }
 
     public function showId($id){
