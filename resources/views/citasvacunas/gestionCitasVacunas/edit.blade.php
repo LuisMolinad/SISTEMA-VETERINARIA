@@ -31,13 +31,18 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong> <label for="mascota_id"> IDMASCOTA</label></strong>
-                    <input type="text" class="form-control" id="idVisible" name="idVisible"
+                    <input type="text" class="form-control" id="title" name="title"
                         value="{{ $mascotas->idMascota }}" readonly="readonly">
+                    <input class="form-control" id="idVisible" name="idVisible" value="{{ $mascotas->idMascota }}"
+                        type="hidden">
+                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}"
+                        type="hidden">
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Nombre:</label></strong>
-                    <input class="form-control" readonly="readonly" id="title" name="title"
+                    <input class="form-control" name="nombre_mascota" readonly="readonly" id="nombreMascota"
                         value="{{ $mascotas->nombreMascota }}">
+
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
