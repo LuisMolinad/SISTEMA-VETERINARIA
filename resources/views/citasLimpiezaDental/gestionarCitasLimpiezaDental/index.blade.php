@@ -36,8 +36,13 @@ Gestionar Limpieza Dental
             @foreach ($mascotas->citaLimpiezaDental as $cita)
                 <tr>
                     <td>{{$cita->start}}</td>
-                    <td id="actions">
+                    <td id="botones-linea">
                         <a href="{{ route('GestionLimpieza.show', [$mascotas->id, 'citaLimpieza_id' => $cita->id]) }}"><button type="button" class="btn btn-info">Consultar</button></a>
+                        
+                        @if ($mascotas->fallecidoMascota == 'Vivo')
+                                <a type="button" class="btn btn-warning" href="{{ route('GestionLimpieza.edit', [$mascotas->id, 'citaLimpieza_id' => $cita->id]) }}">Editar</a>
+                            @endif
+
                         <form id="EditForm{{$cita->id}}"
                             action="{{ route('GestionLimpieza.delete', ['citaLimpieza_id' => $cita->id]) }}">
 
@@ -67,7 +72,7 @@ Gestionar Limpieza Dental
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
-                    "zeroRecords": "No se encuentran datos relacionados found - ",
+                    "zeroRecords": "No se encuentran datos relacionados ",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",

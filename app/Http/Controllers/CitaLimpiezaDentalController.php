@@ -117,7 +117,30 @@ class CitaLimpiezaDentalController extends Controller
         /*$recordatorio = recordatorio::find($idcitaLimpieza->recordatorio_id)->first();*/
         $idcitaLimpieza->delete();
 
-        return redirect()->action([CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'], ['id' => $id])->with('danger', 'Cita Limpieza Eliminada');
+        return redirect()->action([CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'], ['id' => $id])->with('danger', 'Cita de Limpieza Dental Eliminada correctamente');
+    }
+
+    //Esta funcion se utiliza para editarlalimpieza
+    public function editarLimpieza($id,$citaLimpieza_id){
+        //Recuperamos la mascota
+        $mascotas = mascota::find($id);
+        //recuperamos las citas de limpieza dental
+        $citaDental = citaLimpiezaDental::find($citaLimpieza_id);
+
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.editar', compact('mascotas','citaDental')); 
+
+    }
+
+    public function update(Request $request, $idCitaLimpieza, $idmascota)
+    {
+        $citaLimpieza = citaLimpiezaDental::find($idCitaLimpieza);
+        $citaLimpieza->start = request('start');
+        $citaLimpieza->update();
+
+        $mascotas = mascota::find($idmascota);
+
+        //return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.index', compact('mascotas'));
+        return redirect()->action([CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'], ['id' => $mascotas])->with('warning', 'Cita Limpieza Dental actualizada correctamente');
     }
 
 }
