@@ -32,7 +32,8 @@ class CitaServicioController extends Controller
     } */
     public function index()
     {
-        $tipoServicios = tipoServicio::all();
+        //Recuperamos los tipo de servicios habilitados
+        $tipoServicios = tipoServicio::where('disponibilidadServicio','1')->get();
         //Retornamos a la vista del calendario
         return view('Calendario.index', compact("tipoServicios"));
     }
