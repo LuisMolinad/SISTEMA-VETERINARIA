@@ -39,7 +39,8 @@ class CitaVacunaController extends Controller
     public function mostrar($id)
     {
         $mascotas = mascota::FindOrFail($id);
-        $vacunas = vacuna::all();
+        //Recuperamos las vacunas habilitadas
+        $vacunas = vacuna::where('disponibilidadVacuna','1')->get();
         return view('citasvacunas.create', compact('mascotas', 'vacunas'));
         //return view('Cirugia.CrearCirugia');
     }
