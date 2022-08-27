@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-Nuevo Servicio
+Editar Servicio
 @endsection
 
 @section('header')
@@ -10,8 +10,9 @@ Nuevo Servicio
 
 @section('content')
 <div class="container">
-        <form action="{{url('/tiposervicio/'.$tipoServicio->id)}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-            @csrf
+        {{-- <form action="{{url('/tiposervicio/'.$tipoServicio->id)}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate> --}}
+        <form action="{{route('Tiposervicio.update',[$tipoServicio->id,'accion'=>"editar"])}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                @csrf
             {{method_field('PATCH')}}
             <fieldset class="fieldset">
             <legend class="legend"><strong>Tipo de servicio</strong></legend>

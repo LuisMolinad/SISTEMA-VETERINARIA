@@ -18,6 +18,7 @@ GESTIONAR TIPO DE SERVICIO
 @endsection
 
 @section('content')
+    @include('layouts.notificacion')
     <div class="container-fluid contenedor">
         <div class="boton crear container_btn_hend">
             <a href="/tiposervicio/create"><button type="button" class="btn btn-success boton_crear">Crear tipo de servicio</button></a>
@@ -55,14 +56,16 @@ GESTIONAR TIPO DE SERVICIO
                     </td>
                     <td>
                         @if($tiposervicio->disponibilidadServicio == True)
-                            <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                            {{-- <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post"> --}}
+                            <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{route('Tiposervicio.update',[$tiposervicio->id,'accion'=>"deshabilitar"])}}" method="post">                            
                                 @csrf
                                 {{method_field('PATCH')}}
                                 <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="0">
                                 <button onclick="return alerta_deshabilitar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-secondary">Deshabilitar</button>
                             </form>
                         @else
-                            <form id="HabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
+                            {{-- <form id="HabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post"> --}}
+                            <form id="HabilitarForm{{$tiposervicio->id}}" action="{{route('Tiposervicio.update',[$tiposervicio->id,'accion'=>"habilitar"])}}" method="post">
                                 @csrf
                                 {{method_field('PATCH')}}
                                 <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="1">

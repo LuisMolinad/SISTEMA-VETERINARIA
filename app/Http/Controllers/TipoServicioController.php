@@ -42,7 +42,7 @@ class TipoServicioController extends Controller
         $accion="guardar";
         $objeto="tipo servicio";
         $datosTipoServicio['tiposervicios']=tipoServicio::all();
-        return view('tiposervicio.index',$datosTipoServicio,);
+        return redirect('/tiposervicio')->with('success', 'Tipo de servicio creado correctamente');;
     }
 
     /**
@@ -72,7 +72,7 @@ class TipoServicioController extends Controller
     public function edit($id)
     {
         $tipoServicio = tipoServicio::find($id);
-        return view('tipoServicio.edit',compact('tipoServicio'));
+        return view('tiposervicio.edit',compact('tipoServicio'));
     }
 
     /**
@@ -82,12 +82,17 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,$accion)
     {
         $datosTipoServicio = request()->except(['_token','_method']);
         TipoServicio::where('id','=',$id)->update($datosTipoServicio);
-        return redirect('/tiposervicio');
-
+        if ($accion == "editar"){
+            return redirect('/tiposervicio')->with('warning','Se ha editado el tipo de servicio correctamente');
+        } elseif ($accion == "deshabilitar"){
+            return redirect('/tiposervicio')->with('warning','Se ha deshabilitado el tipo de servicio correctamente');
+        } else {
+            return redirect('/tiposervicio')->with('warning','Se ha habilitado el tipo de servicio correctamente');
+        }
     }
 
     /**
@@ -99,6 +104,6 @@ class TipoServicioController extends Controller
     public function destroy($id)
     {
         TipoServicio::destroy($id);
-        return redirect('/tiposervicio');
+        return redirect('/tiposervicio')->with('danger','Se ha eliminado el tipo de servicio correctamente');
     }
 }

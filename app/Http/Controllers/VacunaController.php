@@ -42,7 +42,7 @@ class VacunaController extends Controller
     {
         $datosVacuna = request()->except('_token');
         Vacuna::insert($datosVacuna);
-        return redirect('/vacuna');
+        return redirect('/vacuna')->with('success', 'Vacuna creada correctamente');;
     }
 
     /**
@@ -51,9 +51,10 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function show(vacuna $vacuna)
+    public function show($id)
     {
-        //
+        $vacuna=vacuna::findOrFail($id);
+        return view('vacuna.consultar', ['vacuna'=>$vacuna]);
     }
     public function showId($id){
         $vacuna=vacuna::find($id);
@@ -65,9 +66,10 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function edit(vacuna $vacuna)
+    public function edit($id)
     {
-        //
+        $vacuna = vacuna::find($id);
+        return view('vacuna.edit',compact('vacuna'));
     }
 
     /**
@@ -77,9 +79,25 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, vacuna $vacuna)
+    public function update(Request $request, $id, $accion)
     {
-        //
+        $datosVacuna = request()->except(['_token','_method']);
+        vacuna::where('id','=',$id)->update($datosVacuna);
+        // if ($accion == 0){
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // } elseif ($accion == 1){
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // } else {
+        //     $mensaje = "Vacuna habilitada correctamente";
+        // }
+        // return redirect('/vacuna')->with('success',$mensaje);
+        if ($accion == "editar"){
+            return redirect('/vacuna')->with('warning','Se ha editado la vacuna correctamente');
+        } elseif ($accion == "deshabilitar"){
+            return redirect('/vacuna')->with('warning','Se ha deshabilitado la vacuna correctamente');
+        } else {
+            return redirect('/vacuna')->with('warning','Se ha habilitado la vacuna correctamente');
+        }
     }
 
     /**
@@ -88,8 +106,9 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
-    public function destroy(vacuna $vacuna)
+    public function destroy($id)
     {
-        //
+        Vacuna::destroy($id);
+        return redirect('/vacuna')->with('danger','Se ha eliminado la vacuna correctamente');
     }
 }

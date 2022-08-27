@@ -14,6 +14,11 @@ GESTIONAR RECORDATORIOS
 
 <script src=" {{asset('js/recordatorio_enviar_mensajes.js')}} "></script>
 <link rel="stylesheet" href="{{asset('css/recordatorio.css')}}">
+
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
 @endsection
 
 @section('content')
@@ -21,9 +26,42 @@ GESTIONAR RECORDATORIOS
 @include('layouts.notificacion')
 
 <div class="table-responsive-sm container-fluid contenedor">
-    <div class="boton crear container_btn_hend">
-    <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
+    
+    <div class="banner_recordatorio">
+        <div class="banner_01">
+            <p><span class="mensaje_enviado_c"></span>Mensajes enviados</p>
+            <p><span class="mensaje_no_enviado_c"></span>Mensajes no enviados</p>
+            <p><span class="mensaje_proximo_a_enviar_c"></span>Mensajes proximos a enviar</p>
+        </div>
+
+        <div class="banner_02">
+            <div>
+                <div class="filtros_contenedor">
+                    <label for="estado_mensaje">Estado de mensaje</label>
+                    <select name="estado_mensaje" id="selector_estado_mensaje">
+                        <option value="">Todos</option>
+                        <option value="0">Mensajes proximos a enviar</option>
+                        <option value="2">No enviados</option>
+                        <option value="1">Enviados</option>
+                    </select>
+                </div>
+                <br>
+                <div class="filtros_contenedor">
+                    <label for="filtro_por_dia">Seleccionar dia: </label>
+                    <input type="date" name="filtro_por_dia" id="filtro_por_dia">
+                </div>
+{{--                 <br>
+                <button type="button" id="btn_limpiar" class="btn btn-secondary">Limpiar filtros</button> --}}
+            </div>
+        </div>
+
+        <div class="banner_03">
+            <div class="boton crear container_btn_hend">
+                <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
+            </div>
+        </div>
     </div>
+
     <table class="table table-striped" style="width:100%" id="recordatorio">
         <thead class="table-dark table-header">
             <tr>
@@ -34,6 +72,7 @@ GESTIONAR RECORDATORIOS
             <th scope="col">Fecha y hora de la cita</th>
             <th scope="col">Fecha a enviar el recordatorio</th>
             <th scope="col"></th>
+            <th class="none" scope="col">Estado</th>
             </tr>
         </thead>
         <tbody>
@@ -68,11 +107,10 @@ GESTIONAR RECORDATORIOS
                             @if ($recordatorio->estado == 0)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                                    <form {{-- id="EditForm{{$mascota->id}}" --}} action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                    <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
-                                        {{-- <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button> --}}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
                             @elseif($recordatorio->estado == 1)
                                 <td id = "botones-linea">
@@ -84,12 +122,18 @@ GESTIONAR RECORDATORIOS
                                 <td id = "botones-linea">
                                     <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                                    <form {{-- id="EditForm{{$mascota->id}}" --}} action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                    <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
-                                        {{-- <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button> --}}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
+                            @endif
+                        </td>
+                        <td id="estado_funcion_filtrar" class="none">
+                            @if ($recordatorio->estado == -1)
+                                2
+                            @else
+                            {{$recordatorio->estado}}
                             @endif
                         </td>
                     </tr>
@@ -129,7 +173,7 @@ GESTIONAR RECORDATORIOS
 
     <script>
         $(document).ready(function () {
-            $('#recordatorio').DataTable({
+            var table_recordatorio = $('#recordatorio').DataTable({
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
@@ -146,7 +190,69 @@ GESTIONAR RECORDATORIOS
                     },
 
                 },
+                "order":[5, "desc"]
             });
+
+            const selector = document.querySelector('#selector_estado_mensaje');
+            selector.addEventListener('change', ()=>{
+                table_recordatorio
+                    .columns( 7 )
+                    .search( selector.value )
+                    .draw();
+            });
+
+            const filtro_fecha = document.querySelector('#filtro_por_dia');
+            filtro_fecha.addEventListener('change', ()=>{
+                table_recordatorio
+                    .columns( 5 )
+                    .search( formatear_fecha(filtro_fecha.value) )
+                    .draw();
+
+                    console.log( formatear_fecha(filtro_fecha.value))
+                    console.log(filtro_fecha.value);
+            });
+
+/*             btn_limpiar = document.querySelector('#btn_limpiar');
+            btn_limpiar.addEventListener('click', ()=>{
+
+                filtro_fecha.value = '';
+                selector.value = '';
+
+                table_recordatorio.draw();
+
+            }); */
         });
+
+        function formatear_fecha(fecha){
+            var dia = '', mes = '', anio= '';
+            var nueva_fecha = [];
+            var i = 0;
+
+
+            if(fecha == ''){
+                return '';
+            }
+
+            try{
+                for(var i = 0 ; i < fecha.length ; i++){
+                    if(i<4){
+                        anio += fecha[i];
+                    }
+                    else if(i>4 && i<7){
+                        mes += fecha[i];
+                    }
+                    else if(i>7){
+                        dia += fecha[i];
+                    }
+                }
+                nueva_fecha = dia + '-' + mes + '-' + anio;
+            }
+            catch(exception){
+                nueva_fecha = fecha;
+                console.log(exception)
+            }
+
+            return nueva_fecha; 
+        }
     </script>
 @endsection

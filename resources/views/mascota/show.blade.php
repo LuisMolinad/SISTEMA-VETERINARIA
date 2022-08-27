@@ -46,11 +46,13 @@ CONSULTAR MASCOTA
             </article>
         </section>
 
-        <section class="caracteristicas_especiales">
-            <article>
-                <h4 class="header4">Caracterisitcas especiales</h4>
-                <p> {{$mascota->caracteristicasEspeciales}} </p>
-            </article>
-        </section>
+        @if ($mascota->caracteristicasEspeciales != null)
+            <section class="caracteristicas_especiales">
+                <article>
+                    <h4 class="header4">Caracterisitcas especiales</h4>
+                    <p> {{$mascota->caracteristicasEspeciales}} </p>
+                </article>
+            </section>
+        @endif
     </div>
 @endsection

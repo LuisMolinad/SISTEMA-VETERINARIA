@@ -16,6 +16,7 @@ class vacuna extends Model
         'nombreVacuna',
         'descripcionVacuna',
         'tiempoEntreDosisDia',
+        'disponibilidadVacuna',
     ];
     //Define la relacion muchos a muchos, identifica que su id estara  dentro de la tabla citasVacunas como fk
     public function mascota()
