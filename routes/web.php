@@ -82,8 +82,7 @@ Route::get('CirugiaPDF/{id}', [CitaCirugiaController::class, 'pdf'])->name('Ciru
 
 Route::get('citas/index', [CitaVacunaController::class, 'index'])->name('citaVacuna.index')->middleware('auth');
 Route::get('/crearCitaVacuna/{id}', [CitaVacunaController::class, 'mostrar'])->name('citaVacuna.mostrar')->middleware('auth');
-//aca puse mal esto al inicio del sprint 2 en mi rama DUQUE_BETA lo he corregido pero quisiera que todos prueben sus funcionalidades antes 
-Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('Cirugia.store')->middleware('auth');
+Route::post('/guardarCitaVacuna', [CitaVacunaController::class, 'store'])->name('citaVacuna.store')->middleware('auth');
 
 //Gestionar citas vacunacion
 Route::get('/citas/show/gestion/{id}', [gestionCitasVacunacionController::class, 'show'])->name('gestionVacuna.show')->middleware('auth');
@@ -197,7 +196,6 @@ Route::get('/citaLimpiezaDental/delete/gestion/{citaLimpieza_id}', [CitaLimpieza
 //Editar cita limpieza dental
 Route::get('/citaLimpiezaDental/edit/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'editarLimpieza'])->name('GestionLimpieza.edit')->middleware('auth');
 Route::post('actualizarcitaLimpiezaDental/{idCitaLimpieza}/{idmascota}', [CitaLimpiezaDentalController::class, 'update'])->name('citaLimpieza.update')->middleware('auth');
-
 
 //Ruta Receta postoperatoria 
 //Route::get('/citacirugia/crearRecetaPostoperatoria/{id}', [App\Http\Controllers\RecetasPostoperatoriaController::class, 'mostrar'])->name('recetaPost.mostrar')->middleware('auth');
