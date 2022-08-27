@@ -119,7 +119,7 @@ class RecordatorioController extends Controller
     {
         $datosRecordatorio = 
         [
-            'dias_de_anticipacion' => null,
+            'recordatorio_id' => null,
         ];
 
         recordatorio::destroy($id);
