@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class citaCirugia extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     public function mascota()
     {
         return $this->belongsTo(mascota::class);

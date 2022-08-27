@@ -71,6 +71,8 @@
 .banner_02{
     justify-content: center;
     align-items: center;
+
+    padding: auto 0.25rem;
 }
 
 .banner_03{
@@ -80,4 +82,14 @@
 
 .banner_02 label, .banner_02 option{
     font-size: large;
+}
+
+.filtros_contenedor{
+    display: flex;
+    gap: 0.25rem;
+}
+
+.filtros_contenedor label, .filtros_contenedor select, .filtros_contenedor input{
+    flex: 1;
+    width: 100%;
 }

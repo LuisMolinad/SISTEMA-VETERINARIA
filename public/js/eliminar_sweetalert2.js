@@ -6,7 +6,7 @@
 Esta mostrara un mensaje que consultara si quiere eliminar el expediente, si el usuario lo acepta se borrara, de lo contrario no.
 */
 
-const { Warning } = require("postcss");
+//const { Warning } = require("postcss");
 
 function alerta_eliminar_propietario( nombre, id){
     var formulario = $('#EditForm'+id);
@@ -121,6 +121,65 @@ function alerta_eliminar_general( nombre, id){
     return false;
 }
 
+function alerta_eliminar_recordatorio(id){
+    var formulario = $('#EditForm'+id);
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar el recordatorio?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El recordatorio sera eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+                console.log('a');
+            });
+
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_general( nombre, id){
+    var formulario = $('#EditForm'+id);
+    
+    
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar a ' + nombre + '?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El registro de ' + nombre + ' sera eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}
+
 function alerta_eliminar_tiposervicio( nombre, id){
     var formulario = $('#BorrarForm'+id);
     
@@ -177,11 +236,11 @@ function alerta_eliminar_tiposervicio( nombre, id){
     return false;
 }
 
-function alerta_eliminar_citaVacuna( nombreVacuna,id){
+function alerta_eliminar_citaVacuna( nombreVacuna,id,nombreMascota){
     var formulario = $('#EditForm'+id);
     
     Swal.fire({
-        title: 'Esta seguro que desea eliminar la cita de vacunación de:  ' + nombreVacuna + '?',
+        title: 'Esta seguro que desea eliminar la cita de vacunación de  <strong>' + nombreVacuna + '</strong> para  <strong>' + nombreMascota +'</strong>?',
         text: "No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,

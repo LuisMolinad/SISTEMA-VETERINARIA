@@ -14,14 +14,15 @@ class CreateExpedientesTable extends Migration
     public function up()
     {
         Schema::create('expedientes', function (Blueprint $table) {
-             //para borrado en cascada
-             $table->engine = "InnoDB";
+            //para borrado en cascada
+            $table->engine = "InnoDB";
 
-             $table->bigIncrements('id');
-             //convencion de laravel para llaves foraneas
-             $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
-             $table->string('causaFallecimiento',30);
-             $table->string('fallecidoExpediente',9);
+            $table->bigIncrements('id');
+            //convencion de laravel para llaves foraneas
+            $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('causaFallecimiento', 250)->nullable();
+            //  $table->dropColumn('fallecidoExpediente');
+            // $table->string('causaFallecimiento', 250)->nullable()->change();
         });
     }
 
