@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="container consultar_mascota">
-        @foreach($datos['mascotas'] as $mascota)
+    @foreach($datos['mascotas'] as $mascota)
             @foreach($datos['citaCirugias'] as $citaCirugia)
                 @foreach($datos['propietarios'] as $propietario)
                 <section class="consultar_mascota_encabezado">
@@ -34,7 +34,7 @@
                         <li><strong>Fecha Refuerzo: </strong>{{$citaCirugia->start}}</li>
                         <li><strong>Recomendaciones preoperatorias: </strong> {{$citaCirugia->recomendacionPreoOperatoria}}</li>
                     </ul>
-                    </article>
+                </article>
             </section> 
              
             <section class="consultar_mascota_datos">
@@ -62,25 +62,40 @@
                 <section class="caracteristicas_especiales">
                     <article>
                         <h4 class="header4">Recordatorio</h4>
-                        <p> {{$datos['recordatorios']->concepto}} </p>
-                        <p>
+                        <p> <strong> Concepto del recordatorio: </strong> {{$datos['recordatorios']->concepto}} </p>
+                        <p> <strong> Fecha programada del recordatorio: </strong>
                             @php
                                 echo date("d-m-Y", strtotime($datos['recordatorios']->fecha . " - " . $datos['recordatorios']->dias_de_anticipacion . " days"));
                             @endphp    
                         </p>
                         <p>
-                            Dias de anticipacion: {{$datos['recordatorios']->dias_de_anticipacion}}
+                        <strong> Días de anticipación para enviar el recordatorio: </strong>  {{$datos['recordatorios']->dias_de_anticipacion}}
                         </p>
+
+                        <br>     
+                    <p>    
+                    <strong>Mensaje a enviar:</strong>
+                            <br> 
+                            <strong>Veterinaria Pet Paradise le informa</strong>
+                            <br> 
+                            Que la cita para {{$mascota->nombreMascota}} de {{$propietario->nombrePropietario}} esta agendada para la fecha y hora {{$citaCirugia->start}}
+                            En caso de algún incoveniente favor comunicarse al Whatsapp +50370959194.
+                            <br> 
+                            Att: Veterinaria Pets Paradise
+                    </p>
                     </article>
                 </section>
             @endif
 
-            <a href="{{url('/CirugiaPDF/'.$mascota->id)}}"  class="btn btn-primary" data-placement= "right">{{__('Acta de permiso')}} </a> 
-            <br>
-            <br>
-            <a href="{{ route('GestionCirugia.index', $mascota->id) }}"><button type="button" class="btn btn-secondary">Regresar</button></a>
+                         <a href="{{url('/CirugiaPDF/'.$mascota->id)}}"  class="btn btn-primary" data-placement= "left">{{__('Acta de permiso')}} </a> 
+                         <a href="{{ route('GestionCirugia.index', $mascota->id) }}"><button type="button" class="btn btn-secondary" style="float:right;">Regresar</button></a>
+                         <br>
+                         <br>
+            
+
                 @endforeach
             @endforeach
         @endforeach
     </div>
+    
 @endsection

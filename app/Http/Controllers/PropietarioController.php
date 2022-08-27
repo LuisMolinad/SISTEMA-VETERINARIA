@@ -52,9 +52,11 @@ class PropietarioController extends Controller
      * @param  \App\Models\propietario  $propietario
      * @return \Illuminate\Http\Response
      */
-    public function show(propietario $propietario)
+    public function show($id)
     {
-        //
+        $propietario=Propietario::findOrFail($id);
+        $mascotas = Mascota::where('propietario_id',$id)->get();
+        return view('propietario.show',['propietario'=>$propietario,'mascotas'=>$mascotas]);
     }
 
     /**

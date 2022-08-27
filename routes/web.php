@@ -18,6 +18,7 @@ use App\Models\mascota;
 
 //Controladores para SPATIE
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
@@ -161,7 +162,8 @@ Route::get('/citacirugia/index/gestionarCirugia/{id}', [\App\Http\Controllers\Ci
 Route::resource('citacirugia', CitaCirugiaController::class)->middleware('auth');
 Route::get('/citacirugia/consultarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'show'])->middleware('auth');
 Route::get('/citacirugia/editarCitaCirugia/{id}', [\App\Http\Controllers\CitaCirugiaController::class, 'editarCirugia'])->middleware('auth');
-Route::post('citacirugia/{id}', [CitaCirugiaController::class, 'update'])->name('Cirugia.update')->middleware('auth');
+Route::post('/citacirugia/index/gestionarCirugia/{id}', [App\Http\Controllers\CitaCirugiaController::class, 'update'])->name('GestionCirugia.update')->middleware('auth');
+
 
 /*Recordatorio*/
 Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
@@ -190,3 +192,13 @@ Route::get('/mascotas/{id}', [App\Http\Controllers\MascotaController::class, 'sh
 //Route::get('/citaLimpiezaDental/gestion/record/{id}', [\App\Http\Controllers\CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->middleware('auth');
 Route::get('/citaLimpiezaDental/index/gestion/{id}', [CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'])->name('GestionLimpieza.index')->middleware('auth');
 Route::get('/citaLimpiezaDental/show/consulta/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'show'])->name('GestionLimpieza.show')->middleware('auth');
+Route::get('/citaLimpiezaDental/delete/gestion/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'destroy'])->name('GestionLimpieza.delete')->middleware('auth');
+//Editar cita limpieza dental
+Route::get('/citaLimpiezaDental/edit/{id}/{citaLimpieza_id}', [CitaLimpiezaDentalController::class, 'editarLimpieza'])->name('GestionLimpieza.edit')->middleware('auth');
+Route::post('actualizarcitaLimpiezaDental/{idCitaLimpieza}/{idmascota}', [CitaLimpiezaDentalController::class, 'update'])->name('citaLimpieza.update')->middleware('auth');
+
+//Ruta Receta postoperatoria 
+//Route::get('/citacirugia/crearRecetaPostoperatoria/{id}', [App\Http\Controllers\RecetasPostoperatoriaController::class, 'mostrar'])->name('recetaPost.mostrar')->middleware('auth');
+Route::get('/citacirugia/crear_receta_postoperatoria/{id}', [RecetasPostoperatoriaController::class, 'create']);
+Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::class, 'guardar_bd']);
+

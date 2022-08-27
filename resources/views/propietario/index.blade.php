@@ -44,6 +44,7 @@ GESTIONAR PROPIETARIO
                     <td>{{$propietario->telefonoPropietario}}</td>
                     <td>{{$propietario->direccionPropietario}}</td>
                     <td id = "botones-linea">
+                        <a href="{{ route('propietario.show',$propietario->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>   
                         <a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         <form id="EditForm{{$propietario->id}}" action="{{url('/propietario/'.$propietario->id)}}" method="post">
                             @csrf
