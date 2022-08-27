@@ -93,15 +93,33 @@ class gestionCitasVacunacionController extends Controller
      */
     public function update(Request $request, $idCita, $idmascota)
     {
+
+        //dias de anticipaci[on
+        $dias_de_anticipacion = request('dias_de_anticipacion');
+
         // $datosCitaVacuna = request();
         $citaVacuna = citaVacuna::find($idCita);
-        $citaVacuna->start = request('start');
+
+        //capturo el id recordatorio
+        $idRecordatorio = $citaVacuna->recordatorio_id;
+
+
+
+
+        //  return ($idRecordatorio);
+        $fechaCita =   $citaVacuna->start = request('start');
         $citaVacuna->fechaAplicacion = request('end');
         $citaVacuna->update();
 
-        $mascotas = mascota::find($idmascota);
 
-        return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'));
+        $update = DB::table('recordatorios')
+            ->where('id', '=', $idRecordatorio)
+            ->update(['dias_de_anticipacion' => $dias_de_anticipacion, 'fecha' => $fechaCita]);
+
+
+
+        $id = mascota::find($citaVacuna->mascota_id);
+        return redirect()->action([gestionCitasVacunacionController::class, 'show'], ['id' => $id])->with('warning', 'Cita de editada correctamente');
     }
 
     /**

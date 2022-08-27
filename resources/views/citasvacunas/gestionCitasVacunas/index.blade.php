@@ -52,12 +52,15 @@
 
                     <h4 class="header4">Recordatorio</h4>
 
-                    <li><strong>Fecha de programada del recordatorio: </strong>
-                        {{ $idRecordatorio->fecha }}</li>
-                    <li><strong>Días de anticipación para el recordatorio: </strong>
+                    <p><strong>Fecha de envío del recordatorio: </strong>
+                        <?php
+                        echo date('d-m-Y', strtotime($idRecordatorio->fecha . ' - ' . $idRecordatorio->dias_de_anticipacion . ' days'));
+                        ?>
+                        {{-- {{ $idRecordatorio->fecha }} --}}</p>
+                    <p><strong>Días de anticipación para el recordatorio: </strong>
                         {{ $idRecordatorio->dias_de_anticipacion }}
 
-                    </li>
+                    </p>
 
                     <p><strong>Mensaje a enviar:</strong></p>
                     <p><strong>Veterinaria Pet Paradise le informa</strong></p>
