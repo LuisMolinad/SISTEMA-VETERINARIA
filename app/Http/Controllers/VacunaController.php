@@ -54,7 +54,7 @@ class VacunaController extends Controller
     public function show($id)
     {
         $vacuna=vacuna::findOrFail($id);
-        return view('vacuna.consultar', ['vacuna'=>$vacuna]);
+        return view('vacuna.show', ['vacuna'=>$vacuna]);
     }
     public function showId($id){
         $vacuna=vacuna::find($id);
