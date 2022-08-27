@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\vacuna;
 use App\Models\mascota;
 
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 //Para obtener fecha
 use Carbon\Carbon;
@@ -61,7 +61,7 @@ class defuncionController extends Controller
             ->where('id', $idFallecido)
             ->update(['fallecidoMascota' => 'Fallecido']);
         //Se cargan los datos 
-        $pdf = PDF::loadView('Actas.pdf', ['mascotas' => $mascotas, 'dt' => $dt]);
+        $pdf = Pdf::loadView('Actas.pdf', ['mascotas' => $mascotas, 'dt' => $dt]);
         return $pdf->stream();
         //return view('Actas.pdf',compact('mascotas'));
 
