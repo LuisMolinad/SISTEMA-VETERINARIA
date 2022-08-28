@@ -8,6 +8,7 @@ use App\Models\mascota;
 use App\Models\propietario;
 use App\Models\recordatorio;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CitaLimpiezaDentalController extends Controller
 {
@@ -113,6 +114,13 @@ class CitaLimpiezaDentalController extends Controller
     public function destroy($citalimpieza_id){
     
         $idcitaLimpieza = citaLimpiezaDental::find($citalimpieza_id);
+
+        //Eliminar un recordatorio
+        $idRecordatorio = DB::table('cita_limpieza_dentals')->where('id', '=', $citalimpieza_id)->value('recordatorio_id');
+        $deleted = DB::table('recordatorios')
+            ->where('id', '=', $idRecordatorio)
+            ->delete();
+
         $id = mascota::find($idcitaLimpieza->mascota_id);
         /*$recordatorio = recordatorio::find($idcitaLimpieza->recordatorio_id)->first();*/
         $idcitaLimpieza->delete();
@@ -126,16 +134,29 @@ class CitaLimpiezaDentalController extends Controller
         $mascotas = mascota::find($id);
         //recuperamos las citas de limpieza dental
         $citaDental = citaLimpiezaDental::find($citaLimpieza_id);
+        $dias_anteriores = request('dias_de_anticipacion');
 
-        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.editar', compact('mascotas','citaDental')); 
+        return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.editar', compact('mascotas','citaDental','dias_anteriores')); 
 
     }
 
     public function update(Request $request, $idCitaLimpieza, $idmascota)
     {
+
+        //Obtenemos los dias de anticipación
+        $dias_anteriores = request('dias_de_anticipacion');
+        
         $citaLimpieza = citaLimpiezaDental::find($idCitaLimpieza);
-        $citaLimpieza->start = request('start');
+        $fechaDelimpieza = $citaLimpieza->start = request('start');
+
+        //Obtengo el recordatorio de la tabla cita limpieza
+        $idRecordatorio = $citaLimpieza->recordatorio_id;
+
         $citaLimpieza->update();
+
+        //Obtengo la base de datos por medio de DB
+        $actualizarCita = DB::table('recordatorios')->where('id', '=', $idRecordatorio)
+                            ->update(['dias_de_anticipacion'=>$dias_anteriores, 'fecha' =>$fechaDelimpieza]);
 
         $mascotas = mascota::find($idmascota);
 

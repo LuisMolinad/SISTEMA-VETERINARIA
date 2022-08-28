@@ -106,7 +106,64 @@ Editar Cita de Limpieza Dental
                   class="form-control" name="filterLimpiezaDental" id="filterLimpiezaDental" aria-describedby="filterLimpiezaDental" value="citasLimpiezaDental">
               </div>
             
-              @include('layouts.crear_recordatorio_limpieza')
+              
+       @if($citaDental->recordatorio_id != null)
+              <section class="recordatorio_crear_seccion">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
+                        <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
+                            onchange="actualizarMensaje_al_crear_limpieza();"
+                            onclick="actualizarMensaje_al_crear_limpieza();">
+                           <!--<option value="0">No, no deseo un recordatorio</option>-->
+                           <!--<option value="1">1 dias de anticipacion</option>
+                            <option value="2">2 dias de anticipacion</option>
+                            <option value="3">3 dias de anticipacion</option> -->
+
+                            <option value="1"
+                            @php
+                                if($dias_anteriores == 1){
+                                    echo 'selected';
+                                }
+                            @endphp
+                            > 1 dia de anticipación</option>
+
+                            <option value="2"
+                            @php
+                                if($dias_anteriores == 2){
+                                    echo 'selected';
+                                }
+                            @endphp
+                            > 2 dias de anticipación</option>
+
+                            <option value="3"
+                            @php
+                                if($dias_anteriores == 3){
+                                    echo 'selected';
+                                }
+                            @endphp
+                            > 3 dias de anticipación</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            <!--Validacion -->
+                            Por favor ingrese información sobre la limpieza dental
+                        </div>
+                        <div class="valid-feedback">
+                            Dato válido sobre dia de anticipación
+                        </div> <!-- Fin de la validacion -->
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <strong> <label style="color:black">Pre visualizacion del mensaje</label></strong>
+                        <div id="mensaje-recordatorio">
+                            <div id="mensaje-recordatorio-limpieza">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+              @endif
+
 
               <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-success mb-2">Guardar</button>
 
@@ -140,4 +197,11 @@ Editar Cita de Limpieza Dental
                 })
         })()
     </script>
+
+<script>
+    $(document).ready(() =>{
+        actualizarMensaje_al_crear_limpieza();
+    });
+</script>
+
 @endsection
