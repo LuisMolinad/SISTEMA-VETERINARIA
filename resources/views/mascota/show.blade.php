@@ -54,5 +54,7 @@ CONSULTAR MASCOTA
                 </article>
             </section>
         @endif
+
+        <button type="button" class="btn btn-secondary" style="float:right;" onclick="history.back();" >Regresar</button>
     </div>
 @endsection
