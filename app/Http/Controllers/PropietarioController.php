@@ -87,7 +87,7 @@ class PropietarioController extends Controller
         $datosRecodartorio = [
             'telefono' => request('telefonoPropietario')
         ];
-        recordatorio::where('telefono', '=', $numeroTelefono)->update($datosRecodartorio);
+        recordatorio::where('id_propietario', '=', $id)->update($datosRecodartorio);
         //Fin actualizar propietario en recordatorio
 
         $datosPropietario = request()->except(['_token', '_method']);

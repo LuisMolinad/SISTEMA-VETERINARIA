@@ -69,6 +69,7 @@ Cita de Limpieza dental
                     <strong>   <label for="inputDireccion" style="color:black">Dirección</label></strong>
                     <input type="text" class="form-control" id="inputDireccion"  value="{{$mascotas->propietario->direccionPropietario}}" readonly="readonly">
                 </div>
+                <input type="text" class="none" name="id_propietario" value="{{$mascotas->propietario->id}}">
             </div>
 
             <br>
