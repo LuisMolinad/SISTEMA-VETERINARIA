@@ -22,17 +22,17 @@ Consultar Propietario
             <legend class="legend"><strong>Propietario</strong></legend>
             <div class="form-group">
                 <label for="nombrePropietario"><strong>Nombre del dueño:</strong></label>
-                <br>
+                {{-- <br> --}}&nbsp;
                 <label>{{$propietario->nombrePropietario}}</label>
             </div>
             <div class="form-group">
                 <label for="telefonoPropietario"><strong>Número de teléfono:</strong></label>
-                <br>
+                {{-- <br> --}}&nbsp;
                 <label>{{$propietario->telefonoPropietario}}</label>
             </div>
             <div class="form-group">
                 <label for="direccionPropietario"><strong>Dirección:</strong></label>
-                <br>
+                {{-- <br> --}}&nbsp;
                 <label>{{$propietario->direccionPropietario}}</label>
             </div>
         {{-- </fieldset> --}}
@@ -42,40 +42,34 @@ Consultar Propietario
     <section class="caracteristicas_especiales">
         <article>
             <legend class="legend"><strong>Mascotas</strong></legend>
-            {{-- <div class="form-group">
-                <label for="nombrePropietario"><strong>Nombre del dueño:</strong></label>
-                <br>
-                <label>{{$propietario->nombrePropietario}}</label>
-            </div>
-            <div class="form-group">
-                <label for="telefonoPropietario"><strong>Número de teléfono:</strong></label>
-                <br>
-                <label>{{$propietario->telefonoPropietario}}</label>
-            </div>
-            <div class="form-group">
-                <label for="direccionPropietario"><strong>Dirección:</strong></label>
-                <br>
-                <label>{{$propietario->direccionPropietario}}</label>
-            </div> --}}
             @if($mascotas->isEmpty())
                 <label style="text-align:center">Este propietario no tiene mascotas asociadas.</label>
             @else
             <table class="table table-striped">
-                <thead>
+                <thead class="table-dark table-header">
                     <tr>
                     <td><strong>Codigo</strong></td>
                     <td><strong>Nombre</strong></td>
                     <td><strong>Raza</strong></td>
                     <td><strong>Especie</strong></td>
+                    <td><strong>Estado</strong></td>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach ($mascotas as $mascota)
-                    <tr>
+                    <tr
+                        <?php
+                            if($mascota->fallecidoMascota == 'Fallecido'){
+                                echo 'class="fallecido"';
+                                echo 'style="background-color:#34495E;"';
+                            }
+                        ?>
+                    >
                         <td>{{$mascota->idMascota}}</td>
                         <td>{{$mascota->nombreMascota}}</td>
                         <td>{{$mascota->razaMascota}}</td>
                         <td>{{$mascota->especie}}</td>
+                        <td>{{$mascota->fallecidoMascota}}</td>
                     </tr>
                 @endforeach
                 </tbody>
