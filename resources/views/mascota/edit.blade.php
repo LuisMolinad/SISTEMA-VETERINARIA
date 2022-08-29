@@ -47,7 +47,7 @@ EDITAR MASCOTA
 
                 <div class="form-group">
                     <label for="nombreMascota">Nombre de la mascota</label>
-                    <input value="{{$mascota->nombreMascota}}" type="text" class="form-control" id="nombreMascota" name="nombreMascota" placeholder="Ingrese el nombre de la mascota" required>
+                    <input value="{{$mascota->nombreMascota}}" type="text" maxlength="15" class="form-control" id="nombreMascota" name="nombreMascota" placeholder="Ingrese el nombre de la mascota" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un nombre válido
                     </div>

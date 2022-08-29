@@ -32,7 +32,11 @@ CONSULTAR MASCOTA
                 <ul>
                     <li><strong>Sexo: </strong>{{$mascota->sexoMascota}}</li>
                     <li><strong>Color: </strong>{{$mascota->colorMascota}}</li>
-                    <li><strong>Fecha de nacimiento</strong>{{$mascota->fechaNacimiento}}</li>
+                    <li><strong>Fecha de nacimiento: </strong>
+                        @php
+                        echo date("d-m-Y", strtotime($mascota->fechaNacimiento))
+                        @endphp
+                        </li>
                     <li><strong>Estado: </strong>{{$mascota->fallecidoMascota}}</li>
                     <li><strong>Especie: </strong>{{$mascota->especie}} -- <strong> Raza: </strong> {{$mascota->razaMascota}}</li>
                 </ul>

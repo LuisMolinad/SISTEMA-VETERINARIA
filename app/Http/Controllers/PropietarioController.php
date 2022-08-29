@@ -6,6 +6,7 @@ use App\Models\propietario;
 use App\Http\Controllers\MascotaController;
 use App\Models\expediente;
 use App\Models\mascota;
+use App\Models\recordatorio;
 use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
@@ -80,10 +81,18 @@ class PropietarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        //Actualizar propietario en recordatorio
+        $numeroTelefono = Propietario::where('id','=',$id)->first()->telefonoPropietario;
+        $datosRecodartorio = [
+            'telefono' => request('telefonoPropietario')
+        ];
+        recordatorio::where('telefono', '=', $numeroTelefono)->update($datosRecodartorio);
+        //Fin actualizar propietario en recordatorio
+
         $datosPropietario = request()->except(['_token', '_method']);
         Propietario::where('id','=',$id)->update($datosPropietario);
-        $propietario = Propietario::FindOrFail($id);
-        //return redirect('/propietario?objeto=propietario&accion=edito');
+        
         return redirect('/propietario')->with('warning', 'Propietario editado correctamente');
     }
 

@@ -19,9 +19,9 @@ Enviar mensaje
     <form action="{{url('/recodatorio/enviar/')}}" method="GET" enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="form-group">
             <label for="telefono">Telefono</label>
-            <input type="tel" maxlength="8" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el número de teléfono del dueño de la mascota" required>
+            <input type="tel" maxlength="8" pattern="[0-9]{8}" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el número de teléfono del dueño de la mascota" required>
             <div class="invalid-feedback">
-                Por favor ingrese un nombre válido
+                Por favor ingrese un numero válido
             </div>
             <div class="valid-feedback">
                 Dato válido
