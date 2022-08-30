@@ -24,6 +24,7 @@ class CreateRecordatoriosTable extends Migration
             $table->string('concepto');
             $table->string('nombre');
             $table->string('telefono');
+            $table->string('id_propietario');
             $table->string('id_mascota');
             //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
             // $table->foreignId('cita_id')->constrained('cita')->cascadeOnDelete();

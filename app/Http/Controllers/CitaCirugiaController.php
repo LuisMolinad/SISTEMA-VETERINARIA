@@ -66,7 +66,8 @@ class CitaCirugiaController extends Controller
                 'concepto' => request('conceptoCirugia'),
                 'nombre' => request('nombre_mascota'),
                 'id_mascota' => request('title'),
-                'telefono' => request('telefono')
+                'telefono' => request('telefono'),
+                'id_propietario'=>request('id_propietario')
             ];
 
             $datoscirugia = [

@@ -91,7 +91,8 @@ class CitaVacunaController extends Controller
                     'concepto' => 'la vacuna de ' . $variable,
                     'nombre' => request('nombre_mascota'),
                     'id_mascota' => request('idVisible'),
-                    'telefono' => request('inputContactNumber')
+                    'telefono' => request('inputContactNumber'),
+                    'id_propietario'=>request('id_propietario')
                 ];
 
             $datosVacuna = [

@@ -77,6 +77,7 @@
                     <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño"
                         value="{{ $mascotas->propietario->direccionPropietario }}" readonly="readonly">
                 </div>
+                <input type="text" class="none" name="id_propietario" value="{{$mascotas->propietario->id}}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

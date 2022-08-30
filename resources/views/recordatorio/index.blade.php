@@ -47,7 +47,7 @@ GESTIONAR RECORDATORIOS
                 </div>
                 <br>
                 <div class="filtros_contenedor">
-                    <label for="filtro_por_dia">Seleccionar dia: </label>
+                    <label for="filtro_por_dia">Filtrar por dia de envio: </label>
                     <input type="date" name="filtro_por_dia" id="filtro_por_dia">
                 </div>
 {{--                 <br>

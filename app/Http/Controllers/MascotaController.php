@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 use App\Models\expediente;
+use App\Models\recordatorio;
 use Exception;
 
 class MascotaController extends Controller
@@ -99,6 +100,15 @@ class MascotaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        //Actualizar mascota en recordatorio
+        $codigoMascota = request('idMascota');
+        $datosRecordatorio = [
+            'nombre' => request('nombreMascota')
+        ];
+        recordatorio::where('id_mascota','=',$codigoMascota)->update($datosRecordatorio);
+        //Fin actualizar mascota en recordatorio
+
         $datosMascota = request()->except(['_token', '_method']);
         Mascota::where('id','=',$id)->update($datosMascota);
         
