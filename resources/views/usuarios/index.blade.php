@@ -7,7 +7,12 @@
 @section('librerias')
     <!--Data tables-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
 @endsection
+
 
 @section('header')
     <h1 class="header">GESTION DE USUARIOS</h1>
@@ -15,7 +20,7 @@
 
 @section('content')
     <div class="table-responsive-sm container-fluid contenedor">
-
+        @include('layouts.notificacion')
         <table class="table table-striped" id="citaVacuna">
             <thead class="table-dark table-header">
                 <tr>
@@ -57,7 +62,14 @@
                             {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
 
                             {!! Form::close() !!}
-
+                            <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+                                @csrf
+                                <div class="form-group col-md-6" style="display: none;">
+                                    <label for="email">E-mail</label>
+                                    <input type="text" id="email" name="email" value="{{ $usuario->email }}">
+                                </div>
+                                <button type="submit" class="btn btn-outline-info">Reenviar enlace de verificación</button>
+                            </form>
                         </td>
 
 
