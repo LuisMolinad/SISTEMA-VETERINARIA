@@ -31,13 +31,18 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong> <label for="mascota_id"> IDMASCOTA</label></strong>
-                    <input type="text" class="form-control" id="idVisible" name="idVisible"
+                    <input type="text" class="form-control" id="title" name="title"
                         value="{{ $mascotas->idMascota }}" readonly="readonly">
+                    <input class="form-control" id="idVisible" name="idVisible" value="{{ $mascotas->idMascota }}"
+                        type="hidden">
+                    <input class="form-control" id="mascota_id" name="mascota_id" value="{{ $mascotas->id }}"
+                        type="hidden">
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Nombre:</label></strong>
-                    <input class="form-control" readonly="readonly" id="title" name="title"
+                    <input class="form-control" name="nombre_mascota" readonly="readonly" id="nombreMascota"
                         value="{{ $mascotas->nombreMascota }}">
+
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
@@ -125,37 +130,37 @@
                 <input type="text" class="form-control" name="filtervacunas" id="filtervacunas"
                     aria-describedby="filtervacunas" value="citasVacunacion">
             </div>
-
-            <section class="recordatorio_crear_seccion">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
-                        <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
-                            onchange="actualizar_mensaje_al_crear_vacuna();"
-                            onclick="actualizar_mensaje_al_crear_vacuna();">
-                            <option value="0" selected>No, no deseo un recordatorio</option>
-                            <option value="1">1 dias de anticipacion</option>
-                            <option value="2">2 dias de anticipacion</option>
-                            <option value="3">3 dias de anticipacion</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            <!--Validacion -->
-                            Por favor ingrese información sobre el concepto de cirugía
+            @if ($idcitaVacuna->recordatorio_id != null)
+                <section class="recordatorio_crear_seccion">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
+                            <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
+                                onchange="actualizar_mensaje_al_crear_vacuna();"
+                                onclick="actualizar_mensaje_al_crear_vacuna();">
+                                <option value="0" selected>No, no deseo un recordatorio</option>
+                                <option value="1">1 dias de anticipacion</option>
+                                <option value="2">2 dias de anticipacion</option>
+                                <option value="3">3 dias de anticipacion</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <!--Validacion -->
+                                Por favor ingrese información sobre el concepto de cirugía
+                            </div>
+                            <div class="valid-feedback">
+                                Dato válido sobre concepto de cirugía
+                            </div> <!-- Fin de la validacion -->
                         </div>
-                        <div class="valid-feedback">
-                            Dato válido sobre concepto de cirugía
-                        </div> <!-- Fin de la validacion -->
-                    </div>
 
-                    <div class="form-group col-md-6">
-                        <strong> <label style="color:black">Pre visualizacion del mensaje</label></strong>
-                        <div id="mensaje-recordatorio">
-                            <div id="mensaje-recordatorio-limpieza">
+                        <div class="form-group col-md-6">
+                            <strong> <label style="color:black">Pre visualizacion del mensaje</label></strong>
+                            <div id="mensaje-recordatorio">
+                                <div id="mensaje-recordatorio-limpieza">
+                                </div>
                             </div>
                         </div>
-                    </div>
-            </section>
-
+                </section>
+            @endif
             <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
 
         </form>

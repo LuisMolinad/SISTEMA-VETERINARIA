@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\defuncionController;
 use App\Http\Controllers\CitaVacunaController;
 use App\Http\Controllers\PropietarioController;
@@ -45,7 +47,30 @@ Route::get('/', function () {
 
 /* ---------------------------//Rutas de Spatie---------------------------------------------------- */
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+
+/* ---------------------------//Rutas de Verificacion de correo---------------------------------------------------- */
+Auth::routes(['verify' => true]);
+
+//vista de verificar 
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+//vista luego de hacer clik en el boton del correo 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+/* ---------------------------//FIN DE Rutas de Verificacion de correo---------------------------------------------------- */
+Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
@@ -202,3 +227,7 @@ Route::post('actualizarcitaLimpiezaDental/{idCitaLimpieza}/{idmascota}', [CitaLi
 Route::get('/citacirugia/crear_receta_postoperatoria/{id}', [RecetasPostoperatoriaController::class, 'create']);
 Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::class, 'guardar_bd']);
 
+/* 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */

@@ -3,8 +3,8 @@
     Register
 @endsection
 @section('content')
-<!-- TODO  decidir que hacer con el registrar fuera de la app -->
-   {{--  <div class="card card-primary">
+    <!-- TODO  decidir que hacer con el registrar fuera de la app -->
+    {{-- <div class="card card-primary">
         <div class="card-header"><h4>Register</h4></div>
 
         <div class="card-body pt-1">

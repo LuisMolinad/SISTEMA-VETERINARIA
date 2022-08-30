@@ -60,6 +60,8 @@
 
         <button type="submit"class="btn btn-primary">Guardar</button>
         {!! Form::close() !!}
+
+
     </div>
 
 

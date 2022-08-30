@@ -8,6 +8,9 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+//evento de enviar correo al mensaje creado
+use Illuminate\Auth\Events\Registered;
+
 
 use Svg\Tag\Circle;
 
@@ -63,7 +66,8 @@ class UsuarioController extends Controller
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-
+        //enviar correo de verificacion al usuario creado
+        event(new Registered($user));
         return redirect()->route('usuarios.index');
     }
 
