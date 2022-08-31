@@ -484,3 +484,31 @@ function alerta_eliminar_citaLimpieza(id){
 
     return false;
 }
+
+function alerta_eliminar_usuario(id, name){
+    var formulario = $('#EditForm'+id);
+    
+    Swal.fire({
+        title: '¿Esta seguro que desea eliminar al usuario <strong>'+name+ ' </strong>?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El registro de la cita de limpieza dental sera eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}

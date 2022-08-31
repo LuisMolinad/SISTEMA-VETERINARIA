@@ -19,9 +19,9 @@
 @endsection
 
 @section('content')
-    <div class="table-responsive-sm container-fluid contenedor">
+    <div class="table-responsive container-fluid contenedor">
         @include('layouts.notificacion')
-        <table class="table table-striped" id="citaVacuna">
+        <table class="table table-striped" id="users">
             <thead class="table-dark table-header">
                 <tr>
                     <th style="display:none">ID </th>
@@ -48,27 +48,37 @@
                                 @endforeach
                             @endif
                         </td>
-                        <td>
+                        <td id="botones-linea">
                             <a class="btn btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
-                            {{-- El formulario siguiente se ha hecho con el uso de la libreria HTML COLLECTIVE
-                            Su funcion principal es facilitar la creacion de formularios de envio de alguna variable
-                            Para mas informacion revisar la docunentacion oficial --}}
-                            {!! Form::open([
+
+                            {{-- {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['usuarios.destroy', $usuario->id],
                                 'style' => 'display:inline',
                             ]) !!}
-                            {{-- Este carga el boton --}}
-                            {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
+                            {{-- Este carga el boton 
+                            {!! Form::submit('Borrar', [
+                                'class' => 'btn btn-danger',
+                                'onclick' => 'alerta_eliminar_usuario( $usuario->id , $usuario->name );',
+                            ]) !!}
 
-                            {!! Form::close() !!}
+                            {!! Form::close() !!} --}}
+                            <form id="EditForm{{ $usuario->id }}"
+                                action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="post">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button
+                                    onclick="return alerta_eliminar_usuario('{{ $usuario->id }}','{{ $usuario->name }}')"
+                                    type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+
                             <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
                                 @csrf
                                 <div class="form-group col-md-6" style="display: none;">
                                     <label for="email">E-mail</label>
                                     <input type="text" id="email" name="email" value="{{ $usuario->email }}">
                                 </div>
-                                <button type="submit" class="btn btn-outline-info">Reenviar enlace de verificación</button>
+                                <button type="submit" class="btn btn-info">Reenviar enlace de verificación</button>
                             </form>
                         </td>
 
@@ -92,7 +102,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#vacuna').DataTable({
+            $('#users').DataTable({
                 "lengthMenu": [
                     [5, 10, 25, -1],
                     [5, 10, 25, "Todos"]
