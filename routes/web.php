@@ -231,3 +231,9 @@ Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
+
+
+
+
+//Historial Medico
+Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_historial_Medico'])->name('historialmedico.index')->middleware('auth');
