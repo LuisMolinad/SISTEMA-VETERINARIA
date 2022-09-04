@@ -1,5 +1,5 @@
 @extends('app')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('titulo')
     Cita de vacunación
 @endsection
@@ -11,6 +11,11 @@
     <!--Fin del CSS para recordatorios -->
     <!--JS para recordatorios -->
     <script src="{{ asset('js/recordatorio.js') }}"></script>
+
+    {{-- <script src="{{ asset('js/addFecha.js') }}"></script> --}}
+    {{-- <!--  Flatpickr  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <!--Fin del JS para recordatorios -->
     <!-- Cualquier duda o comentario comunicarse con Rosalio -->
 @endsection
@@ -77,7 +82,7 @@
                     <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño"
                         value="{{ $mascotas->propietario->direccionPropietario }}" readonly="readonly">
                 </div>
-                <input type="text" class="none" name="id_propietario" value="{{$mascotas->propietario->id}}">
+                <input type="text" class="none" name="id_propietario" value="{{ $mascotas->propietario->id }}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -86,18 +91,31 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
-                        <select class="custom-select" id="vacuna_id" name='vacuna_id' onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                        <select class="custom-select" id="vacuna_id" name='vacuna_id'
+                            onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
-                                <option value="{{ $vacuna->id }}">{{ $vacuna->nombreVacuna }}</option>
+                                <option value="{{ $vacuna->id }}"
+                                    data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}">
+                                    {{ $vacuna->nombreVacuna }}</option>
                             @endforeach
                         </select>
                         <div class="valid-feedback">
                             Campo correcto
                         </div>
+
                         <div class="invalid-feedback">
                             Seleccione una vacuna
                         </div>
+                        <a href="javascript:void(0)" id="show-dias"
+                            data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}"
+                            class="btn btn-info">obtener</a>
                     </div>
+                    {{-- INPUT DIAS --}}
+                    <div>
+                        <input id="user-id">
+                    </div>
+
+                    {{-- INPUT DIAS --}}
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="end" style="color:black">Fecha aplicación</label></strong>
@@ -108,10 +126,14 @@
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
                     </div>
+
+
+
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" onchange="actualizar_mensaje_al_crear_vacuna()" id="start" required>
+                    <input class="form-control" type="datetime-local" name="start"
+                        onchange="actualizar_mensaje_al_crear_vacuna()" id="start" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
@@ -139,7 +161,8 @@
                     <div class="form-group col-md-6">
                         <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
                         <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
-                            onchange="actualizar_mensaje_al_crear_vacuna();" onclick="actualizar_mensaje_al_crear_vacuna();">
+                            onchange="actualizar_mensaje_al_crear_vacuna();"
+                            onclick="actualizar_mensaje_al_crear_vacuna();">
                             <option value="0" selected>No, no deseo un recordatorio</option>
                             <option value="1">1 dias de anticipacion</option>
                             <option value="2">2 dias de anticipacion</option>
@@ -186,9 +209,62 @@
                         form.classList.add('was-validated')
                     }, false)
                 })
-        })()
+        })();
+        /* Jquery  */
+
+        $('#end').change(function() {
+            var date = new Date(this.valueAsNumber);
+            date.setDate(date.getDate() + 365);
+            $('#start')[0].valueAsNumber = +date;
+
+            console.log(new Date(this.value)) // retrieving as data
+        });
+
+        $('#start').change();
 
 
+        /* End Jquery */
+        /* Tester 
+           
+           '#show-user3' id del boton
+           'click' el evento
+           var userURL = $(this).data('url'); la url 
+           */
+        //Funcional boton 
+        $(document).ready(function() {
+            $('body').on('click', '#show-dias', function() {
+                var userURL = $(this).data('url');
+                $.get(userURL, function(data) {
+                    $('#user-id').val(data.tiempoEntreDosisDia);
+
+                })
+            });
+
+        });
+        //Intento con select 
+        //Funciona 
+        //Obtengo el id seleccionado de una vacuna
+        $(document).ready(function() {
+            $("#vacuna_id").change(function() {
+                //capturo el valor de id seleccionado
+                //var selectedVal = $("#vacuna_id option:selected").val();
+                var selectedVal = $(this).find('option:selected');
+                //URL de la funcion
+                var userURL = selectedVal.data('url');
+                $.get(userURL, function(data) {
+                    $('#user-id').val(data.tiempoEntreDosisDia);
+
+                })
+                console.log("Hi, your favorite programming language is " + selectedVal);
+
+            });
+        });
+
+        /*    $("#vacuna_id").change(function() {
+                    var option = $(this).find('option:selected');
+                    window.location.href = option.data("url");
+                });
+         */
         function funcionesOnClick() {
             actualizar_mensaje_al_crear_vacuna();
         }

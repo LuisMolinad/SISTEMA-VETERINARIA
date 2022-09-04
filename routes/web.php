@@ -127,6 +127,10 @@ Route::post('actualizarCitaVacuna/{idCita}/{idmascota}', [gestionCitasVacunacion
 //Eliminar
 Route::get('/citas/delete/gestion/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'destroy'])->name('gestionVacuna.delete')->middleware('auth');
 
+
+//RUTA PARA FUNCION JQUERY
+Route::get('/obtenerDia/{id}', [CitaVacunaController::class, 'obtenerDias'])->name('diasVacuna.obtenerDias')->middleware('auth');
+
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller
 
