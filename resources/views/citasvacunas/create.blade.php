@@ -94,6 +94,8 @@
                         <select class="custom-select" id="vacuna_id" name='vacuna_id'
                             onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
+                                <option value="" selected disabled hidden>
+                                    Nada seleccionado</option>
                                 <option value="{{ $vacuna->id }}"
                                     data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}">
                                     {{ $vacuna->nombreVacuna }}</option>
@@ -112,7 +114,7 @@
                     </div>
                     {{-- INPUT DIAS --}}
                     <div>
-                        <input type="number" id="user-id">
+                        <input type="number" id="vacuna-dia">
                     </div>
 
                     {{-- INPUT DIAS --}}
@@ -211,21 +213,30 @@
                 })
         })();
 
-        //Intento con select 
-        //Funciona 
+
+        //Funciona select
         //Obtengo el id seleccionado de una vacuna
         /*  $(document).ready(function() { */
+        var valor_inicial = '';
         $("#vacuna_id").change(function() {
             //capturo el valor de id seleccionado
-            //var selectedVal = $("#vacuna_id option:selected").val();
-            var selectedVal = $(this).find('option:selected');
-            //URL de la funcion
-            var userURL = selectedVal.data('url');
-            $.get(userURL, function(data) {
-                $('#user-id').val(data.tiempoEntreDosisDia);
 
+
+            var VacunaSeleccionada = $(this).find('option:selected');
+
+            var valor_opcion = $(this).find('option:selected').text();
+            console.log(valor_opcion);
+            //URL de la funcion
+            var vacunaURL = VacunaSeleccionada.data('url');
+            $.get(vacunaURL, function(data) {
+                $('#vacuna-dia').val(data.tiempoEntreDosisDia);
             })
-            console.log("Hi, your favorite programming language is " + selectedVal);
+
+
+            document.getElementById("end").value = "";
+            document.getElementById("start").value = "";
+
+            //console.log("Hi, your favorite programming language is " + selectedVal);
 
         });
         /* }); */
@@ -237,17 +248,16 @@
         $('#end').change(function() {
             var date = new Date($("#end").val());
             //los dias del input oculto validados
-            var dias = parseInt($("#user-id").val(), 10);
+            var dias = parseInt($("#vacuna-dia").val(), 10);
 
             console.log(dias);
             date.setDate(date.getDate() + dias);
             $('#start')[0].valueAsNumber = +date;
-            /*   date.setDate(date.getDate() + 365);
-              $('#start')[0].valueAsNumber = +date; */
 
             console.log(new Date(this.value)) // retrieving as data
         });
         $('#start').change();
+
 
 
         /* End Jquery */
@@ -262,7 +272,7 @@
             $('body').on('click', '#show-dias', function() {
                 var userURL = $(this).data('url');
                 $.get(userURL, function(data) {
-                    $('#user-id').val(data.tiempoEntreDosisDia);
+                    $('#vacuna-dia').val(data.tiempoEntreDosisDia);
 
                 })
             });
