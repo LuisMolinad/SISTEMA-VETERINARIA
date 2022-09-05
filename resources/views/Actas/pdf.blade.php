@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{{-- <link rel="stylesheet" href="{{ asset('css/actadeefuncion.css') }}"> --}}
+<link rel="stylesheet" href="{{ public_path('css/actadeefuncion.css') }}">
 
 <head>
     <meta charset="UTF-8">

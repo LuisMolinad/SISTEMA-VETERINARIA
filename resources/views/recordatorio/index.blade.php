@@ -106,6 +106,7 @@ GESTIONAR RECORDATORIOS
         
                             @if ($recordatorio->estado == 0)
                                 <td id = "botones-linea">
+                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                                     <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
@@ -114,12 +115,14 @@ GESTIONAR RECORDATORIOS
                                     </form>
                             @elseif($recordatorio->estado == 1)
                                 <td id = "botones-linea">
+                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
                                     <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
                                     </form>
                             @elseif ($recordatorio->estado == -1)
                                 <td id = "botones-linea">
+                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
                                     <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                                     <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">

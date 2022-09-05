@@ -53,9 +53,11 @@ class RecordatorioController extends Controller
      * @param  \App\Models\recordatorio  $recordatorio
      * @return \Illuminate\Http\Response
      */
-    public function show(recordatorio $recordatorio)
+    public function show($id)
     {
-        //
+        $datos = recordatorio::where('id',$id)->first();
+
+        return view('recordatorio.show', compact('datos'));
     }
 
     /**
