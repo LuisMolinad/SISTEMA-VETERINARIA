@@ -112,7 +112,7 @@
                     </div>
                     {{-- INPUT DIAS --}}
                     <div>
-                        <input id="user-id">
+                        <input type="number" id="user-id">
                     </div>
 
                     {{-- INPUT DIAS --}}
@@ -210,16 +210,43 @@
                     }, false)
                 })
         })();
-        /* Jquery  */
+
+        //Intento con select 
+        //Funciona 
+        //Obtengo el id seleccionado de una vacuna
+        /*  $(document).ready(function() { */
+        $("#vacuna_id").change(function() {
+            //capturo el valor de id seleccionado
+            //var selectedVal = $("#vacuna_id option:selected").val();
+            var selectedVal = $(this).find('option:selected');
+            //URL de la funcion
+            var userURL = selectedVal.data('url');
+            $.get(userURL, function(data) {
+                $('#user-id').val(data.tiempoEntreDosisDia);
+
+            })
+            console.log("Hi, your favorite programming language is " + selectedVal);
+
+        });
+        /* }); */
+
+
+
+        /* Jquery CALENDARIO FUNCIONAL */
 
         $('#end').change(function() {
-            var date = new Date(this.valueAsNumber);
-            date.setDate(date.getDate() + 365);
+            var date = new Date($("#end").val());
+            //los dias del input oculto validados
+            var dias = parseInt($("#user-id").val(), 10);
+
+            console.log(dias);
+            date.setDate(date.getDate() + dias);
             $('#start')[0].valueAsNumber = +date;
+            /*   date.setDate(date.getDate() + 365);
+              $('#start')[0].valueAsNumber = +date; */
 
             console.log(new Date(this.value)) // retrieving as data
         });
-
         $('#start').change();
 
 
@@ -241,30 +268,8 @@
             });
 
         });
-        //Intento con select 
-        //Funciona 
-        //Obtengo el id seleccionado de una vacuna
-        $(document).ready(function() {
-            $("#vacuna_id").change(function() {
-                //capturo el valor de id seleccionado
-                //var selectedVal = $("#vacuna_id option:selected").val();
-                var selectedVal = $(this).find('option:selected');
-                //URL de la funcion
-                var userURL = selectedVal.data('url');
-                $.get(userURL, function(data) {
-                    $('#user-id').val(data.tiempoEntreDosisDia);
 
-                })
-                console.log("Hi, your favorite programming language is " + selectedVal);
 
-            });
-        });
-
-        /*    $("#vacuna_id").change(function() {
-                    var option = $(this).find('option:selected');
-                    window.location.href = option.data("url");
-                });
-         */
         function funcionesOnClick() {
             actualizar_mensaje_al_crear_vacuna();
         }
