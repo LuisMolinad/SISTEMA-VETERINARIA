@@ -11,13 +11,10 @@
     <!--Fin del CSS para recordatorios -->
     <!--JS para recordatorios -->
     <script src="{{ asset('js/recordatorio.js') }}"></script>
-
-    {{-- <script src="{{ asset('js/addFecha.js') }}"></script> --}}
-    {{-- <!--  Flatpickr  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
-    <!--Fin del JS para recordatorios -->
-    <!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/alertaCambioVacuna.js') }}"></script>
 @endsection
 
 @section('header')
@@ -91,8 +88,8 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
-                        <select class="custom-select" id="vacuna_id" name='vacuna_id'
-                            onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                        <select data-swal-toast-template="#my-template" class="custom-select" id="vacuna_id"
+                            name='vacuna_id' onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
                                 <option value="" selected disabled hidden>
                                     Nada seleccionado</option>
@@ -108,16 +105,20 @@
                         <div class="invalid-feedback">
                             Seleccione una vacuna
                         </div>
-                        <a href="javascript:void(0)" id="show-dias"
-                            data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}"
-                            class="btn btn-info">obtener</a>
+
                     </div>
-                    {{-- INPUT DIAS --}}
-                    <div>
+                    {{-- INPUT DIAS OCULTOS --}}
+                    <div style="display: none;">
                         <input type="number" id="vacuna-dia">
                     </div>
 
-                    {{-- INPUT DIAS --}}
+                    {{-- INPUT DIAS OCULTOS --}}
+                    {{-- INPUT seleccion OCULTOS --}}
+                    <div style="display: none;">
+                        <input type="text" id="seleccion">
+                    </div>
+
+                    {{-- INPUT seleccion OCULTOS --}}
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="end" style="color:black">Fecha aplicación</label></strong>
@@ -191,6 +192,7 @@
                 <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
             </div>
         </form>
+        @include('layouts.vacuna')
     </div>
 @endsection
 @section('js')
@@ -223,16 +225,33 @@
 
 
             var VacunaSeleccionada = $(this).find('option:selected');
-
+            //texto que captura la seleccion previa
+            var valor_texto = $('#seleccion').val();
+            console.log('Valor del input previo ' + valor_texto);
             var valor_opcion = $(this).find('option:selected').text();
-            console.log(valor_opcion);
+            //seleccionado sin espacios
+            valorOpcion = jQuery.trim(valor_opcion);
+
+            //si el actual es diferente al que estaba antes se alerta
+            if (valor_texto && valor_texto != valorOpcion) {
+                //de sweet alert
+                cambioVacuna();
+
+
+            }
+
+            console.log('Valor del seleccionado ' + valorOpcion);
             //URL de la funcion
             var vacunaURL = VacunaSeleccionada.data('url');
+            //trae las cosas por medio de la url
             $.get(vacunaURL, function(data) {
                 $('#vacuna-dia').val(data.tiempoEntreDosisDia);
             })
 
+            valor_inicial = valorOpcion;
+            $('#seleccion').val(valor_inicial);
 
+            // console.log(valor_inicial);
             document.getElementById("end").value = "";
             document.getElementById("start").value = "";
 
