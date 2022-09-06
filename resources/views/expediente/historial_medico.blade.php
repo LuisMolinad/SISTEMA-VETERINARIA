@@ -7,6 +7,10 @@ Historial Medico
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
 @endsection
 
 @section('header')
@@ -18,7 +22,7 @@ Historial Medico
 
         <form id="agregar_linea" action="">
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
-            <label for="">Texto linea historial</label>
+            <label for="">Diagnostico:</label>
             <input id="textoLineaHistorial" type="text" name="textoLineaHistorial">
             <button onclick="return agregar_linea()" class="btn btn-success mb-2">Agregar linea</button>
         </form>
@@ -37,7 +41,14 @@ Historial Medico
                 <tr>
                     <td>{{$lineaHistorial->fechaLineaHistorial}}</td>
                     <td class="linea" id_linea ="{{$lineaHistorial->id}}">{{$lineaHistorial->textoLineaHistorial}}</td>
-                    <td></td>
+                    <td>
+                        <form id="EditForm{{$lineaHistorial->id}}"
+                            action="{{ route('historialMedico.delete', ['lineaHistorial' => $lineaHistorial->id]) }}">
+        
+                            {{ method_field('DELETE') }}
+                            <button onclick="return alerta_eliminar_lineahistorial('{{ $lineaHistorial->id }}')" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

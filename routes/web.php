@@ -240,3 +240,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_historial_Medico'])->name('historialmedico.index')->middleware('auth');
 Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
+Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');

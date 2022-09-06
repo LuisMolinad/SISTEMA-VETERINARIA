@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\lineaHistorial;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ExpedienteController;
+use App\Models\expediente;
 
 class LineaHistorialController extends Controller
 {
@@ -78,9 +80,15 @@ class LineaHistorialController extends Controller
      * @param  \App\Models\lineaHistorial  $lineaHistorial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(lineaHistorial $lineaHistorial)
+    public function destroy($lineaHistorial)
     {
-        //
+        $idLineaHistorial = lineaHistorial::find($lineaHistorial);
+        $id = expediente::find($idLineaHistorial->expediente_id);
+        $idLineaHistorial->delete();
+
+
+        //Cambiar esta linea
+        return redirect()->action([ExpedienteController::class, 'gestionar_historial_Medico'], ['id' => $id])->with('danger', 'Diagnostico eliminado correctamente');
     }
 
     public function fetch(){
@@ -92,6 +100,9 @@ class LineaHistorialController extends Controller
         ];
 
         lineaHistorial::insert($datos);
+
+        return redirect()->action([ExpedienteController::class, 'gestionar_historial_Medico'])->with('warning', 'Cita de editada correctamente');
+
     }
 
     public function edit_editable(){
