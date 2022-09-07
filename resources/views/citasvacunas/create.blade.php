@@ -142,6 +142,7 @@
                     </div>
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
+
                     </div>
                 </div>
             </div>
@@ -217,7 +218,6 @@
 
 
         //Funciona select
-        //Obtengo el id seleccionado de una vacuna
 
         var valor_inicial = ''; //variable para ir comparando
         $("#vacuna_id").change(function() {
@@ -268,11 +268,33 @@
             //alert para testear
             //alert($("#vacuna-dia").val());
             date.setDate(date.getDate() + dias);
-
+            //le asigno el valor
             $('#start')[0].valueAsNumber = +date;
+
+            //atrapo el valor de fecha de refuerzo
+            var datetimeval = $('#start').val(); /* .getUTCDay(); */
+            //se transforma en fecha
+            const date12 = new Date(datetimeval);
+            //imprimo en consola para ver el dato que devuelve 0 es domingo 6 sabado
+            console.log(date12.getUTCDay());
+            var weekend = date12.getUTCDay();
+
+            if (weekend == 0 | weekend == 6) {
+
+                /* alert('Weekends not allowed'); */
+                weekday();
+                //e.preventDefault();
+                //$('#start').val('');
+            }
 
         });
         $('#start').change();
+
+        //Fin de semana 
+
+        /*  if (dayOfWeek === 6) || (dayOfWeek === 0) {
+             alert('fin de semana');
+         } */
 
 
 
