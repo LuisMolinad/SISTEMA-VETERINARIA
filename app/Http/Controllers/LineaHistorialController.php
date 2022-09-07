@@ -85,8 +85,7 @@ class LineaHistorialController extends Controller
         $idLineaHistorial = lineaHistorial::find($lineaHistorial);
         $id = expediente::find($idLineaHistorial->expediente_id);
         $idLineaHistorial->delete();
-
-
+        
         //Cambiar esta linea
         return redirect()->action([ExpedienteController::class, 'gestionar_historial_Medico'], ['id' => $id])->with('danger', 'Diagnostico eliminado correctamente');
     }
@@ -101,8 +100,7 @@ class LineaHistorialController extends Controller
 
         lineaHistorial::insert($datos);
 
-        return redirect()->action([ExpedienteController::class, 'gestionar_historial_Medico'])->with('warning', 'Cita de editada correctamente');
-
+        
     }
 
     public function edit_editable(){

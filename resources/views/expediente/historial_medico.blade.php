@@ -18,15 +18,20 @@ Historial Medico
 @endsection
 
 @section('content')
+    @include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
 
-        <form id="agregar_linea" action="">
+        <form id="agregar_linea" action="" class="form-inline">
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
+            <div class="form-group">
             <label for="">Diagnostico:</label>
-            <input id="textoLineaHistorial" type="text" name="textoLineaHistorial">
-            <button onclick="return agregar_linea()" class="btn btn-success mb-2">Agregar linea</button>
+            <!--style="resize: both;-->
+            <textarea id="textoLineaHistorial" type="text" name="textoLineaHistorial" class="form-control mx-sm-3" rows="3" placeholder='Escriba el diagnostico de la mascota' ></textarea>
+            <button onclick="return agregar_linea()" class="btn btn-success mb-2 form-control mx-sm-3">Agregar linea</button>
+        </div>
         </form>
-
+        
+        <br>
         <table class="table table-striped" id="tarjetahistorial">
             <thead class="table-dark table-header">
                 <tr>
@@ -124,6 +129,9 @@ Historial Medico
                     console.log(fecha_hoy);
                     document.getElementById("tarjetahistorial").insertRow(-1).innerHTML = nueva_linea;
                     linea = '';
+                    //Con esta instruccion se recarga la pagina
+                    location.reload();
+                    //window.location.reload(false);
                 })
             }
 
@@ -175,6 +183,8 @@ Historial Medico
                         fetch('/historial/edit_editable/?id=' + id_linea + '&textoLineaHistorial='+current_text)
                         .then(()=>{
                             console.log('si hace el cambio');
+                            //Con esta instruccion se recarga la pagina
+                            //window.location.reload(false);
                         })
                         //Rosalio magia
 
