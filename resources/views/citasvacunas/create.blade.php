@@ -1,5 +1,5 @@
 @extends('app')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('titulo')
     Cita de vacunación
 @endsection
@@ -11,8 +11,10 @@
     <!--Fin del CSS para recordatorios -->
     <!--JS para recordatorios -->
     <script src="{{ asset('js/recordatorio.js') }}"></script>
-    <!--Fin del JS para recordatorios -->
-    <!-- Cualquier duda o comentario comunicarse con Rosalio -->
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/alertaCambioVacuna.js') }}"></script>
 @endsection
 
 @section('header')
@@ -77,7 +79,7 @@
                     <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion del dueño"
                         value="{{ $mascotas->propietario->direccionPropietario }}" readonly="readonly">
                 </div>
-                <input type="text" class="none" name="id_propietario" value="{{$mascotas->propietario->id}}">
+                <input type="text" class="none" name="id_propietario" value="{{ $mascotas->propietario->id }}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -86,18 +88,37 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
-                        <select class="custom-select" id="vacuna_id" name='vacuna_id' onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                        <select class="custom-select" id="vacuna_id" name='vacuna_id'
+                            onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
-                                <option value="{{ $vacuna->id }}">{{ $vacuna->nombreVacuna }}</option>
+                                <option value="" selected disabled hidden>
+                                    Nada seleccionado</option>
+                                <option value="{{ $vacuna->id }}"
+                                    data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}">
+                                    {{ $vacuna->nombreVacuna }}</option>
                             @endforeach
                         </select>
                         <div class="valid-feedback">
                             Campo correcto
                         </div>
+
                         <div class="invalid-feedback">
                             Seleccione una vacuna
                         </div>
+
                     </div>
+                    {{-- INPUT DIAS OCULTOS --}}
+                    <div style="display: none;">
+                        <input type="number" id="vacuna-dia">
+                    </div>
+
+                    {{-- INPUT DIAS OCULTOS --}}
+                    {{-- INPUT seleccion OCULTOS --}}
+                    <div style="display: none;">
+                        <input type="text" id="seleccion">
+                    </div>
+
+                    {{-- INPUT seleccion OCULTOS --}}
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="end" style="color:black">Fecha aplicación</label></strong>
@@ -108,15 +129,20 @@
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
                     </div>
+
+
+
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
-                    <input class="form-control" type="datetime-local" name="start" onchange="actualizar_mensaje_al_crear_vacuna()" id="start" required>
+                    <input class="form-control" type="datetime-local" name="start"
+                        onchange="actualizar_mensaje_al_crear_vacuna()" id="start" required>
                     <div class="valid-feedback">
                         Campo correcto
                     </div>
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
+
                     </div>
                 </div>
             </div>
@@ -139,7 +165,8 @@
                     <div class="form-group col-md-6">
                         <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
                         <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
-                            onchange="actualizar_mensaje_al_crear_vacuna();" onclick="actualizar_mensaje_al_crear_vacuna();">
+                            onchange="actualizar_mensaje_al_crear_vacuna();"
+                            onclick="actualizar_mensaje_al_crear_vacuna();">
                             <option value="0" selected>No, no deseo un recordatorio</option>
                             <option value="1">1 dias de anticipacion</option>
                             <option value="2">2 dias de anticipacion</option>
@@ -166,6 +193,7 @@
                 <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
             </div>
         </form>
+
     </div>
 @endsection
 @section('js')
@@ -186,7 +214,88 @@
                         form.classList.add('was-validated')
                     }, false)
                 })
-        })()
+        })();
+
+
+        //Funciona select
+
+        var valor_inicial = ''; //variable para ir comparando
+        $("#vacuna_id").change(function() {
+            //capturo el valor de id seleccionado
+
+
+            var VacunaSeleccionada = $(this).find('option:selected');
+            //texto que captura la seleccion previa oculto
+            var valor_texto = $('#seleccion').val();
+            //   console.log('Valor del input previo ' + valor_texto + ' valor_texto');
+            var valor_opcion = $(this).find('option:selected').text();
+            //seleccionado sin espacios
+            valorOpcion = jQuery.trim(valor_opcion);
+            // console.log('Valor del input seleccionado ' + valorOpcion + ' valorOpcion');
+            //si el actual es diferente al que estaba antes se alerta
+            if (valor_texto != valorOpcion) {
+                //de sweet alert
+                cambioVacuna();
+                //detecta hasta el segundo cambio
+            }
+            //URL de la funcion
+            var vacunaURL = VacunaSeleccionada.data('url');
+            //trae las cosas por medio de la url
+            $.get(vacunaURL, function(data) {
+                $('#vacuna-dia').val(data.tiempoEntreDosisDia);
+            })
+
+            valor_inicial = valorOpcion;
+            $('#seleccion').val(valor_inicial);
+
+            // Reiniciamos si hay un cambio 
+            document.getElementById("end").value = "";
+            document.getElementById("start").value = "";
+
+            $("#dias_de_anticipacion").val("");
+
+        });
+
+
+        /* Jquery CALENDARIO FUNCIONAL */
+        $('#end')[0].valueAsNumber = 6e4 * (Math.floor(Date.now() / 6e4) - new Date().getTimezoneOffset());
+        $('#end').change(function() {
+            var date = new Date(this.valueAsNumber);
+
+
+            //los dias del input oculto validados
+            var dias = parseInt($("#vacuna-dia").val(), 10);
+            //alert para testear
+            //alert($("#vacuna-dia").val());
+            date.setDate(date.getDate() + dias);
+            //le asigno el valor
+            $('#start')[0].valueAsNumber = +date;
+
+            //atrapo el valor de fecha de refuerzo
+            var datetimeval = $('#start').val(); /* .getUTCDay(); */
+            //se transforma en fecha
+            const date12 = new Date(datetimeval);
+            //imprimo en consola para ver el dato que devuelve 0 es domingo 6 sabado
+            console.log(date12.getUTCDay());
+            var weekend = date12.getUTCDay();
+
+            if (weekend == 0 | weekend == 6) {
+
+                /* alert('Weekends not allowed'); */
+                weekday();
+                //e.preventDefault();
+                //$('#start').val('');
+            }
+
+        });
+        $('#start').change();
+
+        //Fin de semana 
+
+        /*  if (dayOfWeek === 6) || (dayOfWeek === 0) {
+             alert('fin de semana');
+         } */
+
 
 
         function funcionesOnClick() {

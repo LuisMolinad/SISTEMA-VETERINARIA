@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
+
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\defuncionController;
@@ -52,15 +54,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* ---------------------------//Rutas de Verificacion de correo---------------------------------------------------- */
 Auth::routes(['verify' => true]);
 
-//vista de verificar 
+//Vista que se ve cuando el usuario quiere ver algo antes de haber verificado su correo 
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
+//ruta para solicitar reenvio de link
 Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+    //usuario activo
+    // $request->user()->sendEmailVerificationNotification();
+    $user = User::where('email', $request->input('email'))->first();
+    //return ($user);
+    $user->sendEmailVerificationNotification();
 
-    return back()->with('message', 'Verification link sent!');
+    return back()->with('success', 'Link de verificación envíado correctamente');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 //vista luego de hacer clik en el boton del correo 
@@ -71,7 +78,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 
 /* ---------------------------//FIN DE Rutas de Verificacion de correo---------------------------------------------------- */
-Auth::routes(['verify' => true]);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
@@ -120,6 +127,10 @@ Route::get('/citas/edit/{id}/{citaVacuna_id}', [gestionCitasVacunacionController
 Route::post('actualizarCitaVacuna/{idCita}/{idmascota}', [gestionCitasVacunacionController::class, 'update'])->name('citaVacuna.update')->middleware('auth');
 //Eliminar
 Route::get('/citas/delete/gestion/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'destroy'])->name('gestionVacuna.delete')->middleware('auth');
+
+
+//RUTA PARA FUNCION JQUERY
+Route::get('/obtenerDia/{id}', [CitaVacunaController::class, 'obtenerDias'])->name('diasVacuna.obtenerDias')->middleware('auth');
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller

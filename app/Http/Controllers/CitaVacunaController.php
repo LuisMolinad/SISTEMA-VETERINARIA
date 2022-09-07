@@ -40,7 +40,7 @@ class CitaVacunaController extends Controller
     {
         $mascotas = mascota::FindOrFail($id);
         //Recuperamos las vacunas habilitadas
-        $vacunas = vacuna::where('disponibilidadVacuna','1')->get();
+        $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
         return view('citasvacunas.create', compact('mascotas', 'vacunas'));
         //return view('Cirugia.CrearCirugia');
     }
@@ -92,7 +92,7 @@ class CitaVacunaController extends Controller
                     'nombre' => request('nombre_mascota'),
                     'id_mascota' => request('idVisible'),
                     'telefono' => request('inputContactNumber'),
-                    'id_propietario'=>request('id_propietario')
+                    'id_propietario' => request('id_propietario')
                 ];
 
             $datosVacuna = [
@@ -188,8 +188,17 @@ class CitaVacunaController extends Controller
     }
 
     //Función para consultar citas de una vacuna especifica
-    public function consultarCitasVacunaPorIdVacuna($id){
-        $citasVacuna = citaVacuna::where('vacuna_id',$id)->get();
+    public function consultarCitasVacunaPorIdVacuna($id)
+    {
+        $citasVacuna = citaVacuna::where('vacuna_id', $id)->get();
         return response()->json($citasVacuna);
+    }
+
+
+    public function obtenerDias($id)
+    {
+        //$diasVacuna = vacuna::where('id', $id)->get('tiempoEntreDosisDia')->first();
+        $diasVacuna = vacuna::find($id);
+        return response()->json($diasVacuna);
     }
 }

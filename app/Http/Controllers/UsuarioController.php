@@ -68,7 +68,7 @@ class UsuarioController extends Controller
         $user->assignRole($request->input('roles'));
         //enviar correo de verificacion al usuario creado
         event(new Registered($user));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('success', 'USUARIO CREADO CORRECTAMENTE');
     }
 
     /**
@@ -125,7 +125,7 @@ class UsuarioController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('warning', 'USUARIO EDITADO CORRECTAMENTE');;
     }
 
     /**
@@ -136,7 +136,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        $test = User::find($id)->delete();
+
+        return redirect()->route('usuarios.index')->with('danger', 'USUARIO ELIMINADO CORRECTAMENTE');
+        //return redirect()->action([UsuarioController::class, 'index']);
     }
 }
