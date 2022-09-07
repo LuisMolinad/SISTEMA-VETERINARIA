@@ -1,18 +1,51 @@
 function cambioVacuna(){
+  var toastMixin = Swal.mixin({
+    toast: true,
+    icon: 'info',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    
+  });
 
+  var toast = Swal.mixin({
+    toast: true,
+    icon: 'info',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    
+  });
+  
 
-      Swal.bindClickHandler()
-      Swal.mixin({
-        toast: true,
-        showConfirmButton: false,
-        timer: 5000,
-        timerProgressBar: true,
-      }).bindClickHandler('data-swal-toast-template').then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire('Saved!', '', 'success')
-          } else if (result.isDenied) {
-            Swal.fire('Changes are not saved', '', 'info')
-          }
-      })
+  document.getElementById('vacuna_id').addEventListener('mousedown', function(){
+    toastMixin.fire({
+      animation: true,
+      title: 'Si cambia la vacuna, se reiniciará la fecha y recordatorio'
+    });
+  }); 
+
+/*   document.querySelector('.custom-select').addEventListener('change', function(){
+    toast.fire({
+      animation: true,
+      title: 'Vacuna Cambiada'
+    });
+  }); */
+
+ 
     
 }

@@ -88,8 +88,8 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
-                        <select data-swal-toast-template="#my-template" class="custom-select" id="vacuna_id"
-                            name='vacuna_id' onchange="actualizar_mensaje_al_crear_vacuna()" required>
+                        <select class="custom-select" id="vacuna_id" name='vacuna_id'
+                            onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
                                 <option value="" selected disabled hidden>
                                     Nada seleccionado</option>
@@ -192,7 +192,7 @@
                 <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
             </div>
         </form>
-        @include('layouts.vacuna')
+
     </div>
 @endsection
 @section('js')
@@ -225,29 +225,19 @@
 
 
             var VacunaSeleccionada = $(this).find('option:selected');
-            //texto que captura la seleccion previa
+            //texto que captura la seleccion previa oculto
             var valor_texto = $('#seleccion').val();
-            console.log('Valor del input previo ' + valor_texto);
+            //   console.log('Valor del input previo ' + valor_texto + ' valor_texto');
             var valor_opcion = $(this).find('option:selected').text();
             //seleccionado sin espacios
             valorOpcion = jQuery.trim(valor_opcion);
-
+            // console.log('Valor del input seleccionado ' + valorOpcion + ' valorOpcion');
             //si el actual es diferente al que estaba antes se alerta
-            if (valor_texto && valor_texto != valorOpcion) {
+            if (valor_texto != valorOpcion) {
                 //de sweet alert
-                // cambioVacuna();
-                /*  if (cambioVacuna() == false) {
-                     console.log(false)
-                 }
-                 if (cambioVacuna() == true) {
-                     console.log(true)
-                 } */
-                alert('Cambió la Vacuna, se reiniciara la fecha')
-
-
+                cambioVacuna();
+                //detecta hasta el segundo cambio
             }
-
-            console.log('Valor del seleccionado ' + valorOpcion);
             //URL de la funcion
             var vacunaURL = VacunaSeleccionada.data('url');
             //trae las cosas por medio de la url
@@ -264,11 +254,7 @@
 
             $("#dias_de_anticipacion").val("");
 
-
-
         });
-        /* }); */
-
 
 
         /* Jquery CALENDARIO FUNCIONAL */
@@ -280,8 +266,7 @@
             //los dias del input oculto validados
             var dias = parseInt($("#vacuna-dia").val(), 10);
             //alert para testear
-            alert($("#vacuna-dia").val());
-
+            //alert($("#vacuna-dia").val());
             date.setDate(date.getDate() + dias);
 
             $('#start')[0].valueAsNumber = +date;
