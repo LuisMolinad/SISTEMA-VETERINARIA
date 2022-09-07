@@ -7,6 +7,10 @@ Historial Medico
 @section('librerias')
 <!--Data tables-->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{ asset('js/eliminar_sweetalert2.js') }}"></script>
 @endsection
 
 @section('header')
@@ -14,15 +18,20 @@ Historial Medico
 @endsection
 
 @section('content')
+    @include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
 
-        <form id="agregar_linea" action="">
+        <form id="agregar_linea" action="" class="form-inline">
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
-            <label for="">Texto linea historial</label>
-            <input id="textoLineaHistorial" type="text" name="textoLineaHistorial">
-            <button onclick="return agregar_linea()" class="btn btn-success mb-2">Agregar linea</button>
+            <div class="form-group">
+            <label for="">Diagnostico:</label>
+            <!--style="resize: both;-->
+            <textarea id="textoLineaHistorial" type="text" name="textoLineaHistorial" class="form-control mx-sm-3" rows="3" placeholder='Escriba el diagnostico de la mascota' ></textarea>
+            <button onclick="return agregar_linea()" class="btn btn-success mb-2 form-control mx-sm-3">Agregar linea</button>
+        </div>
         </form>
-
+        
+        <br>
         <table class="table table-striped" id="tarjetahistorial">
             <thead class="table-dark table-header">
                 <tr>
@@ -37,7 +46,14 @@ Historial Medico
                 <tr>
                     <td>{{$lineaHistorial->fechaLineaHistorial}}</td>
                     <td class="linea" id_linea ="{{$lineaHistorial->id}}">{{$lineaHistorial->textoLineaHistorial}}</td>
-                    <td></td>
+                    <td>
+                        <form id="EditForm{{$lineaHistorial->id}}"
+                            action="{{ route('historialMedico.delete', ['lineaHistorial' => $lineaHistorial->id]) }}">
+        
+                            {{ method_field('DELETE') }}
+                            <button onclick="return alerta_eliminar_lineahistorial('{{ $lineaHistorial->id }}')" type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -113,6 +129,9 @@ Historial Medico
                     console.log(fecha_hoy);
                     document.getElementById("tarjetahistorial").insertRow(-1).innerHTML = nueva_linea;
                     linea = '';
+                    //Con esta instruccion se recarga la pagina
+                    location.reload();
+                    //window.location.reload(false);
                 })
             }
 
@@ -164,6 +183,8 @@ Historial Medico
                         fetch('/historial/edit_editable/?id=' + id_linea + '&textoLineaHistorial='+current_text)
                         .then(()=>{
                             console.log('si hace el cambio');
+                            //Con esta instruccion se recarga la pagina
+                            //window.location.reload(false);
                         })
                         //Rosalio magia
 
