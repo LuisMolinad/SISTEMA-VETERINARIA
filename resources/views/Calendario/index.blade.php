@@ -244,7 +244,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="btniraeditar">Editar</button>
                         <button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrarEd">Cerrar</button>
 
                     </div>
                 </div>

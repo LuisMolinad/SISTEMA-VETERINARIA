@@ -37,7 +37,7 @@ Historial Medico
                 <tr>
                     <th scope="col">Fecha</th>
                     <th scope="col">Diagnostico</th>
-                    <th scope="col"></th>
+                    <th scope="col">Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@ Historial Medico
                     document.getElementById("tarjetahistorial").insertRow(-1).innerHTML = nueva_linea;
                     linea = '';
                     //Con esta instruccion se recarga la pagina
-                    location.reload();
+                    //location.reload();
                     //window.location.reload(false);
                 })
             }
@@ -159,7 +159,7 @@ Historial Medico
                 this.setAttribute('data-clicked','yes');
                 this.setAttribute('data-text', this.innerHTML);
 
-                var input  = document.createElement ( 'input' ) ;
+                var input  = document.createElement ( 'textarea' ) ;
                 input.setAttribute ( 'type' , 'text' ) ;
                 input.value = this.innerHTML ;
                 input.style.width = this.offsetWidth - ( this.clientLeft * 2 ) + "px" ;
@@ -168,7 +168,7 @@ Historial Medico
                 input.style.fontFamily = "inherit" ;
                 input.style.fontSize = "inherit" ;
                 input.style.textAlign = "inherit" ;
-                input.style.backgroundColor = "LightGoldenRodYellow" ;
+                input.style.backgroundColor = "#FFFEE0" ;
                 
                 input.onblur = function() {
                     var td = input.parentElement;
