@@ -82,4 +82,26 @@ class LineaHistorialController extends Controller
     {
         //
     }
+
+    public function fetch(){
+
+        $datos = [
+            'expediente_id' => request('expediente_id'),
+            'textoLineaHistorial' => request('textoLineaHistorial'),
+            'fechaLineaHistorial' => date('Y-m-d'),
+        ];
+
+        lineaHistorial::insert($datos);
+    }
+
+    public function edit_editable(){
+        
+        $datos = [
+            'textoLineaHistorial' => request('textoLineaHistorial')
+        ];
+
+        $id = request('id');
+
+        lineaHistorial::where('id',$id)->update($datos);
+    }
 }

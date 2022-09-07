@@ -14,7 +14,7 @@ class DeleteLineaHistorialToLineaHistorialsTable extends Migration
     public function up()
     {
         Schema::table('linea_historials', function (Blueprint $table) {
-            Schema::drop('linea_historials');
+            //Schema::drop('linea_historials');
         });
     }
 

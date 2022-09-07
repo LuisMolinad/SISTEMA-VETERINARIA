@@ -15,4 +15,10 @@ class expediente extends Model
     public function mascota(){
         return $this->belongsTo(mascota::class);
     }
+
+    public function HistorialMedico()
+    {
+        return $this->hasMany(lineaHistorial::class);
+    }
+
 }

@@ -151,4 +151,9 @@ class ExpedienteController extends Controller
         Expediente::destroy($id);
         return redirect('/expediente?objeto=expediente&accion=elimino');
     }
+
+    public function gestionar_historial_Medico($id){
+        $expediente = expediente::FindOrFail($id);
+        return view('expediente.historial_medico', compact('expediente'));
+    }
 }
