@@ -9,13 +9,10 @@ function cambioVacuna(){
         timerProgressBar: true,
       }).bindClickHandler('data-swal-toast-template').then((result) => {
         if (result.isConfirmed) {
-
-           return true;
-        }
-        if (result.isCancel) {
-
-            return false;
-         }
+            Swal.fire('Saved!', '', 'success')
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
       })
     
 }

@@ -218,8 +218,8 @@
 
         //Funciona select
         //Obtengo el id seleccionado de una vacuna
-        /*  $(document).ready(function() { */
-        var valor_inicial = '';
+
+        var valor_inicial = ''; //variable para ir comparando
         $("#vacuna_id").change(function() {
             //capturo el valor de id seleccionado
 
@@ -235,7 +235,14 @@
             //si el actual es diferente al que estaba antes se alerta
             if (valor_texto && valor_texto != valorOpcion) {
                 //de sweet alert
-                cambioVacuna();
+                // cambioVacuna();
+                /*  if (cambioVacuna() == false) {
+                     console.log(false)
+                 }
+                 if (cambioVacuna() == true) {
+                     console.log(true)
+                 } */
+                alert('Cambió la Vacuna, se reiniciara la fecha')
 
 
             }
@@ -251,11 +258,13 @@
             valor_inicial = valorOpcion;
             $('#seleccion').val(valor_inicial);
 
-            // console.log(valor_inicial);
+            // Reiniciamos si hay un cambio 
             document.getElementById("end").value = "";
             document.getElementById("start").value = "";
 
-            //console.log("Hi, your favorite programming language is " + selectedVal);
+            $("#dias_de_anticipacion").val("");
+
+
 
         });
         /* }); */
@@ -263,40 +272,23 @@
 
 
         /* Jquery CALENDARIO FUNCIONAL */
-
+        $('#end')[0].valueAsNumber = 6e4 * (Math.floor(Date.now() / 6e4) - new Date().getTimezoneOffset());
         $('#end').change(function() {
-            var date = new Date($("#end").val());
+            var date = new Date(this.valueAsNumber);
+
+
             //los dias del input oculto validados
             var dias = parseInt($("#vacuna-dia").val(), 10);
+            //alert para testear
+            alert($("#vacuna-dia").val());
 
-            console.log(dias);
             date.setDate(date.getDate() + dias);
+
             $('#start')[0].valueAsNumber = +date;
 
-            console.log(new Date(this.value)) // retrieving as data
         });
         $('#start').change();
 
-
-
-        /* End Jquery */
-        /* Tester 
-           
-           '#show-user3' id del boton
-           'click' el evento
-           var userURL = $(this).data('url'); la url 
-           */
-        //Funcional boton 
-        $(document).ready(function() {
-            $('body').on('click', '#show-dias', function() {
-                var userURL = $(this).data('url');
-                $.get(userURL, function(data) {
-                    $('#vacuna-dia').val(data.tiempoEntreDosisDia);
-
-                })
-            });
-
-        });
 
 
         function funcionesOnClick() {
