@@ -43,8 +43,11 @@ GESTIONAR CITA CIRUGÍA
                         @if ($mascota->fallecidoMascota == 'Vivo') 
                             <a role="button" class="btn btn-success" href="{{ url('citacirugia/crearCita/'.$mascota->id) }}">Crear</a>
                          <!--   <a href="{{url('/citacirugia/gestionarCirugia/record?id='.$mascota->id)}}"><button type="button" class="btn btn-dark">Gestionar</button></a>-->
+                         @elseif($mascota->fallecidoMascota == 'Fallecido')
+                            <a role="button" class="btn btn-success oculto" >Crear</a>
                          
-                         @endif
+                         @endif 
+                         
                          <a href="{{ route('GestionCirugia.index', $mascota->id) }}"><button type="button" class="btn btn-dark">Gestionar</button></a>
 
                             </td>

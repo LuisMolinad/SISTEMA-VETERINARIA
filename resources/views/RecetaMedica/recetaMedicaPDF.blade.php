@@ -73,7 +73,7 @@
 
     <div style=" float:left" >
     <p class="informacion_paciente_nombre">  Paciente: </p>  {{$nombre}} 
-    <p class="informacion_paciente_peso">    Peso:  </p>   {{$datos['pesoReceta']}} libras
+    <p class="informacion_paciente_peso">    Peso:  </p>   {{$datos['pesoRecetaMedica']}} libras
     </div>
          
          
@@ -83,16 +83,15 @@
 
     <p class="tratamiento">  R:/ </p>
             
-            {{$datos['tratamientoAplicarReceta']}}            
+            {{$datos['tratamientoAplicarRecetaMedica']}}            
 
     </div>
 
 
+
+
     <br>
     <br>
-
-
-
     <div class="container">
             <div class="informacion_cita">
             Cita: __________________________

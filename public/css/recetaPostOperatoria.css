@@ -6,7 +6,7 @@
             }
             /** Define now the real margins of every page in the PDF **/
             body {
-                margin-top: 2cm;
+                margin-top: 0.2cm;
                 margin-left: 2cm;
                 margin-right: 2cm;
                 margin-bottom: 2cm;
@@ -48,9 +48,7 @@
             hr{
                 color: rgb(28, 141, 0);
             }
-            h1{
-                color: rgb(0, 0, 0);
-            }
+            
             .center{
                 text-align: center;
             }
@@ -58,3 +56,98 @@
             hr{
                 color: rgb(28, 141, 0);
             }
+            .linea_principal{
+                font-style: italic;
+                font-family: 'zapfino-linotype-one-regular';
+                text-decoration: underline;
+                color: rgb(28, 141, 0);
+                text-align: center;
+
+                
+                
+            }
+            h1{
+                color: rgb(28, 141, 0);
+                display:inline;
+                font-weight: normal;
+
+           }
+           h4{
+            top: 0cm;
+            text-align: center;
+            color: rgb(28, 141, 0);
+            display: inline;
+            font-style: italic;
+            font-weight: normal;
+            
+               }
+        .informacion_doctora{
+            color: rgb(28, 141, 0);
+            text-align: center;
+            display: inline;
+            font-style: italic;
+            margin-left: 20px;
+        }
+        .informacion_doctora2{
+            color: rgb(28, 141, 0);
+            font-size: 13px; 
+            text-align: center;
+            
+        }
+        .informacion_vet{
+            color: rgb(28, 141, 0);
+            text-align: center;
+        }
+        .informacion_vet_numero{
+            color: rgb(28, 141, 0);
+            text-align: center;
+            font-weight: bold;
+
+        }
+        .fecha{
+            color: rgb(28, 141, 0);
+            font-weight: bold;
+            display:inline;
+        }
+      .informacion_paciente_nombre{
+        color: rgb(28, 141, 0);
+            font-weight: bold;
+            display:inline;
+      }
+      .informacion_paciente_peso{
+        color: rgb(28, 141, 0);
+            font-weight: bold;
+            display:inline;
+            margin-left: 278px;
+      }
+      .tratamiento{
+        color: rgb(28, 141, 0);
+            font-weight: bold;
+      }
+      .informacion_cita{
+              color: rgb(28, 141, 0);
+        display:inline;
+        position: relative;
+        top: 640px;
+
+      }
+     .informacion_mv{
+        color: rgb(28, 141, 0);
+        display:inline;
+        position: relative;
+        margin-left: 30px;
+        top: 640px;
+
+        
+     }
+     
+
+     .informacion_firma_sello{
+        color: rgb(28, 141, 0);
+        display:inline;
+        position: relative;
+        margin-left: 370px;
+        top: 640px;
+
+        
+     }

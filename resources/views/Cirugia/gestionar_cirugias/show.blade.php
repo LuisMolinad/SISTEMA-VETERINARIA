@@ -31,7 +31,14 @@
                     <h4 class="header4">Información de cirugía</h4>
                     <ul>
                         <li><strong>Concepto de cirugia: </strong> {{$citaCirugia->conceptoCirugia}}</li>
-                        <li><strong>Fecha Refuerzo: </strong>{{$citaCirugia->start}}</li>
+                        <li><strong>Fecha de cirugía: </strong> 
+                                @php
+                                        echo date("d-m-Y h:i", strtotime($citaCirugia->start));
+                                @endphp 
+                        </li>
+                          
+
+
                         <li><strong>Recomendaciones preoperatorias: </strong> {{$citaCirugia->recomendacionPreoOperatoria}}</li>
                     </ul>
                 </article>

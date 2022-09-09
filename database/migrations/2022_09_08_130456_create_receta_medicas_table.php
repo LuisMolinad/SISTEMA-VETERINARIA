@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecetasPostoperatoriasTable extends Migration
+class CreateRecetaMedicasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRecetasPostoperatoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('recetas_postoperatorias', function (Blueprint $table) {
+        Schema::create('receta_medicas', function (Blueprint $table) {
             $table->id();
             //$table->timestamps();
-            $table->text('tratamientoAplicarReceta');
-            $table->integer('pesoReceta')->nullable(true);
+            $table->text('tratamientoAplicarRecetaMedica');
+            $table->integer('pesoRecetaMedica')->nullable(true);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateRecetasPostoperatoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recetas_postoperatorias');
+        Schema::dropIfExists('receta_medicas');
     }
 }
