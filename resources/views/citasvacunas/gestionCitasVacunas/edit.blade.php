@@ -13,6 +13,13 @@
     <script src="{{ asset('js/recordatorio.js') }}"></script>
     <!--Fin del JS para recordatorios -->
     <!-- Cualquier duda o comentario comunicarse con Rosalio -->
+
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{ asset('js/alertaCambioVacuna.js') }}"></script>
+    {{-- JQUERY --}}
+    <script src="{{ asset('js/editarFechaAplicacion.js') }}"></script>
 @endsection
 
 @section('header')
@@ -84,7 +91,9 @@
                             <label class="input-group-text" for="vacuna_id">Vacunas</label>
                         </div>
                         <select class="custom-select" id="vacuna_id" name='vacuna_id' required>
-                            <option value="{{ $idVacuna->id }}">{{ $idVacuna->nombreVacuna }}</option>
+                            <option value="{{ $idVacuna->id }}"
+                                data-url="{{ route('diasVacuna.obtenerDias', $idVacuna->id) }}" selected>
+                                {{ $idVacuna->nombreVacuna }}</option>
                         </select>
                         <div class="valid-feedback">
                             Campo correcto
@@ -92,7 +101,20 @@
                         <div class="invalid-feedback">
                             Seleccione una vacuna
                         </div>
+
                     </div>
+                    {{-- INPUT DIAS OCULTOS --}}
+                    <div {{-- style="display: none;" --}}>
+                        <input type="number" id="vacuna-dia">
+                    </div>
+
+                    {{-- INPUT DIAS OCULTOS --}}
+                    {{-- INPUT seleccion OCULTOS --}}
+                    <div {{-- style="display: none;" --}}>
+                        <input type="text" id="seleccion">
+                    </div>
+
+                    {{-- INPUT seleccion OCULTOS --}}
                 </div>
                 <div class="form-group col-md-6">
                     <strong> <label for="end" style="color:black">Fecha aplicación</label></strong>
@@ -104,7 +126,11 @@
                     <div class="invalid-feedback">
                         Por favor ingrese una fecha válida
                     </div>
+
+
                 </div>
+
+
                 <div class="form-group col-md-6">
                     <strong> <label for="start" style="color:black">Fecha refuerzo</label></strong>
                     <input class="form-control" type="datetime-local" name="start" id="start"
@@ -188,6 +214,8 @@
                     }, false)
                 })
         })()
+
+
 
         function funcionesOnClick() {
             actualizar_mensaje_al_crear_vacuna();
