@@ -242,9 +242,12 @@ Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::
 /* 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */ 
+//Rutas Recetas medicas
+Route::get('receta_medica/', [App\Http\Controllers\RecetaMedicasController::class, 'index'])->name('recetaMedica.index')->middleware('auth');
+Route::get('crear/receta_medica/{id}', [App\Http\Controllers\RecetaMedicasController::class,'create']);
+Route::get('/receta_medica/guardar', [App\Http\Controllers\RecetaMedicasController::class, 'guardar_bd']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
-
-
 
 
 //Historial Medico
@@ -252,3 +255,4 @@ Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_his
 Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
 Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
+

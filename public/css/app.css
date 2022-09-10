@@ -203,6 +203,12 @@
 }
 
 
+.oculto{
+    visibility: hidden;
+}
+
+
 /* .botones-linea{
     text-align: center;
 } */
+

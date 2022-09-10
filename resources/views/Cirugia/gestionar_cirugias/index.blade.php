@@ -36,14 +36,21 @@
                     <td>{{$dato->start}}</td>
                     <td>{{$dato->recomendacionPreoOperatoria}}</td>
                     <td id = "botones-linea">
+                         @if ($mascotas->fallecidoMascota == 'Vivo') 
                             <a href="{{ url('/citacirugia/crear_receta_postoperatoria/'.$dato->id)}}"> <button type="button" class="btn btn-primary">Receta Postoperatoria</button>
+                         
                             <a href="{{ url('/citacirugia/consultarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
                             <a href="{{ url('/citacirugia/editarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-warning">Editar</button></a>
+                            @elseif($mascotas->fallecidoMascota == 'Fallecido')
+                            <a href="{{ url('/citacirugia/consultarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
+                        @endif
                             <form id="EditForm{{$dato->id}}" action="{{url('/citacirugia/'.$dato->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_cirugia('{{$dato->title}}','{{$dato->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                       
+
+                        </form>
 
                     </tr>
                 @endforeach
