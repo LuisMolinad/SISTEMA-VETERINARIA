@@ -588,6 +588,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.overflow="auto";
     });
 
+     //Funcion para mostrar el scroll si se elimina.
+     $(document).on('click', '#btneliminar', function() {
+        document.body.style.overflow="auto";
+    });
+
+    //Funcion para mostrar el scroll si se cancela una edicion/eliminacion de una cita
+    $(document).on('click', '#btnCerrarEd', function() {
+        document.body.style.overflow="auto";
+    });
+
     function guardarvalidado(){
         $("#validaragendar").fadeTo(2000,500).slideUp(500,function(){
             $("#validaragendar").slideUp(500);

@@ -47,8 +47,10 @@ GESTIONAR EXPEDIENTE
                     <td>{{$expediente->mascota->propietario->nombrePropietario}}</td>
                     <td id = "botones-linea">
                        <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-
-                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
+                       <a href="{{ route('historialmedico.index', $expediente->id) }}"><button type="button" 
+                        class="btn btn-warning" style="background-color: #06806A; color:#fff; border-color:#06806A">Historial Medico</button></a>
+                       
+                       <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
 
                     </td>
                 </tr>

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
+
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\defuncionController;
@@ -20,6 +22,7 @@ use App\Models\mascota;
 
 //Controladores para SPATIE
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LineaHistorialController;
 use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
@@ -51,15 +54,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* ---------------------------//Rutas de Verificacion de correo---------------------------------------------------- */
 Auth::routes(['verify' => true]);
 
-//vista de verificar 
+//Vista que se ve cuando el usuario quiere ver algo antes de haber verificado su correo 
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
+//ruta para solicitar reenvio de link
 Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+    //usuario activo
+    // $request->user()->sendEmailVerificationNotification();
+    $user = User::where('email', $request->input('email'))->first();
+    //return ($user);
+    $user->sendEmailVerificationNotification();
 
-    return back()->with('message', 'Verification link sent!');
+    return back()->with('success', 'Link de verificación envíado correctamente');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 //vista luego de hacer clik en el boton del correo 
@@ -70,7 +78,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 
 /* ---------------------------//FIN DE Rutas de Verificacion de correo---------------------------------------------------- */
-Auth::routes(['verify' => true]);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\CitaServicioController::class, 'index']);
@@ -119,6 +127,10 @@ Route::get('/citas/edit/{id}/{citaVacuna_id}', [gestionCitasVacunacionController
 Route::post('actualizarCitaVacuna/{idCita}/{idmascota}', [gestionCitasVacunacionController::class, 'update'])->name('citaVacuna.update')->middleware('auth');
 //Eliminar
 Route::get('/citas/delete/gestion/{citaVacuna_id}', [gestionCitasVacunacionController::class, 'destroy'])->name('gestionVacuna.delete')->middleware('auth');
+
+
+//RUTA PARA FUNCION JQUERY
+Route::get('/obtenerDia/{id}', [CitaVacunaController::class, 'obtenerDias'])->name('diasVacuna.obtenerDias')->middleware('auth');
 
 /*------------------------------------- RUTEO A SECCION ACTAS------------------------------------------------------- */
 //Acta de defuncion Controller
@@ -235,3 +247,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('receta_medica/', [App\Http\Controllers\RecetaMedicasController::class, 'index'])->name('recetaMedica.index')->middleware('auth');
 Route::get('crear/receta_medica/{id}', [App\Http\Controllers\RecetaMedicasController::class,'create']);
 Route::get('/receta_medica/guardar', [App\Http\Controllers\RecetaMedicasController::class, 'guardar_bd']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
+
+
+//Historial Medico
+Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_historial_Medico'])->name('historialmedico.index')->middleware('auth');
+Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
+Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
+Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
+
