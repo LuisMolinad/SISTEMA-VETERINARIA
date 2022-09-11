@@ -134,15 +134,14 @@ class gestionCitasVacunacionController extends Controller
         //$idcitaVacuna = citaVacuna::find($citaVacuna_id);
         $idcitaVacuna = citaVacuna::find($citaVacuna_id);
 
-
-
-
         //para eliminar el recordatorio
-        //$idRecordatorio = citaVacuna::find($idcitaVacuna->recordatorio_id);
-        /*  $idrecortarriodelete = recordatorio::FindOrFail($idRecordatorio)() */
+
         $idRecordatorio = DB::table('citavacunas')->where('id', '=', $citaVacuna_id)->value('recordatorio_id');
-        // return ($idRecordatorio);
-        $deleted = DB::table('recordatorios')
+
+
+        $idcitaVacuna->delete();
+
+        DB::table('recordatorios')
             ->where('id', '=', $idRecordatorio)
             ->delete();
         //return ($deleted);
@@ -150,9 +149,8 @@ class gestionCitasVacunacionController extends Controller
         //saco el id de la mascota antes de eliminar
         $id = mascota::find($idcitaVacuna->mascota_id);
         //borro la cita
-        $idcitaVacuna->delete();
+
         //retorno a la vista show
-        // return view('citasvacunas.gestionCitasVacunas.show', compact('mascotas'))->with('warning', 'Mascota eliminada correctamente');
         return redirect()->action([gestionCitasVacunacionController::class, 'show'], ['id' => $id])->with('danger', 'Cita de Vacuna eliminada correctamente');
     }
 }

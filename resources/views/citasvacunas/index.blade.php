@@ -42,7 +42,10 @@
                             @if ($mascota->fallecidoMascota == 'Vivo')
                                 <a role="button"
                                     class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
+                            @elseif($mascota->fallecidoMascota == 'Fallecido')
+                                <a role="button" class="btn btn-success oculto">Crear</a>
                             @endif
+
                             <a type="button" class="btn btn-dark"
                                 href="{{ route('gestionVacuna.show', $mascota->id) }}">Gestionar</a>
 
