@@ -95,22 +95,22 @@
                                 data-url="{{ route('diasVacuna.obtenerDias', $idVacuna->id) }}" selected>
                                 {{ $idVacuna->nombreVacuna }}</option>
                         </select>
-                        <div style="display: none;">
+                        <div class="valid-feedback">
                             Campo correcto
                         </div>
-                        <div style="display: none;">
+                        <div class="invalid-feedback">
                             Seleccione una vacuna
                         </div>
 
                     </div>
                     {{-- INPUT DIAS OCULTOS --}}
-                    <div {{-- style="display: none;" --}}>
+                    <div style="display: none;">
                         <input type="number" id="vacuna-dia">
                     </div>
 
                     {{-- INPUT DIAS OCULTOS --}}
                     {{-- INPUT seleccion OCULTOS --}}
-                    <div {{-- style="display: none;" --}}>
+                    <div style="display: none;">
                         <input type="text" id="seleccion">
                     </div>
 
