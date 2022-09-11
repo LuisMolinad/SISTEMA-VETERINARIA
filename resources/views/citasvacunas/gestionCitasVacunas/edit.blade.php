@@ -104,13 +104,13 @@
 
                     </div>
                     {{-- INPUT DIAS OCULTOS --}}
-                    <div {{-- style="display: none;" --}}>
+                    <div style="display: none;">
                         <input type="number" id="vacuna-dia">
                     </div>
 
                     {{-- INPUT DIAS OCULTOS --}}
                     {{-- INPUT seleccion OCULTOS --}}
-                    <div {{-- style="display: none;" --}}>
+                    <div style="display: none;">
                         <input type="text" id="seleccion">
                     </div>
 

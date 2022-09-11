@@ -16,7 +16,7 @@
 @section('content')
     <div class="table-responsive-sm container-fluid contenedor">
 
-        <table class="table table-striped" id="citaVacuna">
+        <table class="table table-striped" style="width:100%" id="citaVacuna">
             <thead class="table-dark table-header">
                 <tr>
                     <th scope="col">ID Mascota</th>
@@ -42,7 +42,10 @@
                             @if ($mascota->fallecidoMascota == 'Vivo')
                                 <a role="button"
                                     class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
+                            @elseif($mascota->fallecidoMascota == 'Fallecido')
+                                <a role="button" class="btn btn-success oculto">Crear</a>
                             @endif
+
                             <a type="button" class="btn btn-dark"
                                 href="{{ route('gestionVacuna.show', $mascota->id) }}">Gestionar</a>
 
