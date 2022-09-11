@@ -203,10 +203,10 @@ Route::post('/citacirugia/index/gestionarCirugia/{id}', [App\Http\Controllers\Ci
 
 
 /*Recordatorio*/
-Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje']);
-Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui']);
-Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo']);
-Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon']);
+Route::get('/recodatorio/enviar/', [RecordatorioController::class, 'enviar_mensaje'])->middleware('auth');
+Route::get('/recordatorio/enviar_ui', [RecordatorioController::class, 'enviar_mensaje_ui'])->middleware('auth');
+Route::get('/recordatorio/enviar_masivo', [RecordatorioController::class, 'enviar_mensaje_masivo'])->middleware('auth');
+Route::get('/recordatorio/eliminar_masivo', [RecordatorioController::class, 'eliminar_de_un_jalon'])->middleware('auth');
 Route::get('/recordatorio/reenviar/{id}', [RecordatorioController::class, 'reenviar'])->middleware('auth');
 Route::resource('recordatorio', RecordatorioController::class)->middleware('auth');
 
@@ -236,18 +236,18 @@ Route::post('actualizarcitaLimpiezaDental/{idCitaLimpieza}/{idmascota}', [CitaLi
 
 //Ruta Receta postoperatoria 
 //Route::get('/citacirugia/crearRecetaPostoperatoria/{id}', [App\Http\Controllers\RecetasPostoperatoriaController::class, 'mostrar'])->name('recetaPost.mostrar')->middleware('auth');
-Route::get('/citacirugia/crear_receta_postoperatoria/{id}', [RecetasPostoperatoriaController::class, 'create']);
-Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::class, 'guardar_bd']);
+Route::get('/citacirugia/crear_receta_postoperatoria/{id}', [RecetasPostoperatoriaController::class, 'create'])->middleware('auth');
+Route::get('/receta_post_operatoria/guardar', [RecetasPostoperatoriaController::class, 'guardar_bd'])->middleware('auth');
 
 /* 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */ 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 //Rutas Recetas medicas
 Route::get('receta_medica/', [App\Http\Controllers\RecetaMedicasController::class, 'index'])->name('recetaMedica.index')->middleware('auth');
-Route::get('crear/receta_medica/{id}', [App\Http\Controllers\RecetaMedicasController::class,'create']);
-Route::get('/receta_medica/guardar', [App\Http\Controllers\RecetaMedicasController::class, 'guardar_bd']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
+Route::get('crear/receta_medica/{id}', [App\Http\Controllers\RecetaMedicasController::class, 'create'])->middleware('auth');
+Route::get('/receta_medica/guardar', [App\Http\Controllers\RecetaMedicasController::class, 'guardar_bd'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 
 //Historial Medico
@@ -255,4 +255,3 @@ Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_his
 Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
 Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
-
