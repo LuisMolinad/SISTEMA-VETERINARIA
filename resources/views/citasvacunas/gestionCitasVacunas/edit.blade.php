@@ -95,10 +95,10 @@
                                 data-url="{{ route('diasVacuna.obtenerDias', $idVacuna->id) }}" selected>
                                 {{ $idVacuna->nombreVacuna }}</option>
                         </select>
-                        <div class="valid-feedback">
+                        <div style="display: none;">
                             Campo correcto
                         </div>
-                        <div class="invalid-feedback">
+                        <div style="display: none;">
                             Seleccione una vacuna
                         </div>
 
