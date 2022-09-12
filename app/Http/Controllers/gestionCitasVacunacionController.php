@@ -9,6 +9,7 @@ use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\vacuna;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\VarDumper\VarDumper;
 
 class gestionCitasVacunacionController extends Controller
 {
@@ -76,12 +77,18 @@ class gestionCitasVacunacionController extends Controller
     public function edit($id, $citaVacuna_id)
     {
         $mascotas = mascota::find($id);
-        $idcitaVacuna = citaVacuna::find($citaVacuna_id);
+        $idcitaVacuna = citaVacuna::FindOrFail($citaVacuna_id);
+        //var_dump($idcitaVacuna);
+        //recordatorio tupla id
+        $recordatorio = recordatorio::where('id', $idcitaVacuna->recordatorio_id)->first(); //id recordatorio
+        var_dump($recordatorio->dias_de_anticipacion);
         //obtenergo la id de vacuna
         $idVacuna = vacuna::find($idcitaVacuna->vacuna_id);
-        // return ($idVacuna);
+
+
+
         //$vacunas = vacuna::all();
-        return view('citasvacunas.gestionCitasVacunas.edit', compact('mascotas', 'idVacuna', 'idcitaVacuna'));
+        return view('citasvacunas.gestionCitasVacunas.edit', compact('mascotas', 'idVacuna', 'idcitaVacuna', 'recordatorio'));
     }
 
     /**
