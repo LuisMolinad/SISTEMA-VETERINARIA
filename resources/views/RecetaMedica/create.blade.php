@@ -54,8 +54,7 @@ Receta médica
                                 <div class="form-group col-md-12"  style="background-color:#e1dff4">
                                 <br>
                                     <strong>   <label for="tratamientoAplicarRecetaMedica" style="color:black">Tratamiento a aplicar</label></strong>
-                                    <textarea class="form-control" id="tratamientoAplicarRecetaMedica" name="tratamientoAplicarRecetaMedica" rows="3" maxlength="100" placeholder="Tratamiento para el paciente"  required></textarea>
-                            
+                                    <textarea class="form-control mx-sm-3" id="tratamientoAplicarRecetaMedica"  type="text" name="tratamientoAplicarRecetaMedica" rows="3" placeholder=" Escriba el tratamiento para el paciente"  required></textarea>
                                     <div class="invalid-feedback">
                                         Por favor ingrese información sobre el tratamiento a aplicar 
                                     </div>

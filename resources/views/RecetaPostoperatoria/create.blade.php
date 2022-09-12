@@ -71,7 +71,7 @@ Receta postoperatoria
                                 <div class="form-group col-md-12"  style="background-color:#e1dff4">
                                 <br>
                                     <strong>   <label for="tratamientoAplicarReceta" style="color:black">Tratamiento a aplicar</label></strong>
-                                    <textarea class="form-control" id="tratamientoAplicarReceta" name="tratamientoAplicarReceta" rows="3" maxlength="100" placeholder="Tratamiento para el paciente"  required></textarea>
+                                    <textarea class="form-control" id="tratamientoAplicarReceta" type="text" name="tratamientoAplicarReceta" rows="3" placeholder="Escriba el tratamiento para el paciente"  required></textarea>
                             
                                     <div class="invalid-feedback">
                                         Por favor ingrese información sobre el tratamiento a aplicar 
