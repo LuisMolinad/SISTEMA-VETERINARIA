@@ -31,7 +31,11 @@ Consultar Cita Limpieza dental
             <article>
                 <h4 class="header4">Información de Limpieza dental</h4>
                 <ul>
-                    <li><strong>Fecha: </strong>{{ $idcitaLimpiezaDental->start }}</li>
+                    <li><strong>Fecha: </strong>
+                        @php
+                        echo date("d-m-Y H:i", strtotime($idcitaLimpiezaDental->start));
+                        @endphp 
+                    </li>
                 </ul>
             </article>
             <article>
