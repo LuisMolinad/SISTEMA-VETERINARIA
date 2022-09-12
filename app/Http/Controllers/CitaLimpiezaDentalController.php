@@ -86,7 +86,7 @@ class CitaLimpiezaDentalController extends Controller
         $citaLimpieza = citaLimpiezaDental::find($id);
 
         //Dar formato a los campos recuperados de la base por medio de carbon
-        $citaLimpieza ->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaLimpieza->start)->format('Y-m-d');
+        $citaLimpieza ->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaLimpieza->start)->format('d-m-Y');
         //$citaServicio->end = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
 
         return response()->json($citaLimpieza);

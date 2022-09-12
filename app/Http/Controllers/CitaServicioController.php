@@ -86,7 +86,7 @@ class CitaServicioController extends Controller
         $citaServicio = citaServicio::find($id);
 
         //Dar formato a los campos recuperados de la base por medio de carbon
-        $citaServicio->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('Y-m-d');
+        $citaServicio->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->start)->format('d-m-Y');
         //$citaServicio->end = Carbon::createFromFormat('Y-m-d H:i:s', $citaServicio->end)->format('Y-m-d');
 
         return response()->json($citaServicio);

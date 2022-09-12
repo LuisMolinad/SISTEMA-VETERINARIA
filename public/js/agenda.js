@@ -67,10 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             hour12: false
           },
 
-        //Mostramos los datos consultados de la base de datos en el controller por medio de events
-        //events:"http://127.0.0.1:8000/mostrar",
-        //events: citaServicios,
-
         //Para que no de el error pasada las 11:00 pm
         nextDayThreshold: '23:00:00',
 
