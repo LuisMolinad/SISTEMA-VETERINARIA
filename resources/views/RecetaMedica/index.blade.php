@@ -56,8 +56,13 @@
             $('#actadefuncion').DataTable({
                 "lengthMenu": [
                     [5, 10, 25, -1],
-                    [5, 10, 25, "Todos"]
+                    [5, 10, 25, "Todos"],
+
                 ],
+                order: [
+                    [5, 'desc']
+                ],
+
 
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",

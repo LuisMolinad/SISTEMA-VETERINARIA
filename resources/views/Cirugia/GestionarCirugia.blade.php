@@ -69,19 +69,28 @@ GESTIONAR CITA CIRUGÍA
     <script>
         $(document).ready(function () {
             $('#cirugia').DataTable({
-                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
+                "lengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "Todos"],
+
+                ],
+                order: [
+                    [5, 'desc']
+                ],
+
+
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
                     "zeroRecords": "No se encuentran datos relacionados found - ",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    'search':'Buscar',
+                    'search': 'Buscar',
                     'paginate': {
-                        'first':      'Primero',
-                        'last':       'Ultimo',
-                        'next':      'Siguiente',
-                        'previous':  'Anterior',
+                        'first': 'Primero',
+                        'last': 'Ultimo',
+                        'next': 'Siguiente',
+                        'previous': 'Anterior',
                     },
 
                 },
