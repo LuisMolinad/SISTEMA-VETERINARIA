@@ -70,7 +70,7 @@ class CitaLimpiezaDentalController extends Controller
         //Finaliza recordatorio
 
         //return redirect('/?objeto=cita&accion=creo');
-        return redirect('/')->with('success', 'Cita creada correctamente');
+        return redirect('/')->with('success', 'La cita de Limpieza dental ha sido creada correctamente!');
     }
 
     public function showCalendar(citaLimpiezaDental $citaLimpieza)

@@ -134,7 +134,7 @@ class CitaVacunaController extends Controller
         }
         //Finaliza recordatorio
         //return redirect('/?objeto=cita&accion=creo');
-        return redirect('/')->with('success', 'Cita creada correctamente');
+        return redirect('/')->with('success', 'La cita de vacunación ha sido creada correctamente!');
     }
 
     /**

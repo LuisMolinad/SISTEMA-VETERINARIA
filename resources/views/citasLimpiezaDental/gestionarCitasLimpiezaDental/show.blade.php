@@ -55,10 +55,10 @@ Consultar Cita Limpieza dental
             </article>
         </section>
 
+        @if ($recordatorio != null)
         <section class="caracteristicas_especiales">
        
             <article>
-                @if ($recordatorio != null)
                 <h4 class="header4">Recordatorio</h4>
                 <p><strong>Fecha programada del recordatorio: </strong>
                 @php
@@ -79,6 +79,10 @@ Consultar Cita Limpieza dental
                 
             </article>
         </section>
+        <div style="padding: 1cm">
+            <a type="button" class="btn btn-secondary"
+                href="{{ route('GestionLimpieza.index', $mascotas->id) }}">Regresar</a>
+        </div>
 
     </div>
 @endsection

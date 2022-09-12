@@ -18,13 +18,14 @@ Gestionar limpieza dental
 
 <div class="table-responsive-sm container-fluid contenedor">
 
-    <table class="table table-striped" id="citaLimpieza">
+    <table class="table table-striped" style="width:100%" id="citaLimpieza">
         <thead class="table-dark table-header">
             <th scope="col">ID Mascota</th>
             <th scope="col">Nombre</th>
             <th scope="col">Dueño</th>
             <th scope="col">Número</th>
             <th scope="col">Dirección</th>
+            <th scope="col" style="display:none;">Estado</th>
             <!--Esta ultima para los botones-->
             <th scope="col"></th>
         </thead>
@@ -38,10 +39,13 @@ Gestionar limpieza dental
                 <td id="nombrepropietario">{{$mascota->propietario->nombrePropietario}}</td>
                 <td id="telefonopropietario">{{$mascota->propietario->telefonoPropietario}}</td>
                 <td id="direccionpropietario">{{$mascota->propietario->direccionPropietario}}</td>
+                <td id="direccion  duenio" style="display:none;">{{ $mascota->fallecidoMascota }}</td>
                 <td>
                     <!--Verifico el estado de la mascota-->
                     @if($mascota->fallecidoMascota == 'Vivo')
                     <a role="button" class="btn btn-success" href={{ url('/crearCitaLimpiezaDental/'.$mascota->id) }}>Crear</a>
+                    @elseif($mascota->fallecidoMascota == 'Fallecido')
+                            <a role="button" class="btn btn-success oculto">Crear</a>
                     @endif
                     <a href="{{ route('GestionLimpieza.index', $mascota->id) }}"><button type="button" class="btn btn-dark">Gestionar</button></a>
                 </td>
@@ -65,10 +69,13 @@ Gestionar limpieza dental
                     [5, 10, 25, -1],
                     [5, 10, 25, "Todos"]
                 ],
+                order: [
+                    [5, 'desc']
+                ],
 
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
-                    "zeroRecords": "No se encuentran datos relacionados found - ",
+                    "zeroRecords": "No se encuentran datos relacionados ",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",
