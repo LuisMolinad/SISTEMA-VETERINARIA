@@ -246,7 +246,8 @@ function alerta_eliminar_citaVacuna( nombreVacuna,id,nombreMascota){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 

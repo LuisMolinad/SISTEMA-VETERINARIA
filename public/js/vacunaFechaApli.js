@@ -1,5 +1,8 @@
 $(document).ready(function(){
     
+    //Sí yo sé todo succede de forma secuencial
+    //Antes solo yo y Dios sabiamos que hacia este code, ahora solo DIOS sabe
+
     var valor_inicial = ''; //variable para ir comparando
     $("#vacuna_id").change(function() {
         //capturo el valor de id seleccionado
@@ -32,8 +35,12 @@ $(document).ready(function(){
         // Reiniciamos si hay un cambio 
         document.getElementById("end").value = "";
         document.getElementById("start").value = "";
+       
+        //Poner el valor 0
+        $("#dias_de_anticipacion").val("0");
+        var mensaje = document.querySelector('#mensaje-recordatorio');
+        mensaje.innerHTML = "";
 
-        $("#dias_de_anticipacion").val("");
 
     });
 

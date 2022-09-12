@@ -29,20 +29,21 @@ function actualizar_mensaje_al_crear_vacuna(){
     var nombre = document.querySelector('#nombreMascota').value;
     var fecha_hora = formatear_fecha(document.querySelector('#start').value);
     var mensaje = document.querySelector('#mensaje-recordatorio');
-    var dias_de_anticipacion = document.getElementById('dias_de_anticipacion');
-
+    var dias_de_anticipacion = document.getElementById('dias_de_anticipacion'); 
+    /* var dias_de_anticipacion = $('#dias_de_anticipacion').val();
+    console.log(dias_de_anticipacion); */
     //* Generamos el mensaje, basandonos en la plantilla que esta registrada en META
     var contenido = '<p><strong>Veterinaria Pet Paradise le informa</strong></p><br>' + 
     '<p>Que la cita para <span>' + nombre + '</span> de <span>' + 'la vacunacion' + '</span> esta agendada para la fecha y hora <span>' + fecha_hora + '</span>. En caso de algun incoveniente favor comunicarse al whatsapp +50370959194.' + "<br><br>Att: Veterinaria Pets Paradise<p>";
     
     //*Validamos
-    if( fecha_hora != '' && dias_de_anticipacion.value != 0){
+    if( fecha_hora != "" && dias_de_anticipacion.value != 0){
         //* Le indicamos que ponga el mensaje en el cuadro
         mensaje.innerHTML = contenido;
-    }
-    
-    if(dias_de_anticipacion.value == 0 || fecha_hora == ''){
-        mensaje.innerHTML = '';
+    } 
+     if(dias_de_anticipacion.value == 0 || fecha_hora == "")
+    {
+        mensaje.innerHTML = "";
     }
 }
 
