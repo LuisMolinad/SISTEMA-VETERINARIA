@@ -130,7 +130,7 @@ Historial Medico
                     document.getElementById("tarjetahistorial").insertRow(-1).innerHTML = nueva_linea;
                     linea = '';
                     //Con esta instruccion se recarga la pagina
-                    //location.reload();
+                    location.reload();
                     //window.location.reload(false);
                 })
             }
@@ -184,7 +184,7 @@ Historial Medico
                         .then(()=>{
                             console.log('si hace el cambio');
                             //Con esta instruccion se recarga la pagina
-                            //window.location.reload(false);
+                            window.location.reload(false);
                         })
                         //Rosalio magia
 
