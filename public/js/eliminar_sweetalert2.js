@@ -103,7 +103,8 @@ function alerta_eliminar_general( nombre, id){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -131,7 +132,8 @@ function alerta_eliminar_recordatorio(id){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -162,7 +164,8 @@ function alerta_eliminar_general( nombre, id){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -247,7 +250,7 @@ function alerta_eliminar_citaVacuna( nombreVacuna,id,nombreMascota){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, borralo!',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -468,7 +471,8 @@ function alerta_eliminar_citaLimpieza(id){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -496,7 +500,8 @@ function alerta_eliminar_usuario(id, name){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borralo!'
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 
@@ -525,7 +530,7 @@ function alerta_eliminar_lineahistorial(id){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, borralo!',
-        cancelButtonText: 'No, Cancelar'
+        cancelButtonText: 'No, cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
 

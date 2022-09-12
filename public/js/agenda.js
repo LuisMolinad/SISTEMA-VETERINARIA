@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, borralo!',
-                cancelButtonText: 'No'
+                cancelButtonText: 'No, Cancelar'
               }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire(
@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("guardadocorrectamente").innerHTML =
                 '<div class="alert alert-success alert-dismissible fade show" role="alert">' + 
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
-                'La cita de servicio ha sido guardada exitosamente!</div>';
+                'La cita de servicio ha sido creada correctamente!</div>';
                 
                 //Para que aparezca el mensaje una vez agregado
                 $("#guardadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
@@ -467,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("eliminadocorrectamente").innerHTML =
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert">' + 
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
-                'La cita de servicio ha sido eliminada exitosamente!</div>';
+                'La cita de servicio ha sido eliminada correctamente!</div>';
 
                 //Para que aparezca el mensaje una vez Eliminado
                 $("#eliminadocorrectamente").fadeTo(2000,500).slideUp(500,function(){
@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("editadocorrectamente").innerHTML =
                 '<div class="alert alert-warning alert-dismissible fade show" role="alert">' + 
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>' +
-                'La cita de servicio ha sido actualizada exitosamente!</div>';
+                'La cita de servicio ha sido actualizada correctamente!</div>';
 
                 document.body.style.overflow="auto";
 
