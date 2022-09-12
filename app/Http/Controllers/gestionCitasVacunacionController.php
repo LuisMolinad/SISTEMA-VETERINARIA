@@ -81,7 +81,7 @@ class gestionCitasVacunacionController extends Controller
         //var_dump($idcitaVacuna);
         //recordatorio tupla id
         $recordatorio = recordatorio::where('id', $idcitaVacuna->recordatorio_id)->first(); //id recordatorio
-        var_dump($recordatorio->dias_de_anticipacion);
+        //var_dump($recordatorio->dias_de_anticipacion);
         //obtenergo la id de vacuna
         $idVacuna = vacuna::find($idcitaVacuna->vacuna_id);
 
