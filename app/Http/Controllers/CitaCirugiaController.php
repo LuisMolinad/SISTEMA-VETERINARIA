@@ -245,6 +245,8 @@ class CitaCirugiaController extends Controller
         $propietario = propietario::where('id', $mascota[0]->propietario_id)->get();
         $recordatorio = recordatorio::where('id', $cita->recordatorio_id)->first();
 
+
+        // se agrupan todos los datos en un solo array para luego recorrer uno a uno los resultados
         $datos = [
             'mascotas' => $mascota,
             'citaCirugias' => citaCirugia::where('id', $id)->get(),

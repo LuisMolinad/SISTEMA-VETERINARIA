@@ -194,10 +194,10 @@ class CitaVacunaController extends Controller
         return response()->json($citasVacuna);
     }
 
-
+    //Funcion para obetner los dias por vacuna
     public function obtenerDias($id)
     {
-        //$diasVacuna = vacuna::where('id', $id)->get('tiempoEntreDosisDia')->first();
+
         $diasVacuna = vacuna::find($id);
         return response()->json($diasVacuna);
     }
