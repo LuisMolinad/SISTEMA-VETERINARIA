@@ -81,9 +81,9 @@
     <br>
     <br>
 
-    <p class="tratamiento">  R:/ </p>
+    <p class="tratamiento" >  R:/ </p>
             
-            {{$datos['tratamientoAplicarReceta']}}            
+         <p align="justify">   {{$datos['tratamientoAplicarReceta']}}   </p>    
 
     </div>
 

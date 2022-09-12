@@ -83,7 +83,7 @@
 
     <p class="tratamiento">  R:/ </p>
             
-            {{$datos['tratamientoAplicarRecetaMedica']}}            
+    <p align="justify"> {{$datos['tratamientoAplicarRecetaMedica']}} </p>    
 
     </div>
 
