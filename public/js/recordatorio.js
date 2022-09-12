@@ -40,7 +40,8 @@ function actualizar_mensaje_al_crear_vacuna(){
     if( fecha_hora != "" && dias_de_anticipacion.value != 0){
         //* Le indicamos que ponga el mensaje en el cuadro
         mensaje.innerHTML = contenido;
-    }  else if(dias_de_anticipacion.value == 0 || fecha_hora == "")
+    } 
+     if(dias_de_anticipacion.value == 0 || fecha_hora == "")
     {
         mensaje.innerHTML = "";
     }

@@ -1,4 +1,5 @@
 @extends('app')
+{{-- Token utilizado para la consulta interna segun vacuna y recuperar datos --}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @section('titulo')
     Cita de vacunación
@@ -163,7 +164,7 @@
                     aria-describedby="filtervacunas" value="citasVacunacion">
             </div>
 
-            <section class="recordatorio_crear_seccion">
+            {{-- <section class="recordatorio_crear_seccion">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
@@ -190,7 +191,8 @@
                             </div>
                         </div>
                     </div>
-            </section>
+            </section> --}}
+            @include('layouts.crear_recordatorio_citaVacuna')
             <div class="form-group col-md-6">
                 <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
             </div>

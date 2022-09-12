@@ -157,17 +157,12 @@
                     aria-describedby="filtervacunas" value="citasVacunacion">
             </div>
             @if ($idcitaVacuna->recordatorio_id != null)
-                <section class="recordatorio_crear_seccion">
+                {{-- <section class="recordatorio_crear_seccion">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <strong> <label for="ConceptoCirugia" style="color:black">Anticipacion:</label></strong>
                             <select name="dias_de_anticipacion" class="form-control" id="dias_de_anticipacion"
-                                onchange="actualizar_mensaje_al_crear_vacuna();"
                                 onclick="actualizar_mensaje_al_crear_vacuna();">
-
-                                {{-- <option value="1">1 dias de anticipacion</option>
-                                <option value="2">2 dias de anticipacion</option>
-                                <option value="3">3 dias de anticipacion</option> --}}
 
                                 <option value="1"
                                     @php if($recordatorio->dias_de_anticipacion == 1)
@@ -181,9 +176,7 @@
                                     @php if($recordatorio->dias_de_anticipacion == 3)
                                     {echo 'selected';} @endphp>
                                     3 dias de anticipacion</option>
-                                {{-- if($datos['recordatorio']->dias_de_anticipacion == 1){
-                                                echo 'selected';
-                                            } --}}
+
                             </select>
                             <div class="invalid-feedback">
                                 <!--Validacion -->
@@ -201,10 +194,12 @@
                                 </div>
                             </div>
                         </div>
-                </section>
+                </section> --}}
+                @include('layouts.editar_recordatorio_citaVacuna')
             @endif
-            <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
-
+            <div class="form-group col-md-6">
+                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+            </div>
         </form>
     </div>
 @endsection
