@@ -506,8 +506,8 @@ function alerta_eliminar_usuario(id, name){
         if (result.isConfirmed) {
 
             Swal.fire(
-                'Se eliminara!',
-                'El registro de la cita de limpieza dental sera eliminado.',
+                '¡Se eliminará!',
+                'El registro del usuario <strong>'+name+ ' </strong> se eliminará',
                 'success'
             ).then((result)=>{
                 formulario.submit();
