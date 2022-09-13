@@ -29,28 +29,37 @@
     {{-- El formulario siguiente se ha hecho con el uso de la libreria HTML COLLECTIVE
    Su funcion principal es facilitar la creacion de formularios de envio de alguna variable
    Para mas informacion revisar la docunentacion oficial --}}
-    {!! Form::model($role, ['method' => 'PUT', 'route' => ['roles.update', $role->id]]) !!}
-    <div class="container">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="name">Nombre del Rol</label>
-                {{-- Las variables deben ir exactamente como se reciben en el controlador --}}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {{-- {!! Form::model($role, ['method' => 'PUT', 'route' => ['roles.update', $role->id]]) !!} --}}
+    <form action="{{ route('roles.update', $role->id) }}" method="POST">
+        {{-- @csrf --}}
+        @csrf
+        {{ method_field('PATCH') }}
+        <div class="container">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Nombre del Rol</label>
+                    {{-- Las variables deben ir exactamente como se reciben en el controlador --}}
+                    {{-- {!! Form::text('name', null, ['class' => 'form-control']) !!} --}}
+                    <input class="form-control" type="text" name="name" id="name" value="{{ $role->name }}">
+                </div>
+                <div class="form-col-md-6">
+                    <label for="email">Permisos para este Rol:</label>
+                    <br>
+                    @foreach ($permission as $value)
+                        <label>
+                            {{-- Compara el array y lo marca como checked si se encuentra en el --}}
+                            <input type="checkbox" name="permission[]" class="name" value="{{ $value->id }} "
+                                @if (in_array($value->id, $rolePermissions) == true) checked @endif>
+                            <label for="">{{ $value->name }}</label>
+                        </label>
+                    @endforeach
+                </div>
             </div>
-            <div class="form-col-md-6">
-                <label for="email">Permisos para este Rol:</label>
-                <br>
-                @foreach ($permission as $value)
-                    <label>
-                        {{ Form::checkbox('permission[]', $value->id, false, ['class' => 'name']) }}
-                        {{ $value->name }}
-                    </label>
-                @endforeach
-            </div>
+
+            <button type="submit"class="btn btn-primary">Guardar</button>
         </div>
-        <button type="submit"class="btn btn-primary">Guardar</button>
-    </div>
-    {!! Form::close() !!}
+    </form>
+    {{-- {!! Form::close() !!} --}}
 
 @endsection
 
