@@ -198,7 +198,9 @@
                 @include('layouts.editar_recordatorio_citaVacuna')
             @endif
             <div class="form-group col-md-6">
-                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+                @can('editar-CitaVacuna')
+                    <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+                @endcan
             </div>
         </form>
     </div>
