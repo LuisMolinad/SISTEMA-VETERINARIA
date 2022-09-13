@@ -44,7 +44,7 @@ Editar cita de cirugía
                                 <input type="text" class="form-control" id="inputRazaMascota" value="{{$mascota->razaMascota}}" readonly="readonly">
                             </div>
                             <div class="form-group col-md-6">
-                                <strong>  <label for="inputNombreMascota">Mascota</label></strong>
+                                <strong>  <label for="inputNombreMascota">Nombre</label></strong>
 
 
                                 <input type="text" class="form-control" id="inputNombreMascota" name = "nombre_mascota" value="{{$mascota->nombreMascota}}" readonly="readonly">
