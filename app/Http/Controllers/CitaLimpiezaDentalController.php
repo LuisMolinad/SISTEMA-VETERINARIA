@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class CitaLimpiezaDentalController extends Controller
 {
+    /*En la funcion index se encuentra todas las mascotas enlistadas*/
     public function index()
     {
         $mascotas = mascota::with('propietario')->get();
@@ -80,6 +81,7 @@ class CitaLimpiezaDentalController extends Controller
         return response()->json($citaLimpieza);
     }
 
+    /*Esta funcion se utiliza para obtener los recordatorios en el calendario*/
     public function edit($id)
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
@@ -92,7 +94,7 @@ class CitaLimpiezaDentalController extends Controller
         return response()->json($citaLimpieza);
     }
 
-
+    /*En la funcion gestionar_limpiezas_por_mascota se encuentra el editar,consultar y eliminar por cada mascota*/
     public function gestionar_limpiezas_por_mascota($id){
         $mascotas = mascota::find($id);
         //return ($mascotas);
@@ -100,6 +102,7 @@ class CitaLimpiezaDentalController extends Controller
         return view('citasLimpiezaDental.gestionarCitasLimpiezaDental.index', compact('mascotas'));
     }
     
+    /*En la funcion show se encuentra el consultar*/
     //Consultar citas dentales
     public function show($id, $citaLimpieza_id){
        
@@ -112,6 +115,7 @@ class CitaLimpiezaDentalController extends Controller
 
     }
 
+    /*En la funcion destroy se encuentra el eliminar*/
     public function destroy($citalimpieza_id){
     
         $idcitaLimpieza = citaLimpiezaDental::find($citalimpieza_id);
@@ -129,7 +133,7 @@ class CitaLimpiezaDentalController extends Controller
         return redirect()->action([CitaLimpiezaDentalController::class, 'gestionar_limpiezas_por_mascota'], ['id' => $id])->with('danger', 'Cita de Limpieza Dental Eliminada correctamente');
     }
 
-    //Esta funcion se utiliza para editarlalimpieza
+    //Esta funcion se utiliza para editarlalimpieza [Esta es la vista]
     public function editarLimpieza($id,$citaLimpieza_id){
         //Recuperamos la mascota
         $mascotas = mascota::find($id);
@@ -141,6 +145,7 @@ class CitaLimpiezaDentalController extends Controller
 
     }
 
+    /*En la funcion update se encuentra el editar*/
     public function update(Request $request, $idCitaLimpieza, $idmascota)
     {
 
