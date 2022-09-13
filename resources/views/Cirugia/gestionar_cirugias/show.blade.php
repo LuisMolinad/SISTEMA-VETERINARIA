@@ -33,7 +33,7 @@
                         <li><strong>Concepto de cirugia: </strong> {{$citaCirugia->conceptoCirugia}}</li>
                         <li><strong>Fecha de cirugía: </strong> 
                                 @php
-                                        echo date("d-m-Y h:i", strtotime($citaCirugia->start));
+                                        echo date("d-m-Y H:i", strtotime($citaCirugia->start));
                                 @endphp 
                         </li>
                           
@@ -56,7 +56,7 @@
                     </ul>
                 </article>
                 <article>
-                    <h4 class="header4">Datos generales del propietario</h4>
+                    <h4 class="header4">Contacto</h4>
                     <ul>
                         <li><strong>Dueño: </strong> {{$propietario->nombrePropietario}}</li>
                         <li><strong>Teléfono: </strong> {{$propietario->telefonoPropietario}}</li>
@@ -85,10 +85,10 @@
                             <br> 
                             <strong>Veterinaria Pet Paradise le informa</strong>
                             <br> 
-                            Que la cita para {{$mascota->nombreMascota}} de {{$propietario->nombrePropietario}} esta agendada para la fecha y hora {{$citaCirugia->start}}
+                            Que la cita para <strong>{{$mascota->nombreMascota}}</strong> de <strong>  {{$citaCirugia->conceptoCirugia}}</strong> esta agendada para la fecha y hora {{$citaCirugia->start}}
                             En caso de algún incoveniente favor comunicarse al Whatsapp +50370959194.
                             <br> 
-                            Att: Veterinaria Pets Paradise
+                            Att: Veterinaria Pet's Paradise
                     </p>
                     </article>
                 </section>

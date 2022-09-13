@@ -140,7 +140,7 @@ class CitaCirugiaController extends Controller
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
         $citaCirugia = citaCirugia::find($id);
-        $citaCirugia->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaCirugia->start)->format('Y-m-d');
+        $citaCirugia->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaCirugia->start)->format('d-m-Y');
         return response()->json($citaCirugia);
     }
 

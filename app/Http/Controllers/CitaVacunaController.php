@@ -160,7 +160,7 @@ class CitaVacunaController extends Controller
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
         $citaVacuna = citaVacuna::find($id);
-        $citaVacuna->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('Y-m-d');
+        $citaVacuna->start = Carbon::createFromFormat('Y-m-d H:i:s', $citaVacuna->start)->format('d-m-Y');
         return response()->json($citaVacuna);
     }
 

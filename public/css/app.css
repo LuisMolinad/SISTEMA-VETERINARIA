@@ -212,3 +212,23 @@
     text-align: center;
 } */
 
+.fc .fc-daygrid-day.fc-day-today{
+    background-color: #E6FFEC;
+}
+
+/*Responsividad del calendario*/
+/*Es un elemento flex, usare un wrap*/
+@media (max-width: 768px){
+    .fc .fc-toolbar{
+        flex-wrap: wrap;
+        flex-direction: column;   
+    }
+
+    .fc .fc-toolbar-title{
+        padding: 20px;
+    }
+    
+    .fc .fc-daygrid-day.fc-day-today{
+        background-color: #E6FFEC;
+    }
+}
