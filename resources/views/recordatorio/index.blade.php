@@ -113,23 +113,27 @@ GESTIONAR RECORDATORIOS
                                         {{method_field('DELETE')}}
                                         <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
+                                    <button type="button" class="btn btn-info oculto">Reenviar</button>
                             @elseif($recordatorio->estado == 1)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                    <button type="button" class="btn btn-warning oculto">Editar</button>
                                     <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
+                                        <button class="btn btn-danger oculto">Eliminar</button>
                                     </form>
+                                    <button type="button" class="btn btn-info oculto">Reenviar</button>
                             @elseif ($recordatorio->estado == -1)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                                    <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                                     <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
+                                    <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
                             @endif
                         </td>
                         <td id="estado_funcion_filtrar" class="none">
@@ -214,16 +218,6 @@ GESTIONAR RECORDATORIOS
                     console.log( formatear_fecha(filtro_fecha.value))
                     console.log(filtro_fecha.value);
             });
-
-/*             btn_limpiar = document.querySelector('#btn_limpiar');
-            btn_limpiar.addEventListener('click', ()=>{
-
-                filtro_fecha.value = '';
-                selector.value = '';
-
-                table_recordatorio.draw();
-
-            }); */
         });
 
         function formatear_fecha(fecha){
