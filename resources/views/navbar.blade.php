@@ -16,7 +16,10 @@
                     Citas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
+                    {{-- TODO si tiene asignado el permiso de ver cita servicio podra ver este link sino no --}}
+                    @can('ver-CitaVacuna')
+                        <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
+                    @endcan
                     <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
                     <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
                 </div>
@@ -27,8 +30,9 @@
             </li>
 
             <li class="nav-item active dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Registros clinicos
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registros clinicos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/propietario">Propietario</a>
@@ -92,8 +96,8 @@
                 </li>
             @endif
             <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();document.getElementById('logout-form').submit();"><button type="button"
-                    class="btn btn-danger">Cerrar Sesion</button></a>
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();"><button
+                    type="button" class="btn btn-danger">Cerrar Sesion</button></a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>

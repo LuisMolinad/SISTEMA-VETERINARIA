@@ -13,13 +13,27 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class gestionCitasVacunacionController extends Controller
 {
+
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:consultar-CitaVacuna|editar-CitaVacuna|borrar-CitaVacuna',
+            ['only' => ['index']]
+        );
+        /* $this->middleware('permission:crear-CitaVacuna', ['only' => ['create', 'store']]); */
+        $this->middleware('permission:editar-CitaVacuna', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-CitaVacuna', ['only' => ['destroy']]);
+    }
+
+
+
     /**
-     * Muestra los datos de la mascota para la seccion consultar de gestioncitaVacion
-     * 
-     * 
+     * TODO Muestra los datos de la mascota para la seccion consultar de gestioncitaVacion
+    
      */
-
-
     public function index($id, $citaVacuna_id)
     {
         $mascotas = mascota::find($id);
@@ -59,7 +73,7 @@ class gestionCitasVacunacionController extends Controller
     }
 
 
-    //Funcion para el boton gestionar, muestra las vacunas de cada mascota, conecta 
+    //TODO Funcion para el boton gestionar, muestra las vacunas de cada mascota, conecta 
     public function show($id)
     {
         //$mascotas = mascota::with('propietario')->get();

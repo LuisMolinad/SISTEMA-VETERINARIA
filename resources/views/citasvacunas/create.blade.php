@@ -192,10 +192,13 @@
                         </div>
                     </div>
             </section> --}}
-            @include('layouts.crear_recordatorio_citaVacuna')
-            <div class="form-group col-md-6">
-                <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
-            </div>
+            {{-- TODO SI TENGO EL PERMISO PUEDO VER EL BOTON SINO NO --}}
+            @can('crear-CitaVacuna')
+                @include('layouts.crear_recordatorio_citaVacuna')
+                <div class="form-group col-md-6">
+                    <button type="submit" style=" width: 100px; height: 50px;" class="btn btn-primary">Guardar</button>
+                </div>
+            @endcan
         </form>
 
     </div>

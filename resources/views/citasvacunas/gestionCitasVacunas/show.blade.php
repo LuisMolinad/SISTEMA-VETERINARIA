@@ -44,28 +44,29 @@
                         <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
                         <td id="botones-linea">
+                            {{-- TODO SI TENGO EL PERMISO PUEDO VERLO SINO NO --}}
+                            @can('consultar-CitaVacuna')
+                                <a type="button" class="btn btn-info"
+                                    href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
+                                    Consultar</a>
+                            @endcan
+                            @can('editar-CitaVacuna')
+                                @if ($mascotas->fallecidoMascota == 'Vivo')
+                                    <a type="button" class="btn btn-warning"
+                                        href="{{ route('gestionVacuna.edit', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
+                                        Editar</a>
+                                @endif
+                            @endcan
+                            @can('borrar-CitaVacuna')
+                                <form id="EditForm{{ $registro->pivot->id }}"
+                                    action="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}">
 
-                            <a type="button" class="btn btn-info"
-                                href="{{ route('gestionVacuna.index', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
-                                Consultar</a>
-                            @if ($mascotas->fallecidoMascota == 'Vivo')
-                                <a type="button" class="btn btn-warning"
-                                    href="{{ route('gestionVacuna.edit', [$mascotas->id, 'citaVacuna_id' => $registro->pivot->id]) }}">
-                                    Editar</a>
-                            @endif
-                            {{-- <a type="button" class="btn btn-danger"
-                                href="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}"
-                                onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $mascotas->nombreMascota }}');">
-                                Eliminar</a> --}}
-                            <form id="EditForm{{ $registro->pivot->id }}"
-                                action="{{ route('gestionVacuna.delete', ['citaVacuna_id' => $registro->pivot->id]) }}">
-
-                                {{ method_field('DELETE') }}
-                                <button
-                                    onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $registro->pivot->id }}','{{ $mascotas->nombreMascota }}')"
-                                    type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-
+                                    {{ method_field('DELETE') }}
+                                    <button
+                                        onclick="return alerta_eliminar_citaVacuna('{{ $registro->nombreVacuna }}','{{ $registro->pivot->id }}','{{ $mascotas->nombreMascota }}')"
+                                        type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            @endcan
                             {{-- <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}

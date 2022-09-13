@@ -65,18 +65,20 @@ class RolesAndPermissionSeeder extends Seeder
 
         ];
 
-
-        //TODO Vacuna  
+        //TODO Vacuna 
         $vacuna = [
             Permission::create(['name' => 'ver-Vacuna']),
             Permission::create(['name' => 'editar-Vacuna']),
             Permission::create(['name' => 'crear-Vacuna']),
             Permission::create(['name' => 'borrar-Vacuna']),
         ];
-        //TODO CitaVacuna  
+
+        //TODO CitaVacuna si se dan cuenta aca hay permisos extras, pero estos se adecuan al flujo de las pantallas en mi caso necesito como extra, gestionar y consultar 
         $citaVacuna = [
             Permission::create(['name' => 'ver-CitaVacuna']),
             Permission::create(['name' => 'editar-CitaVacuna']),
+            Permission::create(['name' => 'consultar-CitaVacuna']),
+            Permission::create(['name' => 'gestionar-CitaVacuna']),
             Permission::create(['name' => 'crear-CitaVacuna']),
             Permission::create(['name' => 'borrar-CitaVacuna']),
         ];

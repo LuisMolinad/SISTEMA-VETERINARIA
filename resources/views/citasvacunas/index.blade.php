@@ -39,16 +39,18 @@
                         <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
                         <td id="direccion  duenio" style="display:none;">{{ $mascota->fallecidoMascota }}</td>
                         <td>
-                            @if ($mascota->fallecidoMascota == 'Vivo')
-                                <a role="button"
-                                    class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
-                            @elseif($mascota->fallecidoMascota == 'Fallecido')
-                                <a role="button" class="btn btn-success oculto">Crear</a>
-                            @endif
-
-                            <a type="button" class="btn btn-dark"
-                                href="{{ route('gestionVacuna.show', $mascota->id) }}">Gestionar</a>
-
+                            @can('crear-CitaVacuna')
+                                @if ($mascota->fallecidoMascota == 'Vivo')
+                                    <a role="button"
+                                        class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $mascota->id) }}">Crear</a>
+                                @elseif($mascota->fallecidoMascota == 'Fallecido')
+                                    <a role="button" class="btn btn-success oculto">Crear</a>
+                                @endif
+                            @endcan
+                            @can('gestionar-CitaVacuna')
+                                <a type="button" class="btn btn-dark"
+                                    href="{{ route('gestionVacuna.show', $mascota->id) }}">Gestionar</a>
+                            @endcan
                             {{-- <a href="{{ route('cashbooktransactions.apply', $transaction->id) }}"
                                 class="btn btn-warning">Apply</a> --}}
 
