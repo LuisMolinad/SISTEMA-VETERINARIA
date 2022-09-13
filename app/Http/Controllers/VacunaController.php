@@ -13,6 +13,7 @@ class VacunaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Función para mostrar las diferentes vacunas
     public function index()
     {
         $datosVacuna['vacunas']=vacuna::all();
@@ -26,6 +27,7 @@ class VacunaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Funcion para cargar la vista de crear vacuna
     public function create()
     {
         //
@@ -38,6 +40,7 @@ class VacunaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Función para guardar una vacuna desde vacuna.create
     public function store(Request $request)
     {
         $datosVacuna = request()->except('_token');
@@ -51,11 +54,13 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
+    //Funcion para mostrar una vacuna en la vista vacuna.show
     public function show($id)
     {
         $vacuna=vacuna::findOrFail($id);
         return view('vacuna.show', ['vacuna'=>$vacuna]);
     }
+    //Función para recuperar una vacuna en json
     public function showId($id){
         $vacuna=vacuna::find($id);
         return response()->json($vacuna);
@@ -66,6 +71,8 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
+
+     //Función para cargar la vista vacuna.edit
     public function edit($id)
     {
         $vacuna = vacuna::find($id);
@@ -79,18 +86,14 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
+    // Función para actualizar una vacuna, se usa desde la vista vacuna.edit, y desde los botones
+    //  habilitar y deshabilitar del index de vacuna.
     public function update(Request $request, $id, $accion)
     {
         $datosVacuna = request()->except(['_token','_method']);
         vacuna::where('id','=',$id)->update($datosVacuna);
-        // if ($accion == 0){
-        //     $mensaje = "Vacuna habilitada correctamente";
-        // } elseif ($accion == 1){
-        //     $mensaje = "Vacuna habilitada correctamente";
-        // } else {
-        //     $mensaje = "Vacuna habilitada correctamente";
-        // }
-        // return redirect('/vacuna')->with('success',$mensaje);
+        //Selectiva para determinar si la edicion corresponde a editar vacuna, deshabilitar vacuna, o habilitar vacuna
+        //y poder retornar un aviso correspondiente al momento de redireccionar al index.
         if ($accion == "editar"){
             return redirect('/vacuna')->with('warning','Se ha editado la vacuna correctamente');
         } elseif ($accion == "deshabilitar"){
@@ -106,6 +109,7 @@ class VacunaController extends Controller
      * @param  \App\Models\vacuna  $vacuna
      * @return \Illuminate\Http\Response
      */
+    //Funcion para destruir una vacuna.
     public function destroy($id)
     {
         Vacuna::destroy($id);

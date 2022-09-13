@@ -81,6 +81,8 @@
 #botones-linea{
     display: flex;
     justify-content: space-around;
+    /* margin-top: 100px; */
+    margin-bottom: 100%;
 }
 
 .invisible{

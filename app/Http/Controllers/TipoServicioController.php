@@ -12,6 +12,7 @@ class TipoServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Función para mostrar los diferentes tipos de servicios
     public function index()
     {
         $datosTipoServicio['tiposervicios']=tipoServicio::all();
@@ -23,6 +24,7 @@ class TipoServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Funcion para cargar la vista de crear tipo de servicio
     public function create()
     {
         return view('tiposervicio.create');
@@ -34,6 +36,7 @@ class TipoServicioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Función para guardar un tipo de servicio desde la vista tiposervicio.create 
     public function store(Request $request)
     {
         $datosTipoServicio = request()->except('_token');
@@ -51,12 +54,14 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
+    //Funcion para mostrar un tipo de servicio en la vista tiposervicio.show
     public function show($id)
     {
         $tipoServicio=tipoServicio::findOrFail($id);
         return view('tiposervicio.show', ['tipoServicio'=>$tipoServicio]);
     }
 
+    //Función para recuperar un tipo de servicio por su id, se retorna un json.
     public function showId($id){
         $tipoServicio=tipoServicio::find($id);
         return response()->json($tipoServicio);
@@ -69,6 +74,8 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
+
+    //Función para mostrar la vista tiposervicio.edit
     public function edit($id)
     {
         $tipoServicio = tipoServicio::find($id);
@@ -82,10 +89,15 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
+
+    // Función para actualizar un tipo de servicio, se usa desde la vista tiposervicio.edit, y desde los botones
+    //  habilitar y deshabilitar.
     public function update(Request $request, $id,$accion)
     {
         $datosTipoServicio = request()->except(['_token','_method']);
         TipoServicio::where('id','=',$id)->update($datosTipoServicio);
+        //Selectiva para determinar si la edicion corresponde a editar el servicio, deshabilitar el servicio, o habilitar el servicio
+        //y poder retornar un aviso correspondiente al momento de redireccionar al index.
         if ($accion == "editar"){
             return redirect('/tiposervicio')->with('warning','Se ha editado el tipo de servicio correctamente');
         } elseif ($accion == "deshabilitar"){
@@ -101,6 +113,7 @@ class TipoServicioController extends Controller
      * @param  \App\Models\tipoServicio  $tipoServicio
      * @return \Illuminate\Http\Response
      */
+    //Funcion para destruir un tipo de servicio.
     public function destroy($id)
     {
         TipoServicio::destroy($id);

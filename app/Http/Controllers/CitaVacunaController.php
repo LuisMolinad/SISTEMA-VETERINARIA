@@ -187,7 +187,8 @@ class CitaVacunaController extends Controller
         //
     }
 
-    //Función para consultar citas de una vacuna especifica
+    //Función para consultar citas de una vacuna especifica, utilizada para verificar si se puede eliminar
+    //una vacuna especifica
     public function consultarCitasVacunaPorIdVacuna($id)
     {
         $citasVacuna = citaVacuna::where('vacuna_id', $id)->get();

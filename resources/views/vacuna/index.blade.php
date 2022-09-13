@@ -19,7 +19,7 @@ GESTIONAR VACUNAS
 
 @section('content')
     @include('layouts.notificacion')
-    <div class="container-fluid contenedor">   
+    <div class="table-responsive-sm container-fluid contenedor" style="margin-bottom: 30px"> 
         <div class="boton crear container_btn_hend">
             <a href="/vacuna/create"><button type="button" class="btn btn-success boton_crear">Crear vacuna</button></a>
         </div>
@@ -29,63 +29,67 @@ GESTIONAR VACUNAS
                 <th scope="col">N°</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
-                <th scope="col">Tiempo entre dosis</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">Refuerzo</th>
                 <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($vacunas as $vacuna)
+                {{-- Codigo para identificar las vacunas no disponibles --}}
                 <tr
                     <?php
                         if($vacuna->disponibilidadVacuna == False){
-                            echo 'class="fallecido"';
-                            echo 'style="background-color:#34495E;"';
+                            echo 'style="background-color:rgba(218,190,133,1); color:black;"';
                         }
                     ?>
                 >
                     <td>{{$vacuna->id}}</td>
                     <td>{{$vacuna->nombreVacuna}}</td>
                     <td>{{$vacuna->descripcionVacuna}}</td>
-                    <td>{{$vacuna->tiempoEntreDosisDia}}</td>
-                    <td>
-                        <a href="{{ route('vacuna.show',$vacuna->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>   
-                    </td>
-                    <td>
-                        <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                     </td>
-                    <td>
+                    <td>{{$vacuna->tiempoEntreDosisDia}} días</td>
+                    <td id = "botones-linea">
+
+                        <a href="{{ route('vacuna.show',$vacuna->id) }}" style="margin-right: 10px"><button type="button" class="btn btn-info" >Consultar</button></a>   
+                        <a href="{{ url('/vacuna/'.$vacuna->id.'/edit') }}" style="margin-right: 10px"><button type="button" class="btn btn-warning" >Editar</button></a>
                         @if($vacuna->disponibilidadVacuna == True)
-                            {{-- <form id="DeshabilitarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id."deshabilitar")}}" method="post"> --}}
                             <form id="DeshabilitarForm{{$vacuna->id}}" action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"deshabilitar"])}}" method="post">
                                     @csrf
                                 {{method_field('PATCH')}}
                                 <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="0">
-                                <button onclick="return alerta_deshabilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary">Deshabilitar</button>
+                                <button onclick="return alerta_deshabilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary" style="margin-right: 10px">Deshabilitar</button>
                             </form>
                         @else
-                            {{-- <form id="HabilitarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id."habilitar")}}" method="post"> --}}
                             <form id="HabilitarForm{{$vacuna->id}}" action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"habilitar"])}}" method="post">                            
                                 @csrf
                                 {{method_field('PATCH')}}
                                 <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="1">
-                                <button onclick="return alerta_habilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary" style="width:110px">Habilitar</button>
+                                <button onclick="return alerta_habilitar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-secondary" style="width:110px;margin-right: 10px">Habilitar</button>
                             </form>
                         @endif
-                    </td>
-                    <td> 
                         <form id="BorrarForm{{$vacuna->id}}" action="{{url('/vacuna/'.$vacuna->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_vacuna('{{$vacuna->nombreVacuna}}','{{$vacuna->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
+
                 </tr>
                 @endforeach
+                <br>
             </tbody>
         </table>
+    </div>
+    <!-- Botón para abrir y cerrar ayuda -->
+    <a href="javascript:ayuda()" class="boton_ayuda" id="boton_ayuda"></a>
+    <!-- Contenedor de ayuda -->
+    <div class="ventana_ayuda" id="ventana_ayuda">
+        <strong>Ayuda</strong>
+        <br>
+        <br>
+        Gestiona las vacunas que se ofrecen en citas de vacunación.
+        <br>
+        <br>
+        Usa los botones "Habilitar" o "Deshabilitar" para gestionar la disponibilidad de las vacunas en las citas de vacunación.
     </div>
 @endsection
 

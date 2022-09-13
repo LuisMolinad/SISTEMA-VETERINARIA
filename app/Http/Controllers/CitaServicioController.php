@@ -120,7 +120,8 @@ class CitaServicioController extends Controller
         return response()->json($citaServicio);
     }
 
-    //Función para consultar citas de un servicio especifico
+    //Función para consultar citas de un servicio especifico, utilizada para verificar si se puede eliminar un
+    //tipo de servicio específico.
     public function consultarCitasServicioPorIdServicio($id){
         $citasServicio = citaServicio::where('tipoServicio_id',$id)->get();
         return response()->json($citasServicio);
