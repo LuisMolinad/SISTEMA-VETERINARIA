@@ -47,7 +47,9 @@
                     Actas
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
+                    @can('ver-ActasDefuncion')
+                        <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
+                    @endcan
                     <a class="dropdown-item" href="{{ route('recetaMedica.index') }}">Receta médica</a>
                 </div>
             </li>

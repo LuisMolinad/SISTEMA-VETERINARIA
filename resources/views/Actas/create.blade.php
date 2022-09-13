@@ -42,9 +42,11 @@
                 </div>
             </div>
             <br>
-            <div class="form-group">
-                <a href="{{ url('/imprimir/' . $mascotas->id) }}" class="btn btn-primary">{{ __('Imprimir') }}</a>
-            </div>
+            @can('crear-ActasDefuncion')
+                <div class="form-group">
+                    <a href="{{ url('/imprimir/' . $mascotas->id) }}" class="btn btn-primary">{{ __('Imprimir') }}</a>
+                </div>
+            @endcan
     </div>
     </form>
     </div>
