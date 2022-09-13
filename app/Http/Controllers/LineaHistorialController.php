@@ -80,6 +80,8 @@ class LineaHistorialController extends Controller
      * @param  \App\Models\lineaHistorial  $lineaHistorial
      * @return \Illuminate\Http\Response
      */
+
+    /*Elimina la linea de historial medico*/ 
     public function destroy($lineaHistorial)
     {
         $idLineaHistorial = lineaHistorial::find($lineaHistorial);
@@ -90,6 +92,7 @@ class LineaHistorialController extends Controller
         return redirect()->action([ExpedienteController::class, 'gestionar_historial_Medico'], ['id' => $id])->with('danger', 'Diagnostico eliminado correctamente');
     }
 
+    /*Se utiliza para agregar la linea de historial*/
     public function fetch(){
 
         $datos = [
@@ -103,6 +106,7 @@ class LineaHistorialController extends Controller
         
     }
 
+    /*Hace la tabla editable*/
     public function edit_editable(){
         
         $datos = [

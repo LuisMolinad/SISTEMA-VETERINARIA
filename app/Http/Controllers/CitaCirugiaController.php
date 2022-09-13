@@ -18,6 +18,8 @@ class CitaCirugiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     /*Tabla general donde recopila todas las mascota, junto con los botones crear y gestionar*/
     public function index()
     {
         $mascotas = mascota::with('propietario')->get();
@@ -52,6 +54,8 @@ class CitaCirugiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //Incluyo lo de los recordatorios
     public function store(Request $request)
     {
         //Recordatorio
@@ -110,6 +114,8 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
+
+      /*Consultar cita de cirugia*/
     public function show($id)
     {
 
@@ -136,6 +142,8 @@ class CitaCirugiaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+      //Calendario
     public function edit($id)
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
@@ -144,6 +152,8 @@ class CitaCirugiaController extends Controller
         return response()->json($citaCirugia);
     }
 
+
+    /*Retorna vista para crear cita de cirugia*/
     public function mostrar($id)
     {
 
@@ -159,6 +169,9 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
+
+
+     /*Actualiza cita de cirugia*/
     public function update(Request $request, $id)
     {
 
@@ -173,14 +186,7 @@ class CitaCirugiaController extends Controller
 
 
         $mascota_id = citaCirugia::where('id', $id)->get('mascota_id')->first();
-        // $datos =  [
-        //     $mascota_id = request('id'),
-        //     $datos = citaCirugia::all()->where('mascota_id', $mascota_id),
-        //     $mascotas = mascota::find($id),
-        // ];
-        // return redirect('GestionCirugia.update');
-        //Me falta que me mande a la vista
-
+   
         try {
             $datosRecordatorio = [
                 'concepto' => request('conceptoCirugia'),
@@ -204,6 +210,9 @@ class CitaCirugiaController extends Controller
      * @param  \App\Models\citaCirugia  $citaCirugia
      * @return \Illuminate\Http\Response
      */
+
+
+     /*Elimina cita de cirugia*/
     public function destroy($id)
     {
 
@@ -220,7 +229,9 @@ class CitaCirugiaController extends Controller
 
         return redirect('/citacirugia/index/gestionarCirugia/' . $registro[0]->mascota_id)->with('danger', 'Cita de cirugía eliminada correctamente');
     }
+ 
 
+    /*Tabla general donde recopila todas  las cirugia de una mascota, junto con los botones respectivos*/
     public function gestionar_cirugias_por_mascota($id)
     {
         $mascota_id = request('id');
@@ -237,7 +248,8 @@ class CitaCirugiaController extends Controller
         return response()->json($citaCirugia);
     }
 
-    //Se utiliza para actualizar cita
+    
+    //Se utiliza para editar cita
     public function editarCirugia($id)
     {
         $cita = citaCirugia::FindOrFail($id);

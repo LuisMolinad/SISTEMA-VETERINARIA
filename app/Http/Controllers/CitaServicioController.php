@@ -67,6 +67,8 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
+
+    /*Muestra en el calendario las citas*/ 
     public function showCalendar(citaServicio $citaServicio)
     {
         //Consultamos los datos almacenados en la base de datos
@@ -80,6 +82,8 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
+
+    /*Funcion que se utiliza para obtener los datos para el editar a traves de un json*/ 
     public function edit($id)
     {
         //Obtengo la informacion al darle click a un evento por medio de su id
@@ -99,6 +103,8 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
+
+    /*Realiza la funcion de editar*/ 
     public function update(Request $request, citaServicio $citaServicio)
     {
         //
@@ -113,6 +119,8 @@ class CitaServicioController extends Controller
      * @param  \App\Models\citaServicio  $citaServicio
      * @return \Illuminate\Http\Response
      */
+
+    /*Realiza la funcion de eliminar una cita de servicio*/ 
     public function destroy($id)
     {
         //

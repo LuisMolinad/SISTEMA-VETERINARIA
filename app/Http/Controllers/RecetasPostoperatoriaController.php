@@ -13,6 +13,7 @@ use PDF;
 class RecetasPostoperatoriaController extends Controller
 {
 
+     /*Crea la receta postoperatoria*/
     public function create($id){
 
         $cita_cirugia = citaCirugia::where('id', $id)->first();
@@ -24,6 +25,8 @@ class RecetasPostoperatoriaController extends Controller
 
         return view('RecetaPostoperatoria.create', compact('datos'));
     }
+   
+    /*Guarda en la base de datos la receta postoperatoria*/
 
     public function guardar_bd(Request $request){
 
@@ -49,7 +52,7 @@ class RecetasPostoperatoriaController extends Controller
         $pdf = PDF::loadView('RecetaPostoperatoria.recetaPostoperatoriaPDF', compact('datos', 'nombre', 'fecha'));
         return $pdf->stream();
     }
-
+    /*Genera el PDF de la receta postoperatoria*/
     public function pdf($id)
     {
         $mascotas = mascota::FindOrFail($id);
