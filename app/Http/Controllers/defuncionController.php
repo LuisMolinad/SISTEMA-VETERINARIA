@@ -14,12 +14,22 @@ use Illuminate\Support\Facades\DB;
 
 class defuncionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /*   $actasDefuncion = [
+            Permission::create(['name' => 'ver-ActasDefuncion']),
+            Permission::create(['name' => 'crear-ActasDefuncion']),
+        ]; */
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-ActasDefuncion|crear-ActasDefuncion',
+            ['only' => ['index']]
+        );
 
+        $this->middleware('permission:crear-ActasDefuncion', ['only' => ['mostrar', 'pdf']]);
+    }
     /* 
         El siguiente metodo es utilizado para diferentes tareas
         1. Cargar los datos del duenio con mascota
