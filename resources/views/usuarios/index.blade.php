@@ -21,7 +21,7 @@
 @section('content')
     <div class="table-responsive container-fluid contenedor">
         @include('layouts.notificacion')
-        <table class="table table-striped" id="users">
+        <table class="table table-striped" style="width:100%" id="users">
             <thead class="table-dark table-header">
                 <tr>
                     <th style="display:none">ID </th>
@@ -87,10 +87,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pagination justify-content-end">
-            {{-- Paginacion con php --}}
-            {!! $usuarios->links() !!}
-        </div>
+
     </div>
 @endsection
 

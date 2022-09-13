@@ -506,8 +506,8 @@ function alerta_eliminar_usuario(id, name){
         if (result.isConfirmed) {
 
             Swal.fire(
-                'Se eliminara!',
-                'El registro del usuario ' + name + ' sera eliminado.',
+                '¡Se eliminará!',
+                'El registro del usuario <strong>'+name+ ' </strong> se eliminará',
                 'success'
             ).then((result)=>{
                 formulario.submit();

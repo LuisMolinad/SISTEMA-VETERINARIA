@@ -31,8 +31,16 @@
                 <h4 class="header4">Información Vacunación</h4>
                 <ul>
                     <li><strong>Vacuna: </strong> {{ $vacuna->nombreVacuna }}</li>
-                    <li><strong>Fecha Aplicación: </strong>{{ $idcitaVacuna->fechaAplicacion }}</li>
-                    <li><strong>Fecha Refuerzo: </strong>{{ $idcitaVacuna->start }}</li>
+                    <li><strong>Fecha Aplicación: </strong>
+                        <?php
+                        echo date('d-m-Y H:i', strtotime($idcitaVacuna->fechaAplicacion));
+                        ?>
+                    </li>
+                    <li><strong>Fecha Refuerzo: </strong>
+                        <?php
+                        echo date('d-m-Y H:i', strtotime($idcitaVacuna->start));
+                        ?>
+                    </li>
 
                 </ul>
             </article>
