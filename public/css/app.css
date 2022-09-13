@@ -208,6 +208,11 @@
     visibility: hidden;
 }
 
+@media (max-width: 1000px) {
+    .oculto{
+        display: none;
+    }
+}
 
 /* .botones-linea{
     text-align: center;
