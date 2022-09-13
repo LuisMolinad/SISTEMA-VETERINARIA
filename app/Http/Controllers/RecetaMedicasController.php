@@ -12,6 +12,7 @@ use PDF;
 
 class RecetaMedicasController extends Controller
 {
+      /*Crea la receta medica*/
     public function create($id){
 
         $mascotas = mascota::FindOrFail($id);
@@ -20,6 +21,7 @@ class RecetaMedicasController extends Controller
         //return view('Cirugia.CrearCirugia');
     }
 
+     /*Tabla general donde recopila todas las mascota, junto con los botones crear y gestionar*/
     public function index()
     {
 
@@ -29,6 +31,7 @@ class RecetaMedicasController extends Controller
         // return view('Actas.index');
     }
 
+    /*Guarda en la base de datos receta medica*/
     public function guardar_bd(Request $request){
 
       
