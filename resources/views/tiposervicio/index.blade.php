@@ -19,7 +19,7 @@ GESTIONAR TIPO DE SERVICIO
 
 @section('content')
     @include('layouts.notificacion')
-    <div class="container-fluid contenedor">
+    <div class="table-responsive-sm container-fluid contenedor" style="margin-bottom: 30px">
         <div class="boton crear container_btn_hend">
             <a href="/tiposervicio/create"><button type="button" class="btn btn-success boton_crear">Crear tipo de servicio</button></a>
         </div>
@@ -30,33 +30,25 @@ GESTIONAR TIPO DE SERVICIO
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tiposervicios as $tiposervicio)
+                {{-- Codigo para identificar los tipos de servicios no disponibles --}}
                 <tr
                     <?php
                             if($tiposervicio->disponibilidadServicio == False){
-                                echo 'class="fallecido"';
-                                echo 'style="background-color:#34495E;"';
+                                echo 'style="background-color:rgba(218,190,133,1); color:black;"';
                             }
                     ?>
                 >
                     <td>{{$tiposervicio->id}}</td>
                     <td>{{$tiposervicio->nombreServicio}}</td>
                     <td>{{$tiposervicio->descripcionServicio}}</td>
-                    <td>
-                        <a href="{{ route('tiposervicio.show',$tiposervicio->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>   
-                    </td>
-                    <td>
-                       <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                    </td>
-                    <td>
+                    <td id = "botones-linea">
+                        <a href="{{ route('tiposervicio.show',$tiposervicio->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>
+                        <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
                         @if($tiposervicio->disponibilidadServicio == True)
-                            {{-- <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post"> --}}
                             <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{route('Tiposervicio.update',[$tiposervicio->id,'accion'=>"deshabilitar"])}}" method="post">                            
                                 @csrf
                                 {{method_field('PATCH')}}
@@ -64,16 +56,13 @@ GESTIONAR TIPO DE SERVICIO
                                 <button onclick="return alerta_deshabilitar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-secondary">Deshabilitar</button>
                             </form>
                         @else
-                            {{-- <form id="HabilitarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post"> --}}
                             <form id="HabilitarForm{{$tiposervicio->id}}" action="{{route('Tiposervicio.update',[$tiposervicio->id,'accion'=>"habilitar"])}}" method="post">
                                 @csrf
                                 {{method_field('PATCH')}}
                                 <input id="disponibilidadServicio" name="disponibilidadServicio" type="hidden" value="1">
                                 <button onclick="return alerta_habilitar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-secondary" style="width:110px">Habilitar</button>
                             </form>
-                        @endif
-                    </td>
-                    <td> 
+                        @endif 
                         <form id="BorrarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
@@ -95,7 +84,7 @@ GESTIONAR TIPO DE SERVICIO
         Gestiona los tipos de servicios que se ofrecen en citas de servicios.
         <br>
         <br>
-        Usa los botones "Habilitar" o "Deshabilitar" para gestionar los servicios que se ofrecen en las citas de servicios.
+        Usa los botones "Habilitar" o "Deshabilitar" para gestionar la disponibilidad de los servicios que se ofrecen en las citas de servicios.
     </div>
 @endsection
 
