@@ -12,6 +12,22 @@ use PDF;
 
 class RecetaMedicasController extends Controller
 {
+
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-RecetaMedica|crear-RecetaMedica',
+            ['only' => ['index']]
+        );
+        $this->middleware('permission:crear-RecetaMedica', ['only' => ['create', 'guardar_bd']]); //crear cita de cirugia
+        }
+
+
+
+
       /*Crea la receta medica*/
     public function create($id){
 

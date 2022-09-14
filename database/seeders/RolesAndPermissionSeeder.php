@@ -53,10 +53,14 @@ class RolesAndPermissionSeeder extends Seeder
 
         // TODO Cirugia
         $cirugia = [
-            Permission::create(['name' => 'ver-Cirugia']),
-            Permission::create(['name' => 'editar-Cirugia']),
-            Permission::create(['name' => 'crear-Cirugia']),
-            Permission::create(['name' => 'borrar-Cirugia']),
+            Permission::create(['name' => 'ver-Cirugia']), //index
+            Permission::create(['name' => 'editar-Cirugia']), //editar
+            Permission::create(['name' => 'crear-Cirugia']), //crear
+            Permission::create(['name' => 'borrar-Cirugia']), //borrar
+            Permission::create(['name' => 'consultar-Cirugia']), //consultar
+            Permission::create(['name' => 'gestionar-Cirugia']), //vista gestionar tabla2
+            Permission::create(['name' => 'crear-recetaPostoperatoria']), //crear receta postoperatoria
+
         ];
 
         //TODO Actas Defuncion

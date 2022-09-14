@@ -20,7 +20,9 @@
                     @can('ver-CitaVacuna')
                         <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
                     @endcan
+                    @can('ver-Cirugia')
                     <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
+                    @endcan
                     <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
                 </div>
             </li>
@@ -50,7 +52,9 @@
                     @can('ver-ActasDefuncion')
                         <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
                     @endcan
-                    <a class="dropdown-item" href="{{ route('recetaMedica.index') }}">Receta médica</a>
+                    @can('ver-RecetaMedica')
+                         <a class="dropdown-item" href="{{ route('recetaMedica.index') }}">Receta médica</a>
+                    @endcan
                 </div>
             </li>
             <li class="nav-item active dropdown">

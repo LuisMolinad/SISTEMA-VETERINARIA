@@ -35,10 +35,12 @@
                         <td id="telefono duenio">{{ $mascota->propietario->telefonoPropietario }}</td>
                         <td id="direccion  duenio">{{ $mascota->propietario->direccionPropietario }}</td>
                         <td>
+                        @can('crear-RecetaMedica')     
                         @if ($mascota->fallecidoMascota == 'Vivo')
                             <a role="button" class="btn btn-success"
                                 href="{{ url('/crear/receta_medica/' . $mascota->id) }}">Crear</a>
                        @endif
+                       @endcan
                         </td>
                     </tr>
                 @endforeach
