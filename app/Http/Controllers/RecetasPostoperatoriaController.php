@@ -13,6 +13,24 @@ use PDF;
 class RecetasPostoperatoriaController extends Controller
 {
 
+
+//Para roles y permisos
+  
+function __construct()
+{
+    // Se crea este metodo para definir 
+    // que acciones tiene permitido cada ROL
+    //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+    $this->middleware(
+        'permission:ver-Cirugia|gestionar-Cirugia|crear-recetaPostoperatoria',
+        ['only' => ['index']]
+    );
+    $this->middleware('permission:crear-recetaPostoperatoria', ['only' => ['create', 'guardar_bd']]); //crear cita de cirugia
+    }
+
+
+
+
      /*Crea la receta postoperatoria*/
     public function create($id){
 

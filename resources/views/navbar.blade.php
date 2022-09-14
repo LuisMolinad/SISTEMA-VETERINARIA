@@ -20,7 +20,9 @@
                     @can('ver-CitaVacuna')
                         <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
                     @endcan
-                    <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
+                    @can('ver-Cirugia')
+                        <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
+                    @endcan
                     @can('ver-LimpiezaDental')
                     <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
                     @endcan
@@ -42,19 +44,24 @@
                     <a class="dropdown-item" href="/expediente">Expediente</a>
                 </div>
             </li>
+            @if (auth()->user()->can('ver-ActasDefuncion') ||
+                auth()->user()->can('ver-RecetaMedica'))
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @can('ver-ActasDefuncion')
+                            <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
+                        @endcan
+                        @can('ver-RecetaMedica')
+                            <a class="dropdown-item" href="{{ route('recetaMedica.index') }}">Receta médica</a>
+                        @endcan
+                    </div>
 
-            <li class="nav-item active dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Actas
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @can('ver-ActasDefuncion')
-                        <a class="dropdown-item" href="{{ route('defuncion.index') }}">Defuncion</a>
-                    @endcan
-                    <a class="dropdown-item" href="{{ route('recetaMedica.index') }}">Receta médica</a>
-                </div>
-            </li>
+                </li>
+            @endif
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -20,7 +20,31 @@ class CitaCirugiaController extends Controller
      */
 
      /*Tabla general donde recopila todas las mascota, junto con los botones crear y gestionar*/
-    public function index()
+  
+  //Para roles y permisos
+  
+  function __construct()
+  {
+      // Se crea este metodo para definir 
+      // que acciones tiene permitido cada ROL
+      //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+      $this->middleware(
+          'permission:ver-Cirugia|crear-Cirugia|gestionar-Cirugia|consultar-Cirugia|editar-Cirugia|borrar-Cirugia',
+          ['only' => ['index']]
+      );
+      $this->middleware('permission:crear-Cirugia', ['only' => ['mostrar', 'store']]); //crear cita de cirugia
+      $this->middleware('permission:gestionar-Cirugia', ['only' => ['gestionar_cirugias_por_mascota']]); //gestionar por mascota tabla2
+      $this->middleware('permission:consultar-Cirugia', ['only' => ['show']]); //consultar cita de cirugia
+      $this->middleware('permission:editar-Cirugia', ['only' => ['editarCirugia', 'update']]); //actualiza cita de cirugia
+      $this->middleware('permission:borrar-Cirugia', ['only' => ['destroy']]); //eliminar cita de cirugia
+  }
+
+  
+  
+  
+  
+  
+     public function index()
     {
         $mascotas = mascota::with('propietario')->get();
         return view(('Cirugia.GestionarCirugia'), compact('mascotas'));
