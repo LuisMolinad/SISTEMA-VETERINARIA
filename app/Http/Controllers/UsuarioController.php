@@ -16,6 +16,28 @@ use Svg\Tag\Circle;
 
 class UsuarioController extends Controller
 {
+
+
+    /*  Permission::create(['name' => 'ver-Usuarios']);
+        Permission::create(['name' => 'editar-Usuarios']);
+        Permission::create(['name' => 'crear-Usuarios']);
+        Permission::create(['name' => 'borrar-Usuarios']);
+ */
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-Usuarios|editar-Usuarios|crear-Usuarios|borrar-Usuarios',
+            ['only' => ['index']]
+        );
+        /* $this->middleware('permission:crear-CitaVacuna', ['only' => ['create', 'store']]); */
+        $this->middleware('permission:crear-Usuarios', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-Usuarios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-Usuarios', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

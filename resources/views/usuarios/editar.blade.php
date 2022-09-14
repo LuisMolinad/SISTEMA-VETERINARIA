@@ -62,10 +62,10 @@
             </div>
         </div>
 
-
-        <button type="submit"class="btn btn-primary">Guardar</button>
-        {!! Form::close() !!}
-
+        @can('editar-Usuarios')
+            <button type="submit"class="btn btn-primary">Guardar</button>
+            {!! Form::close() !!}
+        @endcan
         {{-- <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
             @csrf
             <div class="form-group col-md-6" style="display: none;">
