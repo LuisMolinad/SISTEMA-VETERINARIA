@@ -56,7 +56,9 @@
             </div>
 
         </div>
-        <button type="submit"class="btn btn-primary">Guardar</button>
+        @can('crear-Usuarios')
+            <button type="submit"class="btn btn-primary">Guardar</button>
+        @endcan
     </div>
     {!! Form::close() !!}
 

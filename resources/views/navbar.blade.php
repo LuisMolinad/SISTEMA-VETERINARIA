@@ -68,7 +68,8 @@
         <ul class="navbar-nav ml-auto">
             {{-- Si inicio sesion y el usuario tiene permiso de ver el rol puede ver el dropdown
                 TODO: ESTA FUNCIONALIDAD DEL IF AUN SIGUE EN BETA --}}
-            @if (auth()->user()->can('ver-rol'))
+            @if (auth()->user()->can('ver-rol') ||
+                auth()->user()->can('ver-Usuarios'))
                 <li class="nav-item active dropdown">
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -79,8 +80,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{-- <a class="dropdown-item " href="#" data-id="{{ \Auth::id() }}">
                         <i class="fa fa-user"></i>Editar Perfil</a> --}}
-                        <a class="dropdown-item" href="{{ route('usuarios.index') }}"> Nuevo Usuario</a>
-                        <a class="dropdown-item" href="{{ route('roles.index') }}"> Roles</a>
+                        @can('ver-Usuarios')
+                            <a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a>
+                        @endcan
+                        @can('ver-rol')
+                            <a class="dropdown-item" href="{{ route('roles.index') }}"> Roles</a>
+                        @endcan
                         {{-- Posible nueva sección de cambio de contraseña y perfil de usuario
                         <a class="dropdown-item has-icon edit-profile" href="#" data-id="{{ \Auth::id() }}"><i class="fa fa-user"></i>Edit Profile</a>
                         <a class="dropdown-item has-icon" data-toggle="modal" data-target="#changePasswordModal" href="#" data-id="{{ \Auth::id() }}"><i class="fa fa-lock"> </i>Change Password</a> --}}

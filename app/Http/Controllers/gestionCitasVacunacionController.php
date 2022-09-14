@@ -20,10 +20,11 @@ class gestionCitasVacunacionController extends Controller
         // que acciones tiene permitido cada ROL
         //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
         $this->middleware(
-            'permission:consultar-CitaVacuna|editar-CitaVacuna|borrar-CitaVacuna',
+            'permission:consultar-CitaVacuna|editar-CitaVacuna|borrar-CitaVacuna|gestionar-CitaVacuna',
             ['only' => ['index']]
         );
         /* $this->middleware('permission:crear-CitaVacuna', ['only' => ['create', 'store']]); */
+        $this->middleware('permission:gestionar-CitaVacuna', ['only' => ['show']]);
         $this->middleware('permission:editar-CitaVacuna', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-CitaVacuna', ['only' => ['destroy']]);
     }

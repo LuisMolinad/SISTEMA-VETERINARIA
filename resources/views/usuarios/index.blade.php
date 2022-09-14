@@ -33,7 +33,9 @@
             </thead>
             <!-- $mascota->propietario(es el nombre del metodo que esta en el model que define la relacion)->nombrePropietario(el nombre de la columna en la bd)-->
             <tbody>
-                <a role="button" class="btn btn-success" href="{{ route('usuarios.create') }}">Crear Usuario</a>
+                @can('crear-Usuarios')
+                    <a role="button" class="btn btn-success" href="{{ route('usuarios.create') }}">Crear Usuario</a>
+                @endcan
                 <br>
                 <br>
                 @foreach ($usuarios as $usuario)
@@ -49,8 +51,9 @@
                             @endif
                         </td>
                         <td id="botones-linea">
-                            <a class="btn btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
-
+                            @can('editar-Usuarios')
+                                <a class="btn btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
+                            @endcan
                             {{-- {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['usuarios.destroy', $usuario->id],
@@ -63,15 +66,16 @@
                             ]) !!}
 
                             {!! Form::close() !!} --}}
-                            <form id="EditForm{{ $usuario->id }}"
-                                action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="post">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button
-                                    onclick="return alerta_eliminar_usuario('{{ $usuario->id }}','{{ $usuario->name }}')"
-                                    type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-
+                            @can('borrar-Usuarios')
+                                <form id="EditForm{{ $usuario->id }}"
+                                    action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="post">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button
+                                        onclick="return alerta_eliminar_usuario('{{ $usuario->id }}','{{ $usuario->name }}')"
+                                        type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            @endcan
                             <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
                                 @csrf
                                 <div class="form-group col-md-6" style="display: none;">
