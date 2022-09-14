@@ -12,6 +12,28 @@ use Illuminate\Support\Facades\DB;
 
 class CitaLimpiezaDentalController extends Controller
 {
+    /*
+    Permission::create(['name' => 'ver-LimpiezaDental']),
+            Permission::create(['name' => 'editar-LimpiezaDental']),
+            Permission::create(['name' => 'consultar-LimpiezaDental']),
+            Permission::create(['name'=>'gestionar-LimpiezaDental']),
+            Permission::create(['name' => 'crear-LimpiezaDental']),
+            Permission::create(['name' => 'borrar-LimpiezaDental']),
+    */
+
+    //Para los roles y permisos
+    function __construct()
+    {
+        $this->middleware('permission:editar-LimpiezaDental|consultar-LimpiezaDental|crear-LimpiezaDental|borrar-LimpiezaDental',['only' => ['index']]);
+
+        //Permisos por cada funcionalidad
+        $this->middleware('permission:crear-LimpiezaDental', ['only' => ['mostrar', 'store']]);
+        $this->middleware('permission:consultar-LimpiezaDental', ['only' => ['show']]);
+        $this->middleware('permission:gestionar-LimpiezaDental',['only' => ['gestionar_limpiezas_por_mascota']]);
+        $this->middleware('permission:editar-LimpiezaDental',['only' => ['editarLimpieza', 'update']]);
+        $this->middleware('permission:borrar-LimpiezaDental',['only' => ['destroy']]);
+    }
+
     /*En la funcion index se encuentra todas las mascotas enlistadas*/
     public function index()
     {

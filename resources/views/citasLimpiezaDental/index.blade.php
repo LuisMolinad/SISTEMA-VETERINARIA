@@ -41,13 +41,17 @@ Gestionar limpieza dental
                 <td id="direccionpropietario">{{$mascota->propietario->direccionPropietario}}</td>
                 <td id="direccion  duenio" style="display:none;">{{ $mascota->fallecidoMascota }}</td>
                 <td>
+                    @can('crear-LimpiezaDental')
                     <!--Verifico el estado de la mascota-->
                     @if($mascota->fallecidoMascota == 'Vivo')
                     <a role="button" class="btn btn-success" href={{ url('/crearCitaLimpiezaDental/'.$mascota->id) }}>Crear</a>
                     @elseif($mascota->fallecidoMascota == 'Fallecido')
                             <a role="button" class="btn btn-success oculto">Crear</a>
                     @endif
+                    @endcan
+                    @can('gestionar-LimpiezaDental')
                     <a href="{{ route('GestionLimpieza.index', $mascota->id) }}"><button type="button" class="btn btn-dark">Gestionar</button></a>
+                    @endcan
                 </td>
             </tr>
             @endforeach

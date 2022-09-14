@@ -23,7 +23,9 @@
                     @can('ver-Cirugia')
                         <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
                     @endcan
+                    @can('ver-LimpiezaDental')
                     <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
+                    @endcan
                 </div>
             </li>
 
