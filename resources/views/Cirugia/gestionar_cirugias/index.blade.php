@@ -14,7 +14,7 @@
 @endsection
 
 @section('header')
-<h1 class="header">Gestionar citas de círugia de {{ $mascotas->nombreMascota }} ID: {{ $mascotas->idMascota }}</h1>
+    <h1 class="header">Gestionar citas de círugia de {{ $mascotas->nombreMascota }} ID: {{ $mascotas->idMascota }}</h1>
 @endsection
 
 @section('content')
@@ -31,36 +31,44 @@
             </thead>
             <tbody>
                 @foreach ($datos as $dato)
-                <tr>
-                    <td>{{$dato->conceptoCirugia}}</td>
-                    <td>{{$dato->start}}</td>
-                    <td>{{$dato->recomendacionPreoOperatoria}}</td>
-                    <td id = "botones-linea">
-                    @can('crear-recetaPostoperatoria')
-                         @if ($mascotas->fallecidoMascota == 'Vivo') 
-                            <a href="{{ url('/citacirugia/crear_receta_postoperatoria/'.$dato->id)}}"> <button type="button" class="btn btn-primary">Receta Postoperatoria</button>
-                        @endcan   
-                            @can('consultar-Cirugia')
-                                  <a href="{{ url('/citacirugia/consultarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
-                            @endcan
+                    <tr>
+                        <td>{{ $dato->conceptoCirugia }}</td>
+                        <td>{{ $dato->start }}</td>
+                        <td>{{ $dato->recomendacionPreoOperatoria }}</td>
+                        <td id="botones-linea">
 
-                            @can('editar-Cirugia')                         
-                            <a href="{{ url('/citacirugia/editarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-warning">Editar</button></a>
-                            @endcan
+                            @if ($mascotas->fallecidoMascota == 'Vivo')
+                                @can('crear-recetaPostoperatoria')
+                                    <a href="{{ url('/citacirugia/crear_receta_postoperatoria/' . $dato->id) }}"> <button
+                                            type="button" class="btn btn-primary">Receta Postoperatoria</button>
+                                    @endcan
+                                    @can('consultar-Cirugia')
+                                        <a href="{{ url('/citacirugia/consultarCitaCirugia/' . $dato->id) }}"><button
+                                                type="button" class="btn btn-info">Consultar</button></a>
+                                    @endcan
 
-                            @can('consultar-Cirugia')   
+                                    @can('editar-Cirugia')
+                                        <a href="{{ url('/citacirugia/editarCitaCirugia/' . $dato->id) }}"><button
+                                                type="button" class="btn btn-warning">Editar</button></a>
+                                    @endcan
                                 @elseif($mascotas->fallecidoMascota == 'Fallecido')
-                                <a href="{{ url('/citacirugia/consultarCitaCirugia/'.$dato->id)}}"><button type="button" class="btn btn-info">Consultar</button></a>
-                                @endif
-                            @endcan
-                            <form id="EditForm{{$dato->id}}" action="{{url('/citacirugia/'.$dato->id)}}" method="post">
-                            @csrf
-                            @can('borrar-Cirugia')   
-                            {{method_field('DELETE')}}
-                            <button onclick="return alerta_eliminar_cirugia('{{$dato->title}}','{{$dato->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
-                            @endcan
+                                    @can('consultar-Cirugia')
+                                        <a href="{{ url('/citacirugia/consultarCitaCirugia/' . $dato->id) }}"><button
+                                                type="button" class="btn btn-info">Consultar</button></a>
+                                    @endcan
+                            @endif
 
-                        </form>
+                            <form id="EditForm{{ $dato->id }}" action="{{ url('/citacirugia/' . $dato->id) }}"
+                                method="post">
+                                @csrf
+                                @can('borrar-Cirugia')
+                                    {{ method_field('DELETE') }}
+                                    <button
+                                        onclick="return alerta_eliminar_cirugia('{{ $dato->title }}','{{ $dato->id }}');"
+                                        type="submit" class="btn btn-danger">Eliminar</button>
+                                @endcan
+
+                            </form>
 
                     </tr>
                 @endforeach

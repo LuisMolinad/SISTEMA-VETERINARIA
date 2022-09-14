@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-    GESTIONAR VACUNAS
+    GESTIONAR USUARIOS
 @endsection
 
 @section('librerias')

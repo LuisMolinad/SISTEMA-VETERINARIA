@@ -51,7 +51,7 @@ class RolesAndPermissionSeeder extends Seeder
             Permission::create(['name' => 'borrar-Mascota']),
         ];
 
-        // TODO Cirugia
+        // TODO Cirugia para todos menos la doctora
         $cirugia = [
             Permission::create(['name' => 'ver-Cirugia']), //index
             Permission::create(['name' => 'editar-Cirugia']), //editar
@@ -62,6 +62,15 @@ class RolesAndPermissionSeeder extends Seeder
             Permission::create(['name' => 'crear-recetaPostoperatoria']), //crear receta postoperatoria
 
         ];
+        //TODO Especificamente la doctora
+
+        /*
+        Estos son solo para la doctora
+        ver-Cirugia, consultar-Cirugia,gestionar-Cirugia,crear-recetaPostoperatoria, 
+        
+        Estos son todos menos la doctora
+        ver-Cirugia, crear-Cirugia,consultar-Cirugia,gestionar-Cirugia,
+        editar-Cirugia,borrar-Cirugia*/
 
         //TODO Actas Defuncion
         $actasDefuncion = [
@@ -85,10 +94,10 @@ class RolesAndPermissionSeeder extends Seeder
 
         //TODO CitaVacuna si se dan cuenta aca hay permisos extras, pero estos se adecuan al flujo de las pantallas en mi caso necesito como extra, gestionar y consultar 
         $citaVacuna = [
-            Permission::create(['name' => 'ver-CitaVacuna']),//para nav que redirecicona al index principal,tabla 1
+            Permission::create(['name' => 'ver-CitaVacuna']), //para nav que redirecicona al index principal,tabla 1
             Permission::create(['name' => 'editar-CitaVacuna']),
-            Permission::create(['name' => 'consultar-CitaVacuna']),//consultar del CRUD
-            Permission::create(['name' => 'gestionar-CitaVacuna']),//vista gestionar para una mascota especifica, tabla 2
+            Permission::create(['name' => 'consultar-CitaVacuna']), //consultar del CRUD
+            Permission::create(['name' => 'gestionar-CitaVacuna']), //vista gestionar para una mascota especifica, tabla 2
             Permission::create(['name' => 'crear-CitaVacuna']),
             Permission::create(['name' => 'borrar-CitaVacuna']),
         ];
@@ -127,19 +136,22 @@ class RolesAndPermissionSeeder extends Seeder
         // create roles and assign created permissions
         //$role = Role::create(['name' => 'Asistente'])->givePermissionTo(Permission::all());
         $roleDoctora = Role::create(['name' => 'Doctora'])->givePermissionTo([
-            $propietario, $Mascota, $cirugia,
-            $actasDefuncion, $recetaMedica,  $vacuna
+            $propietario, $Mascota,
+            $actasDefuncion, $recetaMedica,  $vacuna,
+            'ver-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'crear-recetaPostoperatoria'
 
         ]);
         $roleAsistente = Role::create(['name' => 'Asistente Administrativo'])->givePermissionTo([
             $propietario, $Mascota, $citaVacuna,
-            $vacuna, $cirugia, $limpiezaDental,
-            $citaServicio, $recordatorio
+            $vacuna, $limpiezaDental,
+            $citaServicio, $recordatorio,
+            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia'
         ]);
         $roleGerente = Role::create(['name' => 'Gerente General'])->givePermissionTo([
             $citaVacuna, $limpiezaDental,
-            $cirugia, $tipoServicio,
-            $citaServicio, $recordatorio
+            $tipoServicio,
+            $citaServicio, $recordatorio,
+            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia'
         ]);
         //$role = Role::create(['name' => 'Asistente']);
         //$role->givePermissionTo('edit articles');
