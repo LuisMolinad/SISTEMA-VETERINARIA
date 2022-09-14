@@ -81,10 +81,10 @@ class RolesAndPermissionSeeder extends Seeder
 
         //TODO CitaVacuna si se dan cuenta aca hay permisos extras, pero estos se adecuan al flujo de las pantallas en mi caso necesito como extra, gestionar y consultar 
         $citaVacuna = [
-            Permission::create(['name' => 'ver-CitaVacuna']),
+            Permission::create(['name' => 'ver-CitaVacuna']),//para nav que redirecicona al index principal,tabla 1
             Permission::create(['name' => 'editar-CitaVacuna']),
-            Permission::create(['name' => 'consultar-CitaVacuna']),
-            Permission::create(['name' => 'gestionar-CitaVacuna']),
+            Permission::create(['name' => 'consultar-CitaVacuna']),//consultar del CRUD
+            Permission::create(['name' => 'gestionar-CitaVacuna']),//vista gestionar para una mascota especifica, tabla 2
             Permission::create(['name' => 'crear-CitaVacuna']),
             Permission::create(['name' => 'borrar-CitaVacuna']),
         ];
