@@ -53,7 +53,7 @@ class CitaVacunaController extends Controller
     }
 
 
-
+    //**hace la funcion del cargar el formulario para crear cita de vacunacion
 
     public function mostrar($id)
     {
