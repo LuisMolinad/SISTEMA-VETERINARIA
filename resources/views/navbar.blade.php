@@ -21,7 +21,9 @@
                         <a class="dropdown-item" href="{{ route('citaVacuna.index') }}">Citas para vacuna</a>
                     @endcan
                     <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
+                    @can('ver-LimpiezaDental')
                     <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
+                    @endcan
                 </div>
             </li>
 

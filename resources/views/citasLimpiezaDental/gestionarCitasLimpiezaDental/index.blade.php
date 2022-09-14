@@ -37,18 +37,24 @@ Gestionar Limpieza Dental
                 <tr>
                     <td>{{$cita->start}}</td>
                     <td id="botones-linea">
+                        @can('consultar-LimpiezaDental')
                         <a href="{{ route('GestionLimpieza.show', [$mascotas->id, 'citaLimpieza_id' => $cita->id]) }}"><button type="button" class="btn btn-info">Consultar</button></a>
-                        
+                        @endcan
+
+                        @can('editar-LimpiezaDental')
                         @if ($mascotas->fallecidoMascota == 'Vivo')
                                 <a type="button" class="btn btn-warning" href="{{ route('GestionLimpieza.edit', [$mascotas->id, 'citaLimpieza_id' => $cita->id]) }}">Editar</a>
                             @endif
+                        @endcan
 
+                        @can('borrar-LimpiezaDental')
                         <form id="EditForm{{$cita->id}}"
                             action="{{ route('GestionLimpieza.delete', ['citaLimpieza_id' => $cita->id]) }}">
 
                             {{ method_field('DELETE') }}
                             <button onclick="return alerta_eliminar_citaLimpieza('{{ $cita->id }}')" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

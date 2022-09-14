@@ -111,7 +111,7 @@ Cita de Limpieza dental
             
               @include('layouts.crear_recordatorio_limpieza')
 
-              <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-success mb-2">Guardar</button>
+              <button type="submit" style="float: right; width: 100px; height: 50px;" class="btn btn-primary mb-2">Guardar</button>
 
             </fieldset>
         </form>

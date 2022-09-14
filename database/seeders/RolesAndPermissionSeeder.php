@@ -90,8 +90,10 @@ class RolesAndPermissionSeeder extends Seeder
         ];
         //TODO Limpieza Dental
         $limpiezaDental = [
-            Permission::create(['name' => 'ver-LimpiezaDental']),
+            Permission::create(['name' => 'ver-LimpiezaDental']),//para nav que redirecicona al index principal,tabla 1
             Permission::create(['name' => 'editar-LimpiezaDental']),
+            Permission::create(['name' => 'consultar-LimpiezaDental']),//consultar del CRUD
+            Permission::create(['name'=>'gestionar-LimpiezaDental']),//vista gestionar para una mascota especifica, tabla 2 [Consultar, eliminar, editar]
             Permission::create(['name' => 'crear-LimpiezaDental']),
             Permission::create(['name' => 'borrar-LimpiezaDental']),
         ];
