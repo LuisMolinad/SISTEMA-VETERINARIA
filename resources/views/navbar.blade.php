@@ -54,7 +54,7 @@
                         auth()->user()->can('ver-Mascota') || auth()->user()->can('borrar-Mascota') || auth()->user()->can('editar-Mascota') || auth()->user()->can('crear-Mascota')
                     )
                     <a class="dropdown-item" href="/mascota">Mascota</a>
-                    @endcan
+                    @endif
                     
                     <a class="dropdown-item" href="/expediente">Expediente</a>
                 </div>
