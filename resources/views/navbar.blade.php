@@ -25,9 +25,11 @@
                 </div>
             </li>
 
+            @can('ver-Recordatorio')
             <li class="nav-item active active">
                 <a class="nav-link" href="/recordatorio">Recordatorios <span class="sr-only">(current)</span></a>
             </li>
+            @endcan
 
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -35,8 +37,15 @@
                     Registros clinicos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    @can("ver-Propietario")
                     <a class="dropdown-item" href="/propietario">Propietario</a>
+                    @endcan
+                    
+                    @can('ver-Mascota')
                     <a class="dropdown-item" href="/mascota">Mascota</a>
+                    @endcan
+                    
                     <a class="dropdown-item" href="/expediente">Expediente</a>
                 </div>
             </li>

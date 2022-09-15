@@ -24,7 +24,11 @@ GESTIONAR PROPIETARIO
 
     <div class="table-responsive-sm container-fluid contenedor">
         <div class="boton crear container_btn_hend">
+        
+        @can('crear-Propietario')
         <a href="/propietario/create"><button type="button" class="btn btn-success boton_crear">Crear propietario</button></a>
+        @endcan
+
         </div>
         <table class="table table-striped" style="width:100%" id="propietario">
             <thead class="table-dark table-header">
@@ -45,13 +49,23 @@ GESTIONAR PROPIETARIO
                     <td>{{$propietario->direccionPropietario}}</td>
                     <td id = "botones-linea">
                         <a href="{{ route('propietario.show',$propietario->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>   
+                        
+                        @can('editar-Propietario')
                         <a href="{{ url('/propietario/'.$propietario->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        @endcan
+
+                        @can('borrar-Propietario')
                         <form id="EditForm{{$propietario->id}}" action="{{url('/propietario/'.$propietario->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_propietario('{{$propietario->nombrePropietario}}','{{$propietario->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        @endcan
+
+                        @can('crear-Mascota')
                         <a href="/mascota/create/{{$propietario->id}}"><button type="button" class="btn btn-success">Crear mascota</button></a>
+                        @endcan
+
                     </td>
                 </tr>
                 @endforeach

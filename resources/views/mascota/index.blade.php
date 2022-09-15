@@ -48,12 +48,19 @@ GESTIONAR MASCOTA
                     <td>{{$mascota->colorMascota}}</td>
                     <td id = "botones-linea">
                         <a href="{{ url('/mascota/'.$mascota->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                      <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        
+                        @can('editar-Mascota')
+                        <a href="{{ url('/mascota/'.$mascota->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        @endcan
+
+                        @can('borrar-Mascota')
                         <form id="EditForm{{$mascota->id}}" action="{{url('/mascota/'.$mascota->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
                             <button onclick="return alerta_eliminar_general('{{$mascota->nombreMascota}}','{{$mascota->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
+                        @endcan
+
                     </td>
                 </tr>
                 @endforeach
