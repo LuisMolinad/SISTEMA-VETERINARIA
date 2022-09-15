@@ -125,6 +125,7 @@ class RolesAndPermissionSeeder extends Seeder
             Permission::create(['name' => 'editar-Recordatorio']),
             Permission::create(['name' => 'crear-Recordatorio']),
             Permission::create(['name' => 'borrar-Recordatorio']),
+            Permission::create(['name' => 'enviar-Recordatorio']),
         ];
 
 

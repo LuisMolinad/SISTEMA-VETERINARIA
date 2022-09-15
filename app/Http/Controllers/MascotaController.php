@@ -14,6 +14,28 @@ use Exception;
 
 class MascotaController extends Controller
 {
+
+        //TODO CLASE CONTRUC QUE SE NECESITA PARA QUE FUNCIONEN LOS ROLES EN LAS VISTAS
+    /*  $citaVacuna = [
+        Permission::create(['name' => 'ver-CitaVacuna']),
+        Permission::create(['name' => 'editar-CitaVacuna']),
+        Permission::create(['name' => 'crear-CitaVacuna']),
+        Permission::create(['name' => 'borrar-CitaVacuna']),
+    ]; */
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-Mascota|crear-Mascota|borrar-Mascota|editar-Mascota',
+            ['only' => ['index', 'show']]
+        );
+        $this->middleware('permission:crear-Mascota', ['only' => ['create', 'crear', 'mostrar_guardar', 'store']]);
+        $this->middleware('permission:editar-Mascota', ['only' => ['edit', 'mostrar_editar', 'update']]);
+        $this->middleware('permission:borrar-Mascota', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

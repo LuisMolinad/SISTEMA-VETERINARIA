@@ -56,9 +56,11 @@ GESTIONAR RECORDATORIOS
         </div>
 
         <div class="banner_03">
+            @can('enviar-Recordatorio')
             <div class="boton crear container_btn_hend">
                 <a href="/recordatorio/enviar_ui"><button type="button" class="btn btn-success boton_crear">Crear mensaje de recordatorio</button></a>
             </div>
+            @endcan
         </div>
     </div>
 
@@ -107,32 +109,53 @@ GESTIONAR RECORDATORIOS
                             @if ($recordatorio->estado == 0)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                    
+                                    @can('editar-Recordatorio')
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                    @endcan
+
+                                    @can('borrar-Recordatorio')
                                     <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
+                                    @endcan
+
                                     <button type="button" class="btn btn-info oculto">Reenviar</button>
                             @elseif($recordatorio->estado == 1)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                    
+                                    @can('editar-Recordatorio')
                                     <button type="button" class="btn btn-warning oculto">Editar</button>
+                                    @endcan
+
+                                    @can('borrar-Recordatorio')
                                     <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button class="btn btn-danger oculto">Eliminar</button>
                                     </form>
+                                    @endcan
+
                                     <button type="button" class="btn btn-info oculto">Reenviar</button>
                             @elseif ($recordatorio->estado == -1)
                                 <td id = "botones-linea">
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                    
+                                    @can('editar-Recordatorio')
                                     <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                    @endcan
+
+                                    @can('borrar-Recordatorio')
                                     <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
                                         @csrf
                                         {{method_field('DELETE')}}
                                         <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
                                     </form>
+                                    @endcan
+
                                     <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
                             @endif
                         </td>
@@ -165,8 +188,15 @@ GESTIONAR RECORDATORIOS
         </tbody>
     </table>
     <div class="boton crear container_btn_hstart">
+        
+        @can('enviar-Recordatorio')
         <button type="button" onclick="enviar_mensajes()" class="btn btn-success boton_opcional">Enviar mensajes</button>
+        @endcan
+        
+        @can('borrar-Recordatorio')
         <button type="button" onclick="eliminar_mensajes()" class="btn btn-danger boton_opcional">Eliminar mensajes enviados</button>
+        @endcan
+
     </div>
 </div>
 

@@ -11,6 +11,28 @@ use PDF;
 
 class ExpedienteController extends Controller
 {
+
+    //TODO CLASE CONTRUC QUE SE NECESITA PARA QUE FUNCIONEN LOS ROLES EN LAS VISTAS
+    /*  $citaVacuna = [
+        Permission::create(['name' => 'ver-CitaVacuna']),
+        Permission::create(['name' => 'editar-CitaVacuna']),
+        Permission::create(['name' => 'crear-CitaVacuna']),
+        Permission::create(['name' => 'borrar-CitaVacuna']),
+    ]; */
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-Propietario|crear-Propietario|borrar-Propietario|editar-Propietario',
+            ['only' => ['index', 'show']]
+        );
+        $this->middleware('permission:crear-Propietario', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-Propietario', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-Propietario', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

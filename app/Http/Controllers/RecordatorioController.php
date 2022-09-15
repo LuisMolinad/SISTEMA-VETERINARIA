@@ -15,6 +15,29 @@ use Symfony\Component\Process\Process;
 
 class RecordatorioController extends Controller
 {
+
+    //TODO CLASE CONTRUC QUE SE NECESITA PARA QUE FUNCIONEN LOS ROLES EN LAS VISTAS
+    /*  $citaVacuna = [
+            Permission::create(['name' => 'ver-CitaVacuna']),
+            Permission::create(['name' => 'editar-CitaVacuna']),
+            Permission::create(['name' => 'crear-CitaVacuna']),
+            Permission::create(['name' => 'borrar-CitaVacuna']),
+        ]; */
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-Recordatorio|crear-Recordatorio|borrar-Recordatorio|enviar-Recordatorio|editar-Recordatorio',
+            ['only' => ['index', 'show']]
+        );
+        $this->middleware('permission:crear-Recordatorio', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-Recordatorio', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-Recordatorio', ['only' => ['destroy','eliminar_de_un_jalon']]);
+        $this->middleware('permission:enviar-Recordatorio', ['only' => ['enviar_mensaje', 'enviar_mensaje_ui', 'reenviar']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
