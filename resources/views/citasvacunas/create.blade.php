@@ -96,7 +96,7 @@
                         <select class="custom-select" id="vacuna_id" name='vacuna_id'
                             onchange="actualizar_mensaje_al_crear_vacuna()" required>
                             @foreach ($vacunas as $vacuna)
-                                <option value="" selected disabled hidden>
+                                <option value="" hidden>
                                     Nada seleccionado</option>
                                 <option value="{{ $vacuna->id }}"
                                     data-url="{{ route('diasVacuna.obtenerDias', $vacuna->id) }}">
@@ -211,14 +211,18 @@
             'use strict'
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.querySelectorAll('.needs-validation')
+            /*  var seleccionado = document.querySelector('#vacuna_id')
+             var text = seleccionado.options[seleccionado.selectedIndex].text; */
             // Loop over them and prevent submission
             Array.prototype.slice.call(forms)
                 .forEach(function(form) {
                     form.addEventListener('submit', function(event) {
                         if (!form.checkValidity()) {
+                            // alert(text)
                             event.preventDefault()
                             event.stopPropagation()
                         }
+
                         form.classList.add('was-validated')
                     }, false)
                 })
