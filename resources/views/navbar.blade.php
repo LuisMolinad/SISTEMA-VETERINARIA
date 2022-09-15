@@ -29,11 +29,13 @@
                 </div>
             </li>
 
-            @can('ver-Recordatorio')
+            @if (
+                auth()->user()->can('ver-Recordatorio') || auth()->user()->can('borrar-Recordatorio') || auth()->user()->can('editar-Recordatorio') || auth()->user()->can('crear-Recordatorio') || auth()->user()->can('enviar-Recordatorio')
+            )
             <li class="nav-item active active">
                 <a class="nav-link" href="/recordatorio">Recordatorios <span class="sr-only">(current)</span></a>
             </li>
-            @endcan
+            @endif
 
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -42,11 +44,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    @can("ver-Propietario")
+                    @if (
+                        auth()->user()->can('ver-Propietario') || auth()->user()->can('borrar-Propietario') || auth()->user()->can('editar-Propietario') || auth()->user()->can('crear-Propietario') || auth()->user()->can('crear-Mascota')
+                    )
                     <a class="dropdown-item" href="/propietario">Propietario</a>
-                    @endcan
+                    @endif
                     
-                    @can('ver-Mascota')
+                    @if (
+                        auth()->user()->can('ver-Mascota') || auth()->user()->can('borrar-Mascota') || auth()->user()->can('editar-Mascota') || auth()->user()->can('crear-Mascota')
+                    )
                     <a class="dropdown-item" href="/mascota">Mascota</a>
                     @endcan
                     
