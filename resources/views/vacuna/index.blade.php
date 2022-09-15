@@ -39,7 +39,8 @@ GESTIONAR VACUNAS
                 <tr
                     <?php
                         if($vacuna->disponibilidadVacuna == False){
-                            echo 'style="background-color:rgba(218,190,133,1); color:black;"';
+                            echo 'class="fallecido"';
+                            echo 'style="background-color:#34495E;"';
                         }
                     ?>
                 >

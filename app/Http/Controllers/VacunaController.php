@@ -13,6 +13,24 @@ class VacunaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Para roles y permisos
+
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-Vacuna|crear-Vacuna|consultar-Vacuna|editar-Vacuna|borrar-Vacuna',
+            ['only' => ['index']]
+        );
+        $this->middleware('permission:crear-Vacuna', ['only' => ['create', 'store']]); //crear vacuna
+        $this->middleware('permission:consultar-Vacuna', ['only' => ['show']]); //consultar vacuna
+        $this->middleware('permission:editar-Vacuna', ['only' => ['edit', 'update']]); //actualiza vacuna
+        $this->middleware('permission:borrar-Vacuna', ['only' => ['destroy']]); //eliminar vacuna
+    }
+
     // Función para mostrar las diferentes vacunas
     public function index()
     {

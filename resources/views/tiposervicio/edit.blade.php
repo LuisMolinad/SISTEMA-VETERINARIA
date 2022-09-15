@@ -38,7 +38,7 @@ Editar Servicio
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 @endsection

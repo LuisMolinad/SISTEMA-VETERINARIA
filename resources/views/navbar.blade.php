@@ -62,16 +62,23 @@
 
                 </li>
             @endif
+            @if (auth()->user()->can('ver-Vacuna') ||
+            auth()->user()->can('ver-TipoServicio'))
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Recursos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/vacuna">Vacunas</a>
-                    <a class="dropdown-item" href="/tiposervicio">Servicios</a>
+                    @can('ver-Vacuna')
+                        <a class="dropdown-item" href="/vacuna">Vacunas</a>
+                    @endcan
+                    @can('ver-TipoServicio')
+                        <a class="dropdown-item" href="/tiposervicio">Servicios</a>
+                    @endcan
                 </div>
             </li>
+            @endif
 
         </ul>
         <ul class="navbar-nav ml-auto">

@@ -38,7 +38,8 @@ GESTIONAR TIPO DE SERVICIO
                 <tr
                     <?php
                             if($tiposervicio->disponibilidadServicio == False){
-                                echo 'style="background-color:rgba(218,190,133,1); color:black;"';
+                                echo 'class="fallecido"';
+                                echo 'style="background-color:#34495E;"';
                             }
                     ?>
                 >
@@ -46,8 +47,8 @@ GESTIONAR TIPO DE SERVICIO
                     <td>{{$tiposervicio->nombreServicio}}</td>
                     <td>{{$tiposervicio->descripcionServicio}}</td>
                     <td id = "botones-linea">
-                        <a href="{{ route('tiposervicio.show',$tiposervicio->id) }}"><button type="button" class="btn btn-info">Consultar</button></a>
-                        <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <a href="{{ route('tiposervicio.show',$tiposervicio->id) }}"><button type="button" class="btn btn-info" style="width:110px">Consultar</button></a>
+                        <a href="{{ url('/tiposervicio/'.$tiposervicio->id.'/edit') }}"><button type="button" class="btn btn-warning" style="width:110px">Editar</button></a>
                         @if($tiposervicio->disponibilidadServicio == True)
                             <form id="DeshabilitarForm{{$tiposervicio->id}}" action="{{route('Tiposervicio.update',[$tiposervicio->id,'accion'=>"deshabilitar"])}}" method="post">                            
                                 @csrf
@@ -66,7 +67,7 @@ GESTIONAR TIPO DE SERVICIO
                         <form id="BorrarForm{{$tiposervicio->id}}" action="{{url('/tiposervicio/'.$tiposervicio->id)}}" method="post">
                             @csrf
                             {{method_field('DELETE')}}
-                            <button onclick="return alerta_eliminar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-danger">Eliminar</button>
+                            <button onclick="return alerta_eliminar_tiposervicio('{{$tiposervicio->nombreServicio}}','{{$tiposervicio->id}}');" type="submit" class="btn btn-danger" style="width:110px">Eliminar</button>
                         </form>
                     </td>
                 </tr>

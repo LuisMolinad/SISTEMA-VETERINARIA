@@ -12,6 +12,24 @@ class TipoServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Para roles y permisos
+
+    function __construct()
+    {
+        // Se crea este metodo para definir 
+        // que acciones tiene permitido cada ROL
+        //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
+        $this->middleware(
+            'permission:ver-TipoServicio|crear-TipoServicio|consultar-TipoServicio|editar-TipoServicio|borrar-TipoServicio',
+            ['only' => ['index']]
+        );
+        $this->middleware('permission:crear-TipoServicio', ['only' => ['create', 'store']]); //crear TipoServicio
+        $this->middleware('permission:consultar-TipoServicio', ['only' => ['show']]); //consultar TipoServicio
+        $this->middleware('permission:editar-TipoServicio', ['only' => ['edit', 'update']]); //actualiza TipoServicio
+        $this->middleware('permission:borrar-TipoServicio', ['only' => ['destroy']]); //eliminar TipoServicio
+    }
+
     // Función para mostrar los diferentes tipos de servicios
     public function index()
     {

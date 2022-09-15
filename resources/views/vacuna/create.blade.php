@@ -49,7 +49,7 @@ Nueva vacuna
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-success mb-2">Crear</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 @endsection

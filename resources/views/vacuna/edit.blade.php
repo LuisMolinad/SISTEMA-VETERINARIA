@@ -38,7 +38,7 @@ Editar vacuna
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="tiempoEntreDosisDia"><strong>Tiempo entre dósis</strong></label>
+                    <label for="tiempoEntreDosisDia"><strong>Tiempo entre dósis (días) </strong></label>
                     <input type="number" min="1" class="form-control" id="tiempoEntreDosisDia" name="tiempoEntreDosisDia" placeholder="Ingrese el tiempo entre dosis de la vacuna en días" required value="{{$vacuna->tiempoEntreDosisDia}}">
                     <div class="valid-feedback">
                         Dato válido
@@ -48,7 +48,7 @@ Editar vacuna
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 @endsection
