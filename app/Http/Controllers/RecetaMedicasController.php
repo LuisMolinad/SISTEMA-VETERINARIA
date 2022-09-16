@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\receta_medica;
 use Illuminate\Http\Request;
 use App\Models\mascota;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\citaCirugia;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class RecetaMedicasController extends Controller
 {
