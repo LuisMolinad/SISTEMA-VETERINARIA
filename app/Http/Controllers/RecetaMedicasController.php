@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receta_medica;
+use App\Models\receta_medica;
 use Illuminate\Http\Request;
 use App\Models\mascota;
 use App\Models\propietario;
@@ -60,7 +60,7 @@ class RecetaMedicasController extends Controller
         ];
 
 
-        Receta_medica::insert($datos);
+        receta_medica::insert($datos);
 
 
 
