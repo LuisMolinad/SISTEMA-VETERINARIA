@@ -9,7 +9,7 @@ use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\citaCirugia;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RecetaMedicasController extends Controller
 {
@@ -70,7 +70,7 @@ class RecetaMedicasController extends Controller
         $fecha = date('d-m-Y', time());
 
         //return redirect('/')->with('success', 'Receta post operatoria creada con exito');
-        $pdf = PDF::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
+        $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
         return $pdf->stream();
     }
 }
