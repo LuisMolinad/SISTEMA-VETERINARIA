@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Receta_medica;
 use Illuminate\Http\Request;
 use App\Models\mascota;
@@ -23,13 +24,14 @@ class RecetaMedicasController extends Controller
             ['only' => ['index']]
         );
         $this->middleware('permission:crear-RecetaMedica', ['only' => ['create', 'guardar_bd']]); //crear cita de cirugia
-        }
+    }
 
 
 
 
-      /*Crea la receta medica*/
-    public function create($id){
+    /*Crea la receta medica*/
+    public function create($id)
+    {
 
         $mascotas = mascota::FindOrFail($id);
         //$vacunas = vacuna::all();
@@ -37,20 +39,21 @@ class RecetaMedicasController extends Controller
         //return view('Cirugia.CrearCirugia');
     }
 
-     /*Tabla general donde recopila todas las mascota, junto con los botones crear y gestionar*/
+    /*Tabla general donde recopila todas las mascota, junto con los botones crear y gestionar*/
     public function index()
     {
 
         $mascotas = mascota::with('propietario')->get();
 
-        return view(('recetaMedica.index'), compact('mascotas'));
+        return view('recetaMedica.index', compact('mascotas'));
         // return view('Actas.index');
     }
 
     /*Guarda en la base de datos receta medica*/
-    public function guardar_bd(Request $request){
+    public function guardar_bd(Request $request)
+    {
 
-      
+
         $datos = [
             'pesoRecetaMedica' => request('pesoRecetaMedica'),
             'tratamientoAplicarRecetaMedica' => request('tratamientoAplicarRecetaMedica'),
@@ -70,9 +73,4 @@ class RecetaMedicasController extends Controller
         $pdf = PDF::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
         return $pdf->stream();
     }
-
-  
-
 }
-
-
