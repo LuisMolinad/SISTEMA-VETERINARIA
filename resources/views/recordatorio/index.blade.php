@@ -64,129 +64,132 @@ GESTIONAR RECORDATORIOS
         </div>
     </div>
 
-    <table class="table table-striped" style="width:100%" id="recordatorio">
-        <thead class="table-dark table-header">
-            <tr>
-            <th scope="col">Id mascota</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Concepto</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Fecha y hora de la cita</th>
-            <th scope="col">Fecha a enviar el recordatorio</th>
-            <th scope="col"></th>
-            <th class="none" scope="col">Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($recordatorios as $recordatorio)
-                @if ($recordatorio->dias_de_anticipacion != 0)
-                    <tr
-                    <?php
-                        if($recordatorio->estado == 1){
-                            echo ' style="background-color: lightgreen;"';
-                            
-                        }
-                        else if($recordatorio->estado == -1){
-                            echo ' style="background-color: lightcoral;"';
-                        }
-                    ?>
-                    >
-                        <td> {{$recordatorio->id_mascota}} </td>
-                        <td> {{$recordatorio->nombre}} </td>
-                        <td> {{$recordatorio->concepto}} </td>
-                        <td> {{$recordatorio->telefono}} </td>
-                        <td>
+    <div class="table-responsive">
+        <table class="table table-striped" style="width:100%" id="recordatorio">
+            <thead class="table-dark table-header">
+                <tr>
+                <th scope="col">Id mascota</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Fecha y hora de la cita</th>
+                <th scope="col">Fecha a enviar el recordatorio</th>
+                <th scope="col"></th>
+                <th class="none" scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($recordatorios as $recordatorio)
+                    @if ($recordatorio->dias_de_anticipacion != 0)
+                        <tr
+                        <?php
+                            if($recordatorio->estado == 1){
+                                echo ' style="background-color: lightgreen;"';
+                                
+                            }
+                            else if($recordatorio->estado == -1){
+                                echo ' style="background-color: lightcoral;"';
+                            }
+                        ?>
+                        >
+                            <td> {{$recordatorio->id_mascota}} </td>
+                            <td> {{$recordatorio->nombre}} </td>
+                            <td> {{$recordatorio->concepto}} </td>
+                            <td> {{$recordatorio->telefono}} </td>
+                            <td>
+                                <?php
+                                    echo date("d-m-Y --- H:i", strtotime($recordatorio->fecha));
+                                ?>
+                            </td>
+                            <td> 
+                                <?php 
+                                    echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
+                                ?> 
+                            </td>
+            
+                                @if ($recordatorio->estado == 0)
+                                    <td class = "botones-linea-xl">
+                                        <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                        
+                                        @can('editar-Recordatorio')
+                                        <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                        @endcan
+    
+                                        @can('borrar-Recordatorio')
+                                        <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                        @endcan
+    
+                                        <button type="button" class="btn btn-info oculto">Reenviar</button>
+                                @elseif($recordatorio->estado == 1)
+                                    <td id = "botones-linea">
+                                        <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                        
+                                        @can('editar-Recordatorio')
+                                        <button type="button" class="btn btn-warning oculto">Editar</button>
+                                        @endcan
+    
+                                        @can('borrar-Recordatorio')
+                                        <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button class="btn btn-danger oculto">Eliminar</button>
+                                        </form>
+                                        @endcan
+    
+                                        <button type="button" class="btn btn-info oculto">Reenviar</button>
+                                @elseif ($recordatorio->estado == -1)
+                                    <td id = "botones-linea">
+                                        <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
+                                        
+                                        @can('editar-Recordatorio')
+                                        <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                                        @endcan
+    
+                                        @can('borrar-Recordatorio')
+                                        <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                        @endcan
+    
+                                        <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
+                                @endif
+                            </td>
+                            <td id="estado_funcion_filtrar" class="none">
+                                @if ($recordatorio->estado == -1)
+                                    2
+                                @else
+                                {{$recordatorio->estado}}
+                                @endif
+                            </td>
+                        </tr>
+                        <p class="none dato_id"> {{$recordatorio->id}} </p>
+                        <p class="none dato_estado"> {{$recordatorio->estado}} </p>
+                        <p class="none dato_id_mascota"> {{$recordatorio->id_mascota}} </p>
+                        <p class="none dato_nombre"> {{$recordatorio->nombre}} </p>
+                        <p class="none dato_concepto" > {{$recordatorio->concepto}} </p>
+                        <p class="none dato_telefono" > {{$recordatorio->telefono}} </p>
+                        <p class="none dato_fecha" >
                             <?php
                                 echo date("d-m-Y --- H:i", strtotime($recordatorio->fecha));
                             ?>
-                        </td>
-                        <td> 
+                        </p>
+                        <p class="none dato_fecha_enviar" > 
                             <?php 
                                 echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
                             ?> 
-                        </td>
-        
-                            @if ($recordatorio->estado == 0)
-                                <td id = "botones-linea">
-                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                                    
-                                    @can('editar-Recordatorio')
-                                    <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                                    @endcan
+                        </p>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-                                    @can('borrar-Recordatorio')
-                                    <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                    @endcan
-
-                                    <button type="button" class="btn btn-info oculto">Reenviar</button>
-                            @elseif($recordatorio->estado == 1)
-                                <td id = "botones-linea">
-                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                                    
-                                    @can('editar-Recordatorio')
-                                    <button type="button" class="btn btn-warning oculto">Editar</button>
-                                    @endcan
-
-                                    @can('borrar-Recordatorio')
-                                    <form class="candidatos_a_eliminar" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button class="btn btn-danger oculto">Eliminar</button>
-                                    </form>
-                                    @endcan
-
-                                    <button type="button" class="btn btn-info oculto">Reenviar</button>
-                            @elseif ($recordatorio->estado == -1)
-                                <td id = "botones-linea">
-                                    <a href="{{ url('/recordatorio/'.$recordatorio->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
-                                    
-                                    @can('editar-Recordatorio')
-                                    <a href="{{ url('/recordatorio/'.$recordatorio->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
-                                    @endcan
-
-                                    @can('borrar-Recordatorio')
-                                    <form id="EditForm{{$recordatorio->id}}" action="{{url('/recordatorio/'.$recordatorio->id)}}" method="post">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button onclick="return alerta_eliminar_recordatorio('{{$recordatorio->id}}');" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                    @endcan
-
-                                    <a href="{{url('/recordatorio/reenviar/'.$recordatorio->id)}}"><button type="button" class="btn btn-info">Reenviar</button></a>
-                            @endif
-                        </td>
-                        <td id="estado_funcion_filtrar" class="none">
-                            @if ($recordatorio->estado == -1)
-                                2
-                            @else
-                            {{$recordatorio->estado}}
-                            @endif
-                        </td>
-                    </tr>
-                    <p class="none dato_id"> {{$recordatorio->id}} </p>
-                    <p class="none dato_estado"> {{$recordatorio->estado}} </p>
-                    <p class="none dato_id_mascota"> {{$recordatorio->id_mascota}} </p>
-                    <p class="none dato_nombre"> {{$recordatorio->nombre}} </p>
-                    <p class="none dato_concepto" > {{$recordatorio->concepto}} </p>
-                    <p class="none dato_telefono" > {{$recordatorio->telefono}} </p>
-                    <p class="none dato_fecha" >
-                        <?php
-                            echo date("d-m-Y --- H:i", strtotime($recordatorio->fecha));
-                        ?>
-                    </p>
-                    <p class="none dato_fecha_enviar" > 
-                        <?php 
-                            echo date("d-m-Y", strtotime($recordatorio->fecha . " - " . $recordatorio->dias_de_anticipacion . " days"));
-                        ?> 
-                    </p>
-                @endif
-            @endforeach
-        </tbody>
-    </table>
     <div class="boton crear container_btn_hstart">
         
         @can('enviar-Recordatorio')
@@ -225,9 +228,8 @@ GESTIONAR RECORDATORIOS
                         'next':      'Siguiente',
                         'previous':  'Anterior',
                     },
-
                 },
-                "order":[5, "desc"],
+                "order":[5, "desc"]
             });
 
             const selector = document.querySelector('#selector_estado_mensaje');

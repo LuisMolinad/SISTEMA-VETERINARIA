@@ -84,6 +84,30 @@
     flex-wrap: wrap;
 }
 
+.botones-linea-xl{
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 1120px) {
+    .botones-linea-xl{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .oculto{
+        display: none;
+    }
+    .btn{
+        margin: 0.25rem auto;
+    }
+}
+
+@media (max-width: 1800px) {
+    .botones-linea-xl{
+        display: flex;
+    }
+}
+
 .invisible{
     visibility: none;
 }
