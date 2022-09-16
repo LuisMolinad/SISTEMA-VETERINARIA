@@ -97,7 +97,7 @@ GESTIONAR RECORDATORIOS
                         <td> {{$recordatorio->telefono}} </td>
                         <td>
                             <?php
-                                echo date("d-m-Y --- h:i", strtotime($recordatorio->fecha));
+                                echo date("d-m-Y --- H:i", strtotime($recordatorio->fecha));
                             ?>
                         </td>
                         <td> 
@@ -175,7 +175,7 @@ GESTIONAR RECORDATORIOS
                     <p class="none dato_telefono" > {{$recordatorio->telefono}} </p>
                     <p class="none dato_fecha" >
                         <?php
-                            echo date("d-m-Y --- h:i", strtotime($recordatorio->fecha));
+                            echo date("d-m-Y --- H:i", strtotime($recordatorio->fecha));
                         ?>
                     </p>
                     <p class="none dato_fecha_enviar" > 
@@ -227,7 +227,7 @@ GESTIONAR RECORDATORIOS
                     },
 
                 },
-                "order":[5, "desc"]
+                "order":[5, "desc"],
             });
 
             const selector = document.querySelector('#selector_estado_mensaje');
