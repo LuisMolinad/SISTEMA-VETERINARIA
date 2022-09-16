@@ -40,7 +40,7 @@ $(document).ready(function(){
             if (weekend == 0 | weekend == 6) {
 
                 /* alert('Weekends not allowed'); */
-                weekday();
+                weekdayVacuna();
                 //e.preventDefault();
                 //$('#start').val('');
             }
