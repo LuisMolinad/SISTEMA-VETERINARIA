@@ -9,7 +9,7 @@ use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\citaCirugia;
 use Carbon\Carbon;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RecetaMedicasController extends Controller
 {
@@ -45,7 +45,7 @@ class RecetaMedicasController extends Controller
 
         $mascotas = mascota::with('propietario')->get();
 
-        return view('recetaMedica.index', compact('mascotas'));
+        return view('RecetaMedica.index', compact('mascotas'));
         // return view('Actas.index');
     }
 
