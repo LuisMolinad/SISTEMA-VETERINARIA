@@ -13,13 +13,14 @@
     <script src="{{ asset('js/recordatorio.js') }}"></script>
     <!--Fin del JS para recordatorios -->
     <!-- Cualquier duda o comentario comunicarse con Rosalio -->
-
     <!-- Llamamos al sweetalert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Llamamos nuestro documento de sweetalert -->
     <script src="{{ asset('js/alertaCambioVacuna.js') }}"></script>
-    {{-- JQUERY --}}
-    <script src="{{ asset('js/editarFechaAplicacion.js') }}"></script>
+    <!-- Llamamos nuestro documento de alertas de fin de seamana -->
+    <script src="{{ asset('js/alertaWeekday.js') }}"></script>
+    <!--JQuery para el calculo de fechas-->
+    <script src="{{ asset('js/vacunaFechaApli.js') }}"></script>
 @endsection
 
 @section('header')
