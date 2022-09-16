@@ -158,7 +158,7 @@ class gestionCitasVacunacionController extends Controller
 
         //para eliminar el recordatorio
 
-        $idRecordatorio = DB::table('citavacunas')->where('id', '=', $citaVacuna_id)->value('recordatorio_id');
+        $idRecordatorio = DB::table('citaVacunas')->where('id', '=', $citaVacuna_id)->value('recordatorio_id');
 
 
         $idcitaVacuna->delete();
