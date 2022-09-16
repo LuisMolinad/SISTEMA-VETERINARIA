@@ -70,7 +70,8 @@ class RecetaMedicasController extends Controller
         $fecha = date('d-m-Y', time());
 
         //return redirect('/')->with('success', 'Receta post operatoria creada con exito');
-        $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
+        // $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
+        $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', ['datos' => $datos, 'nombre' => $nombre, 'fecha' => $fecha]);
         return $pdf->stream();
     }
 }
