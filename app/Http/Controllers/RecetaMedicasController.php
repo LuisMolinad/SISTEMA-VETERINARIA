@@ -9,7 +9,7 @@ use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\citaCirugia;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class RecetaMedicasController extends Controller
 {
