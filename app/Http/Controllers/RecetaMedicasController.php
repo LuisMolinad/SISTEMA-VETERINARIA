@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\receta_medica;
 use Illuminate\Http\Request;
 use App\Models\mascota;
-//use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\propietario;
 use App\Models\recordatorio;
 use App\Models\citaCirugia;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\App;
-use PDF;
+/* use Illuminate\Support\Facades\App;
+use PDF; */
 
 class RecetaMedicasController extends Controller
 {
@@ -73,7 +73,7 @@ class RecetaMedicasController extends Controller
 
         //return redirect('/')->with('success', 'Receta post operatoria creada con exito');
         // $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', compact('datos', 'nombre', 'fecha'));
-        $pdf = PDF::loadView('RecetaMedica.recetaMedicaPDF', ['datos' => $datos, 'nombre' => $nombre, 'fecha' => $fecha]);
+        $pdf = Pdf::loadView('RecetaMedica.recetaMedicaPDF', ['datos' => $datos, 'nombre' => $nombre, 'fecha' => $fecha]);
         return $pdf->stream();
     }
 }

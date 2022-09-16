@@ -118,7 +118,7 @@ class ExpedienteController extends Controller
         return $pdf->stream();
     }
 
-    public function pdf($id){
+/*     public function pdf($id){
         $expedientes = expediente::with('mascota')->get();
         $expediente = null;
         foreach ($expedientes as $e){
@@ -128,7 +128,7 @@ class ExpedienteController extends Controller
         }
         
         return view(('expediente.pdf'), compact('expediente'));
-    }
+    } */
         //$pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
         //return $pdf->stream();
 
