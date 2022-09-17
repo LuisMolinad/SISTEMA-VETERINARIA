@@ -45,36 +45,37 @@ Consultar Propietario
             @if($mascotas->isEmpty())
                 <label style="text-align:center">Este propietario no tiene mascotas asociadas.</label>
             @else
-            <table class="table table-striped">
-                <thead class="table-dark table-header">
-                    <tr>
-                    <td><strong>Codigo</strong></td>
-                    <td><strong>Nombre</strong></td>
-                    <td><strong>Raza</strong></td>
-                    <td><strong>Especie</strong></td>
-                    <td><strong>Estado</strong></td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($mascotas as $mascota)
-                    <tr
-                        <?php
-                            if($mascota->fallecidoMascota == 'Fallecido'){
-                                echo 'class="fallecido"';
-                                echo 'style="background-color:#34495E;"';
-                            }
-                        ?>
-                    >
-                        <td>{{$mascota->idMascota}}</td>
-                        <td>{{$mascota->nombreMascota}}</td>
-                        <td>{{$mascota->razaMascota}}</td>
-                        <td>{{$mascota->especie}}</td>
-                        <td>{{$mascota->fallecidoMascota}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-dark table-header">
+                        <tr>
+                        <td><strong>Codigo</strong></td>
+                        <td><strong>Nombre</strong></td>
+                        <td><strong>Raza</strong></td>
+                        <td><strong>Especie</strong></td>
+                        <td><strong>Estado</strong></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($mascotas as $mascota)
+                        <tr
+                            <?php
+                                if($mascota->fallecidoMascota == 'Fallecido'){
+                                    echo 'class="fallecido"';
+                                    echo 'style="background-color:#34495E;"';
+                                }
+                            ?>
+                        >
+                            <td>{{$mascota->idMascota}}</td>
+                            <td>{{$mascota->nombreMascota}}</td>
+                            <td>{{$mascota->razaMascota}}</td>
+                            <td>{{$mascota->especie}}</td>
+                            <td>{{$mascota->fallecidoMascota}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
             @endif
         </article>
     </section>

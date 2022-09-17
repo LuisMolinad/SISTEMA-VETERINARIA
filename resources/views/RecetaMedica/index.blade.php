@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid contenedor">
+    <div class="table-responsive container-fluid contenedor">
         <table class="table table-striped" style="width:100%" id="actadefuncion">
             <thead class="table-dark table-header">
                 <tr>

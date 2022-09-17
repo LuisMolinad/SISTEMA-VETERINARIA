@@ -85,8 +85,6 @@
                                 <button type="submit" class="btn btn-info">Reenviar enlace de verificación</button>
                             </form>
                         </td>
-
-
                     </tr>
                 @endforeach
             </tbody>
