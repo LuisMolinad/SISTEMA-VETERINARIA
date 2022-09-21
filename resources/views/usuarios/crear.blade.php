@@ -52,8 +52,8 @@
                 <div class="form-group col-md-6">
                     <label for="password">Password</label>
                     {{-- {!! Form::password('password', ['class' => 'form-control']) !!} --}}
-                    <input type="password" class="form-control" id="password" name="password"
-                        value=" {{ old('password') }} " required>
+                    <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}"
+                        required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="confirm-password">Confirmar Password</label>
