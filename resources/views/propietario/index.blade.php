@@ -91,12 +91,12 @@ GESTIONAR PROPIETARIO
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",
                     'search':'Buscar',
-                    'paginate': {
+/*                     'paginate': {
                         'first':      'Primero',
                         'last':       'Ultimo',
                         'next':      'Siguiente',
                         'previous':  'Anterior',
-                    },
+                    }, */
 
                 },
             });
