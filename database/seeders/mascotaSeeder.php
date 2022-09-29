@@ -14,6 +14,6 @@ class mascotaSeeder extends Seeder
      */
     public function run()
     {
-        mascota::factory(25)->create();
+        mascota::factory(5000)->create();
     }
 }
