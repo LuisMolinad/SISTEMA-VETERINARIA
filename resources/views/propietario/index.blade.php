@@ -30,7 +30,7 @@ GESTIONAR PROPIETARIO
         @endcan
 
         </div>
-        <table class="table table-striped" style="width:100%" id="propietario">
+        <table class="table table-striped" style="width:100%">
             <thead class="table-dark table-header">
                 <tr>
                 <th scope="col">N°</th>
