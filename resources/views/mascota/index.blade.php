@@ -23,7 +23,7 @@ GESTIONAR MASCOTA
     @include('layouts.notificacion')
 
     <div class="table-responsive-sm container-fluid contenedor">
-        <table class="table table-striped">
+        <table class="table table-striped"  id="mascota">
             <thead class="table-dark table-header">
                 <tr>
                 <th scope="col">N°</th>
