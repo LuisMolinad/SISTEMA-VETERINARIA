@@ -78,7 +78,7 @@ GESTIONAR MASCOTA
     <script>
         $(document).ready(function () {
             $('#mascota').DataTable({
-                "lengthMenu":[[-1],["Todos"]],
+                "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
                     "zeroRecords": "No se encuentran datos relacionados found - ",
