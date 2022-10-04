@@ -20,6 +20,7 @@
 
 @section('content')
     {{-- Manejador de Errores que muestra aquellos que no estan llenos --}}
+
     @if ($errors->any())
         <div class="alert alert-dark alert-dismissible fade show"role="alert">
             <strong>¡Revise los campos!</strong>
@@ -42,14 +43,13 @@
             {{-- Las variables deben ir exactamente como se reciben en el controlador --}}
             {!! Form::text('name', null, ['class' => 'form-control']) !!}
         </div>
-        <div>
-            <label for="email">Permisos para este Rol:</label>
-            <table data-toggle="table">
+        <div class="table-responsive">
+            <label for="table">Permisos para este Rol:</label>
+            <table class="table w-auto">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Permisos</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
 
         </div>
