@@ -50,7 +50,7 @@
 
                     <li><strong>IDMASCOTA: </strong> {{ $mascotas->idMascota }}</li>
                     <li><strong>Nombre: </strong> {{ $mascotas->nombreMascota }}</li>
-                    <li><strong>Peso: </strong>{{ $idcitaVacuna->pesolb }} </li>
+                    {{--  <li><strong>Peso: </strong>{{ $idcitaVacuna->pesolb }} </li> --}}
                 </ul>
             </article>
         </section>

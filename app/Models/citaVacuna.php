@@ -22,7 +22,7 @@ class citaVacuna extends Model
         'end',
         'start',
         'estadoCita',
-        'pesolb',
+        /*  'pesolb', */
         'created_at',
         'updated_at',
         'title',

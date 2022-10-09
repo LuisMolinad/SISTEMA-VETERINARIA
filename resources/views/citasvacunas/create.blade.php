@@ -44,7 +44,7 @@
                         type="hidden">
                 </div>
                 <div class="form-group col-md-6">
-                    <strong> <label for="pesolb">Nombre:</label></strong>
+                    <strong> <label for="nombre_mascota">Nombre:</label></strong>
                     <input class="form-control" name="nombre_mascota" readonly="readonly" id="nombreMascota"
                         value="{{ $mascotas->nombreMascota }}">
                     <div class="valid-feedback">
@@ -54,7 +54,7 @@
                         Por favor ingrese un peso en lb.
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                {{--  <div class="form-group col-md-6">
                     <strong> <label for="pesolb">Peso</label></strong>
                     <input type="number" class="form-control" id="pesolb" maxlength="11" name="pesolb"
                         style="width: 100px;" placeholder="lb" min="1" required>
@@ -64,7 +64,7 @@
                     <div class="invalid-feedback">
                         Por favor ingrese un peso en lb.
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="form-row" style="background-color:#e1dff4">
                 <div class="form-group col-md-6">

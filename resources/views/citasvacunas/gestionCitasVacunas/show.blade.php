@@ -27,7 +27,7 @@
                     {{-- <th scope="col" style="display:none;">id</th> --}}
                     <th scope="col" style="display:none;">id</th>
                     <th scope="col">Vacuna</th>
-                    <th scope="col">Peso</th>
+                    {{--   <th scope="col">Peso</th> --}}
                     <th scope="col">Fecha Aplicación</th>
                     <th scope="col">Fecha Refuerzo</th>
                     <th scope="col"></th>
@@ -40,7 +40,7 @@
                         {{-- <th scope="id" style="display:none;">{{ $registro->pivot->id }} --}}
                         <th scope="id" style="display:none;">{{ $registro->pivot->id }}</th>
                         <th scope="id">{{ $registro->nombreVacuna }}</th>
-                        <th scope="id">{{ $registro->pivot->pesolb }}</th>
+                        {{--  <th scope="id">{{ $registro->pivot->pesolb }}</th> --}}
                         <th scope="id">{{ $registro->pivot->fechaAplicacion }}</th>
                         <th scope="id">{{ $registro->pivot->start }}</th>
                         <td id="botones-linea">
