@@ -25,6 +25,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineaHistorialController;
 use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
@@ -255,3 +256,12 @@ Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_his
 Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
 Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
+
+
+
+
+/* 
+* * Rutas para sección reportes 
+
+*/
+Route::get('/reporte', [ReporteController::class, 'index'])->name('reportes.index')->middleware('auth');

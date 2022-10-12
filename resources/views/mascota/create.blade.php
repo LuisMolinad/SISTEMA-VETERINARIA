@@ -1,14 +1,15 @@
 @extends('app')
 
 @section('titulo')
-CREAR MASCOTA
+    CREAR MASCOTA
 @endsection
 
 @section('librerias')
     <!--Date picker-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="{{asset('js/datepicker.js')}}" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+        rel="stylesheet">
+    <script src="{{ asset('js/datepicker.js') }}" defer></script>
 @endsection
 
 
@@ -17,26 +18,28 @@ CREAR MASCOTA
 @endsection
 
 @section('content')
-
-<div class="container">
-        <form action="{{url('/mascota')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <div class="container">
+        <form action="{{ url('/mascota') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <fieldset class="fieldset">
                 <legend class="legend">Mascota</legend>
 
                 <div class="form-group none">
                     <label for="propietario_id">Id de el propietario</label>
-                    <input type="text" class="form-control" id="propietario_id" name="propietario_id" value="{{$propietario->id}}" required readonly>
+                    <input type="text" class="form-control" id="propietario_id" name="propietario_id"
+                        value="{{ $propietario->id }}" required readonly>
                 </div>
 
                 <div class="form-group">
                     <label for="propietario_id">Nombre de el propietario</label>
-                    <input type="text" class="form-control" value="{{$propietario->nombrePropietario}}" readonly>
+                    <input type="text" class="form-control" value="{{ $propietario->nombrePropietario }}" readonly>
                 </div>
 
                 <div id="form_id_mascota" class="form-group">
                     <label for="idMascota">Código de la mascota</label>
-                    <input type="text" onchange="consultar()" onmouseout="consultar()" onkeydown="consultar()" onkeyup="consultar()" class="form-control" id="idMascota" name="idMascota" pattern="[A-Z]{1}[0-9]{3}" placeholder="Ingrese el código de la mascota" required>
+                    <input type="text" onchange="consultar()" onmouseout="consultar()" onkeydown="consultar()"
+                        onkeyup="consultar()" class="form-control" id="idMascota" name="idMascota"
+                        pattern="[A-Z]{1}[0-9]{3}" placeholder="Ingrese el código de la mascota" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un codigo válido (Una letra y 3 digitos)
                     </div>
@@ -47,10 +50,11 @@ CREAR MASCOTA
                         Este codigo ya esta en uso, favor probar con otro.
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="nombreMascota">Nombre de la mascota</label>
-                    <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" placeholder="Ingrese el nombre de la mascota" required>
+                    <input type="text" class="form-control" id="nombreMascota" name="nombreMascota"
+                        placeholder="Ingrese el nombre de la mascota" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un nombre válido
                     </div>
@@ -61,7 +65,8 @@ CREAR MASCOTA
 
                 <div class="form-group">
                     <label for="razaMascota">Raza</label>
-                    <input type="text" class="form-control" id="razaMascota" name="razaMascota" placeholder="Ingrese la raza de la mascota" required>
+                    <input type="text" class="form-control" id="razaMascota" name="razaMascota"
+                        placeholder="Ingrese la raza de la mascota" required>
                     <div class="invalid-feedback">
                         Por favor ingrese una raza válida
                     </div>
@@ -72,7 +77,8 @@ CREAR MASCOTA
 
                 <div class="form-group">
                     <label for="colorMascota">Color</label>
-                    <input type="text" class="form-control" id="colorMascota" name="colorMascota" placeholder="Ingrese el color de la mascota" required>
+                    <input type="text" class="form-control" id="colorMascota" name="colorMascota"
+                        placeholder="Ingrese el color de la mascota" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un color válido
                     </div>
@@ -92,12 +98,12 @@ CREAR MASCOTA
                 <div class="form-group">
                     <label for="especie">Especie</label>
                     <div class="especie-c">
-                    <select class="form-control lista-es">
-                        <option selected>Perro</option>
-                        <option>Gato</option>
-                        <option>Otro</option>
-                    </select>
-                    <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="">
+                        <select class="form-control lista-es">
+                            <option selected>Perro</option>
+                            <option>Gato</option>
+                            <option>Otro</option>
+                        </select>
+                        <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="">
                     </div>
                     <div class="invalid-feedback">
                         Por favor ingrese una especie válida
@@ -109,7 +115,8 @@ CREAR MASCOTA
 
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input id="fecha__Nacimiento" name="fechaNacimiento" class="date form-control" type="text" readonly="readonly" required>
+                    <input id="fecha__Nacimiento" name="fechaNacimiento" class="date form-control" type="text"
+                        readonly="readonly" required>
                     <div class="invalid-feedback fecha__invalida">
                         Por favor ingrese una fecha válida
                     </div>
@@ -127,7 +134,8 @@ CREAR MASCOTA
                 <div class="form-group">
 
                     <label for="caracteristicasEspeciales">Caracteristicas especiales</label>
-                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3" maxlength="100"></textarea>
+                    <textarea class="form-control" id="caracteristicasEspeciales" name="caracteristicasEspeciales" rows="3"
+                        maxlength="100"></textarea>
                 </div>
             </fieldset>
 
@@ -135,12 +143,10 @@ CREAR MASCOTA
 
         </form>
     </div>
-
 @endsection
 
 @section('js')
     <script>
-
         var roa;
 
         var falso = document.querySelector('#falso_valido');
@@ -150,9 +156,9 @@ CREAR MASCOTA
         elemento.classList.add('none');
 
         consultar();
-/*         setInterval(()=>{
-            consultar();
-        }, 1000); */
+        /*         setInterval(()=>{
+                    consultar();
+                }, 1000); */
 
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
@@ -168,7 +174,7 @@ CREAR MASCOTA
             Array.prototype.slice.call(forms)
                 .forEach(function(form) {
                     form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity() || consultar() != true || fecha[0].value == '' ) {
+                        if (!form.checkValidity() || consultar() != true || fecha[0].value == '') {
 
                             event.preventDefault();
                             event.stopPropagation();
@@ -180,50 +186,47 @@ CREAR MASCOTA
                         consultar();
 
                         form.classList.add('was-validated')
-                        
+
                     }, false)
                 })
         })()
 
-        function validad___fecha(){
+        function validad___fecha() {
 
             var fecha__v = $('#fecha__Nacimiento');
             var valida = $('.fecha__valida');
             var invalida = $('.fecha__invalida');
 
-            if(fecha__v[0].value == ''){
+            if (fecha__v[0].value == '') {
                 valida.fadeOut(0);
                 invalida.fadeIn(0);
-            }
-            else if(fecha__v[0].value != ''){
+            } else if (fecha__v[0].value != '') {
                 invalida.fadeOut(0);
                 valida.fadeIn(0);
             }
         }
 
-        function consultar(){
+        function consultar() {
 
-            if(pet_code[0].value!=''){
+            if (pet_code[0].value != '') {
                 consultar_json(pet_code[0].value);
                 var retorno = false;
 
-                if (roa == undefined){
+                if (roa == undefined) {
                     elemento.classList.add('none');
                     falso.classList.remove('none');
                     //retorno = false;
-                }
-                else if(roa == 0){
+                } else if (roa == 0) {
                     elemento.classList.add('none');
                     falso.classList.remove('none');
                     falso.removeAttribute('style');
 
                     retorno = true;
-                }
-                else if(roa > 0){                
+                } else if (roa > 0) {
 
                     elemento.classList.remove('none');
                     falso.classList.add('none');
-                    falso.setAttribute('style','display: none');
+                    falso.setAttribute('style', 'display: none');
 
                     //retorno = false;
                 }
@@ -232,28 +235,24 @@ CREAR MASCOTA
             return retorno;
         }
 
-        function consultar_json(variable){
+        function consultar_json(variable) {
 
             var bandera;
 
-            fetch('/mascota/consultar/'+variable)
-                .then(response=>{
+            fetch('/mascota/consultar/' + variable)
+                .then(response => {
                     return response.json();
-                }
-            )
-            .then(jsondata => asignar(jsondata));
+                })
+                .then(jsondata => asignar(jsondata));
 
         }
 
-        function asignar(x){
+        function asignar(x) {
             roa = x;
         }
-
     </script>
 
-<script src="{{asset('js/otro.js')}}"></script>
+    <script src="{{ asset('js/otro.js') }}"></script>
 
-<script>
-
-</script>
+    <script></script>
 @endsection
