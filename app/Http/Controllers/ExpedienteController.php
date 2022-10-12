@@ -102,49 +102,11 @@ class ExpedienteController extends Controller
         return view('expediente.edit', compact('expediente'));
     }
 
-/*
-    public function pdf()
-    {
-        $pdf = PDF::loadView('Cirugia.pdf');
-      //  $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->stream();
-        //return view('Cirugia.pdf');
-    }
-    */
-
     public function pdfConverter($id){
         $expediente = expediente::FindOrFail($id);
         $pdf = PDF::loadView('expediente.pdf', ['expediente'=>$expediente]);
         return $pdf->stream();
-    }
-
-/*     public function pdf($id){
-        $expedientes = expediente::with('mascota')->get();
-        $expediente = null;
-        foreach ($expedientes as $e){
-            if($e->id == $id){
-                $expediente = $e;
-            }
-        }
-        
-        return view(('expediente.pdf'), compact('expediente'));
-    } */
-        //$pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
-        //return $pdf->stream();
-
-        /*
-        $pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
-        return $pdf->stream();
-        */
-        //return view('welcome');
-
-/*
-        $pdf = PDF::loadView('expediente.pdf');
-        return $pdf->download('archivo.pdf');
-        */
-        //return $pdf->download('Rosalio.pdf');
-
-    
+    }    
 
     /**
      * Update the specified resource in storage.
@@ -177,5 +139,9 @@ class ExpedienteController extends Controller
     public function gestionar_historial_Medico($id){
         $expediente = expediente::FindOrFail($id);
         return view('expediente.historial_medico', compact('expediente'));
+    }
+
+    public function examenes($id){
+        return view('expediente.examenes.index');
     }
 }

@@ -175,6 +175,7 @@ Route::get('/mascota/msg/guardar', [MascotaController::class, 'mostrar_guardar']
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
+Route::get('/expediente/examenes/{id}',[ExpedienteController::class, 'examenes'])->middleware('auth');
 
 /*------------------------------------- Rutas de vacunas ------------------------------------------------------- */
 Route::resource('vacuna', VacunaController::class)->middleware('auth');

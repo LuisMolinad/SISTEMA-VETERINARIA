@@ -51,6 +51,8 @@ GESTIONAR EXPEDIENTE
                         class="btn btn-warning" style="background-color: #06806A; color:#fff; border-color:#06806A">Historial Medico</button></a>
                        
                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
+                       
+                       <a href="/expediente/examenes/{{$expediente->id}}" class="btn btn-primary">{{__('Examenes')}}</a>
 
                     </td>
                 </tr>
