@@ -21,4 +21,8 @@ class expediente extends Model
         return $this->hasMany(lineaHistorial::class);
     }
 
+    public function Examen(){
+        return $this->hasMany('App\Models\Examen');
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\expediente;
 use App\Models\mascota;
+use App\Models\Examen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use PDF;
@@ -142,6 +143,16 @@ class ExpedienteController extends Controller
     }
 
     public function examenes($id){
-        return view('expediente.examenes.index');
+        
+        $expediente = expediente::where('id', '=', $id)->first();
+
+        $datos = [
+            "expediente" => $expediente,
+            "examenes" => Examen::all()->where('expediente_id', '=', $id),
+            "mascota" => mascota::where('id', '=', $expediente->mascota_id)->first()
+        ];
+
+        return view('expediente.examenes.index', compact('datos'));
+        // return response()->json($datos);
     }
 }

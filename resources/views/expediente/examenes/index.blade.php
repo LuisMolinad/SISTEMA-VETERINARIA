@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('titulo')
-EXAMENES - {{'NOMBRE'}}
+EXAMENES - {{$datos['mascota']->nombreMascota}}
 @endsection
 
 @section('librerias')
@@ -13,13 +13,14 @@ EXAMENES - {{'NOMBRE'}}
 @endsection
 
 @section('header')
-<h1 class="header">Examenes clinicos - {{'Nombre'}}</h1>
+<h1 class="header">Examenes clinicos - {{$datos['mascota']->nombreMascota}}</h1>
 @endsection
 
 @section('content')
 <div class="table-responsive-sm container-fluid contenedor">
     <div class="banner-examenes">
-        <form enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form enctype="multipart/form-data" action="{{url('/examen')}}" method="POST" class="needs-validation" novalidate>
+            @csrf
             <fieldset class="fieldset">
                 <legend class="legend">Subir archivo</legend>
                 <div class="form-group">
@@ -35,9 +36,13 @@ EXAMENES - {{'NOMBRE'}}
                         <h3>Arrastra y suelte sus archivos</h3>
                         <span>o</span>
                         <div class="btn btn-secondary">Selecciona tus archivos</div>
-                        <input type="file" name="documentos" id="input-file" hidden>
+                        <input type="file" name="documento" id="input-file" hidden>
                     </div>
                     <div id="preview"></div>
+                </div>
+
+                <div id="expediente-id">
+                    <input type="text" name="expediente_id" value="{{$datos['expediente']->id}}" hidden>
                 </div>
 
                 <button type="submit" class="btn btn-success mb-2">Agregar documento</button>
@@ -49,34 +54,30 @@ EXAMENES - {{'NOMBRE'}}
     <table class="table table-striped" style="width:100%" id="examenes">
         <thead class="table-dark table-header">
             <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Dueño</th>
-            <th scope="col">Número</th>
-            <th scope="col">Dirección</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Nombre</th>
             <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach () --}}
+            @foreach ($datos['examenes'] as $examen)
             <tr>
-                <td>{{'Ejemplo'}}</td>
-                <td>{{'Ejemplo'}}</td>
-                <td>{{'Ejemplo'}}</td>
-                <td>{{'Ejemplo'}}</td>
+                <td>{{ date( "d-m-Y", strtotime($examen->fecha) ) }}</td>
+                <td>{{$examen->concepto}}</td>
+                <td>{{$examen->documento}}</td>
                 <td id = "botones-linea">
-                    <a href="#"><button type="button" class="btn btn-info">Consultar</button></a>   
-                    
-                    <a href="#"><button type="button" class="btn btn-warning">Editar</button></a>
+                    <a href=" {{asset('storage'.'/'.$examen->documento)}} " target="_blank"><button type="button" class="btn btn-info">Consultar</button></a>
 
-                    <form action="#" method="post">
+                    <form action="{{url('/examen/'.$examen->id)}}" method="post">
+                        @csrf
+                        {{method_field('DELETE')}}
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
 
-                    <a href="#"><button type="button" class="btn btn-success">Crear mascota</button></a>
-
                 </td>
             </tr>
-            {{-- @endforeach --}}
+            @endforeach
         </tbody>
     </table>
 </div>

@@ -16,6 +16,7 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
 use App\Http\Controllers\gestionCitasVacunacionController;
 use App\Http\Controllers\CitaLimpiezaDentalController;
+use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
@@ -28,6 +29,7 @@ use App\Http\Controllers\RecordatorioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
+use Spatie\Permission\Contracts\Role;
 
 /****
 /*
@@ -162,6 +164,8 @@ Route::resource('propietario', PropietarioController::class)->middleware('auth')
 Route::resource('mascota', MascotaController::class)->middleware('auth');
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
+/*---------------Examen---------------*/
+Route::resource('examen', ExamenController::class)->middleware('auth');
 
 //Ejemplo consultar JS
 //Mascota
@@ -176,6 +180,9 @@ Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
 Route::get('/expediente/examenes/{id}',[ExpedienteController::class, 'examenes'])->middleware('auth');
+
+//Examen
+Route::get('/examen/store', [ExamenController::class, 'ExamenController@store']);
 
 /*------------------------------------- Rutas de vacunas ------------------------------------------------------- */
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
