@@ -12,10 +12,12 @@ GESTIONAR EXPEDIENTE
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Llamamos nuestro documento de sweetalert -->
 <script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
+
+<script src=" {{asset('js/file_query_server.js')}} "></script>
 @endsection
 
 @section('header')
-<h1 class="header">GESTIONAR EXPEDIENTE</h1>
+<h1 ondblclick="random_creador()" class="header">GESTIONAR EXPEDIENTE</h1>
 @endsection
 
 @section('content')
