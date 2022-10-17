@@ -1,0 +1,36 @@
+#expediente-vacunas-tabla{
+    margin: auto;
+    width: 100%;
+    min-width: auto;
+    border-collapse: collapse;
+}
+
+#expediente-vacunas-tabla thead tr th{
+    font-size: 1.4rem;
+}
+
+#expediente-vacunas-tabla tbody tr td{
+    margin: auto;
+    text-align: center;
+    margin: 0.25rem auto;
+}
+
+#expediente-vacunas-tabla tbody tr p{
+    margin: auto;
+    padding: 1rem 1rem auto 3rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.historial-medico{
+
+}
+
+.historial-medico span{
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.historial-medico p{
+    text-align: justify;
+}
