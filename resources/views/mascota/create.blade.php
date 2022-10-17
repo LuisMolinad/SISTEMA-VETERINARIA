@@ -252,8 +252,4 @@ CREAR MASCOTA
     </script>
 
 <script src="{{asset('js/otro.js')}}"></script>
-
-<script>
-
-</script>
 @endsection

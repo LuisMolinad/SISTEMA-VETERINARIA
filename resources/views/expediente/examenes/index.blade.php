@@ -10,6 +10,11 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
 
 <link rel="stylesheet" href="{{asset('css/drop-area.css')}}">
 
+<!-- Llamamos al sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Llamamos nuestro documento de sweetalert -->
+<script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
+
 @endsection
 
 @section('header')
@@ -29,6 +34,14 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                         <option selected>Examenes clinicos</option>
                         <option>Hemograma</option>
                     </select>
+
+                    <div class="invalid-feedback">
+                        Por favor ingrese un dato válido
+                    </div>
+                    <div class="valid-feedback">
+                        Dato válido
+                    </div>
+
                 </div>
 
                 <div class="drag-and-drop">
@@ -36,7 +49,15 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                         <h3>Arrastra y suelte sus archivos</h3>
                         <span>o</span>
                         <div class="btn btn-secondary">Selecciona tus archivos</div>
-                        <input type="file" name="documento" id="input-file" hidden>
+                        <div class="form-group">
+                            <input type="file" name="documento" id="input-file" class="form-control" required hidden>
+                            <div class="invalid-feedback">
+                                Por favor ingrese un documento válido
+                            </div>
+                            <div class="valid-feedback">
+                                Documento válido
+                            </div>
+                        </div>
                     </div>
                     <div id="preview"></div>
                 </div>
@@ -65,14 +86,14 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
             <tr>
                 <td>{{ date( "d-m-Y", strtotime($examen->fecha) ) }}</td>
                 <td>{{$examen->concepto}}</td>
-                <td>{{$examen->documento}}</td>
+                <td>{{substr($examen->documento, 17)}}</td>
                 <td id = "botones-linea">
                     <a href=" {{asset('storage'.'/'.$examen->documento)}} " target="_blank"><button type="button" class="btn btn-info">Consultar</button></a>
 
-                    <form action="{{url('/examen/'.$examen->id)}}" method="post">
+                    <form action="{{url('/examen/'.$examen->id)}}" method="post" id="EditForm{{$examen->id}}">
                         @csrf
                         {{method_field('DELETE')}}
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_examen('{{$examen->id}}')">Eliminar</button>
                     </form>
 
                 </td>
@@ -114,4 +135,27 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
     </script>
 
     <script src="{{ asset('js/drop-area.js') }}"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 @endsection

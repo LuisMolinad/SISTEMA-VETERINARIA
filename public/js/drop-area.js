@@ -48,7 +48,7 @@ function showFiles(files){
 
 function processFile(file){
     const doctype = file.type;
-    const validExtension = ['image/jpeg','image/jpg', 'image/png'];
+    const validExtension = ['image/jpeg','image/jpg', 'image/png', 'application/pdf'];
 
     if(validExtension.includes(doctype)){
         //Archivo valido
@@ -75,6 +75,7 @@ function processFile(file){
     }
     else{
         //Archivo no valido
+        console.log(doctype);
         alert('No es un archivo valido');
     }
 }
