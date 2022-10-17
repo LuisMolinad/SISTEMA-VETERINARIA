@@ -1,5 +1,5 @@
 .drop-area{
-    border: 5px dashed #ddd;
+    border: 5px solid #ddd;
     height: auto;
     width: auto;
     border-radius: 5px;
@@ -14,7 +14,7 @@
 .drop-area.active{
     background-color: #b8d4fe;
     color: black;
-    border: 2px dashed #618ac9;
+    border: 2px solid #618ac9;
 }
 
 .drop-area span{

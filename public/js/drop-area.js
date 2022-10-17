@@ -30,6 +30,9 @@ dropArea.addEventListener("dragleave", (e)=>{
 dropArea.addEventListener("drop", (e)=>{
     e.preventDefault();
     files = e.dataTransfer.files;
+
+    input.files = files;
+
     showFiles(files);
     dropArea.classList.remove("active");
     dragText.textContent = "Arrastra y suelta sus archivos";
@@ -67,7 +70,7 @@ function processFile(file){
             `;
 
             const html = document.querySelector('#preview').innerHTML;
-            document.querySelector('#preview').innerHTML = image + html;
+            document.querySelector('#preview').innerHTML = image;
         });
 
         fileReader.readAsDataURL(file);

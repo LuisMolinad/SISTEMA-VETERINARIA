@@ -23,7 +23,7 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
 
 @section('content')
 <div class="table-responsive-sm container-fluid contenedor">
-    <div class="banner-examenes">
+    <div class="banner-examenes container-sm">
         <form enctype="multipart/form-data" action="{{url('/examen')}}" method="POST" class="needs-validation" novalidate>
             @csrf
             <fieldset class="fieldset">
@@ -46,9 +46,9 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
 
                 <div class="drag-and-drop">
                     <div class="drop-area centrador">
-                        <h3>Arrastra y suelte sus archivos</h3>
+                        <h3>Arrastra y suelta tu archivo aqui</h3>
                         <span>o</span>
-                        <div class="btn btn-secondary">Selecciona tus archivos</div>
+                        <div class="btn btn-secondary">Subir desde el PC</div>
                         <div class="form-group">
                             <input type="file" name="documento" id="input-file" class="form-control" required hidden>
                             <div class="invalid-feedback">
@@ -66,7 +66,10 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                     <input type="text" name="expediente_id" value="{{$datos['expediente']->id}}" hidden>
                 </div>
 
-                <button type="submit" class="btn btn-success mb-2">Agregar documento</button>
+                <br>
+                <div class="flex-end">
+                    <button type="submit" class="btn btn-success mb-2">Guardar</button>
+                </div>
             </fieldset>
         </form>
 
