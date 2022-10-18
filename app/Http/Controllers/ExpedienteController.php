@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\expediente;
 use App\Models\mascota;
 use App\Models\Examen;
+use App\Models\lineaHistorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use PDF;
@@ -105,7 +106,12 @@ class ExpedienteController extends Controller
 
     public function pdfConverter($id){
         $expediente = expediente::FindOrFail($id);
-        $pdf = PDF::loadView('expediente.pdf', ['expediente'=>$expediente]);
+        $linea = lineaHistorial::all()->where('expediente_id','=',$id);
+        $datos = [
+            'expediente' => $expediente,
+            'linea' => $linea
+        ];
+        $pdf = PDF::loadView('expediente.pdf', ['datos'=>$datos]);
         return $pdf->stream();
     }    
 
