@@ -18,7 +18,7 @@ RECORD VACUNACION - {{'NOMBRE'}}
 @endsection
 
 @section('header')
-<h1 class="header">RECORD VACUNACION - {{'NOMBRE'}}</h1>
+<h1 class="header">RECORD VACUNACION - {{$datos['expediente']->mascota->nombreMascota}}</h1>
 @endsection
 
 @section('content')
@@ -29,33 +29,33 @@ RECORD VACUNACION - {{'NOMBRE'}}
             <tbody>
                 <tr>
                     <td><strong>Dueño:</strong></td>
-                    <td>{{'Nombre del duenio'}}</td>
+                    <td>{{$datos['expediente']->mascota->propietario->nombrePropietario}}</td>
                     <td></td>
-                    <td><strong>{{'Numero de la mascota'}}</strong></td>
+                    <td><strong>{{$datos['expediente']->mascota->idMascota}}</strong></td>
                 </tr>
                 <tr>
                     <td><strong>Sexo:</strong></td>
-                    <td>{{'Sexo'}}</td>
+                    <td>{{$datos['expediente']->mascota->sexoMascota}}</td>
                     <td><strong>Telefono:</strong></td>
-                    <td>{{'Telefono'}}</td>
+                    <td>{{$datos['expediente']->mascota->propietario->telefonoPropietario}}</td>
                 </tr>
                 <tr>
                     <td><strong>Mascota</strong></td>
-                    <td>{{'Nombre mascota'}}</td>
+                    <td>{{$datos['expediente']->mascota->nombreMascota}}</td>
                     <td><strong>Fecha nacimiento:</strong></td>
-                    <td>{{'Fecha nacimiento'}}</td>
+                    <td>{{$datos['expediente']->mascota->fechaNacimiento}}</td>
                 </tr>
                 <tr>
                     <td><strong>Raza:</strong></td>
-                    <td>{{'Raza'}}</td>
+                    <td>{{$datos['expediente']->mascota->razaMascota}}</td>
                     <td><strong>Color:</strong></td>
-                    <td>{{'Color'}}</td>
+                    <td>{{$datos['expediente']->mascota->colorMascota}}</td>
                 </tr>
                 <tr>
                     <td><strong>Direccion:</strong></td>
-                    <td>{{'Direccion'}}</td>
+                    <td>{{$datos['expediente']->mascota->propietario->direccionPropietario}}</td>
                     <td><strong>Especie:</strong></td>
-                    <td>{{'Especie'}}</td>
+                    <td>{{$datos['expediente']->mascota->especie}}</td>
                 </tr>
             </tbody>
         </table>
@@ -69,58 +69,55 @@ RECORD VACUNACION - {{'NOMBRE'}}
 
     <br>
     <div class="record-tablas">
+
+        @foreach ($datos['vacunas'] as $vacuna)
         <div class="record-card">
-            <h4>{{'Vacuna'}}</h4>
-            <table>
+            <h4>{{$vacuna->nombreVacuna}}</h4>
+            <table class="record-tabla">
                 <thead>
                     <th>Fecha</th>
-                    <th>Peso</th>
+                    <th>Peso (lbs.)</th>
                     <th>Refuerzo</th>
                     <th>Eliminar</th>
                 </thead>
                 <tbody>
+                    @foreach ($datos['record'] as $record)
+                    @if ($vacuna->id === $record->vacuna_id)
                     <tr>
-                        <td>24-05-2000</td>
-                        <td>9.6lbs.</td>
-                        <td>15-01-26</td>
-                        <td><button class="btn btn-danger"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button></td>
+                        <td id_linea="{{$record->id}}" class="record-fecha">{{$record->fecha}}</td>
+                        <td id_linea="{{$record->id}}" class="record-peso">{{$record->peso}}</td>
+                        <td id_linea="{{$record->id}}" class="record-refuerzo">{{$record->refuerzo}}</td>
+                        <td>
+                            <form action="{{url('/record/'.$record->id)}}" method="post" id="EditForm{{$record->id}}">
+                                @csrf
+                                {{method_field('DELETE')}}
+                                <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_examen('{{$record->id}}')"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button>
+                            </form>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>24-05-2000</td>
-                        <td>9.6lbs.</td>
-                        <td>15-01-26</td>
-                        <td><button class="btn btn-danger"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button></td>
-                    </tr>
-                    <tr>
-                        <td>24-05-2000</td>
-                        <td>9.6lbs.</td>
-                        <td>15-01-26</td>
-                        <td><button class="btn btn-danger"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button></td>
-                    </tr>
-                    <tr>
-                        <td>24-05-2000</td>
-                        <td>9.6lbs.</td>
-                        <td>15-01-26</td>
-                        <td><button class="btn btn-danger"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button></td>
-                    </tr>
+                    @endif
+                    @endforeach
                 </tbody>
             </table>
         </div>
+        @endforeach
+
     </div>
 </div>
 
 <div class="record-space_modal none">
     <div class="record-modal">
         <h4>Record de vacunacion</h4>
-        <form action="#" method="post">
+        <form action="/record" method="post">
+            @csrf
+            <input name="expediente_id" type="text" value="{{$datos['expediente']->id}}" hidden>
             <div class="form-group">
-                <label for="vacuna">Vacuna</label>
+                <label for="vacuna_id">Vacuna:</label>
                 <div>
-                    <select name="vacuna" id="form-vacuna">
-                        <option value="0">Vacuna</option>
-                        <option value="0">Vacuna</option>
-                        <option value="0">Vacuna</option>
-                        <option value="0">Vacuna</option>
+                    <select name="vacuna_id" id="form-vacuna">
+                        @foreach ($datos['vacunas'] as $vacuna)
+                        <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -131,7 +128,7 @@ RECORD VACUNACION - {{'NOMBRE'}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="peso">Peso</label>
+                <label for="peso">Peso:</label>
                 <div>
                     <input type="number" name="peso" id="form-peso" min="1" step="0.1">
                 </div>

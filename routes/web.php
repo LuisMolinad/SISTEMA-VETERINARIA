@@ -30,6 +30,7 @@ use App\Http\Controllers\RecordVacunacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
+use App\Models\record_vacunacion;
 use Spatie\Permission\Contracts\Role;
 
 /****
@@ -266,3 +267,9 @@ Route::get('/historialMedico/{id}', [ExpedienteController::class, 'gestionar_his
 Route::get('/historial_medico/fetch/', [LineaHistorialController::class, 'fetch']);
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
 Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
+
+
+//Record vacunacion
+Route::get('/record/edit/fecha', [RecordVacunacionController::class, 'edit_table_fecha']);
+Route::get('/record/edit/refuerzo', [RecordVacunacionController::class, 'edit_table_refuerzo']);
+Route::get('/record/edit/peso', [RecordVacunacionController::class, 'edit_table_peso']);

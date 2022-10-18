@@ -68,58 +68,18 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr><p>Rabia</p></tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-
-                            <tr><p>Rabia</p></tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr><p>Rabia</p></tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr><p>Rabia</p></tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
-                            <tr><p>Rabia</p></tr>
-                            <tr>
-                                <td>24 de mayo del 2021</td>
-                                <td>24 de mayo del 2022</td>
-                                <td>8.9</td>
-                            </tr>
+                            @foreach ($datos['vacunas'] as $vacuna)
+                                <tr><p>{{$vacuna->nombreVacuna}}</p></tr>
+                                @foreach ($datos['record'] as $record)
+                                    @if ($vacuna->id === $record->vacuna_id)
+                                        <tr>
+                                            <td>{{$record->fecha}}</td>
+                                            <td>{{$record->refuerzo}}</td>
+                                            <td>{{$record->peso}}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

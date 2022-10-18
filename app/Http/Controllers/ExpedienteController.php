@@ -6,6 +6,8 @@ use App\Models\expediente;
 use App\Models\mascota;
 use App\Models\Examen;
 use App\Models\lineaHistorial;
+use App\Models\record_vacunacion;
+use App\Models\vacuna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use PDF;
@@ -109,7 +111,9 @@ class ExpedienteController extends Controller
         $linea = lineaHistorial::all()->where('expediente_id','=',$id);
         $datos = [
             'expediente' => $expediente,
-            'linea' => $linea
+            'linea' => $linea,
+            'vacunas' => vacuna::all(),
+            'record' => record_vacunacion::all()->where('expediente_id', $id)
         ];
         $pdf = PDF::loadView('expediente.pdf', ['datos'=>$datos]);
         return $pdf->stream();

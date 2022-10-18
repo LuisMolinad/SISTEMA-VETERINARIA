@@ -21,6 +21,7 @@ class CreateRecordVacunacionsTable extends Migration
             $table->date('fecha');
             $table->date('refuerzo');
             $table->string('peso');
+            $table->string('record_vacunacions.updated_at')->nullable();
         });
     }
 
