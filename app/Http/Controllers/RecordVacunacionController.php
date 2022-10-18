@@ -14,7 +14,7 @@ class RecordVacunacionController extends Controller
      */
     public function index()
     {
-        //
+        return view('expediente.record_vacunacion.index');
     }
 
     /**

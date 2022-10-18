@@ -1,0 +1,65 @@
+.record-informacion_general{
+    background-color: #EFEFEF;
+    
+    padding: 0.5rem;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.record-informacion_general table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.record-informacion_general table tr:first-child{
+    border-bottom: 2px solid black;
+}
+
+.record-informacion_general table tbody tr td strong{
+    font-weight: bold;
+}
+
+/*Botones*/
+.record-botones_crud{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+/*Tablas*/
+.record-tablas{
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+
+.record-card{
+    flex-basis: calc(50% - 2rem);
+    margin-bottom: 2rem;
+
+    display: flex;
+    
+    flex-direction: column;
+}
+
+.record-card table{
+    border-collapse: collapse;
+}
+
+.record-card th, .record-card td{
+    text-align: center;
+}
+
+.record-card th{
+    border-bottom: 2px solid black;
+}
+
+.record-card h4{
+    background-color: black;
+    color: white;
+    text-align: center;
+}

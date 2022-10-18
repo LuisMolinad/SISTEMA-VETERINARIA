@@ -14,8 +14,13 @@ class CreateRecordVacunacionsTable extends Migration
     public function up()
     {
         Schema::create('record_vacunacions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->engine = "InnoDB";
+            $table->bigIncrements('id');
+            $table->foreignId('expediente_id')->constrained('expedientes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('vacuna_id')->constrained('vacunas')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('fecha');
+            $table->date('refuerzo');
+            $table->string('peso');
         });
     }
 

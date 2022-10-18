@@ -21,6 +21,11 @@ class expediente extends Model
         return $this->hasMany(lineaHistorial::class);
     }
 
+    public function record_vacunacion()
+    {
+        return $this->hasMany(record_vacunacion::class);
+    }
+
     public function Examen(){
         return $this->hasMany('App\Models\Examen');
     }

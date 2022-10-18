@@ -26,6 +26,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineaHistorialController;
 use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
+use App\Http\Controllers\RecordVacunacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
@@ -166,6 +167,8 @@ Route::resource('mascota', MascotaController::class)->middleware('auth');
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 /*---------------Examen---------------*/
 Route::resource('examen', ExamenController::class)->middleware('auth');
+/*---------------Examen---------------*/
+Route::resource('record', RecordVacunacionController::class)->middleware('auth');
 
 //Ejemplo consultar JS
 //Mascota
