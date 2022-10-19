@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tipoServicio;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class ReporteController extends Controller
 {
@@ -13,8 +15,12 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        //
-        return view('reporte.index');
+
+        //Capto solo los nombres que estan habilitados
+        $nombresServicios = tipoServicio::where('disponibilidadServicio', '=', '1')->pluck('nombreServicio');
+
+
+        return view('reporte.index', compact('nombresServicios'));
     }
 
     /**

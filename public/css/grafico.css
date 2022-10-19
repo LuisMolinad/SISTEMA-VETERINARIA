@@ -47,6 +47,10 @@
   margin: 10px auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  /* Espacio arriba y abajo del grafico */
+  padding-top: 3%;
+  padding-bottom: 3%;
+  
 }
 
 @media (min-width: 768px) {
