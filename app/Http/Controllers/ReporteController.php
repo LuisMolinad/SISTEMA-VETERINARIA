@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\citaVacuna;
+use Carbon\Carbon; //para manejar fechas
 use App\Models\tipoServicio;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Foreach_;
@@ -18,9 +21,18 @@ class ReporteController extends Controller
 
         //Capto solo los nombres que estan habilitados
         $nombresServicios = tipoServicio::where('disponibilidadServicio', '=', '1')->pluck('nombreServicio');
+        //Capturando la fecha del sistema
+        $now = Carbon::now();
+        //Capturando unicamente el mes
+        $mesEnCurso = $now->month;
 
 
-        return view('reporte.index', compact('nombresServicios'));
+        //capturando los datos, deben ser correspondiente al mes en curso
+        $citasVacunaMesActual = citaVacuna::whereMonth('fechaAplicacion', $mesEnCurso)->get()->count();
+        //mostramos el valor
+        var_dump($citasVacunaMesActual);
+
+        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual'));
     }
 
     /**

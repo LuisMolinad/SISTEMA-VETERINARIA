@@ -15,7 +15,9 @@
 @endsection
 
 @section('content')
-    <input type="text" id="nombreServicios" value="{{ $nombresServicios }}" style="display:none">
+    {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
+    <input type="text" id="nombreServicios" value="{{ $nombresServicios }}">
+    <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}">
     <div class="graficos-container">
         <div>
             <canvas id="myChart">
@@ -45,8 +47,8 @@
         const arreglo = document.getElementById('nombreServicios').value;
         const stringLation = unicodeToChar(arreglo);
         const stringLimpio = stringLation.replaceAll("[", "").replaceAll("]", "").replaceAll(/"/g, "");
-        console.log(stringLation);
-        console.log(stringLimpio);
+        console.log(stringLation); //String traducido sin unicode
+        console.log(stringLimpio); //string limpio sin llaves ni comas
         //Inico de separacion de cada servicio para ser mostrado en barras
         const arragloNombresTiposServicios = stringLimpio.split(',');
         console.log(arragloNombresTiposServicios);
@@ -75,20 +77,24 @@
 
 
 
-        // Any of the following formats may be used
+        /**
+         ** Mes Actual
+         */
         const ctx = document.getElementById('myChart');
-
+        const citasVacuna = document.getElementById('citasVacuna').value;
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: arregloCitas,
                 datasets: [{
                     /** 
-                     * ? Data: creo que para esto habria hace por medio de algun if validar
-                     *  ? 1. Que los valores de arregloNombre tengan citas
+                     * ? El orden de la informacion en data depende del array arregloCitas
+                     * ? A resolver
+                     *  ? 1. Mostrar el mes en curso en el label
+                     *  ? 2. En el caso se creara un nuevo servicio como se integraria la informacion a la grafica
                      */
 
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [citasVacuna, 19, 3, 5, 2, 3],
 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
