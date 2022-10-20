@@ -24,7 +24,7 @@ Historial Medico
         <!--Se agrega una validacion para en el caso que la mascota se encuentre fallecida-->
 
         @if($expediente->mascota->fallecidoMascota == 'Vivo')
-        <form id="agregar_linea">
+        <form method="GET" action="/historial_medico/fetch" id="agregar_linea">
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
             <div class="col-lg-12">
                 <label for="" style="margin-bottom: 10px">Diagnostico:</label>
@@ -101,7 +101,7 @@ Historial Medico
     </script>
 
     <!--Agregar-->
-    <script>
+    {{--<script>
         function agregar_linea(){
 
             var expediente_id = document.querySelector('#expediente_id').value;
@@ -131,7 +131,7 @@ Historial Medico
             '<td>' + linea + '</td>' +
             '<td></td>'; 
 
-
+            /*
            if(expediente_id.length > 0 && linea.length > 0){
                 fetch('/historial_medico/fetch/?expediente_id='+expediente_id+'&textoLineaHistorial='+linea)
                 .then(()=>{
@@ -143,10 +143,11 @@ Historial Medico
                     //window.location.reload(false);
                 })
             }
+            */
 
             return false;
         }
-    </script>
+    </script> --}}
 
     <!--Modificar-->
     <script>
