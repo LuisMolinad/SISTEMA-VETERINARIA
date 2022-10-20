@@ -126,7 +126,7 @@ class CitaVacunaController extends Controller
                 'filtervacunas' => request('filtervacunas'),
                 'title' => request('title'),
                 'estadoCita' => request('estadoCita'),
-                'pesolb' => request('pesolb'),
+                /*  'pesolb' => request('pesolb'), */
                 'vacuna_id' => request('vacuna_id')
             ];
 
@@ -145,7 +145,7 @@ class CitaVacunaController extends Controller
                 'filtervacunas' => request('filtervacunas'),
                 'title' => request('title'),
                 'estadoCita' => request('estadoCita'),
-                'pesolb' => request('pesolb'),
+                /*   'pesolb' => request('pesolb'), */
                 'vacuna_id' => request('vacuna_id')
             ];
 

@@ -58,7 +58,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="">Roles</label>
-                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control']) !!}
+                {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control']) !!}
             </div>
         </div>
 

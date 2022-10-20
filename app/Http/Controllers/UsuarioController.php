@@ -76,7 +76,7 @@ class UsuarioController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|same:confirm-password|min:8',
             'roles' => 'required'
         ]);
 
@@ -114,7 +114,7 @@ class UsuarioController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all(); //array que contiene el rol de usuario
 
         return view('usuarios.editar', compact('user', 'roles', 'userRole'));
     }

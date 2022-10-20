@@ -24,17 +24,19 @@
                         <a class="dropdown-item" href="/citacirugia">Citas para cirugia</a>
                     @endcan
                     @can('ver-LimpiezaDental')
-                    <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
+                        <a class="dropdown-item" href="/citaLimpiezaDental">Citas para limpieza dental</a>
                     @endcan
                 </div>
             </li>
 
-            @if (
-                auth()->user()->can('ver-Recordatorio') || auth()->user()->can('borrar-Recordatorio') || auth()->user()->can('editar-Recordatorio') || auth()->user()->can('crear-Recordatorio') || auth()->user()->can('enviar-Recordatorio')
-            )
-            <li class="nav-item active active">
-                <a class="nav-link" href="/recordatorio">Recordatorios <span class="sr-only">(current)</span></a>
-            </li>
+            @if (auth()->user()->can('ver-Recordatorio') ||
+                auth()->user()->can('borrar-Recordatorio') ||
+                auth()->user()->can('editar-Recordatorio') ||
+                auth()->user()->can('crear-Recordatorio') ||
+                auth()->user()->can('enviar-Recordatorio'))
+                <li class="nav-item active active">
+                    <a class="nav-link" href="/recordatorio">Recordatorios <span class="sr-only">(current)</span></a>
+                </li>
             @endif
 
             <li class="nav-item active dropdown">
@@ -44,18 +46,21 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    @if (
-                        auth()->user()->can('ver-Propietario') || auth()->user()->can('borrar-Propietario') || auth()->user()->can('editar-Propietario') || auth()->user()->can('crear-Propietario') || auth()->user()->can('crear-Mascota')
-                    )
-                    <a class="dropdown-item" href="/propietario">Propietario</a>
+                    @if (auth()->user()->can('ver-Propietario') ||
+                        auth()->user()->can('borrar-Propietario') ||
+                        auth()->user()->can('editar-Propietario') ||
+                        auth()->user()->can('crear-Propietario') ||
+                        auth()->user()->can('crear-Mascota'))
+                        <a class="dropdown-item" href="/propietario">Propietario</a>
                     @endif
-                    
-                    @if (
-                        auth()->user()->can('ver-Mascota') || auth()->user()->can('borrar-Mascota') || auth()->user()->can('editar-Mascota') || auth()->user()->can('crear-Mascota')
-                    )
-                    <a class="dropdown-item" href="/mascota">Mascota</a>
+
+                    @if (auth()->user()->can('ver-Mascota') ||
+                        auth()->user()->can('borrar-Mascota') ||
+                        auth()->user()->can('editar-Mascota') ||
+                        auth()->user()->can('crear-Mascota'))
+                        <a class="dropdown-item" href="/mascota">Mascota</a>
                     @endif
-                    
+
                     <a class="dropdown-item" href="/expediente">Expediente</a>
                 </div>
             </li>
@@ -78,21 +83,26 @@
                 </li>
             @endif
             @if (auth()->user()->can('ver-Vacuna') ||
-            auth()->user()->can('ver-TipoServicio'))
-            <li class="nav-item active dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Recursos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @can('ver-Vacuna')
-                        <a class="dropdown-item" href="/vacuna">Vacunas</a>
-                    @endcan
-                    @can('ver-TipoServicio')
-                        <a class="dropdown-item" href="/tiposervicio">Servicios</a>
-                    @endcan
-                </div>
-            </li>
+                auth()->user()->can('ver-TipoServicio'))
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Recursos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @can('ver-Vacuna')
+                            <a class="dropdown-item" href="/vacuna">Vacunas</a>
+                        @endcan
+                        @can('ver-TipoServicio')
+                            <a class="dropdown-item" href="/tiposervicio">Servicios</a>
+                        @endcan
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('reportes.index') }}">
+                        Reportes
+                    </a>
+                </li>
             @endif
 
         </ul>

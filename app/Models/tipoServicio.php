@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class tipoServicio extends Model
 {
     use HasFactory;
-    protected $table='tipo_servicios';
+    protected $table = 'tipo_servicios';
     public $timestamps = false;
-    protected $fillable=[
+    protected $fillable = [
         'nombreServicio',
         'descripcionServicio',
         'disponibilidadServicio',

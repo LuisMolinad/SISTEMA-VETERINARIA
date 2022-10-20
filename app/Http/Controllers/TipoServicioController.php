@@ -33,8 +33,8 @@ class TipoServicioController extends Controller
     // Función para mostrar los diferentes tipos de servicios
     public function index()
     {
-        $datosTipoServicio['tiposervicios']=tipoServicio::all();
-        return view('tiposervicio.index',$datosTipoServicio);
+        $datosTipoServicio['tiposervicios'] = tipoServicio::all();
+        return view('tiposervicio.index', $datosTipoServicio);
     }
 
     /**
@@ -60,9 +60,9 @@ class TipoServicioController extends Controller
         $datosTipoServicio = request()->except('_token');
         TipoServicio::insert($datosTipoServicio);
         // return redirect('/tiposervicio');
-        $accion="guardar";
-        $objeto="tipo servicio";
-        $datosTipoServicio['tiposervicios']=tipoServicio::all();
+        $accion = "guardar";
+        $objeto = "tipo servicio";
+        $datosTipoServicio['tiposervicios'] = tipoServicio::all();
         return redirect('/tiposervicio')->with('success', 'Tipo de servicio creado correctamente');;
     }
 
@@ -75,13 +75,14 @@ class TipoServicioController extends Controller
     //Funcion para mostrar un tipo de servicio en la vista tiposervicio.show
     public function show($id)
     {
-        $tipoServicio=tipoServicio::findOrFail($id);
-        return view('tiposervicio.show', ['tipoServicio'=>$tipoServicio]);
+        $tipoServicio = tipoServicio::findOrFail($id);
+        return view('tiposervicio.show', ['tipoServicio' => $tipoServicio]);
     }
 
     //Función para recuperar un tipo de servicio por su id, se retorna un json.
-    public function showId($id){
-        $tipoServicio=tipoServicio::find($id);
+    public function showId($id)
+    {
+        $tipoServicio = tipoServicio::find($id);
         return response()->json($tipoServicio);
     }
 
@@ -97,7 +98,7 @@ class TipoServicioController extends Controller
     public function edit($id)
     {
         $tipoServicio = tipoServicio::find($id);
-        return view('tiposervicio.edit',compact('tipoServicio'));
+        return view('tiposervicio.edit', compact('tipoServicio'));
     }
 
     /**
@@ -110,18 +111,18 @@ class TipoServicioController extends Controller
 
     // Función para actualizar un tipo de servicio, se usa desde la vista tiposervicio.edit, y desde los botones
     //  habilitar y deshabilitar.
-    public function update(Request $request, $id,$accion)
+    public function update(Request $request, $id, $accion)
     {
-        $datosTipoServicio = request()->except(['_token','_method']);
-        TipoServicio::where('id','=',$id)->update($datosTipoServicio);
+        $datosTipoServicio = request()->except(['_token', '_method']);
+        TipoServicio::where('id', '=', $id)->update($datosTipoServicio);
         //Selectiva para determinar si la edicion corresponde a editar el servicio, deshabilitar el servicio, o habilitar el servicio
         //y poder retornar un aviso correspondiente al momento de redireccionar al index.
-        if ($accion == "editar"){
-            return redirect('/tiposervicio')->with('warning','Se ha editado el tipo de servicio correctamente');
-        } elseif ($accion == "deshabilitar"){
-            return redirect('/tiposervicio')->with('warning','Se ha deshabilitado el tipo de servicio correctamente');
+        if ($accion == "editar") {
+            return redirect('/tiposervicio')->with('warning', 'Se ha editado el tipo de servicio correctamente');
+        } elseif ($accion == "deshabilitar") {
+            return redirect('/tiposervicio')->with('warning', 'Se ha deshabilitado el tipo de servicio correctamente');
         } else {
-            return redirect('/tiposervicio')->with('warning','Se ha habilitado el tipo de servicio correctamente');
+            return redirect('/tiposervicio')->with('warning', 'Se ha habilitado el tipo de servicio correctamente');
         }
     }
 
@@ -135,6 +136,6 @@ class TipoServicioController extends Controller
     public function destroy($id)
     {
         TipoServicio::destroy($id);
-        return redirect('/tiposervicio')->with('danger','Se ha eliminado el tipo de servicio correctamente');
+        return redirect('/tiposervicio')->with('danger', 'Se ha eliminado el tipo de servicio correctamente');
     }
 }
