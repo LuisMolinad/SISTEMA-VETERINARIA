@@ -85,7 +85,8 @@
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: arregloCitas,
+                // labels: arregloCitas,
+                labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
                 datasets: [{
                     /** 
                      * ? El orden de la informacion en data depende del array arregloCitas
