@@ -16,6 +16,7 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\CitaCirugiaController;
 use App\Http\Controllers\gestionCitasVacunacionController;
 use App\Http\Controllers\CitaLimpiezaDentalController;
+use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\VacunaController;
 use App\Http\Controllers\TipoServicioController;
 use App\Models\mascota;
@@ -25,10 +26,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LineaHistorialController;
 use App\Http\Controllers\RecetasPostoperatoriaController;
 use App\Http\Controllers\RecordatorioController;
+use App\Http\Controllers\RecordVacunacionController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\citaLimpiezaDental;
+use App\Models\record_vacunacion;
+use Spatie\Permission\Contracts\Role;
 
 /****
 /*
@@ -163,6 +167,10 @@ Route::resource('propietario', PropietarioController::class)->middleware('auth')
 Route::resource('mascota', MascotaController::class)->middleware('auth');
 /*---------------Expediente---------------*/
 Route::resource('expediente', ExpedienteController::class)->middleware('auth');
+/*---------------Examen---------------*/
+Route::resource('examen', ExamenController::class)->middleware('auth');
+/*---------------Examen---------------*/
+Route::resource('record', RecordVacunacionController::class)->middleware('auth');
 
 //Ejemplo consultar JS
 //Mascota
@@ -176,6 +184,10 @@ Route::get('/mascota/msg/guardar', [MascotaController::class, 'mostrar_guardar']
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
+Route::get('/expediente/examenes/{id}',[ExpedienteController::class, 'examenes'])->middleware('auth');
+
+//Examen
+Route::get('/examen/store', [ExamenController::class, 'ExamenController@store']);
 
 /*------------------------------------- Rutas de vacunas ------------------------------------------------------- */
 Route::resource('vacuna', VacunaController::class)->middleware('auth');
@@ -257,11 +269,13 @@ Route::get('/historial_medico/fetch', [LineaHistorialController::class, 'fetch']
 Route::get('/historial/edit_editable/', [LineaHistorialController::class, 'edit_editable']);
 Route::get('/historial/eliminar/{lineaHistorial}', [LineaHistorialController::class, 'destroy'])->name('historialMedico.delete')->middleware('auth');
 
-
-
+//Record vacunacion
+Route::get('/record/edit/fecha', [RecordVacunacionController::class, 'edit_table_fecha']);
+Route::get('/record/edit/refuerzo', [RecordVacunacionController::class, 'edit_table_refuerzo']);
+Route::get('/record/edit/peso', [RecordVacunacionController::class, 'edit_table_peso']);
 
 /* 
 * * Rutas para sección reportes 
-
 */
 Route::get('/reporte', [ReporteController::class, 'index'])->name('reportes.index')->middleware('auth');
+

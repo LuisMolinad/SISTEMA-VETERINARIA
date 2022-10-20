@@ -23,4 +23,9 @@ class vacuna extends Model
     {
         return $this->belongsToMany(mascota::class, 'citaVacunas');
     }
+
+    public function record_vacunacion()
+    {
+        return $this->hasMany(record_vacunacion::class);
+    }
 }
