@@ -20,6 +20,7 @@
     <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}">
     <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}">
     <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}">
+    <input type="number" id="citasServicios" value="{{ $citasServicios }}">
 
 
     <div class="graficos-container">
@@ -45,41 +46,34 @@
 @section('js')
     <script>
         //Capturo el contenido encontrado en un div oculto
-        const citasClinicas = ['Vacunación', 'Cirugía', 'Limpieza Dental'];
-        console.log(Array.isArray(citasClinicas)); //confirmando que si es arreglo
+        /*  const citasClinicas = ['Vacunación', 'Cirugía', 'Limpieza Dental'];
+         console.log(Array.isArray(citasClinicas)); //confirmando que si es arreglo
 
-        const arreglo = document.getElementById('nombreServicios').value;
-        const stringLation = unicodeToChar(arreglo);
-        const stringLimpio = stringLation.replaceAll("[", "").replaceAll("]", "").replaceAll(/"/g, "");
-        console.log(stringLation); //String traducido sin unicode
-        console.log(stringLimpio); //string limpio sin llaves ni comas
-        //Inico de separacion de cada servicio para ser mostrado en barras
-        const arragloNombresTiposServicios = stringLimpio.split(',');
-        console.log(arragloNombresTiposServicios);
-        console.log(Array.isArray(arragloNombresTiposServicios)); //confirmando que si es arreglo
-        const arregloCitas = citasClinicas.concat(arragloNombresTiposServicios);
-        console.log(arregloCitas);
-
-
+         const arreglo = document.getElementById('nombreServicios').value;
+         const stringLation = unicodeToChar(arreglo);
+         const stringLimpio = stringLation.replaceAll("[", "").replaceAll("]", "").replaceAll(/"/g, "");
+         console.log(stringLation); //String traducido sin unicode
+         console.log(stringLimpio); //string limpio sin llaves ni comas
+         //Inico de separacion de cada servicio para ser mostrado en barras
+         const arragloNombresTiposServicios = stringLimpio.split(',');
+         console.log(arragloNombresTiposServicios);
+         console.log(Array.isArray(arragloNombresTiposServicios)); //confirmando que si es arreglo
+         const arregloCitas = citasClinicas.concat(arragloNombresTiposServicios);
+         console.log(arregloCitas); */
 
 
-        /**
-         *  *Funcion encargada de cambiar los valores unicode a texto
+
+        /* 
+                /**
+                 *  *Funcion encargada de cambiar los valores unicode a texto
+                 
+                function unicodeToChar(text) {
+                    return text.replace(/\\u[\dA-F]{4}/gi,
+                        function(match) {
+                            return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+                        });
+                }
          */
-        function unicodeToChar(text) {
-            return text.replace(/\\u[\dA-F]{4}/gi,
-                function(match) {
-                    return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
-                });
-        }
-
-
-
-
-
-
-
-
 
         /**
          ** Mes Actual
@@ -88,6 +82,7 @@
         const citasVacuna = document.getElementById('citasVacuna').value;
         const citasCirugia = document.getElementById('citasCirugia').value;
         const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
+        const citasServicios = document.getElementById('citasServicios').value;
 
         const myChart = new Chart(ctx, {
             type: 'bar',
@@ -95,14 +90,9 @@
                 // labels: arregloCitas,
                 labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
                 datasets: [{
-                    /** 
-                     * ? El orden de la informacion en data depende del array arregloCitas
-                     * ? A resolver
-                     *  ? 1. Mostrar el mes en curso en el label
-                     *  ? 2. En el caso se creara un nuevo servicio como se integraria la informacion a la grafica
-                     */
 
-                    data: [citasVacuna, citasCirugia, citasLimpiezaDental, 5, 2, 3],
+
+                    data: [citasVacuna, citasCirugia, citasLimpiezaDental, citasServicios],
 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

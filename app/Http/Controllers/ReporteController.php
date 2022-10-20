@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\citaVacuna;
 use App\Models\citaCirugia;
 use App\Models\citaLimpiezaDental;
+use App\Models\citaServicio;
 use Carbon\Carbon; //para manejar fechas
 use App\Models\tipoServicio;
 
@@ -34,10 +35,13 @@ class ReporteController extends Controller
         $citasVacunaMesActual = citaVacuna::whereMonth('fechaAplicacion', $mesEnCurso)->get()->count();
         $citasCirugiaMesActual = citaCirugia::whereMonth('start', $mesEnCurso)->get()->count();
         $citasLimpiezaDentalMesActual = citaLimpiezaDental::whereMonth('start', $mesEnCurso)->get()->count();
+        //cita servicios
+        $citasServicios = citaServicio::whereMonth('start', $mesEnCurso)->get()->count();
+
         //mostramos el valor
         var_dump($citasVacunaMesActual);
 
-        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual','citasCirugiaMesActual','citasLimpiezaDentalMesActual'));
+        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
     }
 
     /**
