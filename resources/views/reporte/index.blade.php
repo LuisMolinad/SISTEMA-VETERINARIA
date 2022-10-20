@@ -18,6 +18,10 @@
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
     <input type="text" id="nombreServicios" value="{{ $nombresServicios }}">
     <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}">
+    <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}">
+    <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}">
+
+
     <div class="graficos-container">
         <div>
             <canvas id="myChart">
@@ -82,6 +86,9 @@
          */
         const ctx = document.getElementById('myChart');
         const citasVacuna = document.getElementById('citasVacuna').value;
+        const citasCirugia = document.getElementById('citasCirugia').value;
+        const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
+
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -95,7 +102,7 @@
                      *  ? 2. En el caso se creara un nuevo servicio como se integraria la informacion a la grafica
                      */
 
-                    data: [citasVacuna, 19, 3, 5, 2, 3],
+                    data: [citasVacuna, citasCirugia, citasLimpiezaDental, 5, 2, 3],
 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
