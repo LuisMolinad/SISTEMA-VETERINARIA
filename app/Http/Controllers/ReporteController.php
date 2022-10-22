@@ -30,7 +30,10 @@ class ReporteController extends Controller
         //Capturando unicamente el mes
         $mesEnCurso = $now->month;
 
-
+        /*    //utlmos 4 meses
+        $ultimoTrimestre = $now->subMonths(4);
+        $ultimoTrimestreInicio = $ultimoTrimestre->month;
+ */
         //capturando los datos, deben ser correspondiente al mes en curso
         $citasVacunaMesActual = citaVacuna::whereMonth('fechaAplicacion', $mesEnCurso)->get()->count();
         $citasCirugiaMesActual = citaCirugia::whereMonth('start', $mesEnCurso)->get()->count();
@@ -39,7 +42,39 @@ class ReporteController extends Controller
         $citasServicios = citaServicio::whereMonth('start', $mesEnCurso)->get()->count();
 
         //mostramos el valor
-        var_dump($citasVacunaMesActual);
+        // var_dump($citasVacunaMesActual);
+
+
+        //capturando los datos, deben ser correspondiente a los trimestres, 
+
+        //*TODO PRIMER TRIMESTRE Enero a Marzo, SEGUNDO TRIMESTRE: Abril a Junio, TERCER TRIMESTRE Julio a Septiembre, CUARTO TRIMESTRE: Octubre a Diciembre
+
+
+        //*Primer trimestre
+        //*Enero
+        $citasVacunaEnero = citaVacuna::whereMonth('fechaAplicacion', $now->month(1)->format('m'))->get()->count();
+        $citasCirugiaEnero = citaCirugia::whereMonth('start', $now->month(1)->format('m'))->get()->count();
+        $citasLimpiezaDentalEnero = citaLimpiezaDental::whereMonth('start',  $now->month(1)->format('m'))->get()->count();
+        $citasServiciosEnero = citaServicio::whereMonth('start',  $now->month(1)->format('m'))->get()->count();
+        //*Febrero
+        $citasVacunaFebrero = citaVacuna::whereMonth('fechaAplicacion', $now->month(2)->format('m'))->get()->count();
+        $citasCirugiaFebrero = citaCirugia::whereMonth('start', $now->month(2)->format('m'))->get()->count();
+        $citasLimpiezaDentalFebrero = citaLimpiezaDental::whereMonth('start',  $now->month(2)->format('m'))->get()->count();
+        $citasServiciosFebrero = citaServicio::whereMonth('start',  $now->month(2)->format('m'))->get()->count();
+
+
+        /* 
+        $citasCirugiaMesActual = citaCirugia::whereMonth('start', $mesEnCurso)->get()->count();
+        $citasLimpiezaDentalMesActual = citaLimpiezaDental::whereMonth('start', $mesEnCurso)->get()->count();
+        //cita servicios
+        $citasServicios = citaServicio::whereMonth('start', $mesEnCurso)->get()->count(); */
+
+        //return ($citasVacunaEnero);
+
+
+
+
+
 
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
     }
