@@ -265,3 +265,9 @@
         background-color: #E6FFEC;
     }
 }
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

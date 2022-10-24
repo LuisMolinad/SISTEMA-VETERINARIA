@@ -251,8 +251,6 @@
             roa = x;
         }
     </script>
-
-    <script src="{{ asset('js/otro.js') }}"></script>
-
-    <script></script>
+<script src="{{asset('js/otro.js')}}"></script>
 @endsection
+
