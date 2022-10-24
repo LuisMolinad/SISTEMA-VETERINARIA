@@ -69,9 +69,9 @@ EDITAR MASCOTA
                     <label for="especie">Especie</label>
                     <div class="especie-c">
                     <select class="form-control lista-es">
-                        <option <?php if($mascota->especie == "Perro") { echo 'selected'; } ?> >Perro</option>
-                        <option <?php if($mascota->especie == "Gato") { echo 'selected'; }  ?> >Gato</option>
-                        <option <?php if($mascota->especie != "Perro" && $mascota->especie != "Gato") { echo 'selected'; } ?> >Otro</option>
+                        <option <?php if($mascota->especie == "Can") { echo 'selected'; } ?> >Can</option>
+                        <option <?php if($mascota->especie == "Felino") { echo 'selected'; }  ?> >Felino</option>
+                        <option <?php if($mascota->especie != "Can" && $mascota->especie != "Felino") { echo 'selected'; } ?> >Otro</option>
                     </select>
                     <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="{{$mascota->especie}}">
                     </div>
@@ -96,7 +96,7 @@ EDITAR MASCOTA
                     <label for="sexoMascota">Sexo</label>
                     <select class="form-control" id="sexoMascota" name="sexoMascota">
                         <option <?php if( $mascota->sexoMascota == 'Hembra' ) { echo 'selected'; } ?> >Hembra</option>
-                        <option <?php if( $mascota->sexoMascota == 'Varón' ) { echo 'selected'; } ?> >Varón</option>
+                        <option <?php if( $mascota->sexoMascota == 'Macho' ) { echo 'selected'; } ?> >Macho</option>
                     </select>
                 </div>
                 <div class="form-group">

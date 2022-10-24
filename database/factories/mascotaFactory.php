@@ -18,9 +18,9 @@ class mascotaFactory extends Factory
             'propietario_id'=>$this->faker->numberBetween(1,25),
             'nombreMascota'=>$this->faker->text(15),
             'razaMascota'=>$this->faker->text(15),
-            'especie'=>$this->faker->randomElement(['Perro','Gato','Otro']),
+            'especie'=>$this->faker->randomElement(['Can','Felino','Otro']),
             'colorMascota'=>$this->faker->text(15),
-            'sexoMascota'=>$this->faker->randomElement(['Hembra','Varón']),
+            'sexoMascota'=>$this->faker->randomElement(['Hembra','Macho']),
             'fechaNacimiento'=>$this->faker->date('d-m-Y'),
             'fallecidoMascota'=>$this->faker->randomElement(['Fallecido','Vivo']),
             'caracteristicasEspeciales'=>$this->faker->text(100)

@@ -124,6 +124,9 @@
 
 .record-space_modal .record-modal form .form-group div{
     flex: 3;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .record-space_modal .record-modal form .contenedor-botones{

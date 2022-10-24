@@ -91,7 +91,7 @@
                     <label for="sexoMascota">Sexo</label>
                     <select class="form-control" id="sexoMascota" name="sexoMascota" required>
                         <option>Hembra</option>
-                        <option selected>Varón</option>
+                        <option selected>Macho</option>
                     </select>
                 </div>
 
@@ -99,8 +99,8 @@
                     <label for="especie">Especie</label>
                     <div class="especie-c">
                         <select class="form-control lista-es">
-                            <option selected>Perro</option>
-                            <option>Gato</option>
+                            <option selected>Can</option>
+                            <option>Felino</option>
                             <option>Otro</option>
                         </select>
                         <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="">
