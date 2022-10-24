@@ -10,6 +10,7 @@ use App\Models\recordatorio;
 use App\Models\vacuna;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\especie;
 
 class CitaVacunaController extends Controller
 {
@@ -58,9 +59,20 @@ class CitaVacunaController extends Controller
     public function mostrar($id)
     {
         $mascotas = mascota::FindOrFail($id);
-        //Recuperamos las vacunas habilitadas
-        $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
-        return view('citasvacunas.create', compact('mascotas', 'vacunas'));
+        $especie = $mascotas->especie;
+        //Recuperar las asociaciones de especie_vacuna segun la especie de la mascota.
+        $vacunas=[];
+        foreach($especie->vacuna as $asociacion){
+            $vacuna_asociada = vacuna::find($asociacion->id);
+            if($vacuna_asociada->disponibilidadVacuna == TRUE){
+                $vacunas[]=$vacuna_asociada;
+            }
+        }
+        // $vacuna_asociada = vacuna::find();
+        // //Recuperamos las vacunas habilitadas
+        // $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
+        // // $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
+        return view('citasvacunas.create', compact('mascotas', 'vacunas','especie'));
         //return view('Cirugia.CrearCirugia');
     }
 

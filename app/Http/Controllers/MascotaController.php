@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use App\Models\expediente;
 use App\Models\recordatorio;
 use Exception;
+use App\Models\especie;
 
 class MascotaController extends Controller
 {
@@ -55,13 +56,17 @@ class MascotaController extends Controller
     public function create($id)
     {
         $propietario = propietario::FindOrFail($id);
+        // $especies = especie::all();
         return view('mascota.create', compact('propietario'));
+        // return view('mascota.create', compact('propietario','especies'));
     }
 
     public function crear($id)
     {
         $propietario = propietario::FindOrFail($id);
-        return view('mascota.create', compact('propietario'));
+        $especies = especie::all();
+        // return view('mascota.create', compact('propietario'));
+        return view('mascota.create', compact('propietario','especies'));
     }
 
     /**
@@ -110,7 +115,8 @@ class MascotaController extends Controller
     public function edit($id)
     {
         $mascota = Mascota::FindOrFail($id);
-        return view('mascota.edit', compact('mascota'));
+        $especies = especie::all();
+        return view('mascota.edit', compact('mascota','especies'));
     }
 
     /**

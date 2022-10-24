@@ -22,7 +22,7 @@ class CreateMascotasTable extends Migration
             $table->foreignId('propietario_id')->constrained('propietarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombreMascota',15);
             $table->string('razaMascota',15);
-            $table->string('especie',15);
+            $table->foreignId('especie_id')->constrained('especies')->onDelete('cascade')->onUpdate('cascade');;
             $table->string('colorMascota',15);
             $table->string('sexoMascota',6);
             $table->string('fechaNacimiento',12);

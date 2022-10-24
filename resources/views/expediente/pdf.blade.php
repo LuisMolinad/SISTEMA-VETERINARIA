@@ -25,7 +25,7 @@
                     <p class="articulo"><span class="campo">Nombre de la mascota: </span> {{$expediente->mascota->nombreMascota}}</p>
                     <p class="articulo"><span class="campo">Estado de la mascota: </span> {{$expediente->mascota->fallecidoMascota}}</p>
                     <p class="articulo"><span class="campo">Raza mascota: </span> {{$expediente->mascota->razaMascota}}</p>
-                    <p class="articulo"><span class="campo">Especie: </span> {{$expediente->mascota->especie}}</p>
+                    <p class="articulo"><span class="campo">Especie: </span> {{$expediente->mascota->especie->nombreEspecie}}</p>
                     <p class="articulo"><span class="campo">Color:</span> {{$expediente->mascota->colorMascota}}</p>
                     <p class="articulo"><span class="campo">Sexo de la mascota: </span> {{$expediente->mascota->sexoMascota}}</p>
                     <p class="articulo"><span class="campo">Fecha de nacimiento: </span> {{$expediente->mascota->fechaNacimiento}}</p>

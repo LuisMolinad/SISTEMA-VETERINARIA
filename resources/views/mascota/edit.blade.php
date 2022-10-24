@@ -68,12 +68,18 @@ EDITAR MASCOTA
                 <div class="form-group">
                     <label for="especie">Especie</label>
                     <div class="especie-c">
-                    <select class="form-control lista-es">
+                    {{-- <select class="form-control lista-es">
                         <option <?php if($mascota->especie == "Perro") { echo 'selected'; } ?> >Perro</option>
                         <option <?php if($mascota->especie == "Gato") { echo 'selected'; }  ?> >Gato</option>
                         <option <?php if($mascota->especie != "Perro" && $mascota->especie != "Gato") { echo 'selected'; } ?> >Otro</option>
                     </select>
-                    <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="{{$mascota->especie}}">
+                    <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="{{$mascota->especie}}"> --}}
+                    <select class="form-control" id="especie_id" name="especie_id">
+                        @foreach ($especies as $especie)
+                            <option value="{{$mascota->especie->id}}" hidden>{{$mascota->especie->nombreEspecie}}</option>
+                            <option value="{{$especie->id}}">{{$especie->nombreEspecie}}</option>
+                        @endforeach
+                    </select>
                     </div>
                     <div class="invalid-feedback">
                         Por favor ingrese una especie válida
@@ -239,5 +245,5 @@ function asignar(x){
 
 </script>
 
-<script src="{{asset('js/otro.js')}}"></script>
+{{-- <script src="{{asset('js/otro.js')}}"></script> --}}
 @endsection

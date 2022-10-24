@@ -44,7 +44,7 @@ GESTIONAR MASCOTA
                     <td>{{$mascota->propietario->nombrePropietario}}</td>
                     <td>{{$mascota->nombreMascota}}</td>
                     <td>{{$mascota->razaMascota}}</td>
-                    <td>{{$mascota->especie}}</td>
+                    <td>{{$mascota->especie->nombreEspecie}}</td>
                     <td>{{$mascota->colorMascota}}</td>
                     <td id = "botones-linea">
                         <a href="{{ url('/mascota/'.$mascota->id) }}"><button type="button" class="btn btn-primary">Consultar</button></a>
