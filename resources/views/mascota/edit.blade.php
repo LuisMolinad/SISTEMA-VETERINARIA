@@ -68,14 +68,10 @@ EDITAR MASCOTA
                 <div class="form-group">
                     <label for="especie">Especie</label>
                     <div class="especie-c">
-                    {{-- <select class="form-control lista-es">
-                        <option <?php if($mascota->especie == "Perro") { echo 'selected'; } ?> >Perro</option>
-                        <option <?php if($mascota->especie == "Gato") { echo 'selected'; }  ?> >Gato</option>
-                        <option <?php if($mascota->especie != "Perro" && $mascota->especie != "Gato") { echo 'selected'; } ?> >Otro</option>
-                    </select>
-                    <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="{{$mascota->especie}}"> --}}
                     <select class="form-control" id="especie_id" name="especie_id">
+                        <!--Para listar cada especie de la tabla especies-->
                         @foreach ($especies as $especie)
+                            <!--Asignando valor de la especie de la mascota ya asignada-->
                             <option value="{{$mascota->especie->id}}" hidden>{{$mascota->especie->nombreEspecie}}</option>
                             <option value="{{$especie->id}}">{{$especie->nombreEspecie}}</option>
                         @endforeach

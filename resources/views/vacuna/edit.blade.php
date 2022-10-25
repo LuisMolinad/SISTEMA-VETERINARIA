@@ -54,6 +54,7 @@ Editar vacuna
                         <br>
                         @foreach ($especies as $especie)
                             <label style="margin-right: 25px"><input style="margin-right: 5px" type="checkbox" name="especies[]" value="{{$especie->id}}"
+                                {{-- Para marcar los checkbox de especies previamente asociadas a la vacuna --}}
                                 <?php
                                     foreach ($vacuna->especie as $asociacion) {
                                         if($asociacion->id == $especie->id){

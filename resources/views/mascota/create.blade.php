@@ -98,13 +98,8 @@
                 <div class="form-group">
                     <label for="especie">Especie</label>
                     <div class="especie-c">
-                        {{-- <select class="form-control lista-es">
-                            <option selected>Perro</option>
-                            <option>Gato</option>
-                            <option>Otro</option>
-                        </select>
-                        <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value=""> --}}
                         <select class="form-control" id="especie_id" name="especie_id">
+                            <!--Para listar cada especie de la tabla especies-->
                             @foreach ($especies as $especie)
                                 <option value="" hidden>Nada seleccionado</option>
                                 <option value="{{$especie->id}}">{{$especie->nombreEspecie}}</option>

@@ -59,21 +59,18 @@ class CitaVacunaController extends Controller
     public function mostrar($id)
     {
         $mascotas = mascota::FindOrFail($id);
+        //recuperar la especie de la mascota
         $especie = $mascotas->especie;
-        //Recuperar las asociaciones de especie_vacuna segun la especie de la mascota.
         $vacunas=[];
+        //por cada vacuna asociada a la especie de la mascota, se verificará que este disponible y
+        //se agregará al vector vacunas para mandarlo al formulario de crear cita de vacunación
         foreach($especie->vacuna as $asociacion){
             $vacuna_asociada = vacuna::find($asociacion->id);
             if($vacuna_asociada->disponibilidadVacuna == TRUE){
                 $vacunas[]=$vacuna_asociada;
             }
         }
-        // $vacuna_asociada = vacuna::find();
-        // //Recuperamos las vacunas habilitadas
-        // $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
-        // // $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
         return view('citasvacunas.create', compact('mascotas', 'vacunas','especie'));
-        //return view('Cirugia.CrearCirugia');
     }
 
     public function validar($id)

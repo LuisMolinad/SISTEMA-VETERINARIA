@@ -116,7 +116,7 @@ class VacunaController extends Controller
     public function update(Request $request, $id, $accion)
     {
         //Selectiva para determinar si la edicion corresponde a editar vacuna, deshabilitar vacuna, o habilitar vacuna
-        //y poder retornar un aviso correspondiente al momento de redireccionar al index.
+        //y hacer la accion correspondiente y poder retornar un aviso correspondiente al momento de redireccionar al index.
         if ($accion == "editar"){
             $datosVacuna = request()->except(['_token','_method','especies']);
             vacuna::where('id','=',$id)->update($datosVacuna);
