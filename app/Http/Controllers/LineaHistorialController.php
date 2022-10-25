@@ -103,7 +103,7 @@ class LineaHistorialController extends Controller
 
         lineaHistorial::insert($datos);
 
-        
+        return redirect('/historialMedico/'.request('expediente_id'))->with('success', 'Linea agregada correctamente');
     }
 
     /*Hace la tabla editable*/

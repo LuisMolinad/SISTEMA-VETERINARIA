@@ -61,12 +61,12 @@
                   <small id="helpId" class="form-text text-muted">Help text</small>
                 </div>
   
-  
+                <!--
                 <div class="form-group">
                   <label for="pesolb">Peso anterior de la Mascota: </label>
                   <input type="text"
                     class="form-control" name="pesolb" id="pesolb" aria-describedby="helpId" placeholder="">
-                </div>
+                </div> -->
   
                 
   

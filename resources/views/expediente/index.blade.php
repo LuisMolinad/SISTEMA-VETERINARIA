@@ -12,9 +12,12 @@ GESTIONAR EXPEDIENTE
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Llamamos nuestro documento de sweetalert -->
 <script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
+
+<script src=" {{asset('js/file_query_server.js')}} "></script>
 @endsection
 
 @section('header')
+{{-- <h1 ondblclick="random_creador()" class="header">GESTIONAR EXPEDIENTE</h1> --}}
 <h1 class="header">GESTIONAR EXPEDIENTE</h1>
 @endsection
 
@@ -46,11 +49,14 @@ GESTIONAR EXPEDIENTE
                     <td>{{$expediente->mascota->nombreMascota}}</td>
                     <td>{{$expediente->mascota->propietario->nombrePropietario}}</td>
                     <td id = "botones-linea">
-                       <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a>
+                       {{-- <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a> --}}
+                       <a href="{{ url('/record?i='.$expediente->id) }}"><button type="button" class="btn btn-success">Record vacunacion</button></a>
                        <a href="{{ route('historialmedico.index', $expediente->id) }}"><button type="button" 
                         class="btn btn-warning" style="background-color: #06806A; color:#fff; border-color:#06806A">Historial Medico</button></a>
                        
                        <a href="/exped/{{$expediente->id}}" class="btn btn-success">{{__('Reporte')}}</a>
+                       
+                       <a href="/expediente/examenes/{{$expediente->id}}" class="btn btn-primary">{{__('Examenes')}}</a>
 
                     </td>
                 </tr>

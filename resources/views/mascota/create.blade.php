@@ -91,7 +91,7 @@
                     <label for="sexoMascota">Sexo</label>
                     <select class="form-control" id="sexoMascota" name="sexoMascota" required>
                         <option>Hembra</option>
-                        <option selected>Varón</option>
+                        <option selected>Macho</option>
                     </select>
                 </div>
 
@@ -257,3 +257,4 @@
 
     <script></script>
 @endsection
+

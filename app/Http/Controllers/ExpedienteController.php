@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\expediente;
 use App\Models\mascota;
+use App\Models\Examen;
+use App\Models\lineaHistorial;
+use App\Models\record_vacunacion;
+use App\Models\vacuna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use PDF;
@@ -102,49 +106,18 @@ class ExpedienteController extends Controller
         return view('expediente.edit', compact('expediente'));
     }
 
-/*
-    public function pdf()
-    {
-        $pdf = PDF::loadView('Cirugia.pdf');
-      //  $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->stream();
-        //return view('Cirugia.pdf');
-    }
-    */
-
     public function pdfConverter($id){
         $expediente = expediente::FindOrFail($id);
-        $pdf = PDF::loadView('expediente.pdf', ['expediente'=>$expediente]);
+        $linea = lineaHistorial::all()->where('expediente_id','=',$id);
+        $datos = [
+            'expediente' => $expediente,
+            'linea' => $linea,
+            'vacunas' => vacuna::all(),
+            'record' => record_vacunacion::all()->where('expediente_id', $id)
+        ];
+        $pdf = PDF::loadView('expediente.pdf', ['datos'=>$datos]);
         return $pdf->stream();
-    }
-
-/*     public function pdf($id){
-        $expedientes = expediente::with('mascota')->get();
-        $expediente = null;
-        foreach ($expedientes as $e){
-            if($e->id == $id){
-                $expediente = $e;
-            }
-        }
-        
-        return view(('expediente.pdf'), compact('expediente'));
-    } */
-        //$pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
-        //return $pdf->stream();
-
-        /*
-        $pdf = PDF::loadView('expediente.pdf',['expediente'=>$expediente]);
-        return $pdf->stream();
-        */
-        //return view('welcome');
-
-/*
-        $pdf = PDF::loadView('expediente.pdf');
-        return $pdf->download('archivo.pdf');
-        */
-        //return $pdf->download('Rosalio.pdf');
-
-    
+    }    
 
     /**
      * Update the specified resource in storage.
@@ -177,5 +150,19 @@ class ExpedienteController extends Controller
     public function gestionar_historial_Medico($id){
         $expediente = expediente::FindOrFail($id);
         return view('expediente.historial_medico', compact('expediente'));
+    }
+
+    public function examenes($id){
+        
+        $expediente = expediente::where('id', '=', $id)->first();
+
+        $datos = [
+            "expediente" => $expediente,
+            "examenes" => Examen::all()->where('expediente_id', '=', $id),
+            "mascota" => mascota::where('id', '=', $expediente->mascota_id)->first()
+        ];
+
+        return view('expediente.examenes.index', compact('datos'));
+        // return response()->json($datos);
     }
 }

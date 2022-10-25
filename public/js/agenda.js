@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             //Obtengo datos que no dependen de las tablas
                             formularioCitasVacunas.title.value = respuesta.data.title;
                             formularioCitasVacunas.start.value = respuesta.data.start;
-                            formularioCitasVacunas.pesolb.value = respuesta.data.pesolb + " lb";
+                          //formularioCitasVacunas.pesolb.value = respuesta.data.pesolb + " lb";
 
 
                         $("#eventoconsultavacunas").modal("show");
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formularioCitasVacunas.vacuna_id.disabled = true;
         formularioCitasVacunas.start.disabled = true;
         formularioCitasVacunas.estadoCita.disabled = true;
-        formularioCitasVacunas.pesolb.disabled = true;
+        /*formularioCitasVacunas.pesolb.disabled = true;*/
         formularioCitasVacunas.title.disabled = true;
         formularioCitasVacunas.nombreMascota.disabled = true;
         formularioCitasCirugias.title.disabled = true;
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (!formato_telefono.test(telefono)) {
             //alert("El telefono debe tener 8 digitos");
             document.getElementById("validaragendar").innerHTML =
-                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos</div>';
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert"><a href="" class="close" data-dismiss="alert">&times;</a>El telefono debe tener 8 digitos numericos y de la siguiente forma ########</div>';
                 guardarvalidado();
                 return false;
         } else if (formulario.descripcion.value == "") {

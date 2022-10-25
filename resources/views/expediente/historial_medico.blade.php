@@ -21,19 +21,26 @@ Historial Medico
     @include('layouts.notificacion')
     <div class="table-responsive-sm container-fluid contenedor">
 
-        <form id="agregar_linea">
+        <!--Se agrega una validacion para en el caso que la mascota se encuentre fallecida-->
+
+        @if($expediente->mascota->fallecidoMascota == 'Vivo')
+        <form method="GET" action="/historial_medico/fetch" id="agregar_linea">
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
             <div class="col-lg-12">
                 <label for="" style="margin-bottom: 10px">Diagnostico:</label>
                 <!--style="resize: both;-->
-                <textarea id="textoLineaHistorial" type="text" name="textoLineaHistorial" class="form-control" rows="3" placeholder='Escriba el diagnostico de la mascota' ></textarea>
+                <textarea id="textoLineaHistorial" type="text" name="textoLineaHistorial" class="form-control" rows="3" placeholder='Escriba el diagnostico de la mascota' required></textarea>
             </div>
             <div class="col-lg-12">
                 <button onclick="return agregar_linea()" class="btn btn-success float-right" style="margin-top: 10px">Agregar linea</button>
             </div>
         </form>
+
+        <br><br>
+        @endif
         
-        <br><br><br>
+        <br>
+        
         <table class="table table-striped" id="tarjetahistorial">
             <thead class="table-dark table-header">
                 <tr>
@@ -94,7 +101,7 @@ Historial Medico
     </script>
 
     <!--Agregar-->
-    <script>
+    {{--<script>
         function agregar_linea(){
 
             var expediente_id = document.querySelector('#expediente_id').value;
@@ -124,22 +131,23 @@ Historial Medico
             '<td>' + linea + '</td>' +
             '<td></td>'; 
 
-
-            if(expediente_id.length > 0 && linea.length > 0){
+            /*
+           if(expediente_id.length > 0 && linea.length > 0){
                 fetch('/historial_medico/fetch/?expediente_id='+expediente_id+'&textoLineaHistorial='+linea)
                 .then(()=>{
                     console.log(fecha_hoy);
                     document.getElementById("tarjetahistorial").insertRow(-1).innerHTML = nueva_linea;
                     linea = '';
                     //Con esta instruccion se recarga la pagina
-                    location.reload();
+                    //location.reload();
                     //window.location.reload(false);
                 })
             }
+            */
 
             return false;
         }
-    </script>
+    </script> --}}
 
     <!--Modificar-->
     <script>
@@ -186,7 +194,7 @@ Historial Medico
                         .then(()=>{
                             console.log('si hace el cambio');
                             //Con esta instruccion se recarga la pagina
-                            window.location.reload(false);
+                            //window.location.reload(false);
                         })
                         //Rosalio magia
 

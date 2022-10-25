@@ -98,7 +98,7 @@ EDITAR MASCOTA
                     <label for="sexoMascota">Sexo</label>
                     <select class="form-control" id="sexoMascota" name="sexoMascota">
                         <option <?php if( $mascota->sexoMascota == 'Hembra' ) { echo 'selected'; } ?> >Hembra</option>
-                        <option <?php if( $mascota->sexoMascota == 'Varón' ) { echo 'selected'; } ?> >Varón</option>
+                        <option <?php if( $mascota->sexoMascota == 'Macho' ) { echo 'selected'; } ?> >Macho</option>
                     </select>
                 </div>
                 <div class="form-group">

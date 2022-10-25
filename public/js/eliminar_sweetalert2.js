@@ -122,6 +122,68 @@ function alerta_eliminar_general( nombre, id){
     return false;
 }
 
+function alerta_eliminar_record(id){
+    var formulario = $('#EditForm'+id);
+    
+    
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar el registro?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El registro ha sido eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}
+
+function alerta_eliminar_examen(id){
+    var formulario = $('#EditForm'+id);
+    
+    
+
+    Swal.fire({
+        title: 'Esta seguro que desea eliminar el documento?',
+        text: "No podra revertir esta decision!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borralo!',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire(
+                'Se eliminara!',
+                'El documento ha sido eliminado.',
+                'success'
+            ).then((result)=>{
+                formulario.submit();
+            });
+
+        }
+      })
+
+    return false;
+}
+
 function alerta_eliminar_recordatorio(id){
     var formulario = $('#EditForm'+id);
 
