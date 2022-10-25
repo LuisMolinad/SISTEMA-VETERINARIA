@@ -159,7 +159,26 @@ class ReporteController extends Controller
         }
 
 
+        //*-----------Sumatoria de citas de cirugía anual------------------------------------------------------------------------------------------------------------------------------
+        $numeros = $citaCirugiaArreglo;
+        $sumaCirugia = 0;
+        foreach ($numeros as $numero) {
+            $sumaCirugia += $numero;
+        }
 
+        //*-----------Sumatoria de citas de limpieza dental  anual------------------------------------------------------------------------------------------------------------------------------
+        $numeros = $citaLimpiezaDentalArreglo;
+        $sumaLimpiezaDental = 0;
+        foreach ($numeros as $numero) {
+            $sumaLimpiezaDental += $numero;
+        }
+
+        //*-----------Sumatoria de citas de servicio  anual------------------------------------------------------------------------------------------------------------------------------
+        $numeros = $citasServiciosAnualArreglo;
+        $sumaServicios = 0;
+        foreach ($numeros as $numero) {
+            $sumaServicios += $numero;
+        }
 
 
         // echo ($suma);
@@ -168,6 +187,7 @@ class ReporteController extends Controller
 
 
 
-        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
+        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios',
+        'sumaVacuna','sumaCirugia','sumaLimpiezaDental','sumaServicios'));
     }
 }
