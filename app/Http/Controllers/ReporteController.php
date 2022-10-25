@@ -52,42 +52,6 @@ class ReporteController extends Controller
         //*TODO PRIMER TRIMESTRE Enero a Marzo, SEGUNDO TRIMESTRE: Abril a Junio, TERCER TRIMESTRE Julio a Septiembre, CUARTO TRIMESTRE: Octubre a Diciembre
 
 
-        //*Primer trimestre
-        //*Enero
-        $citasVacunaEnero = citaVacuna::whereMonth('fechaAplicacion', $now->month(1)->format('m'))->get()->count();
-        $citasCirugiaEnero = citaCirugia::whereMonth('start', $now->month(1)->format('m'))->get()->count();
-        $citasLimpiezaDentalEnero = citaLimpiezaDental::whereMonth('start',  $now->month(1)->format('m'))->get()->count();
-        $citasServiciosEnero = citaServicio::whereMonth('start',  $now->month(1)->format('m'))->get()->count();
-        //*Febrero
-        $citasVacunaFebrero = citaVacuna::whereMonth('fechaAplicacion', $now->month(2)->format('m'))->get()->count();
-        $citasCirugiaFebrero = citaCirugia::whereMonth('start', $now->month(2)->format('m'))->get()->count();
-        $citasLimpiezaDentalFebrero = citaLimpiezaDental::whereMonth('start',  $now->month(2)->format('m'))->get()->count();
-        $citasServiciosFebrero = citaServicio::whereMonth('start',  $now->month(2)->format('m'))->get()->count();
-        //*Marzo
-        $citasVacunaMarzo = citaVacuna::whereMonth('fechaAplicacion', $now->month(3)->format('m'))->get()->count();
-        $citasCirugiaMarzo = citaCirugia::whereMonth('start', $now->month(3)->format('m'))->get()->count();
-        $citasLimpiezaDentalMarzo = citaLimpiezaDental::whereMonth('start',  $now->month(3)->format('m'))->get()->count();
-        $citasServiciosMarzo = citaServicio::whereMonth('start',  $now->month(3)->format('m'))->get()->count();
-        //*Abril
-        $citasVacunaAbril = citaVacuna::whereMonth('fechaAplicacion', $now->month(4)->format('m'))->get()->count();
-        $citasCirugiaAbril = citaCirugia::whereMonth('start', $now->month(4)->format('m'))->get()->count();
-        $citasLimpiezaDentalAbril = citaLimpiezaDental::whereMonth('start',  $now->month(4)->format('m'))->get()->count();
-        $citasServiciosAbril = citaServicio::whereMonth('start',  $now->month(4)->format('m'))->get()->count();
-        //*Mayo
-        $citasVacunaAbril = citaVacuna::whereMonth('fechaAplicacion', $now->month(5)->format('m'))->get()->count();
-        $citasCirugiaAbril = citaCirugia::whereMonth('start', $now->month(5)->format('m'))->get()->count();
-        $citasLimpiezaDentalAbril = citaLimpiezaDental::whereMonth('start',  $now->month(5)->format('m'))->get()->count();
-        $citasServiciosAbril = citaServicio::whereMonth('start',  $now->month(5)->format('m'))->get()->count();
-        //*Junio
-        $citasVacunaAbril = citaVacuna::whereMonth('fechaAplicacion', $now->month(6)->format('m'))->get()->count();
-        $citasCirugiaAbril = citaCirugia::whereMonth('start', $now->month(6)->format('m'))->get()->count();
-        $citasLimpiezaDentalAbril = citaLimpiezaDental::whereMonth('start',  $now->month(6)->format('m'))->get()->count();
-        $citasServiciosAbril = citaServicio::whereMonth('start',  $now->month(6)->format('m'))->get()->count();
-        //*Julio
-        $citasVacunaAbril = citaVacuna::whereMonth('fechaAplicacion', $now->month(7)->format('m'))->get()->count();
-        $citasCirugiaAbril = citaCirugia::whereMonth('start', $now->month(7)->format('m'))->get()->count();
-        $citasLimpiezaDentalAbril = citaLimpiezaDental::whereMonth('start',  $now->month(7)->format('m'))->get()->count();
-        $citasServiciosAbril = citaServicio::whereMonth('start',  $now->month(7)->format('m'))->get()->count();
 
         //*TODO Propesta 2 agrupa todo por arreglos
 
@@ -185,7 +149,23 @@ class ReporteController extends Controller
             }
         }
 
-        // return ($citasServiciosAnualArreglo);
+
+
+        //*-----------Sumatoria de citas de vacuna anual------------------------------------------------------------------------------------------------------------------------------
+        $numeros = $citaVacunaArreglo;
+        $sumaVacuna = 0;
+        foreach ($numeros as $numero) {
+            $sumaVacuna += $numero;
+        }
+
+
+
+
+
+        // echo ($suma);
+        // return ($citaVacunaArreglo);
+
+
 
 
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
