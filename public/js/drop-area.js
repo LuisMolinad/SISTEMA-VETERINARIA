@@ -51,7 +51,7 @@ function showFiles(files){
 
 function processFile(file){
     const doctype = file.type;
-    const validExtension = ['image/jpeg','image/jpg', 'image/png', 'application/pdf'];
+    const validExtension = ['image/jpeg','image/jpg', 'image/png', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
     if(validExtension.includes(doctype)){
         //Archivo valido
@@ -78,27 +78,11 @@ function processFile(file){
     }
     else{
         //Archivo no valido
-        console.log(doctype);
-        alert('No es un archivo valido');
+        //console.log(doctype); //Para saber que tipo de archivo es en dado caso no lo acepte
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No es un archivo valido!'
+          })
     }
 }
-
-/* async function uploadFile(file, id){
-    const formData = new FormData();
-    formData.append("file", "file");
-
-    try{
-        const response = await fetch("https:localhost:8000/upload", {
-            method: "POST",
-            body: formData,
-        });
-
-        const responseText = await response.text();
-        console.log(responseText);
-
-        document.querySelector(`#${id}.status-text`).innerHTML = `<span class="success">Archivo subido correctamente ... </span>`;
-    }
-    catch(error){
-        document.querySelector(`#${id}.status-text`).innerHTML = `<span class="failure">El archivo no pudo ser subido... </span>`;
-    }
-} */
