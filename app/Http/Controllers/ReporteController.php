@@ -160,14 +160,30 @@ class ReporteController extends Controller
 
 
 
+        //*-----------Sumatoria para de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
+        $numeros = $citaVacunaArreglo;
+        $vacunaTrimestre1 = 0;
+        for ($i = 1; $i < 4; $i++) {
+            $vacunaTrimestre1 += $numeros[$i];
+        }
 
+        $vacunaTrimestre2 = 0;
+        for ($i = 4; $i < 7; $i++) {
+            $vacunaTrimestre2 += $numeros[$i];
+        }
 
-        // echo ($suma);
-        // return ($citaVacunaArreglo);
+        $vacunaTrimestre3 = 0;
+        for ($i = 7; $i < 10; $i++) {
+            $vacunaTrimestre3 += $numeros[$i];
+        }
 
+        $vacunaTrimestre4 = 0;
+        for ($i = 10; $i < 13; $i++) {
+            $vacunaTrimestre4 += $numeros[$i];
+        }
+        //*-----------Sumatoria fin de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
 
-
-
+        return ($vacunaTrimestre4);
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
     }
 }
