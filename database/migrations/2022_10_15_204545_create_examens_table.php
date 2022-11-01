@@ -17,6 +17,7 @@ class CreateExamensTable extends Migration
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->foreignId('expediente_id')->constrained('expedientes')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nombre');
             $table->string('concepto');
             $table->string('documento');
             $table->date('fecha');
