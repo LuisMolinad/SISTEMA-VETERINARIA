@@ -34,60 +34,67 @@
 
 
     <div class="graficos-container">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <canvas id="myChart">
-                    </canvas>
+        <div class="contenedor_carousel">
+            <div id="carouselMensual" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <canvas id="myChart">
+                        </canvas>
+                    </div>
+                    <div class="carousel-item">
+                        <canvas id="myChart1">
+                        </canvas>
+                    </div>
+                    <div class="carousel-item">
+                        <canvas id="myChart2">
+                        </canvas>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <canvas id="myChart1">
-                    </canvas>
-                </div>
-                <div class="carousel-item">
-                    <canvas id="myChart2">
-                    </canvas>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMensual" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselMensual" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
         </div>
-        <div id="carouselTrimestre" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <canvas id="myChart">
-                    </canvas>
+        <div class="contenedor_carousel">
+            {{--  <div id="carouselTrimestre" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <canvas id="myChart">
+                        </canvas>
+                    </div>
+                    <div class="carousel-item">
+                        <canvas id="myChart1">
+                        </canvas>
+                    </div>
+                    <div class="carousel-item">
+                        <canvas id="myChart2">
+                        </canvas>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <canvas id="myChart1">
-                    </canvas>
-                </div>
-                <div class="carousel-item">
-                    <canvas id="myChart2">
-                    </canvas>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrimestre" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselTrimestre" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrimestre"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTrimestre"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div> --}}
         </div>
-        <div>
+
+        <div class="contenedor_carousel">
             <canvas id="myChart2">
             </canvas>
         </div>
+
     </div>
 
 
