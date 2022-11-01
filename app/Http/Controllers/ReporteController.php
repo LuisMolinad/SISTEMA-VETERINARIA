@@ -183,7 +183,7 @@ class ReporteController extends Controller
         }
         //*-----------Sumatoria fin de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
 
-        return ($vacunaTrimestre4);
+        //return ($vacunaTrimestre4);
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
     }
 }
