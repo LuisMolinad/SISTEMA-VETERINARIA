@@ -19,6 +19,9 @@ Historial Medico
 
 @section('content')
     @include('layouts.notificacion')
+    <div class="container">
+        <div id="liveAlertPlaceholder"></div>
+    </div>
     <div class="table-responsive-sm container-fluid contenedor">
 
         <!--Se agrega una validacion para en el caso que la mascota se encuentre fallecida-->
@@ -193,6 +196,9 @@ Historial Medico
                         fetch('/historial/edit_editable/?id=' + id_linea + '&textoLineaHistorial='+current_text)
                         .then(()=>{
                             console.log('si hace el cambio');
+
+                            alert('Se ha editado correctamente!', 'warning')
+
                             //Con esta instruccion se recarga la pagina
                             //window.location.reload(false);
                         })
@@ -219,6 +225,24 @@ Historial Medico
                 this.append ( input ) ;
                 this.firstElementChild.select ( ) ;
             }
+        }
+
+        //!LiveAlert
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+        const alert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div id="alerta" class="alerta alert alert-${type} css-alerta" role="alert">`,
+            `   <p class="texto-alerta">${message}</p>`,
+            '</div>'
+        ]
+
+        alertPlaceholder.innerHTML = wrapper.innerHTML;
+
+        $('.alerta').fadeTo(2500,500)
+        .slideUp(500, ()=>{
+            $('alerta').slideUp(500)
+        })
         }
     </script>
 @endsection

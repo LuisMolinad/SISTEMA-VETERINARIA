@@ -55,7 +55,7 @@ RECORD VACUNACION - {{'NOMBRE'}}
                     <td><strong>Direccion:</strong></td>
                     <td>{{$datos['expediente']->mascota->propietario->direccionPropietario}}</td>
                     <td><strong>Especie:</strong></td>
-                    <td>{{$datos['expediente']->mascota->especie}}</td>
+                    <td>{{$datos['expediente']->mascota->especie->nombreEspecie}}</td>
                 </tr>
             </tbody>
         </table>
@@ -71,41 +71,47 @@ RECORD VACUNACION - {{'NOMBRE'}}
     </div>
 
     <br>
+
     <div class="record-tablas">
 
         @foreach ($datos['vacunas'] as $vacuna)
-        <div class="record-card">
-            <h4>{{$vacuna->nombreVacuna}}</h4>
-            <table class="record-tabla">
-                <thead>
-                    <th>Fecha</th>
-                    <th>Peso (lbs.)</th>
-                    <th>Refuerzo</th>
-                    <th>Eliminar</th>
-                </thead>
-                <tbody>
-                    @foreach ($datos['record'] as $record)
-                    @if ($vacuna->id === $record->vacuna_id)
-                    <tr>
-                        <td id_linea="{{$record->id}}" class="record-fecha">{{$record->fecha}}</td>
-                        <td id_linea="{{$record->id}}" class="record-peso">{{$record->peso}}</td>
-                        <td id_linea="{{$record->id}}" class="record-refuerzo">{{$record->refuerzo}}</td>
-                        <td>
-                            <form action="{{url('/record/'.$record->id)}}" method="post" id="EditForm{{$record->id}}">
-                                @csrf
-                                {{method_field('DELETE')}}
-                                <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_record('{{$record->id}}')"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endif
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+            @foreach ($datos['especie_vacunas'] as $especie_vacuna)
+                @if ($especie_vacuna->vacuna_id == $vacuna->id)
+                <div class="record-card">
+                    <h4>{{$vacuna->nombreVacuna}}</h4>
+                    <table class="record-tabla">
+                        <thead>
+                            <th>Fecha</th>
+                            <th>Peso (lbs.)</th>
+                            <th>Refuerzo</th>
+                            <th>Eliminar</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($datos['record'] as $record)
+                            @if ($vacuna->id === $record->vacuna_id)
+                            <tr>
+                                <td id_linea="{{$record->id}}" class="record-fecha">{{$record->fecha}}</td>
+                                <td id_linea="{{$record->id}}" class="record-peso">{{$record->peso}}</td>
+                                <td id_linea="{{$record->id}}" class="record-refuerzo">{{$record->refuerzo}}</td>
+                                <td>
+                                    <form action="{{url('/record/'.$record->id)}}" method="post" id="EditForm{{$record->id}}">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_record('{{$record->id}}')"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+            @endforeach
         @endforeach
 
     </div>
+
 </div>
 
 @if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
@@ -120,7 +126,11 @@ RECORD VACUNACION - {{'NOMBRE'}}
                 <div>
                     <select class="form-control" name="vacuna_id" id="form-vacuna" required>
                         @foreach ($datos['vacunas'] as $vacuna)
-                        <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
+                            @foreach ($datos['especie_vacunas'] as $especie_vacuna)
+                                @if ($especie_vacuna->vacuna_id == $vacuna->id)
+                                    <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
+                                @endif
+                            @endforeach
                         @endforeach
                     </select>
                     {{-- <div class="invalid-feedback">
@@ -175,6 +185,8 @@ RECORD VACUNACION - {{'NOMBRE'}}
     </div>
 </div>
 @endif
+{{-- <p>{{$datos['especie_vacunas']}}</p>
+<p>{{$datos['especie_id']}}</p> --}}
 @endsection
 
 @section('js')
