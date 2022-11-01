@@ -6,6 +6,7 @@ use App\Models\expediente;
 use App\Models\record_vacunacion;
 use App\Models\vacuna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecordVacunacionController extends Controller
 {
@@ -17,10 +18,16 @@ class RecordVacunacionController extends Controller
     public function index()
     {
         $id = request('i');
+        
+        $especie_id = expediente::all()->where('id', $id)->first()->mascota->especie_id;
+        $especie_vacunas = DB::table('especie_vacuna')->get()->where('especie_id', $especie_id );
+
         $datos = [
             'vacunas'=>vacuna::all(),
             'expediente' => expediente::all()->where('id', $id)->first(),
-            'record' => record_vacunacion::all()->where('expediente_id', $id)
+            'record' => record_vacunacion::all()->where('expediente_id', $id),
+            'especie_vacunas' => $especie_vacunas,
+            'especie_id' => $especie_id
         ];
         return view('expediente.record_vacunacion.index', compact('datos'));
     }

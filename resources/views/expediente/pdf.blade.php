@@ -29,7 +29,7 @@
                         <p class="articulo"><span class="campo">Nombre de la mascota: </span> {{$datos['expediente']->mascota->nombreMascota}}</p>
                         <p class="articulo"><span class="campo">Estado de la mascota: </span> {{$datos['expediente']->mascota->fallecidoMascota}}</p>
                         <p class="articulo"><span class="campo">Raza mascota: </span> {{$datos['expediente']->mascota->razaMascota}}</p>
-                        <p class="articulo"><span class="campo">Especie: </span> {{$datos['expediente']->mascota->especie}}</p>
+                        <p class="articulo"><span class="campo">Especie: </span> {{$datos['expediente']->mascota->especie->nombreEspecie}}</p>
                         <p class="articulo"><span class="campo">Color:</span> {{$datos['expediente']->mascota->colorMascota}}</p>
                         <p class="articulo"><span class="campo">Sexo de la mascota: </span> {{$datos['expediente']->mascota->sexoMascota}}</p>
                         <p class="articulo"><span class="campo">Fecha de nacimiento: </span> {{$datos['expediente']->mascota->fechaNacimiento}}</p>
