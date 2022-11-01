@@ -15,7 +15,14 @@
 @endsection
 
 @section('content')
-    <input type="text" id="nombreServicios" value="{{ $nombresServicios }}" style="display:none">
+    {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
+    <input type="text" id="nombreServicios" value="{{ $nombresServicios }}">
+    <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}">
+    <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}">
+    <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}">
+    <input type="number" id="citasServicios" value="{{ $citasServicios }}">
+
+
     <div class="graficos-container">
         <div>
             <canvas id="myChart">
@@ -38,57 +45,24 @@
 
 @section('js')
     <script>
-        //Capturo el contenido encontrado en un div oculto
-        const citasClinicas = ['Vacunación', 'Cirugía', 'Limpieza Dental'];
-        console.log(Array.isArray(citasClinicas)); //confirmando que si es arreglo
-
-        const arreglo = document.getElementById('nombreServicios').value;
-        const stringLation = unicodeToChar(arreglo);
-        const stringLimpio = stringLation.replaceAll("[", "").replaceAll("]", "").replaceAll(/"/g, "");
-        console.log(stringLation);
-        console.log(stringLimpio);
-        //Inico de separacion de cada servicio para ser mostrado en barras
-        const arragloNombresTiposServicios = stringLimpio.split(',');
-        console.log(arragloNombresTiposServicios);
-        console.log(Array.isArray(arragloNombresTiposServicios)); //confirmando que si es arreglo
-        const arregloCitas = citasClinicas.concat(arragloNombresTiposServicios);
-        console.log(arregloCitas);
-
-
-
-
         /**
-         *  *Funcion encargada de cambiar los valores unicode a texto
+         ** Mes Actual
          */
-        function unicodeToChar(text) {
-            return text.replace(/\\u[\dA-F]{4}/gi,
-                function(match) {
-                    return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
-                });
-        }
-
-
-
-
-
-
-
-
-
-        // Any of the following formats may be used
         const ctx = document.getElementById('myChart');
+        const citasVacuna = document.getElementById('citasVacuna').value;
+        const citasCirugia = document.getElementById('citasCirugia').value;
+        const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
+        const citasServicios = document.getElementById('citasServicios').value;
 
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: arregloCitas,
+                // labels: arregloCitas,
+                labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
                 datasets: [{
-                    /** 
-                     * ? Data: creo que para esto habria hace por medio de algun if validar
-                     *  ? 1. Que los valores de arregloNombre tengan citas
-                     */
 
-                    data: [12, 19, 3, 5, 2, 3],
+
+                    data: [citasVacuna, citasCirugia, citasLimpiezaDental, citasServicios],
 
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -175,7 +149,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Últimos 6 meses',
+                        text: 'Últimos Trimestre',
                         font: {
                             size: 20
                         }
