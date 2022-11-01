@@ -69,14 +69,18 @@
                         </thead>
                         <tbody>
                             @foreach ($datos['vacunas'] as $vacuna)
-                                <tr><p>{{$vacuna->nombreVacuna}}</p></tr>
-                                @foreach ($datos['record'] as $record)
-                                    @if ($vacuna->id === $record->vacuna_id)
-                                        <tr>
-                                            <td>{{$record->fecha}}</td>
-                                            <td>{{$record->refuerzo}}</td>
-                                            <td>{{$record->peso}}</td>
-                                        </tr>
+                                @foreach ($datos['especie_vacunas'] as $especie_vacuna)
+                                    @if ($especie_vacuna->vacuna_id == $vacuna->id)
+                                    <tr><p>{{$vacuna->nombreVacuna}}</p></tr>
+                                        @foreach ($datos['record'] as $record)
+                                            @if ($vacuna->id === $record->vacuna_id)
+                                                <tr>
+                                                    <td>{{$record->fecha}}</td>
+                                                    <td>{{$record->refuerzo}}</td>
+                                                    <td>{{$record->peso}}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @endforeach
                             @endforeach

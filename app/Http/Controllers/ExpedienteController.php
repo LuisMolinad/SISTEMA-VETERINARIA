@@ -10,6 +10,7 @@ use App\Models\record_vacunacion;
 use App\Models\vacuna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use PDF;
 //use Barryvdh\DomPDF\Facade as PDF;
 
@@ -109,11 +110,17 @@ class ExpedienteController extends Controller
     public function pdfConverter($id){
         $expediente = expediente::FindOrFail($id);
         $linea = lineaHistorial::all()->where('expediente_id','=',$id);
+
+        $especie_id = expediente::all()->where('id', $id)->first()->mascota->especie_id;
+        $especie_vacunas = DB::table('especie_vacuna')->get()->where('especie_id', $especie_id );
+
         $datos = [
             'expediente' => $expediente,
             'linea' => $linea,
             'vacunas' => vacuna::all(),
-            'record' => record_vacunacion::all()->where('expediente_id', $id)
+            'record' => record_vacunacion::all()->where('expediente_id', $id),
+            'especie_vacunas' => $especie_vacunas,
+            'especie_id' => $especie_id
         ];
         $pdf = PDF::loadView('expediente.pdf', ['datos'=>$datos]);
         return $pdf->stream();
