@@ -23,6 +23,7 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
 
 @section('content')
 <div class="table-responsive-sm container-fluid contenedor">
+    @if ($datos['mascota']->fallecidoMascota == 'Vivo')
     <div class="banner-examenes container-sm">
         <form enctype="multipart/form-data" action="{{url('/examen')}}" method="POST" class="needs-validation" novalidate>
             @csrf
@@ -34,14 +35,23 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                         <option selected>Examenes clinicos</option>
                         <option>Hemograma</option>
                     </select>
-
                     <div class="invalid-feedback">
                         Por favor ingrese un dato válido
                     </div>
                     <div class="valid-feedback">
                         Dato válido
                     </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="legend" for="nombre">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese un dato válido
+                    </div>
+                    <div class="valid-feedback">
+                        Dato válido
+                    </div>
                 </div>
 
                 <div class="drag-and-drop">
@@ -72,8 +82,8 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                 </div>
             </fieldset>
         </form>
-
     </div>
+    @endif
 
     <table class="table table-striped" style="width:100%" id="examenes">
         <thead class="table-dark table-header">
@@ -89,7 +99,7 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
             <tr>
                 <td>{{ date( "d-m-Y", strtotime($examen->fecha) ) }}</td>
                 <td>{{$examen->concepto}}</td>
-                <td>{{substr($examen->documento, 17)}}</td>
+                <td>{{$examen->nombre}}</td>
                 <td id = "botones-linea">
                     <a href=" {{asset('storage'.'/'.$examen->documento)}} " target="_blank"><button type="button" class="btn btn-info">Consultar</button></a>
 
@@ -120,7 +130,7 @@ EXAMENES - {{$datos['mascota']->nombreMascota}}
                 "lengthMenu":[[5,10,25,-1],[5,10,25,"Todos"]],
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
-                    "zeroRecords": "No se encuentran datos relacionados found - ",
+                    "zeroRecords": "No se han realizado examenes a esta mascota",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay registros disponibles ",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",

@@ -47,6 +47,30 @@ Editar vacuna
                         Ingrese un tiempo entre dósis válido
                     </div>
                 </div>
+                @foreach($vacuna->especie as $registro)
+                @endforeach
+                <div class="form-group">
+                    <label for="especies"><strong>Especies que pueden recibir la vacuna</strong></label>
+                        <br>
+                        @foreach ($especies as $especie)
+                            <label style="margin-right: 25px"><input style="margin-right: 5px" type="checkbox" name="especies[]" value="{{$especie->id}}"
+                                {{-- Para marcar los checkbox de especies previamente asociadas a la vacuna --}}
+                                <?php
+                                    foreach ($vacuna->especie as $asociacion) {
+                                        if($asociacion->id == $especie->id){
+                                            echo 'checked';
+                                        }
+                                    }
+                                ?>   
+                            >{{$especie->nombreEspecie}}</label>
+                        @endforeach
+                    {{-- <div class="valid-feedback">
+                        Dato válido
+                    </div>
+                    <div class="invalid-feedback">
+                        Ingrese un tiempo entre dósis válido
+                    </div> --}}
+                </div>
             </fieldset>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

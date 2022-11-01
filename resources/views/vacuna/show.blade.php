@@ -27,6 +27,16 @@ Consultar Vacuna
             <br>
             <label>{{$vacuna->tiempoEntreDosisDia}}</label>
         </div>
+
+        <div class="form-group">
+            <label for="especies"><strong>Especies que pueden recibir la vacuna</strong></label>
+                <br>
+                <ul>
+                @foreach ($vacuna->especie as $asociacion)
+                    <li>{{$asociacion->nombreEspecie}}</li>
+                @endforeach
+                </ul>
+        </div>
     </fieldset>
     <a href="/vacuna"><button type="button" class="btn btn-secondary">Regresar</button></a>
 </div>

@@ -48,6 +48,21 @@ Nueva vacuna
                         Ingrese un tiempo entre dósis válido
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="especies"><strong>Especies que pueden recibir la vacuna</strong></label>
+                        <br>
+                        {{-- Para listar cada especie de la tabla especies y asociarlas a la vacuna --}}
+                        @foreach ($especies as $especie)
+                            <label style="margin-right: 25px"><input style="margin-right: 5px" type="checkbox" name="especies[]" value="{{$especie->id}}">{{$especie->nombreEspecie}}</label>
+                        @endforeach
+                    {{-- <div class="valid-feedback">
+                        Dato válido
+                    </div>
+                    <div class="invalid-feedback">
+                        Ingrese un tiempo entre dósis válido
+                    </div> --}}
+                </div>
             </fieldset>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

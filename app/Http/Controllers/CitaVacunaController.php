@@ -10,6 +10,7 @@ use App\Models\recordatorio;
 use App\Models\vacuna;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\especie;
 
 class CitaVacunaController extends Controller
 {
@@ -58,10 +59,18 @@ class CitaVacunaController extends Controller
     public function mostrar($id)
     {
         $mascotas = mascota::FindOrFail($id);
-        //Recuperamos las vacunas habilitadas
-        $vacunas = vacuna::where('disponibilidadVacuna', '1')->get();
-        return view('citasvacunas.create', compact('mascotas', 'vacunas'));
-        //return view('Cirugia.CrearCirugia');
+        //recuperar la especie de la mascota
+        $especie = $mascotas->especie;
+        $vacunas=[];
+        //por cada vacuna asociada a la especie de la mascota, se verificará que este disponible y
+        //se agregará al vector vacunas para mandarlo al formulario de crear cita de vacunación
+        foreach($especie->vacuna as $asociacion){
+            $vacuna_asociada = vacuna::find($asociacion->id);
+            if($vacuna_asociada->disponibilidadVacuna == TRUE){
+                $vacunas[]=$vacuna_asociada;
+            }
+        }
+        return view('citasvacunas.create', compact('mascotas', 'vacunas','especie'));
     }
 
     public function validar($id)

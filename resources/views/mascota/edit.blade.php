@@ -68,12 +68,14 @@ EDITAR MASCOTA
                 <div class="form-group">
                     <label for="especie">Especie</label>
                     <div class="especie-c">
-                    <select class="form-control lista-es">
-                        <option <?php if($mascota->especie == "Perro") { echo 'selected'; } ?> >Perro</option>
-                        <option <?php if($mascota->especie == "Gato") { echo 'selected'; }  ?> >Gato</option>
-                        <option <?php if($mascota->especie != "Perro" && $mascota->especie != "Gato") { echo 'selected'; } ?> >Otro</option>
+                    <select class="form-control" id="especie_id" name="especie_id">
+                        <!--Para listar cada especie de la tabla especies-->
+                        @foreach ($especies as $especie)
+                            <!--Asignando valor de la especie de la mascota ya asignada-->
+                            <option value="{{$mascota->especie->id}}" hidden>{{$mascota->especie->nombreEspecie}}</option>
+                            <option value="{{$especie->id}}">{{$especie->nombreEspecie}}</option>
+                        @endforeach
                     </select>
-                    <input type="text" placeholder="Especie" class="form-control especie-i ocultar" value="{{$mascota->especie}}">
                     </div>
                     <div class="invalid-feedback">
                         Por favor ingrese una especie válida
@@ -96,7 +98,7 @@ EDITAR MASCOTA
                     <label for="sexoMascota">Sexo</label>
                     <select class="form-control" id="sexoMascota" name="sexoMascota">
                         <option <?php if( $mascota->sexoMascota == 'Hembra' ) { echo 'selected'; } ?> >Hembra</option>
-                        <option <?php if( $mascota->sexoMascota == 'Varón' ) { echo 'selected'; } ?> >Varón</option>
+                        <option <?php if( $mascota->sexoMascota == 'Macho' ) { echo 'selected'; } ?> >Macho</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -239,5 +241,5 @@ function asignar(x){
 
 </script>
 
-<script src="{{asset('js/otro.js')}}"></script>
+{{-- <script src="{{asset('js/otro.js')}}"></script> --}}
 @endsection

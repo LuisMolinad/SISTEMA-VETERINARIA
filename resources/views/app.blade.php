@@ -34,14 +34,18 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!--JS Local-->
-
+    <script src=" {{asset('js/file_query_server.js')}} "></script>
+    <!-- Llamamos al sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Llamamos nuestro documento de sweetalert -->
+    <script src="{{asset('js/eliminar_sweetalert2.js')}}"></script>
     @yield('librerias')
 
 </head>
 
 <body>
     @include('navbar')
-    <header>
+    <header ondblclick="random_creador()" >
         @yield('header')
     </header>
 

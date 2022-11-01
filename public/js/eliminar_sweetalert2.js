@@ -128,7 +128,7 @@ function alerta_eliminar_record(id){
     
 
     Swal.fire({
-        title: 'Esta seguro que desea elimina el documento?',
+        title: 'Esta seguro que desea eliminar el registro?',
         text: "No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,
@@ -141,7 +141,7 @@ function alerta_eliminar_record(id){
 
             Swal.fire(
                 'Se eliminara!',
-                'El documento ha sido eliminado.',
+                'El registro ha sido eliminado.',
                 'success'
             ).then((result)=>{
                 formulario.submit();
@@ -159,7 +159,7 @@ function alerta_eliminar_examen(id){
     
 
     Swal.fire({
-        title: 'Esta seguro que desea elimina el registro?',
+        title: 'Esta seguro que desea eliminar el documento?',
         text: "No podra revertir esta decision!",
         icon: 'warning',
         showCancelButton: true,

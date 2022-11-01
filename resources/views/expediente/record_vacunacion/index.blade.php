@@ -63,7 +63,10 @@ RECORD VACUNACION - {{'NOMBRE'}}
 
     <br>
     <div class="record-botones_crud">
+        @if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
         <div id="btn-agregar-vacunacion" class="btn btn-success">Agregar record de vacunacion</div>
+        @endif
+        
         <button class="btn btn-info">Cartilla de vacunacion</button>
     </div>
 
@@ -91,7 +94,7 @@ RECORD VACUNACION - {{'NOMBRE'}}
                             <form action="{{url('/record/'.$record->id)}}" method="post" id="EditForm{{$record->id}}">
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_examen('{{$record->id}}')"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button>
+                                <button type="submit" class="btn btn-danger" onclick="return alerta_eliminar_record('{{$record->id}}')"><img src="{{asset('svg/trash-can.svg')}}" width="20" alt="Eliminar"></button>
                             </form>
                         </td>
                     </tr>
@@ -105,38 +108,63 @@ RECORD VACUNACION - {{'NOMBRE'}}
     </div>
 </div>
 
+@if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
 <div class="record-space_modal none">
     <div class="record-modal">
         <h4>Record de vacunacion</h4>
-        <form action="/record" method="post">
+        <form action="/record" class="needs-validation" method="post" novalidate>
             @csrf
             <input name="expediente_id" type="text" value="{{$datos['expediente']->id}}" hidden>
             <div class="form-group">
                 <label for="vacuna_id">Vacuna:</label>
                 <div>
-                    <select name="vacuna_id" id="form-vacuna">
+                    <select class="form-control" name="vacuna_id" id="form-vacuna" required>
                         @foreach ($datos['vacunas'] as $vacuna)
                         <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
                         @endforeach
                     </select>
+                    {{-- <div class="invalid-feedback">
+                        Por favor ingrese un dato válido
+                    </div>
+                    <div class="valid-feedback">
+                        Dato válido
+                    </div> --}}
                 </div>
             </div>
             <div class="form-group">
                 <label for="fecha">Fecha:</label>
                 <div>
-                    <input type="date" name="fecha" id="form-fecha">
+                    <input class="form-control" type="date" name="fecha" id="form-fecha" required>
+                    {{-- <div class="valid-feedback">
+                        Fecha correcta
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor ingrese una fecha válida
+                    </div> --}}
                 </div>
             </div>
             <div class="form-group">
                 <label for="peso">Peso:</label>
                 <div>
-                    <input type="number" name="peso" id="form-peso" min="1" step="0.1">
+                    <input class="form-control" type="number" name="peso" id="form-peso" min="1" step="0.1" required>
+                    {{-- <div class="valid-feedback">
+                        Fecha correcta
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor ingrese una fecha válida
+                    </div> --}}
                 </div>
             </div>
             <div class="form-group">
                 <label for="refuerzo">Refuerzo:</label>
                 <div>
-                    <input type="date" name="refuerzo" id="form-refuerzo">
+                    <input class="form-control" type="date" name="refuerzo" id="form-refuerzo" required>
+                    {{-- <div class="valid-feedback">
+                        Fecha correcta
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor ingrese una fecha válida
+                    </div> --}}
                 </div>
             </div>
             <div class="contenedor-botones">
@@ -146,8 +174,32 @@ RECORD VACUNACION - {{'NOMBRE'}}
         </form>
     </div>
 </div>
+@endif
 @endsection
 
 @section('js')
 <script src="{{asset('js/Expediente/record.js')}}"></script>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 @endsection
