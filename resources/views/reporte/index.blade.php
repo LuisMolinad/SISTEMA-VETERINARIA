@@ -22,6 +22,11 @@
     <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}">
     <input type="number" id="citasServicios" value="{{ $citasServicios }}">
 
+    <!-- /* Año en curso*/ -->
+    <input type="number" id="citasVacunaAnual" value="{{ $sumaVacuna }}">
+    <input type="number" id="citasCirugiaAnual" value="{{ $sumaCirugia }}">
+    <input type="number" id="citasLimpiezaDentalAnual" value="{{ $sumaLimpiezaDental }}">
+    <input type="number" id="citasServiciosAnual" value="{{ $sumaServicios }}">
 
     <div class="graficos-container">
         <div>
@@ -54,6 +59,9 @@
         const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
         const citasServicios = document.getElementById('citasServicios').value;
 
+        
+
+        
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -117,7 +125,7 @@
         const myChart1 = new Chart(ctx1, {
             type: 'bar',
             data: {
-                labels: ['Vacunación', 'Cirugía', 'Limpieza Dental', 'Green', 'Purple', 'Orange'],
+                labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
                 datasets: [{
                     /*   label: '# of Votes', */
                     data: [12, 19, 3, 5, 2, 3],
@@ -161,16 +169,25 @@
                 }
             }
         });
-        // Any of the following formats may be used
+
+
+
+        //Citas anuales
+      
+        const SumaCitasVacunaAnual = document.getElementById('citasVacunaAnual').value;
+        const SumaCitasCirugiaAnual = document.getElementById('citasCirugiaAnual').value;
+        const SumaCitasLimpiezaDentalAnual = document.getElementById('citasLimpiezaDentalAnual').value;
+        const SumaCitasServiciosAnual = document.getElementById('citasServiciosAnual').value;
         const ctx2 = document.getElementById('myChart2');
 
+        
         const myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
                 datasets: [{
                     /* label: '# of Votes', */
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [SumaCitasVacunaAnual, SumaCitasCirugiaAnual, SumaCitasLimpiezaDentalAnual, SumaCitasServiciosAnual],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
