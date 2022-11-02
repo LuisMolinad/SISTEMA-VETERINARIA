@@ -54,15 +54,20 @@
 }
 
 @media (min-width: 768px) {
-  .graficos-container .contenedor_carousel{
+  .graficos-container .contenedor_carousel {
     flex-basis: calc(50% - 1rem);
     max-width: 50rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .graficos-container .contenedor_carousel{
+  .graficos-container .contenedor_carousel {
     flex-basis: calc(50% - 1rem);
     max-width: 70rem;
   }
 }
+
+/* .carousel-item{
+  width: 100%;
+ 
+} */
