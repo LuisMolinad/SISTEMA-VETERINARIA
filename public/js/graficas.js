@@ -320,6 +320,57 @@ const myChart5 = new Chart(ctx5, {
     }
 });
 
+const ctx6 = document.getElementById('myChart6');
+
+const myChart6 = new Chart(ctx6, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            /* label: '# of Votes', */
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: '6',
+                font: {
+                    size: 20
+                }
+                // text: 'Citas programadas para mes actual'
+            },
+            legend: {
+                display: false
+            },
+        }
+    }
+});
+
 const ctx7 = document.getElementById('myChart7');
 
 const myChart7 = new Chart(ctx7, {
