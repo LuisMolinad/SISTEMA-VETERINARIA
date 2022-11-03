@@ -182,8 +182,20 @@ class ReporteController extends Controller
             $vacunaTrimestre4 += $numeros[$i];
         }
         //*-----------Sumatoria fin de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
+        //*arreglo que contiene los semestres 
+        $vacunasTrimestres = [$vacunaTrimestre1, $vacunaTrimestre2, $vacunaTrimestre3, $vacunaTrimestre4];
+        $jsonVacunasTrimestres = json_encode($vacunasTrimestres);
 
         //return ($vacunaTrimestre4);
-        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
+        print_r($jsonVacunasTrimestres);
+
+        return view('reporte.index', compact(
+            'nombresServicios',
+            'citasVacunaMesActual',
+            'citasCirugiaMesActual',
+            'citasLimpiezaDentalMesActual',
+            'citasServicios',
+            'jsonVacunasTrimestres'
+        ));
     }
 }

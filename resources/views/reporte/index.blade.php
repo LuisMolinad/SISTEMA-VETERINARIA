@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
         integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('js/graficas.js') }}" defer></script>
+    <script src="{{ asset('js/graficas.js') }}" type="text/javascript" defer></script>
 @endsection
 
 @section('header')
@@ -27,6 +27,8 @@
 
 @section('content')
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
+
+    <input type="text" id="vacunasTrimestre" value="{{ $jsonVacunasTrimestres }}">
     <input type="text" id="nombreServicios" value="{{ $nombresServicios }}" style="display:none">
     <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}" style="display:none">
     <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}"style="display:none">

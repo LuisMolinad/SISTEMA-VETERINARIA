@@ -167,15 +167,29 @@ const myChart2 = new Chart(ctx2, {
         }
     }
 });
+
+
+//*TODO Inicio calendario trimestrales
 const ctx3 = document.getElementById('myChart3');
+var TrimestresVacunas = document.getElementById('vacunasTrimestre').value;
+//*Luego de recibida el array como string lo transforme a un arreglo como entero
+const arregloTrimestresVacunas = TrimestresVacunas.replace('[','').replace(']','').split(",").map(Number);
+
+//*Para que se almacene de mejor manera los guardo en variables 
+var VacunaTrimestre1=arregloTrimestresVacunas[0];
+var VacunaTrimestre2=arregloTrimestresVacunas[1];
+var VacunaTrimestre3=arregloTrimestresVacunas[2];
+var VacunaTrimestre4=arregloTrimestresVacunas[3];
+//console.log(TrimestresVacunas);
+console.log(arregloTrimestresVacunas);
 
 const myChart3 = new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [12, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre1, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -205,7 +219,7 @@ const myChart3 = new Chart(ctx3, {
         plugins: {
             title: {
                 display: true,
-                text: '3',
+                text: 'Primer Trimestre Enero-Marzo',
                 font: {
                     size: 20
                 }
@@ -218,15 +232,17 @@ const myChart3 = new Chart(ctx3, {
     }
 });
 
+
+//TODO Inicio Segundo Trimestre
 const ctx4 = document.getElementById('myChart4');
 
 const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [12, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre2, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -256,7 +272,7 @@ const myChart4 = new Chart(ctx4, {
         plugins: {
             title: {
                 display: true,
-                text: '4',
+                text: 'Segundo Trimestre Abril-Junio',
                 font: {
                     size: 20
                 }
@@ -269,15 +285,16 @@ const myChart4 = new Chart(ctx4, {
     }
 });
 
+//TODO Inicio Tercer Trimestre
 const ctx5 = document.getElementById('myChart5');
 
 const myChart5 = new Chart(ctx5, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [12, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre3, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -307,7 +324,7 @@ const myChart5 = new Chart(ctx5, {
         plugins: {
             title: {
                 display: true,
-                text: '5',
+                text: 'Tercer Trimestre Julio-Septiembre',
                 font: {
                     size: 20
                 }
@@ -320,15 +337,17 @@ const myChart5 = new Chart(ctx5, {
     }
 });
 
+//TODO Inicio Cuarto Trimestre
 const ctx6 = document.getElementById('myChart6');
-
+/* var arregloTrimestresVacunas = @json($vacunasTrimestres); */
+/* console.log(arregloTrimestresVacunas); */
 const myChart6 = new Chart(ctx6, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [12, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre4, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -358,7 +377,7 @@ const myChart6 = new Chart(ctx6, {
         plugins: {
             title: {
                 display: true,
-                text: '6',
+                text: 'Cuarto Trimestre Octubre-Diciembre',
                 font: {
                     size: 20
                 }
@@ -370,6 +389,8 @@ const myChart6 = new Chart(ctx6, {
         }
     }
 });
+
+//*TODO FIN calendario trimestrales
 
 const ctx7 = document.getElementById('myChart7');
 
