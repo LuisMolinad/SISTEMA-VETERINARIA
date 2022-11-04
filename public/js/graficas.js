@@ -171,17 +171,52 @@ const myChart2 = new Chart(ctx2, {
 
 //*TODO Inicio calendario trimestrales
 const ctx3 = document.getElementById('myChart3');
+
+//*TODO VACUNAS
 var TrimestresVacunas = document.getElementById('vacunasTrimestre').value;
 //*Luego de recibida el array como string lo transforme a un arreglo como entero
 const arregloTrimestresVacunas = TrimestresVacunas.replace('[','').replace(']','').split(",").map(Number);
+console.log(arregloTrimestresVacunas);//Debe coincidir con el valor del input
 
 //*Para que se almacene de mejor manera los guardo en variables 
 var VacunaTrimestre1=arregloTrimestresVacunas[0];
 var VacunaTrimestre2=arregloTrimestresVacunas[1];
 var VacunaTrimestre3=arregloTrimestresVacunas[2];
 var VacunaTrimestre4=arregloTrimestresVacunas[3];
-//console.log(TrimestresVacunas);
-console.log(arregloTrimestresVacunas);
+
+//*TODO CIRUGIA
+var TrimestresCirugia = document.getElementById('cirugiasTrimestre').value;
+//*Luego de recibida el array como string lo transforme a un arreglo como entero
+const arregloTrimestresCirugias = TrimestresCirugia.replace('[','').replace(']','').split(",").map(Number);
+console.log(arregloTrimestresCirugias);//Debe coincidir con el valor del input
+//*Para que se almacene de mejor manera los guardo en variables 
+var CirugiaTrimestre1=arregloTrimestresCirugias[0];
+var CirugiaTrimestre2=arregloTrimestresCirugias[1];
+var CirugiaTrimestre3=arregloTrimestresCirugias[2];
+var CirugiaTrimestre4=arregloTrimestresCirugias[3];
+
+//*TODO LIMPIEZA
+var LimpiezaCirugia = document.getElementById('limpiezaTrimestre').value;
+//*Luego de recibida el array como string lo transforme a un arreglo como entero
+const arregloTrimestresLimpiezas = LimpiezaCirugia.replace('[','').replace(']','').split(",").map(Number);
+console.log(arregloTrimestresLimpiezas);//Debe coincidir con el valor del input
+//*Para que se almacene de mejor manera los guardo en variables 
+var LimpiezaTrimestre1=arregloTrimestresLimpiezas[0];
+var LimpiezaTrimestre2=arregloTrimestresLimpiezas[1];
+var LimpiezaTrimestre3=arregloTrimestresLimpiezas[2];
+var LimpiezaTrimestre4=arregloTrimestresLimpiezas[3];
+
+
+//*TODO SERVICIO
+var CitaServicio = document.getElementById('servicioTrimestre').value;
+//*Luego de recibida el array como string lo transforme a un arreglo como entero
+const arregloTrimestresServicios = CitaServicio.replace('[','').replace(']','').split(",").map(Number);
+console.log(arregloTrimestresServicios);//Debe coincidir con el valor del input
+//*Para que se almacene de mejor manera los guardo en variables 
+var ServicioTrimestre1=arregloTrimestresServicios[0];
+var ServicioTrimestre2=arregloTrimestresServicios[1];
+var ServicioTrimestre3=arregloTrimestresServicios[2];
+var ServicioTrimestre4=arregloTrimestresServicios[3];
 
 const myChart3 = new Chart(ctx3, {
     type: 'bar',
@@ -189,14 +224,12 @@ const myChart3 = new Chart(ctx3, {
         labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [VacunaTrimestre1, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre1, CirugiaTrimestre1, LimpiezaTrimestre1, ServicioTrimestre1],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(75, 192, 192, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -242,14 +275,12 @@ const myChart4 = new Chart(ctx4, {
         labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [VacunaTrimestre2, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre2, CirugiaTrimestre2, LimpiezaTrimestre2, ServicioTrimestre2],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(75, 192, 192, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -294,14 +325,12 @@ const myChart5 = new Chart(ctx5, {
         labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [VacunaTrimestre3, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre3, CirugiaTrimestre3, LimpiezaTrimestre3, ServicioTrimestre3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(75, 192, 192, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -347,14 +376,12 @@ const myChart6 = new Chart(ctx6, {
         labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [VacunaTrimestre4, 19, 3, 5, 2, 3],
+            data: [VacunaTrimestre4, CirugiaTrimestre4, LimpiezaTrimestre4, ServicioTrimestre4],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(75, 192, 192, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
