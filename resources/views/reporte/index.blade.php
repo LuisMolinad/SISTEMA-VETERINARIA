@@ -27,7 +27,7 @@
 
 @section('content')
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
-    <div>
+    <div id="variablesOcultas" style="display: none;">
         <br><label for="vacunasTrimestre">Trismestres Vacunas</label>
         <input type="text" id="vacunasTrimestre" value="{{ $jsonVacunasTrimestres }}">
         <br> <label for="cirugiasTrimestre">Trismestres Cirugia</label>
@@ -36,14 +36,18 @@
         <input type="text" id="limpiezaTrimestre" value="{{ $jsonLimpiezasTrimestres }}">
         <br> <label for="servicioTrimestre">Trismestres servicio</label>
         <input type="text" id="servicioTrimestre" value="{{ $jsonServicioTrimestres }}">
+
+
+        <br><label for="consolidadoAnual">Consolidado Anual </label>
+        <input type="text" id="consolidadoAnual" value="{{ $jsonConsolidadoAnual }}">
+
+
+        <input type="text" id="nombreServicios" value="{{ $nombresServicios }}" style="display:none">
+        <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}" style="display:none">
+        <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}"style="display:none">
+        <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}"style="display:none">
+        <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
     </div>
-
-    <input type="text" id="nombreServicios" value="{{ $nombresServicios }}" style="display:none">
-    <input type="number" id="citasVacuna" value="{{ $citasVacunaMesActual }}" style="display:none">
-    <input type="number" id="citasCirugia" value="{{ $citasCirugiaMesActual }}"style="display:none">
-    <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}"style="display:none">
-    <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
-
 
     <div class="graficos-container">
         <div class="contenedor_carousel">

@@ -176,7 +176,7 @@ const ctx3 = document.getElementById('myChart3');
 var TrimestresVacunas = document.getElementById('vacunasTrimestre').value;
 //*Luego de recibida el array como string lo transforme a un arreglo como entero
 const arregloTrimestresVacunas = TrimestresVacunas.replace('[','').replace(']','').split(",").map(Number);
-console.log(arregloTrimestresVacunas);//Debe coincidir con el valor del input
+//console.log(arregloTrimestresVacunas);//Debe coincidir con el valor del input
 
 //*Para que se almacene de mejor manera los guardo en variables 
 var VacunaTrimestre1=arregloTrimestresVacunas[0];
@@ -188,7 +188,7 @@ var VacunaTrimestre4=arregloTrimestresVacunas[3];
 var TrimestresCirugia = document.getElementById('cirugiasTrimestre').value;
 //*Luego de recibida el array como string lo transforme a un arreglo como entero
 const arregloTrimestresCirugias = TrimestresCirugia.replace('[','').replace(']','').split(",").map(Number);
-console.log(arregloTrimestresCirugias);//Debe coincidir con el valor del input
+//console.log(arregloTrimestresCirugias);//Debe coincidir con el valor del input
 //*Para que se almacene de mejor manera los guardo en variables 
 var CirugiaTrimestre1=arregloTrimestresCirugias[0];
 var CirugiaTrimestre2=arregloTrimestresCirugias[1];
@@ -199,7 +199,7 @@ var CirugiaTrimestre4=arregloTrimestresCirugias[3];
 var LimpiezaCirugia = document.getElementById('limpiezaTrimestre').value;
 //*Luego de recibida el array como string lo transforme a un arreglo como entero
 const arregloTrimestresLimpiezas = LimpiezaCirugia.replace('[','').replace(']','').split(",").map(Number);
-console.log(arregloTrimestresLimpiezas);//Debe coincidir con el valor del input
+//console.log(arregloTrimestresLimpiezas);//Debe coincidir con el valor del input
 //*Para que se almacene de mejor manera los guardo en variables 
 var LimpiezaTrimestre1=arregloTrimestresLimpiezas[0];
 var LimpiezaTrimestre2=arregloTrimestresLimpiezas[1];
@@ -211,7 +211,7 @@ var LimpiezaTrimestre4=arregloTrimestresLimpiezas[3];
 var CitaServicio = document.getElementById('servicioTrimestre').value;
 //*Luego de recibida el array como string lo transforme a un arreglo como entero
 const arregloTrimestresServicios = CitaServicio.replace('[','').replace(']','').split(",").map(Number);
-console.log(arregloTrimestresServicios);//Debe coincidir con el valor del input
+//console.log(arregloTrimestresServicios);//Debe coincidir con el valor del input
 //*Para que se almacene de mejor manera los guardo en variables 
 var ServicioTrimestre1=arregloTrimestresServicios[0];
 var ServicioTrimestre2=arregloTrimestresServicios[1];
@@ -421,13 +421,24 @@ const myChart6 = new Chart(ctx6, {
 
 const ctx7 = document.getElementById('myChart7');
 
+
+var anualConsolidado = document.getElementById('consolidadoAnual').value;
+//*Luego de recibida el array como string lo transforme a un arreglo como entero
+const arregloConsolidadoAnual = anualConsolidado.replace('[','').replace(']','').split(",").map(Number);
+//console.log('Consolidado '+arregloConsolidadoAnual);//Debe coincidir con el valor del input
+//*Para que se almacene de mejor manera los guardo en variables 
+var consolidadoVacuna=arregloConsolidadoAnual[0];
+var consolidadoCirugia=arregloConsolidadoAnual[1];
+var consolidadoLimpieza=arregloConsolidadoAnual[2];
+var consolidadoServicio=arregloConsolidadoAnual[3];
+//console.log(arrServicio);
 const myChart7 = new Chart(ctx7, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
-            data: [12, 19, 3, 5, 2, 3],
+            data: [consolidadoVacuna, consolidadoCirugia, consolidadoLimpieza, consolidadoServicio],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -457,7 +468,7 @@ const myChart7 = new Chart(ctx7, {
         plugins: {
             title: {
                 display: true,
-                text: '7',
+                text: 'Consolidado Anual',
                 font: {
                     size: 20
                 }
