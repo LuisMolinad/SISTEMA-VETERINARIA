@@ -38,7 +38,7 @@ CONSULTAR MASCOTA
                         @endphp
                         </li>
                     <li><strong>Estado: </strong>{{$mascota->fallecidoMascota}}</li>
-                    <li><strong>Especie: </strong>{{$mascota->especie}} -- <strong> Raza: </strong> {{$mascota->razaMascota}}</li>
+                    <li><strong>Especie: </strong>{{$mascota->especie->nombreEspecie}} -- <strong> Raza: </strong> {{$mascota->razaMascota}}</li>
                 </ul>
             </article>
             <article>

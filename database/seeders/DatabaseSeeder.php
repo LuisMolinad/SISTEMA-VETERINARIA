@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([TipoServicioSeeder::class]);
         $this->call([VacunaSeeder::class]);
         //$this->call([ MascotasSeeder::class ]);
+        $this->call([especieSeeder::class]);
         $this->call([mascotaSeeder::class]);
         $this->call([expedienteSeeder::class]);
         //aca tengo que poner el seeder de los roles y permisos

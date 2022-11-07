@@ -27,6 +27,7 @@
 
 @section('content')
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
+
     <div id="variablesOcultas" style="display: none;">
         <br><label for="vacunasTrimestre">Trismestres Vacunas</label>
         <input type="text" id="vacunasTrimestre" value="{{ $jsonVacunasTrimestres }}">
@@ -48,7 +49,6 @@
         <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}"style="display:none">
         <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
     </div>
-
     <div class="graficos-container">
         <div class="contenedor_carousel">
             <div id="carouselMensual" class="carousel carousel-dark" data-bs-ride="carousel">

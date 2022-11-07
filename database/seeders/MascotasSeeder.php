@@ -12,7 +12,7 @@ class MascotasSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
-     */
+     */ 
     public function run()
     {   $data= [
          [
@@ -20,7 +20,7 @@ class MascotasSeeder extends Seeder
             'idMascota'=> 'G00001',
             'nombreMascota'=>'ZEUS',
             'razaMascota'=>'MALTES',
-            'especie'=>'CANINO',
+            'especie_id'=>'CANINO',
             'colorMascota'=>'CAFE',
             'sexoMascota' =>'M',
             //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),
@@ -32,7 +32,7 @@ class MascotasSeeder extends Seeder
             'idMascota'=> 'G00002',
             'nombreMascota'=>'CANELA',
             'razaMascota'=>'MALTES',
-            'especie'=>'CANINO',
+            'especie_id'=>'CANINO',
             'colorMascota'=>'BLANCO',
             'sexoMascota' =>'F',
             //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),
@@ -45,7 +45,7 @@ class MascotasSeeder extends Seeder
             'idMascota'=> 'G00015',
             'nombreMascota'=>'MICHI',
             'razaMascota'=>'PERSIAN',
-            'especie'=>'FELINO',
+            'especie_id'=>'FELINO',
             'colorMascota'=>'BLANCO',
             'sexoMascota' =>'F',
             //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),

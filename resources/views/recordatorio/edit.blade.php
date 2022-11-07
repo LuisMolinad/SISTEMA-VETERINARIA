@@ -88,7 +88,7 @@ Editar recordatorio
 
                 <div class="form-group col-md-6">
                     <strong>   <label for="" style="color:black">Telefono recordatorio</label></strong>
-                    <input class="form-control" type="tel" name="telefono" value="{{$informacion['recordatorio']->telefono}}" id="telefono" required>
+                    <input class="form-control" type="tel" maxlength="8" pattern="[0-9]{8}" name="telefono" value="{{$informacion['recordatorio']->telefono}}" id="telefono" required>
 
                     <div class="valid-feedback">
                         Telefono correcto

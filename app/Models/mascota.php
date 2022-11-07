@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\propietario;
 use App\Models\citaVacuna;
+use App\Models\especie;
 
 class mascota extends Model
 {
@@ -20,7 +21,7 @@ class mascota extends Model
         'idMascota',
         'nombreMascota',
         'razaMascota',
-        'especie',
+        'especie_id',
         'colMascota',
         'sexoMascota',
         //'fechaNacimiento'=>$this->faker->date('YYYY_mm_dd'),
@@ -33,6 +34,11 @@ class mascota extends Model
     public function propietario()
     {
         return $this->belongsTo(propietario::class);
+    }
+
+    public function especie()
+    {
+        return $this->belongsTo(especie::class);
     }
 
 

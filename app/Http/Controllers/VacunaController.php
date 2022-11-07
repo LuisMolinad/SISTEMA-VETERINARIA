@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\vacuna;
+use App\Models\especie;
 use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 
 class VacunaController extends Controller
 {
@@ -48,8 +50,9 @@ class VacunaController extends Controller
     // Funcion para cargar la vista de crear vacuna
     public function create()
     {
-        //
-        return view('vacuna.create');
+        $especies = especie::all();
+        // return view('vacuna.create');
+        return view('vacuna.create', compact('especies'));
     }
 
     /**
@@ -61,8 +64,11 @@ class VacunaController extends Controller
     //Función para guardar una vacuna desde vacuna.create
     public function store(Request $request)
     {
-        $datosVacuna = request()->except('_token');
+        $datosVacuna = request()->except(['_token','especies']);
         Vacuna::insert($datosVacuna);
+        $vacunaIngresada = Vacuna::latest('id')->first();
+        $especies_vacuna = $request->input('especies');
+        $vacunaIngresada->especie()->sync($especies_vacuna);
         return redirect('/vacuna')->with('success', 'Vacuna creada correctamente');;
     }
 
@@ -94,7 +100,8 @@ class VacunaController extends Controller
     public function edit($id)
     {
         $vacuna = vacuna::find($id);
-        return view('vacuna.edit',compact('vacuna'));
+        $especies = especie::all();
+        return view('vacuna.edit',compact('vacuna','especies'));
     }
 
     /**
@@ -108,15 +115,22 @@ class VacunaController extends Controller
     //  habilitar y deshabilitar del index de vacuna.
     public function update(Request $request, $id, $accion)
     {
-        $datosVacuna = request()->except(['_token','_method']);
-        vacuna::where('id','=',$id)->update($datosVacuna);
         //Selectiva para determinar si la edicion corresponde a editar vacuna, deshabilitar vacuna, o habilitar vacuna
-        //y poder retornar un aviso correspondiente al momento de redireccionar al index.
+        //y hacer la accion correspondiente y poder retornar un aviso correspondiente al momento de redireccionar al index.
         if ($accion == "editar"){
+            $datosVacuna = request()->except(['_token','_method','especies']);
+            vacuna::where('id','=',$id)->update($datosVacuna);
+            $vacuna = Vacuna::findorFail($id);
+            $especies_vacuna = $request->input('especies');
+            $vacuna->especie()->sync($especies_vacuna);
             return redirect('/vacuna')->with('warning','Se ha editado la vacuna correctamente');
         } elseif ($accion == "deshabilitar"){
+            $datosVacuna = request()->except(['_token','_method','especies']);
+            vacuna::where('id','=',$id)->update($datosVacuna);
             return redirect('/vacuna')->with('warning','Se ha deshabilitado la vacuna correctamente');
         } else {
+            $datosVacuna = request()->except(['_token','_method','especies']);
+            vacuna::where('id','=',$id)->update($datosVacuna);
             return redirect('/vacuna')->with('warning','Se ha habilitado la vacuna correctamente');
         }
     }

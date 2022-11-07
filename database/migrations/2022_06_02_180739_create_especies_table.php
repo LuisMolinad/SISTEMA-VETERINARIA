@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExamensTable extends Migration
+class CreateEspeciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateExamensTable extends Migration
      */
     public function up()
     {
-        Schema::create('examens', function (Blueprint $table) {
+        Schema::create('especies', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id');
-            $table->foreignId('expediente_id')->constrained('expedientes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre');
-            $table->string('concepto');
-            $table->string('documento');
-            $table->date('fecha');
+            $table->string('nombreEspecie',15);
         });
     }
 
@@ -31,6 +27,6 @@ class CreateExamensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('examens');
+        Schema::dropIfExists('especies');
     }
 }

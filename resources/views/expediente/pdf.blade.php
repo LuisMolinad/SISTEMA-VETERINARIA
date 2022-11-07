@@ -29,7 +29,7 @@
                         <p class="articulo"><span class="campo">Nombre de la mascota: </span> {{$datos['expediente']->mascota->nombreMascota}}</p>
                         <p class="articulo"><span class="campo">Estado de la mascota: </span> {{$datos['expediente']->mascota->fallecidoMascota}}</p>
                         <p class="articulo"><span class="campo">Raza mascota: </span> {{$datos['expediente']->mascota->razaMascota}}</p>
-                        <p class="articulo"><span class="campo">Especie: </span> {{$datos['expediente']->mascota->especie}}</p>
+                        <p class="articulo"><span class="campo">Especie: </span> {{$datos['expediente']->mascota->especie->nombreEspecie}}</p>
                         <p class="articulo"><span class="campo">Color:</span> {{$datos['expediente']->mascota->colorMascota}}</p>
                         <p class="articulo"><span class="campo">Sexo de la mascota: </span> {{$datos['expediente']->mascota->sexoMascota}}</p>
                         <p class="articulo"><span class="campo">Fecha de nacimiento: </span> {{$datos['expediente']->mascota->fechaNacimiento}}</p>
@@ -69,14 +69,18 @@
                         </thead>
                         <tbody>
                             @foreach ($datos['vacunas'] as $vacuna)
-                                <tr><p>{{$vacuna->nombreVacuna}}</p></tr>
-                                @foreach ($datos['record'] as $record)
-                                    @if ($vacuna->id === $record->vacuna_id)
-                                        <tr>
-                                            <td>{{$record->fecha}}</td>
-                                            <td>{{$record->refuerzo}}</td>
-                                            <td>{{$record->peso}}</td>
-                                        </tr>
+                                @foreach ($datos['especie_vacunas'] as $especie_vacuna)
+                                    @if ($especie_vacuna->vacuna_id == $vacuna->id)
+                                    <tr><p>{{$vacuna->nombreVacuna}}</p></tr>
+                                        @foreach ($datos['record'] as $record)
+                                            @if ($vacuna->id === $record->vacuna_id)
+                                                <tr>
+                                                    <td>{{$record->fecha}}</td>
+                                                    <td>{{$record->refuerzo}}</td>
+                                                    <td>{{$record->peso}}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @endforeach
                             @endforeach
