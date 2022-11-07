@@ -50,7 +50,7 @@
         <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
     </div>
     <div class="graficos-container">
-        <div class="contenedor_carousel">
+        {{-- <div class="contenedor_carousel">
             <div id="carouselMensual" class="carousel carousel-dark" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -75,6 +75,10 @@
                     <span class="visually-hidden"></span>
                 </button>
             </div>
+        </div> --}}
+        <div class="contenedor_carousel">
+            <canvas id="myChart">
+            </canvas>
         </div>
 
         <hr>

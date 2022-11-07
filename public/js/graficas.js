@@ -11,7 +11,7 @@ const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         // labels: arregloCitas,
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
 
 
@@ -50,7 +50,7 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Citas programadas para mes actual',
+                text: 'Citas atendidas mes actual',
                 font: {
                     size: 20
                 }
@@ -66,14 +66,14 @@ const myChart = new Chart(ctx, {
 });
 
 
-const ctx1 = document.getElementById('myChart1');
+/* const ctx1 = document.getElementById('myChart1');
 
 const myChart1 = new Chart(ctx1, {
     type: 'bar',
     data: {
         labels: ['Vacunación', 'Cirugía', 'Limpieza Dental', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            /*   label: '# of Votes', */
+            /*   label: '# of Votes', 
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -124,7 +124,7 @@ const myChart2 = new Chart(ctx2, {
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            /* label: '# of Votes', */
+            /* label: '# of Votes', 
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -166,7 +166,7 @@ const myChart2 = new Chart(ctx2, {
             },
         }
     }
-});
+}); */
 
 
 //*TODO Inicio calendario trimestrales
