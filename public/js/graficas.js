@@ -44,7 +44,7 @@ const myChart = new Chart(ctx, {
         scales: {
             y: {
                 beginAtZero: true
-            }
+            }, 
         },
 
         plugins: {
@@ -58,6 +58,16 @@ const myChart = new Chart(ctx, {
             },
             legend: {
                 display: false
+            },
+            
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
             }
         },
 
@@ -221,7 +231,7 @@ var ServicioTrimestre4=arregloTrimestresServicios[3];
 const myChart3 = new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre1, CirugiaTrimestre1, LimpiezaTrimestre1, ServicioTrimestre1],
@@ -261,6 +271,15 @@ const myChart3 = new Chart(ctx3, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -272,7 +291,7 @@ const ctx4 = document.getElementById('myChart4');
 const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre2, CirugiaTrimestre2, LimpiezaTrimestre2, ServicioTrimestre2],
@@ -312,6 +331,15 @@ const myChart4 = new Chart(ctx4, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -322,7 +350,7 @@ const ctx5 = document.getElementById('myChart5');
 const myChart5 = new Chart(ctx5, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre3, CirugiaTrimestre3, LimpiezaTrimestre3, ServicioTrimestre3],
@@ -362,6 +390,15 @@ const myChart5 = new Chart(ctx5, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -373,7 +410,7 @@ const ctx6 = document.getElementById('myChart6');
 const myChart6 = new Chart(ctx6, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre4, CirugiaTrimestre4, LimpiezaTrimestre4, ServicioTrimestre4],
@@ -413,6 +450,15 @@ const myChart6 = new Chart(ctx6, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -435,7 +481,7 @@ var consolidadoServicio=arregloConsolidadoAnual[3];
 const myChart7 = new Chart(ctx7, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [consolidadoVacuna, consolidadoCirugia, consolidadoLimpieza, consolidadoServicio],
@@ -477,6 +523,15 @@ const myChart7 = new Chart(ctx7, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
