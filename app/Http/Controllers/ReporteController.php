@@ -30,10 +30,7 @@ class ReporteController extends Controller
         //Capturando unicamente el mes
         $mesEnCurso = $now->month;
 
-        /*    //utlmos 4 meses
-        $ultimoTrimestre = $now->subMonths(4);
-        $ultimoTrimestreInicio = $ultimoTrimestre->month;
- */
+
         //capturando los datos, deben ser correspondiente al mes en curso
         $citasVacunaMesActual = citaVacuna::whereMonth('fechaAplicacion', $mesEnCurso)->get()->count();
         $citasCirugiaMesActual = citaCirugia::whereMonth('start', $mesEnCurso)->get()->count();
@@ -41,20 +38,9 @@ class ReporteController extends Controller
         //cita servicios
         $citasServicios = citaServicio::whereMonth('start', $mesEnCurso)->get()->count();
 
-        //mostramos el valor
-        // var_dump($citasVacunaMesActual);
-
-        //*TODO Propesta 1 agrupa todo por arreglos
-
-        //*La idea es englobar todo esto en un array tipo calendario = [ enero, febrero,...] algo similar a un arreglo de arreglos 
-        //*La idea es englobar todo esto en un array tipo calendario = [ enero, febrero,...] luego ese arreglo se recorre en la vista
-
-        //*TODO PRIMER TRIMESTRE Enero a Marzo, SEGUNDO TRIMESTRE: Abril a Junio, TERCER TRIMESTRE Julio a Septiembre, CUARTO TRIMESTRE: Octubre a Diciembre
-
-
 
         //*TODO Propesta 2 agrupa todo por arreglos
-
+        //*TODO Citas Vacuna
         $citasVacuna = citaVacuna::select('id', 'fechaAplicacion')
             ->get()
             ->groupBy(function ($date) {
@@ -151,12 +137,32 @@ class ReporteController extends Controller
 
 
 
-        //*-----------Sumatoria de citas de vacuna anual------------------------------------------------------------------------------------------------------------------------------
-        $numeros = $citaVacunaArreglo;
+        //*-----------Sumatoria de citas anual------------------------------------------------------------------------------------------------------------------------------
+        $sizeVacuna = $citaVacunaArreglo;
         $sumaVacuna = 0;
-        foreach ($numeros as $numero) {
+        foreach ($sizeVacuna as $numero) {
             $sumaVacuna += $numero;
         }
+        $size = $citaCirugiaArreglo;
+        $sumaCirugia = 0;
+        foreach ($size as $numero) {
+            $sumaCirugia += $numero;
+        }
+        $sizeLimpieza = $citaLimpiezaDentalArreglo;
+        $sumaLimpieza = 0;
+        foreach ($sizeLimpieza as $numero) {
+            $sumaLimpieza += $numero;
+        }
+        $sizeServicio = $citasServiciosAnualArreglo;
+        $sumaServicio = 0;
+        foreach ($sizeServicio as $numero) {
+            $sumaServicio += $numero;
+        }
+        $consolidadoAnual = [$sumaVacuna, $sumaCirugia, $sumaLimpieza, $sumaServicio];
+
+
+        $jsonConsolidadoAnual = json_encode($consolidadoAnual);
+        //*TODO PRIMER TRIMESTRE Enero a Marzo, SEGUNDO TRIMESTRE: Abril a Junio, TERCER TRIMESTRE Julio a Septiembre, CUARTO TRIMESTRE: Octubre a Diciembre
 
 
         //*-----------Sumatoria de citas de cirugía anual------------------------------------------------------------------------------------------------------------------------------
@@ -201,7 +207,120 @@ class ReporteController extends Controller
         for ($i = 10; $i < 13; $i++) {
             $vacunaTrimestre4 += $numeros[$i];
         }
-        //*-----------Sumatoria fin de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
+        //*arreglo que contiene los semestres 
+        $vacunasTrimestres = [$vacunaTrimestre1, $vacunaTrimestre2, $vacunaTrimestre3, $vacunaTrimestre4];
+
+        $jsonVacunasTrimestres = json_encode($vacunasTrimestres);
+        //*-----------Inicio Sumatoria  de cita de cirugia trimestral------------------------------------------------------------------------------------------------------------------------------
+
+        $sum = $citaCirugiaArreglo;
+        $cirugiaTrimestre1 = 0;
+        for ($i = 1; $i < 4; $i++) {
+            $cirugiaTrimestre1 += $sum[$i];
+        }
+
+        $cirugiaTrimestre2 = 0;
+        for ($i = 4; $i < 7; $i++) {
+            $cirugiaTrimestre2 += $sum[$i];
+        }
+
+        $cirugiaTrimestre3 = 0;
+        for ($i = 7; $i < 10; $i++) {
+            $cirugiaTrimestre3 += $sum[$i];
+        }
+
+        $cirugiaTrimestre4 = 0;
+        for ($i = 10; $i < 13; $i++) {
+            $cirugiaTrimestre4 += $sum[$i];
+        }
+
+        $cirugiasTrimestres = [$cirugiaTrimestre1, $cirugiaTrimestre2, $cirugiaTrimestre3, $cirugiaTrimestre4];
+
+        $jsonCirugiasTrimestres = json_encode($cirugiasTrimestres);
+
+        //*-----------Fin Sumatoria  de cita de cirugia trimestral------------------------------------------------------------------------------------------------------------------------------
+        //*-----------Inicio Sumatoria  de cita de Limpieza Dental trimestral------------------------------------------------------------------------------------------------------------------------------
+
+        $sum = $citaLimpiezaDentalArreglo;
+        $limpiezaTrimestre1 = 0;
+        for ($i = 1; $i < 4; $i++) {
+            $limpiezaTrimestre1 += $sum[$i];
+        }
+
+        $limpiezaTrimestre2 = 0;
+        for ($i = 4; $i < 7; $i++) {
+            $limpiezaTrimestre2 += $sum[$i];
+        }
+
+        $limpiezaTrimestre3 = 0;
+        for ($i = 7; $i < 10; $i++) {
+            $limpiezaTrimestre3 += $sum[$i];
+        }
+
+        $limpiezaTrimestre4 = 0;
+        for ($i = 10; $i < 13; $i++) {
+            $limpiezaTrimestre4 += $sum[$i];
+        }
+
+        $limpiezaTrimestres = [$limpiezaTrimestre1, $limpiezaTrimestre2, $limpiezaTrimestre3, $limpiezaTrimestre4];
+
+        $jsonLimpiezasTrimestres = json_encode($limpiezaTrimestres);
+
+        //*-----------Fin Sumatoria  de cita de Limpieza Dental trimestral------------------------------------------------------------------------------------------------------------------------------
+
+        //*-----------Inicio Sumatoria  de cita de servicio trimestral------------------------------------------------------------------------------------------------------------------------------
+
+        $sum = $citasServiciosAnualArreglo;
+        $servicioTrimestre1 = 0;
+        for ($i = 1; $i < 4; $i++) {
+            $servicioTrimestre1 += $sum[$i];
+        }
+
+        $servicioTrimestre2 = 0;
+        for ($i = 4; $i < 7; $i++) {
+            $servicioTrimestre2 += $sum[$i];
+        }
+
+        $servicioTrimestre3 = 0;
+        for ($i = 7; $i < 10; $i++) {
+            $servicioTrimestre3 += $sum[$i];
+        }
+
+        $servicioTrimestre4 = 0;
+        for ($i = 10; $i < 13; $i++) {
+            $servicioTrimestre4 += $sum[$i];
+        }
+
+        $servicioTrimestres = [$servicioTrimestre1, $servicioTrimestre2, $servicioTrimestre3, $servicioTrimestre4];
+
+        $jsonServicioTrimestres = json_encode($servicioTrimestres);
+
+        //*-----------Fin Sumatoria  de cita de servicio trimestral------------------------------------------------------------------------------------------------------------------------------
+        //*Para grafica acumulado anualmente
+        /*    $arrayServicio = json_encode($citasServiciosAnualArreglo);
+        $arrayLimpieza = json_encode($citaLimpiezaDentalArreglo);
+        $arrayCirugia = json_encode($citaCirugiaArreglo);
+        $arrayVacuna = json_encode($citaVacunaArreglo);
+ */
+        // print_r($jsonConsolidadoAnual);
+        // print_r($arrayServicio);
+        //Impimiendo unicamente para corroborar 
+        /*  print_r($jsonVacunasTrimestres);
+        print_r($jsonCirugiasTrimestres);
+        print_r($jsonLimpiezasTrimestres);
+        print_r($jsonServicioTrimestres); */
+        return view('reporte.index', compact(
+            'nombresServicios',
+            'citasVacunaMesActual',
+            'citasCirugiaMesActual',
+            'citasLimpiezaDentalMesActual',
+            'citasServicios',
+            'jsonVacunasTrimestres',
+            'jsonCirugiasTrimestres',
+            'jsonLimpiezasTrimestres',
+            'jsonServicioTrimestres',
+            'jsonConsolidadoAnual'
+        ));
 
 
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios',
@@ -209,6 +328,7 @@ class ReporteController extends Controller
 
         return ($vacunaTrimestre4);
         return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
+
 
     }
 }
