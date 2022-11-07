@@ -11,7 +11,7 @@ Editar vacuna
 @section('content')
 <div class="container">
         {{-- <form action="{{url('/vacuna/'.$vacuna->id.'/'.'accion' -> 'editar')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate> --}}
-        <form action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"editar"])}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form name="formulario" action="{{route('Vacuna.update',[$vacuna->id,'accion'=>"editar"])}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             {{method_field('PATCH')}}
             <fieldset class="fieldset">
@@ -72,32 +72,69 @@ Editar vacuna
                     </div> --}}
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary" onclick="return valthisform();">Guardar</button>
         </form>
     </div>
 @endsection
 
 @section('js')
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict'
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields 
+        (function() {
+            'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+    <script>
+        function valthisform(){
+            var array = []
+            var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                array.push(checkboxes[i].value)
+            }
+            
+            if (array.length === 0) {
+                    // alert("Debe seleccionar al menos una especie")
+
+                var toast = Swal.mixin({
+                    toast: true,
+                    icon: 'warning',
+                    title: 'General Title',
+                    /* animation: false, */
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
+                });
+                toast.fire({
+                /*  animation: true, */
+                    title: 'Debe seleccionar al menos una especie que pueda recibir la vacuna.'
+                });
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
 @endsection

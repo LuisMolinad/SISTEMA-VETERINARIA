@@ -11,7 +11,7 @@ Nueva vacuna
 @section('content')
 
 <div class="container">
-        <form action="{{url('/vacuna')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form name="formulario" action="{{url('/vacuna')}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <fieldset class="fieldset">
             <legend class="legend"><strong>Vacuna</strong></legend>
@@ -38,7 +38,7 @@ Nueva vacuna
                 </div>
 
                 <div class="form-group">
-                    <label for="tiempoEntreDosisDia"><strong>Tiempo entre dósis</strong></label>
+                    <label for="tiempoEntreDosisDia"><strong>Tiempo entre dósis (días)</strong></label>
                     <input type="number" min="1" class="form-control" id="tiempoEntreDosisDia" name="tiempoEntreDosisDia" placeholder="Ingrese el tiempo entre dosis de la vacuna en días" required>
                     <input id="disponibilidadVacuna" name="disponibilidadVacuna" type="hidden" value="1">
                     <div class="valid-feedback">
@@ -64,14 +64,14 @@ Nueva vacuna
                     </div> --}}
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary" onclick="return valthisform();">Guardar</button>   
         </form>
     </div>
 @endsection
 
 @section('js')
 <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        // Example starter JavaScript for disabling form submissions if there are invalid fields 
         (function() {
             'use strict'
 
@@ -91,5 +91,38 @@ Nueva vacuna
                     }, false)
                 })
         })()
+    </script>
+    <script>
+        function valthisform(){
+            var array = []
+            var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+            for (var i = 0; i < checkboxes.length; i++) {
+                array.push(checkboxes[i].value)
+            }
+            if (array.length === 0) {
+            var toast = Swal.mixin({
+                toast: true,
+                icon: 'warning',
+                title: 'General Title',
+                /* animation: false, */
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+            toast.fire({
+            /*  animation: true, */
+                title: 'Debe seleccionar al menos una especie que pueda recibir la vacuna.'
+            });
+            return false;
+            }
+            else{
+                return true;
+            }
+        }
     </script>
 @endsection
