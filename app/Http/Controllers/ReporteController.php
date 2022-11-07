@@ -165,32 +165,11 @@ class ReporteController extends Controller
         //*TODO PRIMER TRIMESTRE Enero a Marzo, SEGUNDO TRIMESTRE: Abril a Junio, TERCER TRIMESTRE Julio a Septiembre, CUARTO TRIMESTRE: Octubre a Diciembre
 
 
-        //*-----------Sumatoria de citas de cirugía anual------------------------------------------------------------------------------------------------------------------------------
-        $numeros = $citaCirugiaArreglo;
-        $sumaCirugia = 0;
-        foreach ($numeros as $numero) {
-            $sumaCirugia += $numero;
-        }
-
-        //*-----------Sumatoria de citas de limpieza dental  anual------------------------------------------------------------------------------------------------------------------------------
-        $numeros = $citaLimpiezaDentalArreglo;
-        $sumaLimpiezaDental = 0;
-        foreach ($numeros as $numero) {
-            $sumaLimpiezaDental += $numero;
-        }
-
-        //*-----------Sumatoria de citas de servicio  anual------------------------------------------------------------------------------------------------------------------------------
-        $numeros = $citasServiciosAnualArreglo;
-        $sumaServicios = 0;
-        foreach ($numeros as $numero) {
-            $sumaServicios += $numero;
-
         //*-----------Sumatoria para de vacuna trimestral------------------------------------------------------------------------------------------------------------------------------
         $numeros = $citaVacunaArreglo;
         $vacunaTrimestre1 = 0;
         for ($i = 1; $i < 4; $i++) {
             $vacunaTrimestre1 += $numeros[$i];
-
         }
 
         $vacunaTrimestre2 = 0;
@@ -321,14 +300,5 @@ class ReporteController extends Controller
             'jsonServicioTrimestres',
             'jsonConsolidadoAnual'
         ));
-
-
-        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios',
-        'sumaVacuna','sumaCirugia','sumaLimpiezaDental','sumaServicios'));
-
-        return ($vacunaTrimestre4);
-        return view('reporte.index', compact('nombresServicios', 'citasVacunaMesActual', 'citasCirugiaMesActual', 'citasLimpiezaDentalMesActual', 'citasServicios'));
-
-
     }
 }
