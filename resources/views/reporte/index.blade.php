@@ -121,7 +121,14 @@
         <div class="contenedor_carousel">
             <canvas id="myChart7">
             </canvas>
+          
+        
         </div>
+     
+        <div style="text-align: center">
+            <a href="{{url('/reporte/pdf')}}"  class="btn btn-primary" data-placement= "left">{{__('Imprimir')}} </a>
+        </div>
+     
     @endsection
 
     @section('js')

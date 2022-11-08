@@ -9,6 +9,7 @@ use App\Models\citaLimpiezaDental;
 use App\Models\citaServicio;
 use Carbon\Carbon; //para manejar fechas
 use App\Models\tipoServicio;
+use PDF;
 
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Foreach_;
@@ -300,5 +301,27 @@ class ReporteController extends Controller
             'jsonServicioTrimestres',
             'jsonConsolidadoAnual'
         ));
+    
+       
     }
+
+    public function pdfG(Request $request)
+    {
+        $data=$request->myChart1;
+        $pdf = Pdf::loadView('reporte.graficosPDF', compact('data'));
+
+        
+        // $pdf = Pdf::loadView('reporte.graficosPDF', compact('nombresServicios',
+        // 'citasVacunaMesActual',
+        // 'citasCirugiaMesActual',
+        // 'citasLimpiezaDentalMesActual',
+        // 'citasServicios',
+        // 'jsonVacunasTrimestres',
+        // 'jsonCirugiasTrimestres',
+        // 'jsonLimpiezasTrimestres',
+        // 'jsonServicioTrimestres',
+        // 'jsonConsolidadoAnual'));
+        return $pdf->stream();
+    }
+
 }
