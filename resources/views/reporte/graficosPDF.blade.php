@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graficos PDF</title>
+    <title>Citas de Clinica Veterinaria Pet's Paradise</title>
     <link rel="stylesheet" href="{{ public_path('css/Expediente/tabla_vacuna.css') }}">
 </head>
 <body>
+    <center><h2>Informe de citas atendidas en Clinica Veterinaria Pet's Paradise</h2></center>
+
     <div align="center">
-        <center><h2>Mes actual</h2></center>
+  
+    <fieldset class="seccion"> 
+      
+         <center><h3>Mes actual</h3></center>
             <table id="expediente-vacunas-tabla">
                 <thead>
                         <th></th>
@@ -21,7 +26,7 @@
                     
                 <tbody>
                      <tr>
-                        <td> Mes actual </td>
+                        <td> Mes actual  </td>
                         <td> {{$citasCirugiaMesActual}} </td>
                         <td> {{$citasVacunaMesActual}} </td>
                         <td> {{$citasLimpiezaDentalMesActual}}</td>
@@ -30,9 +35,12 @@
                 </tbody>
             </table>
 
-
+        <br>
+        <br>
+        <hr>
+        <hr>
             <!-- Trimestres -->
-            <center><h2>Trimestres</h2></center>
+            <center><h3>Trimestres</h3></center>
             <table id="expediente-vacunas-tabla">
                 <thead>
                         <th></th>
@@ -77,10 +85,13 @@
                 </tbody>
              </table>
 
-
+             <br>
+        <br>
+        <hr>
+        <hr>
              <!-- Año actual -->
 
-             <center><h2>Año actual</h2></center>
+             <center><h3>Año actual:</h3></center>
             <table id="expediente-vacunas-tabla">
                 <thead>
                         <th></th>
@@ -92,7 +103,7 @@
                     
                 <tbody>
                      <tr>
-                        <td> Año actual </td>
+                        <td> Año actual  </td>
                         <td> {{$consolidadoAnual[1]}} </td>
                         <td> {{$consolidadoAnual[0]}} </td>
                         <td> {{$consolidadoAnual[2]}}</td>
@@ -100,8 +111,9 @@
                      </tr>
                 </tbody>
             </table>
-    </div>
+            </fieldset>
 
+    </div>
 
 </body>
 </html>
