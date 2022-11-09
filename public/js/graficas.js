@@ -6,6 +6,58 @@ const citasVacuna = document.getElementById('citasVacuna').value;
 const citasCirugia = document.getElementById('citasCirugia').value;
 const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
 const citasServicios = document.getElementById('citasServicios').value;
+//Fecha actual
+const fecha = new Date();
+const hoy = fecha.getDate();
+const mesActual = fecha.getMonth() + 1;
+console.log(mesActual);
+
+const mesChart = obtenerMes(mesActual);//Se obtiene el mes actal
+console.log(mesChart);
+
+function obtenerMes( mes ){
+    var numMes='';
+    switch (mes) {
+        case 1:
+          numMes = "Enero";
+          break;
+        case 2:
+          numMes = "Febrero";
+          break;
+        case 3:
+          numMes = "Marzo";
+          break;
+        case 4:
+          numMes = "Abril";
+          break;
+        case 5:
+          numMes = "Mayo";
+          break;
+        case 6:
+          numMes = "Junio";
+          break;
+        case 7:
+          numMes = "Julio";
+          break;
+        case 8:
+          numMes = "Agosto";
+          break;
+        case 9:
+          numMes = "Septiembre";
+          break;
+        case 10:
+          numMes = "Octubre";
+          break;
+        case 11:
+          numMes = "Noviembre";
+          break;
+        case 12:
+            numMes = "Diciembre";
+            break;
+      }
+      return numMes;
+}
+
 
 const myChart = new Chart(ctx, {
     type: 'bar',
@@ -50,7 +102,7 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Citas atendidas mes actual',
+                text: 'Citas Atendidas Mes Actual: '+mesChart,
                 font: {
                     size: 20
                 }
@@ -253,7 +305,7 @@ const myChart3 = new Chart(ctx3, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -313,7 +365,7 @@ const myChart4 = new Chart(ctx4, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -372,7 +424,7 @@ const myChart5 = new Chart(ctx5, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -465,6 +517,8 @@ const myChart6 = new Chart(ctx6, {
 
 //*TODO FIN calendario trimestrales
 
+
+//*Inicio calendario Anual
 const ctx7 = document.getElementById('myChart7');
 
 

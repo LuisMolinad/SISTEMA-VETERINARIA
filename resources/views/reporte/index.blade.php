@@ -122,7 +122,8 @@
             <canvas id="myChart7">
             </canvas>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @section('js')
-    @endsection
+@section('js')
+@endsection
