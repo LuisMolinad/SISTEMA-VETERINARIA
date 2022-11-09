@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="{{ public_path('css/Expediente/tabla_vacuna.css') }}">
 </head>
 <body>
-    <center><h2>Informe de citas atendidas en Clinica Veterinaria Pet's Paradise</h2></center>
+    
 
     <div align="center">
   
     <fieldset class="seccion"> 
-      
+    <legend>Informe de citas atendidas en Clinica Veterinaria Pet's Paradise</legend>
          <center><h3>Mes actual</h3></center>
             <table id="expediente-vacunas-tabla">
                 <thead>
