@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="{{ public_path('css/cartilla.css') }}">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartilla</title>
+    <title>Cartilla de vacunación {{$expediente->mascota->idMascota}}</title>
 </head>
-
 <body>
     <div class="tablaExterna" align="center">
         <div class="filaExterna">
@@ -17,12 +15,12 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">LEUCEMIA FELINA</th>
+                                <th colspan="3" class="nombreVacuna">LEUCEMIA FELINA</th>
                             </tr>
                             <tr>
-                                <th></th>
+                                <th align="left">Fecha</th>
                                 <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,12 +39,12 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">TRIPLE FELINA</th>
+                                <th colspan="3" class="nombreVacuna">TRIPLE FELINA</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
+                                <th align="left">Fecha</th>
                                 <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,13 +63,13 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="4">OTRAS VACUNAS</th>
+                                <th colspan="4" class="nombreVacuna">OTRAS VACUNAS</th>
                             </tr>
                             <tr>
-                                <th>Nombre</th>
+                                <th align="left">Nombre</th>
                                 <th>Fecha</th>
                                 <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,10 +78,10 @@
                             @endforeach
                             @for($i = 1; $i <= 7 - sizeof($otras); $i++)
                                 <tr class="filaRecord">
+                                    <td align="left">&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    <td align="right">&nbsp;</td>
                                 </tr>
                             @endfor
                         </tbody>
@@ -93,28 +91,52 @@
             </div>
             <div class="celdaExterna">
                 <div class="bordeInternoTabla">
-                    <h1>Pet's Paradise</h1>
-                    ________________________________    
-                    <p>El mejor amigo de su mejor amigo</p>
+                    <div style="text-align:center">
+                        <div class="linea_principal">
+                        <h1>Pet's  Paradise</h1>  
+                        </div>
+                        <h4>El mejor amigo de su mejor amigo</h4>
+                    </div>
                     <img class="perritoYGatito" src="{{public_path('/img/perrito_y_gatito.jpg')}}">
                     <div class="datos">
-                        <p><b>Nombre: </b>{{$expediente->mascota->nombreMascota}}</p>
-                        <p><b>Raza: </b>{{$expediente->mascota->razaMascota}}</p>
-                        <p><b>Color: </b>{{$expediente->mascota->colorMascota}}</p>
-                        <p><b>Sexo: </b>{{$expediente->mascota->sexoMascota}}</p>
-                        <p><b>Fecha Nac.: </b>{{$expediente->mascota->fechaNacimiento}}</p>
-                        <p><b>Propietario: </b>{{$expediente->mascota->propietario->nombrePropietario}}</p>
-                        <p><b>Dirección: </b>{{$expediente->mascota->propietario->direccionPropietario}}</p>
-                        <p><b>Teléfono: </b>{{$expediente->mascota->propietario->telefonoPropietario}}</p>
-                        <p><b>Código: </b>{{$expediente->mascota->idMascota}}</p>
+                        <p class="dato"><b>Nombre: </b>{{$expediente->mascota->nombreMascota}}</p>
+                        <p class="dato"><b>Raza: </b>{{$expediente->mascota->razaMascota}}</p>
+                        <p class="dato"><b>Color: </b>{{$expediente->mascota->colorMascota}}</p>
+                        <p class="dato"><b>Sexo: </b>{{$expediente->mascota->sexoMascota}}</p>
+                        <p class="dato"><b>Fecha Nac.: </b>{{$expediente->mascota->fechaNacimiento}}</p>
+                        <p class="dato"><b>Propietario: </b>{{$expediente->mascota->propietario->nombrePropietario}}</p>
+                        <p class="dato"><b>Dirección: </b>{{$expediente->mascota->propietario->direccionPropietario}}</p>
+                        <p class="dato"><b>Teléfono: </b>{{$expediente->mascota->propietario->telefonoPropietario}}</p>
+                        <p class="dato"><b>Código: </b>{{$expediente->mascota->idMascota}}</p>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="informacion_doctora">
+                        Dra. Flor de María Flamenco
+                    </div>
+                    <div class="informacion_doctora2">
+                        MEDICO VETERINARIA
+                    </div>
+                    <div class="informacion_doctora2">
+                        J.V.P.M.V. No. 62
+                    </div>
+                    <br>
+                    <div class="informacion_vet">
+                        Calle El Jabalí Polig "D"-14 No. 7,
+                    </div>
+                    <div class="informacion_vet">
+                        Colonia Jardines del Volcán.
+                    </div>
+                    <div class="informacion_vet">
+                        Tel.: 2278-2114  Cel.: 7095-9194
+                    </div>
+                    <div class="informacion_vet">
+                        E-mail: florpet33@gmail.com
                     </div>
                 </div>
-                <p><b>Dra. Flor de María Flamenco de Tello</b></p>
-                <p><b>MEDICO VETERINARIA</b></p>
-                <p><b>J.V.P.M.V. No. 62</b></p>
-                <p><b>Calle El Jabalí Polig "D"-14 No. 7,</b></p>
-                <p><b>Colonia Jardines del Volcán.</b></p>
-                <p style="color:red;">Creo que mas abajo dice algo.....</p>
             </div>
         </div>
     </div>
@@ -126,20 +148,20 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">VACUNAS RABIA</th>
+                                <th colspan="3" class="nombreVacuna">VACUNAS RABIA</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="left" class="cabeceras">Fecha</th>
+                                <th class="cabeceras">Peso</th>
+                                <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($rabia as $record)
-                                <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecordInterno"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 13 - sizeof($rabia); $i++)
-                                <tr class="filaRecord">
+                                <tr class="filaRecordInterno">
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -150,20 +172,20 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3"><br>CONTROL DE PARASITOS</th>
+                                <th colspan="3" class="nombreVacuna"><br>CONTROL DE PARASITOS</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="left" class="cabeceras">Fecha</th>
+                                <th class="cabeceras">Peso</th>
+                                <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($parasitos as $record)
-                                <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecordInterno"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 13 - sizeof($parasitos); $i++)
-                                <tr class="filaRecord">
+                                <tr class="filaRecordInterno">
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -178,20 +200,20 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">VACUNAS PARVOVIRUS</th>
+                                <th colspan="3" class="nombreVacuna">VACUNAS PARVOVIRUS</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="left" class="cabeceras">Fecha</th>
+                                <th class="cabeceras">Peso</th>
+                                <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($parvovirus as $record)
-                                <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecordInterno"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 13 - sizeof($parvovirus); $i++)
-                                <tr class="filaRecord">
+                                <tr class="filaRecordInterno">
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -202,20 +224,20 @@
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">MOQUILLO-HEPATITIS-LEPTOSPIROSIS</th>
+                                <th colspan="3" class="nombreVacuna">MOQUILLO-HEPATITIS-LEPTOSPIROSIS</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Peso</th>
-                                <th>Refuerzo</th>
+                                <th align="left" class="cabeceras">Fecha</th>
+                                <th class="cabeceras">Peso</th>
+                                <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($moquillo as $record)
-                                <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecordInterno"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 13 - sizeof($moquillo); $i++)
-                                <tr class="filaRecord">
+                                <tr class="filaRecordInterno">
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>

@@ -136,14 +136,14 @@ class RecordVacunacionController extends Controller
     public function cartillapdf($id){
         $expediente = expediente::FindOrFail($id);
         //Recuperando registros de vacunacion segun los mostrados en la cartilla
-        $rabia=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',1);
-        $parvovirus=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',2);
-        $parasitos=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',3);
-        $moquillo=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',4);
-        $leucemia=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',5);
-        $triple=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',6);
+        $rabia=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',1)->take(-3);
+        $parvovirus=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',2)->take(-3);
+        $parasitos=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',3)->take(-3);
+        $moquillo=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',4)->take(-3);
+        $leucemia=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',5)->take(-3);
+        $triple=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',6)->take(-3);
         //en "otras" se recuperaran todas las vacunas que no sean las recuperadas antereriormente
-        $otras=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id','<>',1)->where('vacuna_id','<>',2)->where('vacuna_id','<>',3)->where('vacuna_id','<>',4)->where('vacuna_id','<>',5)->where('vacuna_id','<>',6);
+        $otras=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id','<>',1)->where('vacuna_id','<>',2)->where('vacuna_id','<>',3)->where('vacuna_id','<>',4)->where('vacuna_id','<>',5)->where('vacuna_id','<>',6)->take(-3);
         $vacunas=DB::table('vacunas')->get();
         $pdf = PDF::loadView('expediente.record_vacunacion.cartillapdf',['expediente'=>$expediente,'rabia'=>$rabia,'parvovirus'=>$parvovirus,'parasitos'=>$parasitos,'moquillo'=>$moquillo,'leucemia'=>$leucemia,'triple'=>$triple,'otras'=>$otras,'vacunas'=>$vacunas]);
         return $pdf->stream();

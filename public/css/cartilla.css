@@ -10,7 +10,7 @@
 
 .celdaExterna{
     display: table-cell;
-    border: solid;
+    border: solid 1px #8d8d8d;
     border-width: thin;
     padding-left: 5px;
     padding-right: 5px;
@@ -24,6 +24,8 @@
 .perritoYGatito{
     width: 204px;
     height: 150px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .datos{
@@ -47,4 +49,73 @@
 .filaRecord{
     text-align: center;
     border-bottom: 1px solid #000000";
+}
+
+.filaRecordInterno{
+    text-align: center;
+    border-bottom: 1px solid #1c8d00";
+}
+
+.linea_principal{
+    font-style: italic;
+    font-family: 'zapfino-linotype-one-regular';
+    text-decoration: underline;
+    color: rgb(28, 141, 0);
+    text-align: center;
+    font-size: 21px;
+}
+
+.informacion_doctora{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-style: italic;
+    font-size: 11px; 
+}
+
+.informacion_doctora2{
+    color: rgb(0, 0, 0);
+    font-size: 11px;
+    text-align: center; 
+}
+
+.informacion_vet{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 14px;
+}
+
+.informacion_vet_numero{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dato{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.nombreVacuna{
+    color: rgb(28, 141, 0);
+    text-decoration: underline;
+    padding-bottom: 15px;
+}
+
+.cabeceras{
+    color: rgb(28, 141, 0);
+}
+
+h1{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+h4{
+    top: 0cm;
+    text-align: center;
+    color: rgb(28, 141, 0);
+    display: inline;
+    font-style: italic;
+    font-weight: normal;
 }
