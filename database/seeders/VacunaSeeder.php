@@ -15,30 +15,42 @@ class VacunaSeeder extends Seeder
      */
     public function run()
     {
-     $data= [
+        $data= [
                 [
                     'nombreVacuna'=> 'Rabia',
-                    'descripcionVacuna'=> 'Vacuna contra la rabia obligatoria',
+                    'descripcionVacuna'=> 'Vacuna contra la rabia obligatoria.',
                     'tiempoEntreDosisDia'=> 365,
                     'disponibilidadVacuna' => 1
                 ],
                 [
                     'nombreVacuna'=> 'Parvovirus',
-                    'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
+                    'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual.',
                     'tiempoEntreDosisDia'=> 365,
                     'disponibilidadVacuna' => 1
                 ],
                 [
-                    'nombreVacuna'=> 'Moquillo-Hepatitis',
-                    'descripcionVacuna'=> 'Vacuna de caracter obligatorio anual',
+                    'nombreVacuna'=> 'Control de parásitos',
+                    'descripcionVacuna'=> 'Control de parásitos de las mascotas.',
                     'tiempoEntreDosisDia'=> 365,
                     'disponibilidadVacuna' => 1
                 ],
                 [
-                    'nombreVacuna'=> 'Inmunodeficiencia viral felina (VIF)',
-                    'descripcionVacuna'=> 'Vacuna contra la inmunodeficiencia viral felina. Actualmente, la vacuna ha dejeado de ser usada a nivel mundial, debido se detectan anticuerpos en animales que han recibido esta vacuna',
+                    'nombreVacuna'=> 'Moquillo-Hepatitis-Leptospirosis',
+                    'descripcionVacuna'=> 'Vacuna para el moquillo.',
                     'tiempoEntreDosisDia'=> 365,
-                    'disponibilidadVacuna'=>'0',
+                    'disponibilidadVacuna'=>'1',
+                ],
+                [
+                    'nombreVacuna'=> 'Leucemia felina',
+                    'descripcionVacuna'=> 'Vacuna para la leucemia felina.',
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna'=>'1',
+                ],
+                [
+                    'nombreVacuna'=> 'Triple felina',
+                    'descripcionVacuna'=> 'Vacuna para la triple felina.',
+                    'tiempoEntreDosisDia'=> 365,
+                    'disponibilidadVacuna'=>'1',
                 ],
             ];
 

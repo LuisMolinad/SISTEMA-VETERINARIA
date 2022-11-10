@@ -278,4 +278,5 @@ Route::get('/record/edit/peso', [RecordVacunacionController::class, 'edit_table_
 * * Rutas para sección reportes 
 */
 Route::get('/reporte', [ReporteController::class, 'index'])->name('reportes.index')->middleware('auth');
+Route::get('/reporte/pdf', [ReporteController::class, 'pdfG'])->middleware('auth');
 
