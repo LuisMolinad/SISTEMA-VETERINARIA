@@ -98,8 +98,9 @@ class RecordVacunacionController extends Controller
      */
     public function destroy($id)
     {
+        $record=record_vacunacion::findOrFail($id);
         record_vacunacion::destroy($id);
-        return redirect('/record?i='.$id)->with('danger', 'Registro eliminado correctamente');
+        return redirect('/record?i='.$record->expediente_id)->with('danger', 'Registro eliminado correctamente');
     }
 
     public function edit_table_fecha(){
