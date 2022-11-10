@@ -27,7 +27,10 @@
 
 @section('content')
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
-
+    <br>
+    <div style="text-align: right; margin-right: 40px">
+            <a href="{{url('/reporte/pdf')}}"  class="btn btn-primary" data-placement= "left">{{__('Descargar datos')}} </a>
+    </div>
     <div id="variablesOcultas" style="display: none;">
         <br><label for="vacunasTrimestre">Trismestres Vacunas</label>
         <input type="text" id="vacunasTrimestre" value="{{ $jsonVacunasTrimestres }}">
@@ -121,7 +124,12 @@
         <div class="contenedor_carousel">
             <canvas id="myChart7">
             </canvas>
+          
+        
         </div>
+     
+      
+     
     @endsection
 
     @section('js')
