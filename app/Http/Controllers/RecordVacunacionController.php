@@ -141,9 +141,10 @@ class RecordVacunacionController extends Controller
         $moquillo=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',4);
         $leucemia=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',5);
         $triple=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id',6);
-        //en otras se recuperaran todas las vacunas que no sean las recuperadas antereriormente
+        //en "otras" se recuperaran todas las vacunas que no sean las recuperadas antereriormente
         $otras=DB::table('record_vacunacions')->get()->where('expediente_id', $id)->where('vacuna_id','<>',1)->where('vacuna_id','<>',2)->where('vacuna_id','<>',3)->where('vacuna_id','<>',4)->where('vacuna_id','<>',5)->where('vacuna_id','<>',6);
-        $pdf = PDF::loadView('expediente.record_vacunacion.cartillapdf',['expediente'=>$expediente,'rabia'=>$rabia,'parvovirus'=>$parvovirus,'parasitos'=>$parasitos,'moquillo'=>$moquillo,'leucemia'=>$leucemia,'triple'=>$triple,'otras'=>$otras]);
+        $vacunas=DB::table('vacunas')->get();
+        $pdf = PDF::loadView('expediente.record_vacunacion.cartillapdf',['expediente'=>$expediente,'rabia'=>$rabia,'parvovirus'=>$parvovirus,'parasitos'=>$parasitos,'moquillo'=>$moquillo,'leucemia'=>$leucemia,'triple'=>$triple,'otras'=>$otras,'vacunas'=>$vacunas]);
         return $pdf->stream();
     }
 }

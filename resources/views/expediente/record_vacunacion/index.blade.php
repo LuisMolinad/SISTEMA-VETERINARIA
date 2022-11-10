@@ -66,8 +66,7 @@ RECORD VACUNACION - {{'NOMBRE'}}
         @if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
         <div id="btn-agregar-vacunacion" class="btn btn-success">Agregar record de vacunacion</div>
         @endif
-        {{-- <button href="/exped/24" class="btn btn-info">Cartilla de vacunacion</button> --}}
-        <a href="/cartilla/24" class="btn btn-info">Cartilla de vacunación</a>
+        <a href="/cartilla/{{$datos['expediente']->id}}" class="btn btn-info">Cartilla de vacunación</a>
     </div>
 
     <br>

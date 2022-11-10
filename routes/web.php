@@ -174,7 +174,6 @@ Route::resource('record', RecordVacunacionController::class)->middleware('auth')
 // Route::get('/cartillapdf/{id}', [RecordVacunacionController::class, 'cartillapdf'])->middleware('auth');
 Route::get('/cartilla/{id}', [RecordVacunacionController::class, 'cartillapdf'])->name('cartilla.pdf')->middleware('auth');
 
-
 //Ejemplo consultar JS
 //Mascota
 Route::get('/mascota/consultar/{codigo}', [MascotaController::class, 'consultar'])->middleware('auth');

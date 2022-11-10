@@ -1,0 +1,50 @@
+.tablaExterna{
+    display: table;
+    width: 100%;
+    align-content: center;
+}
+
+.filaExterna{
+    display: table-row;
+}
+
+.celdaExterna{
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 50%;
+}
+
+.pagebreak {
+    page-break-after: always;
+}
+
+.perritoYGatito{
+    width: 204px;
+    height: 150px;
+}
+
+.datos{
+    text-align: left;
+}
+
+.bordeInternoTabla{
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.recordTabla{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.filaRecord{
+    text-align: center;
+    border-bottom: 1px solid #000000";
+}
