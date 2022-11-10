@@ -10,10 +10,11 @@ const citasServicios = document.getElementById('citasServicios').value;
 const fecha = new Date();
 const hoy = fecha.getDate();
 const mesActual = fecha.getMonth() + 1;
-console.log(mesActual);
-
+//console.log(mesActual);
+let anio = fecha.getFullYear();
+//console.log(anio);
 const mesChart = obtenerMes(mesActual);//Se obtiene el mes actal
-console.log(mesChart);
+//console.log(mesChart);
 
 function obtenerMes( mes ){
     var numMes='';
@@ -102,7 +103,7 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Citas Atendidas Mes Actual: '+mesChart,
+                text: 'Citas Atendidas Mes Actual: '+mesChart + ' '+anio,
                 font: {
                     size: 20
                 }
@@ -314,7 +315,7 @@ const myChart3 = new Chart(ctx3, {
         plugins: {
             title: {
                 display: true,
-                text: 'Primer Trimestre Enero-Marzo',
+                text: 'Primer Trimestre Enero-Marzo '+anio,
                 font: {
                     size: 20
                 }
@@ -374,7 +375,7 @@ const myChart4 = new Chart(ctx4, {
         plugins: {
             title: {
                 display: true,
-                text: 'Segundo Trimestre Abril-Junio',
+                text: 'Segundo Trimestre Abril-Junio '+anio,
                 font: {
                     size: 20
                 }
@@ -433,7 +434,7 @@ const myChart5 = new Chart(ctx5, {
         plugins: {
             title: {
                 display: true,
-                text: 'Tercer Trimestre Julio-Septiembre',
+                text: 'Tercer Trimestre Julio-Septiembre '+anio,
                 font: {
                     size: 20
                 }
@@ -493,7 +494,7 @@ const myChart6 = new Chart(ctx6, {
         plugins: {
             title: {
                 display: true,
-                text: 'Cuarto Trimestre Octubre-Diciembre',
+                text: 'Cuarto Trimestre Octubre-Diciembre '+anio,
                 font: {
                     size: 20
                 }
@@ -568,7 +569,7 @@ const myChart7 = new Chart(ctx7, {
         plugins: {
             title: {
                 display: true,
-                text: 'Consolidado Anual',
+                text: 'Consolidado Anual '+anio,
                 font: {
                     size: 20
                 }
