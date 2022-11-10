@@ -20,19 +20,22 @@
                                 <th colspan="3">LEUCEMIA FELINA</th>
                             </tr>
                             <tr>
-                                <th>Fecha</th>
+                                <th></th>
                                 <th>Peso</th>
                                 <th>Refuerzo</th>
-                                {{-- <?php
-                                        $fila="<td>".$leucemia[5]->fecha."</td><td>".$leucemia[5]->peso."</td><td>".$leucemia[5]->refuerzo."</td>";
-                                        echo $fila;
-                                ?> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($leucemia as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 7 - sizeof($leucemia); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                     <table class="recordTabla">
@@ -50,6 +53,13 @@
                             @foreach($triple as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 7 - sizeof($triple); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                     <table class="recordTabla">
@@ -68,6 +78,14 @@
                             @foreach($otras as $record)
                                 <tr class="filaRecord"><td>$vacunas[$record->$vacuna_id]->nombreVacuna</td><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 7 - sizeof($otras); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
 
@@ -120,12 +138,19 @@
                             @foreach($rabia as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 13 - sizeof($rabia); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                     <table class="recordTabla">
                         <thead>
                             <tr>
-                                <th colspan="3">CONTROL DE PARASITOS</th>
+                                <th colspan="3"><br>CONTROL DE PARASITOS</th>
                             </tr>
                             <tr>
                                 <th>Fecha</th>
@@ -137,6 +162,13 @@
                             @foreach($parasitos as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 13 - sizeof($parasitos); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                 </div>
@@ -158,6 +190,13 @@
                             @foreach($parvovirus as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 13 - sizeof($parvovirus); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                     <table class="recordTabla">
@@ -175,6 +214,13 @@
                             @foreach($moquillo as $record)
                                 <tr class="filaRecord"><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
+                            @for($i = 1; $i <= 13 - sizeof($moquillo); $i++)
+                                <tr class="filaRecord">
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
                 </div>
