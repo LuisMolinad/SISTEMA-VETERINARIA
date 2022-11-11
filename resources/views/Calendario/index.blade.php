@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding-bottom: 1rem">
         <!--Selector-->
         <div class="container">
             <select class="form-control col-md-4 mb-4 mt-4" id="selector">
@@ -39,8 +39,8 @@
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                              Launch
-                                            </button>-->
+                                                                      Launch
+                                                                    </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
@@ -244,7 +244,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="btniraeditar">Editar</button>
                         <button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrarEd">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="btnCerrarEd">Cerrar</button>
 
                     </div>
                 </div>
@@ -360,7 +361,8 @@
                 </div>
             </div>
         </div>
-        @extends('Calendario/modalCitasVacunas')
-        @extends('Calendario/modalCitasCirugia')
-        @extends('Calendario/modalCitasDental')
-    @endsection
+    </div>
+    @extends('Calendario/modalCitasVacunas')
+    @extends('Calendario/modalCitasCirugia')
+    @extends('Calendario/modalCitasDental')
+@endsection
