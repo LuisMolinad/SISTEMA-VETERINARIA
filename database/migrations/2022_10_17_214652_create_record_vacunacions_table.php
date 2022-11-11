@@ -20,7 +20,7 @@ class CreateRecordVacunacionsTable extends Migration
             $table->foreignId('vacuna_id')->constrained('vacunas')->onDelete('cascade')->onUpdate('cascade');
             $table->date('fecha');
             $table->date('refuerzo');
-            $table->string('peso');
+            $table->string('peso')->nullable();
             $table->string('record_vacunacions.updated_at')->nullable();
         });
     }

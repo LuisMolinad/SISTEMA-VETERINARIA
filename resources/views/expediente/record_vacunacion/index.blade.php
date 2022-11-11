@@ -62,12 +62,12 @@ RECORD VACUNACION - {{'NOMBRE'}}
     </div>
 
     <br>
+    {{-- * Botones --}}
     <div class="record-botones_crud">
         @if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
-        <div id="btn-agregar-vacunacion" class="btn btn-success">Agregar record de vacunacion</div>
+        <button class="btn btn-success" id="btn-agregar-vacunacion" data-toggle="modal" data-target="#modal_record">Agregar record vacunacion</button>
         @endif
-        
-        <button class="btn btn-info">Cartilla de vacunacion</button>
+        <a href="/cartilla/{{$datos['expediente']->id}}" class="btn btn-info">Cartilla de vacunación</a>
     </div>
 
     <br>
@@ -115,103 +115,34 @@ RECORD VACUNACION - {{'NOMBRE'}}
 </div>
 
 @if ($datos['expediente']->mascota->fallecidoMascota == 'Vivo')
-<div class="record-space_modal none">
-    <div class="record-modal">
-        <h4>Record de vacunacion</h4>
-        <form action="/record" class="needs-validation" method="post" novalidate>
-            @csrf
-            <input name="expediente_id" type="text" value="{{$datos['expediente']->id}}" hidden>
-            <div class="form-group">
-                <label for="vacuna_id">Vacuna:</label>
-                <div>
-                    <select class="form-control" name="vacuna_id" id="form-vacuna" required>
-                        @foreach ($datos['vacunas'] as $vacuna)
-                            @foreach ($datos['especie_vacunas'] as $especie_vacuna)
-                                @if ($especie_vacuna->vacuna_id == $vacuna->id)
-                                    <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
-                                @endif
-                            @endforeach
-                        @endforeach
-                    </select>
-                    {{-- <div class="invalid-feedback">
-                        Por favor ingrese un dato válido
-                    </div>
-                    <div class="valid-feedback">
-                        Dato válido
-                    </div> --}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="fecha">Fecha:</label>
-                <div>
-                    <input class="form-control" type="date" name="fecha" id="form-fecha" required>
-                    {{-- <div class="valid-feedback">
-                        Fecha correcta
-                    </div>
-                    <div class="invalid-feedback">
-                        Por favor ingrese una fecha válida
-                    </div> --}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="peso">Peso:</label>
-                <div>
-                    <input class="form-control" type="number" name="peso" id="form-peso" min="1" step="0.1" required>
-                    {{-- <div class="valid-feedback">
-                        Fecha correcta
-                    </div>
-                    <div class="invalid-feedback">
-                        Por favor ingrese una fecha válida
-                    </div> --}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="refuerzo">Refuerzo:</label>
-                <div>
-                    <input class="form-control" type="date" name="refuerzo" id="form-refuerzo" required>
-                    {{-- <div class="valid-feedback">
-                        Fecha correcta
-                    </div>
-                    <div class="invalid-feedback">
-                        Por favor ingrese una fecha válida
-                    </div> --}}
-                </div>
-            </div>
-            <div class="contenedor-botones">
-                <div id="modal-cerrar" class="btn btn-danger">Cerrar</div>
-                <input type="submit" class="btn btn-success" value="Guardar">
-            </div>
-        </form>
-    </div>
-</div>
+@include('expediente.record_vacunacion.modal')
 @endif
-{{-- <p>{{$datos['especie_vacunas']}}</p>
-<p>{{$datos['especie_id']}}</p> --}}
 @endsection
 
-@section('js')
-<script src="{{asset('js/Expediente/record.js')}}"></script>
 
+@section('js')
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
         'use strict'
-
+        
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
-
+        
         // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
-            .forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
+        .forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                
+                form.classList.add('was-validated')
+            }, false)
+        })
     })()
 </script>
+
+<script src="{{asset('js/Expediente/record.js')}}"></script>
 @endsection

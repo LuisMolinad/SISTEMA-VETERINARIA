@@ -27,13 +27,16 @@ Historial Medico
         <!--Se agrega una validacion para en el caso que la mascota se encuentre fallecida-->
 
         @if($expediente->mascota->fallecidoMascota == 'Vivo')
-        <form method="GET" action="/historial_medico/fetch" id="agregar_linea">
+        <form method="GET" action="/historial_medico/fetch" id="agregar_linea" class="needs-validation" novalidate>
             <input type="text" id="expediente_id" name="expediente_id" value="{{$expediente->id}}" class="none">
             <div class="col-lg-12">
-                <label for="" style="margin-bottom: 10px">Diagnostico:</label>
+                <br><label for="" style="margin-bottom: 10px; font-size: 22px; font-weight: bold;">Diagnostico:</label><br>
                 <!--style="resize: both;-->
                 <textarea id="textoLineaHistorial" type="text" name="textoLineaHistorial" class="form-control" rows="3" placeholder='Escriba el diagnostico de la mascota' required></textarea>
+                <div class="valid-feedback">Diagnostico ingresado</div>
+                <div class="invalid-feedback">Por favor ingrese un diagnostico</div>
             </div>
+
             <div class="col-lg-12">
                 <button onclick="return agregar_linea()" class="btn btn-success float-right" style="margin-top: 10px">Agregar linea</button>
             </div>
@@ -197,7 +200,7 @@ Historial Medico
                         .then(()=>{
                             console.log('si hace el cambio');
 
-                            alert('Se ha editado correctamente!', 'warning')
+                            alert('Diagnostico editado correctamente', 'warning')
 
                             //Con esta instruccion se recarga la pagina
                             //window.location.reload(false);
@@ -245,5 +248,30 @@ Historial Medico
         })
         }
     </script>
+
+    <!--Validacion del campo con boostrap-->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+             form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+        }
+
+            form.classList.add('was-validated')
+             }, false)
+            })
+        })()
+    </script>
+
 @endsection
 

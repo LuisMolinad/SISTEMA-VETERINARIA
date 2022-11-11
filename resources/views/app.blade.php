@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!--JS Local-->
-    <script src=" {{asset('js/file_query_server.js')}} "></script>
+    {{-- ! Aqui estaba el easter egg --}}
+    {{-- <script src=" {{asset('js/file_query_server.js')}} "></script> --}}
+
     <!-- Llamamos al sweetalert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Llamamos nuestro documento de sweetalert -->
@@ -45,7 +47,8 @@
 
 <body>
     @include('navbar')
-    <header ondblclick="random_creador()" >
+    {{-- <header ondblclick="random_creador()" > --}}
+    <header>
         @yield('header')
     </header>
 
