@@ -40,7 +40,7 @@
 
     <div class="container" style=" float:left">
             <div class="informacion_doctora">
-                     Dra. Flor de María Flamento
+                     Dra. Flor de María Flamenco
             </div>
             <div class="informacion_doctora2">
                      MEDICO VETERINARIA

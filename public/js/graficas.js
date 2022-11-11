@@ -6,6 +6,59 @@ const citasVacuna = document.getElementById('citasVacuna').value;
 const citasCirugia = document.getElementById('citasCirugia').value;
 const citasLimpiezaDental = document.getElementById('citasLimpiezaDental').value;
 const citasServicios = document.getElementById('citasServicios').value;
+//Fecha actual
+const fecha = new Date();
+const hoy = fecha.getDate();
+const mesActual = fecha.getMonth() + 1;
+//console.log(mesActual);
+let anio = fecha.getFullYear();
+//console.log(anio);
+const mesChart = obtenerMes(mesActual);//Se obtiene el mes actal
+//console.log(mesChart);
+
+function obtenerMes( mes ){
+    var numMes='';
+    switch (mes) {
+        case 1:
+          numMes = "Enero";
+          break;
+        case 2:
+          numMes = "Febrero";
+          break;
+        case 3:
+          numMes = "Marzo";
+          break;
+        case 4:
+          numMes = "Abril";
+          break;
+        case 5:
+          numMes = "Mayo";
+          break;
+        case 6:
+          numMes = "Junio";
+          break;
+        case 7:
+          numMes = "Julio";
+          break;
+        case 8:
+          numMes = "Agosto";
+          break;
+        case 9:
+          numMes = "Septiembre";
+          break;
+        case 10:
+          numMes = "Octubre";
+          break;
+        case 11:
+          numMes = "Noviembre";
+          break;
+        case 12:
+            numMes = "Diciembre";
+            break;
+      }
+      return numMes;
+}
+
 
 const myChart = new Chart(ctx, {
     type: 'bar',
@@ -44,13 +97,13 @@ const myChart = new Chart(ctx, {
         scales: {
             y: {
                 beginAtZero: true
-            }
+            }, 
         },
 
         plugins: {
             title: {
                 display: true,
-                text: 'Citas atendidas mes actual',
+                text: 'Citas Atendidas Mes Actual: '+mesChart + ' '+anio,
                 font: {
                     size: 20
                 }
@@ -58,115 +111,22 @@ const myChart = new Chart(ctx, {
             },
             legend: {
                 display: false
+            },
+            
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
             }
         },
 
 
     }
 });
-
-
-/* const ctx1 = document.getElementById('myChart1');
-
-const myChart1 = new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['Vacunación', 'Cirugía', 'Limpieza Dental', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            /*   label: '# of Votes', 
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Últimos Trimestre',
-                font: {
-                    size: 20
-                }
-                // text: 'Citas programadas para mes actual'
-            },
-            legend: {
-                display: false
-            },
-        }
-    }
-});
-// Any of the following formats may be used
-const ctx2 = document.getElementById('myChart2');
-
-const myChart2 = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            /* label: '# of Votes', 
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Últimos 12 meses',
-                font: {
-                    size: 20
-                }
-                // text: 'Citas programadas para mes actual'
-            },
-            legend: {
-                display: false
-            },
-        }
-    }
-}); */
 
 
 //*TODO Inicio calendario trimestrales
@@ -221,7 +181,7 @@ var ServicioTrimestre4=arregloTrimestresServicios[3];
 const myChart3 = new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre1, CirugiaTrimestre1, LimpiezaTrimestre1, ServicioTrimestre1],
@@ -243,7 +203,7 @@ const myChart3 = new Chart(ctx3, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -252,7 +212,7 @@ const myChart3 = new Chart(ctx3, {
         plugins: {
             title: {
                 display: true,
-                text: 'Primer Trimestre Enero-Marzo',
+                text: 'Primer Trimestre Enero-Marzo '+anio,
                 font: {
                     size: 20
                 }
@@ -261,6 +221,15 @@ const myChart3 = new Chart(ctx3, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -272,7 +241,7 @@ const ctx4 = document.getElementById('myChart4');
 const myChart4 = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre2, CirugiaTrimestre2, LimpiezaTrimestre2, ServicioTrimestre2],
@@ -294,7 +263,7 @@ const myChart4 = new Chart(ctx4, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -303,7 +272,7 @@ const myChart4 = new Chart(ctx4, {
         plugins: {
             title: {
                 display: true,
-                text: 'Segundo Trimestre Abril-Junio',
+                text: 'Segundo Trimestre Abril-Junio '+anio,
                 font: {
                     size: 20
                 }
@@ -312,6 +281,15 @@ const myChart4 = new Chart(ctx4, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -322,7 +300,7 @@ const ctx5 = document.getElementById('myChart5');
 const myChart5 = new Chart(ctx5, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre3, CirugiaTrimestre3, LimpiezaTrimestre3, ServicioTrimestre3],
@@ -344,7 +322,7 @@ const myChart5 = new Chart(ctx5, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         scales: {
             y: {
                 beginAtZero: true
@@ -353,7 +331,7 @@ const myChart5 = new Chart(ctx5, {
         plugins: {
             title: {
                 display: true,
-                text: 'Tercer Trimestre Julio-Septiembre',
+                text: 'Tercer Trimestre Julio-Septiembre '+anio,
                 font: {
                     size: 20
                 }
@@ -362,6 +340,15 @@ const myChart5 = new Chart(ctx5, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
@@ -373,7 +360,7 @@ const ctx6 = document.getElementById('myChart6');
 const myChart6 = new Chart(ctx6, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [VacunaTrimestre4, CirugiaTrimestre4, LimpiezaTrimestre4, ServicioTrimestre4],
@@ -404,7 +391,7 @@ const myChart6 = new Chart(ctx6, {
         plugins: {
             title: {
                 display: true,
-                text: 'Cuarto Trimestre Octubre-Diciembre',
+                text: 'Cuarto Trimestre Octubre-Diciembre '+anio,
                 font: {
                     size: 20
                 }
@@ -413,12 +400,23 @@ const myChart6 = new Chart(ctx6, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });
 
 //*TODO FIN calendario trimestrales
 
+
+//*Inicio calendario Anual
 const ctx7 = document.getElementById('myChart7');
 
 
@@ -435,7 +433,7 @@ var consolidadoServicio=arregloConsolidadoAnual[3];
 const myChart7 = new Chart(ctx7, {
     type: 'bar',
     data: {
-        labels: ["Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+        labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
         datasets: [{
             /* label: '# of Votes', */
             data: [consolidadoVacuna, consolidadoCirugia, consolidadoLimpieza, consolidadoServicio],
@@ -468,7 +466,7 @@ const myChart7 = new Chart(ctx7, {
         plugins: {
             title: {
                 display: true,
-                text: 'Consolidado Anual',
+                text: 'Consolidado Anual '+anio,
                 font: {
                     size: 20
                 }
@@ -477,6 +475,15 @@ const myChart7 = new Chart(ctx7, {
             legend: {
                 display: false
             },
+            subtitle: {
+                display: true,
+                text: '*Fecha de aplicación de vacuna',
+                position: 'bottom',
+                align:'start',
+                font: {
+                    size: 10
+                }
+            }
         }
     }
 });

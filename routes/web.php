@@ -171,6 +171,8 @@ Route::resource('expediente', ExpedienteController::class)->middleware('auth');
 Route::resource('examen', ExamenController::class)->middleware('auth');
 /*---------------Examen---------------*/
 Route::resource('record', RecordVacunacionController::class)->middleware('auth');
+// Route::get('/cartillapdf/{id}', [RecordVacunacionController::class, 'cartillapdf'])->middleware('auth');
+Route::get('/cartilla/{id}', [RecordVacunacionController::class, 'cartillapdf'])->name('cartilla.pdf')->middleware('auth');
 
 //Ejemplo consultar JS
 //Mascota
@@ -278,4 +280,5 @@ Route::get('/record/edit/peso', [RecordVacunacionController::class, 'edit_table_
 * * Rutas para sección reportes 
 */
 Route::get('/reporte', [ReporteController::class, 'index'])->name('reportes.index')->middleware('auth');
+Route::get('/reporte/pdf', [ReporteController::class, 'pdfG'])->middleware('auth');
 

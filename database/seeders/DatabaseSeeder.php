@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         //aca tengo que poner el seeder de los roles y permisos
         $this->call([RolesAndPermissionSeeder::class]);
         $this->call([SuperAdminSeeder::class]);
+        $this->call([especie_vacuna::class]);
         //seeder del recordatorio
         //seeder de cita servicio
         //seeder de mascota

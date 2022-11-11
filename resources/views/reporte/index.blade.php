@@ -27,7 +27,10 @@
 
 @section('content')
     {{-- TODO: Campos ocultos para pasar los valores al grafico --}}
-
+    <br>
+    <div style="text-align: right; margin-right: 40px">
+        <a href="{{ url('/reporte/pdf') }}" class="btn btn-primary" data-placement="left">{{ __('Descargar datos') }} </a>
+    </div>
     <div id="variablesOcultas" style="display: none;">
         <br><label for="vacunasTrimestre">Trismestres Vacunas</label>
         <input type="text" id="vacunasTrimestre" value="{{ $jsonVacunasTrimestres }}">
@@ -50,32 +53,6 @@
         <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
     </div>
     <div class="graficos-container">
-        {{-- <div class="contenedor_carousel">
-            <div id="carouselMensual" class="carousel carousel-dark" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <canvas id="myChart">
-                        </canvas>
-                    </div>
-                    <div class="carousel-item">
-                        <canvas id="myChart1">
-                        </canvas>
-                    </div>
-                    <div class="carousel-item">
-                        <canvas id="myChart2">
-                        </canvas>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMensual" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselMensual" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-            </div>
-        </div> --}}
         <div class="contenedor_carousel">
             <canvas id="myChart">
             </canvas>
@@ -121,8 +98,11 @@
         <div class="contenedor_carousel">
             <canvas id="myChart7">
             </canvas>
-        </div>
-    @endsection
 
-    @section('js')
-    @endsection
+
+        </div>
+    </div>
+@endsection
+
+@section('js')
+@endsection
