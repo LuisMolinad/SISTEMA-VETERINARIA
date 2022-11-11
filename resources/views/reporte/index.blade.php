@@ -98,7 +98,7 @@
 
 
 
-        <div class="row align-items-center" style="padding-bottom: 3%">
+        <div class="row align-items-center" style="padding-bottom: 10%">
 
 
             <div class="col">

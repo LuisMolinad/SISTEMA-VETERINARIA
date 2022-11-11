@@ -58,13 +58,14 @@ function obtenerMes( mes ){
       }
       return numMes;
 }
-
-
+//*Se define el tamanio de letra por default 
+Chart.defaults.font.size = 14;
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         // labels: arregloCitas,
         labels: ["*Vacunas", "Cirugía", "Limpieza Dental", "Servicios"],
+    
         datasets: [{
 
 
@@ -96,8 +97,8 @@ const myChart = new Chart(ctx, {
         maintainAspectRatio: true,
         scales: {
             y: {
-                beginAtZero: true
-            }, 
+                beginAtZero: true,
+            },
         },
 
         plugins: {
@@ -119,7 +120,7 @@ const myChart = new Chart(ctx, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         },
@@ -227,7 +228,7 @@ const myChart3 = new Chart(ctx3, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         }
@@ -287,7 +288,7 @@ const myChart4 = new Chart(ctx4, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         }
@@ -346,7 +347,7 @@ const myChart5 = new Chart(ctx5, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         }
@@ -406,7 +407,7 @@ const myChart6 = new Chart(ctx6, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         }
@@ -481,7 +482,7 @@ const myChart7 = new Chart(ctx7, {
                 position: 'bottom',
                 align:'start',
                 font: {
-                    size: 10
+                    size: 12
                 }
             }
         }
