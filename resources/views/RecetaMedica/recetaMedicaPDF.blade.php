@@ -82,14 +82,13 @@
     <br>
 
     <p class="tratamiento">  R:/ </p>
-            
-    <p align="justify"> {{$datos['tratamientoAplicarRecetaMedica']}} </p>    
 
+    <div class="contenedor_parrafo">
+     <p>  {!! @nl2br($datos['tratamientoAplicarRecetaMedica']) !!} </p> 
     </div>
 
-
-
-
+  
+    
     <br>
     <br>
     <div class="container">
