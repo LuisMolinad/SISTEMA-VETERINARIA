@@ -553,7 +553,10 @@ class ReporteController extends Controller
 
         $jsonServicioTrimestres = json_encode($servicioTrimestres);
 
-
+        //Calcular mes y año 
+        setlocale(LC_TIME, "spanish");
+        $mes_actual = strftime("%B");
+        $año_actual = strftime("%Y");
 
         $pdf = Pdf::loadView('reporte.graficosPDF', compact(
             'nombresServicios',
@@ -565,7 +568,9 @@ class ReporteController extends Controller
             'cirugiasTrimestres',
             'limpiezaTrimestres',
             'servicioTrimestres',
-            'consolidadoAnual'
+            'consolidadoAnual',
+            'mes_actual',
+            'año_actual',
         ));
 
         return $pdf->stream();
