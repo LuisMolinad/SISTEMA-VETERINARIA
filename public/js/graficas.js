@@ -93,7 +93,7 @@ const myChart = new Chart(ctx, {
      ** Las opciones van al final de los data set
      */
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
             y: {
                 beginAtZero: true
@@ -203,7 +203,7 @@ const myChart3 = new Chart(ctx3, {
         }]
     },
     options: {
-        maintainAspectRatio: false, 
+        maintainAspectRatio: true, 
         scales: {
             y: {
                 beginAtZero: true
@@ -263,7 +263,7 @@ const myChart4 = new Chart(ctx4, {
         }]
     },
     options: {
-        maintainAspectRatio: false, 
+        maintainAspectRatio: true, 
         scales: {
             y: {
                 beginAtZero: true
@@ -322,7 +322,7 @@ const myChart5 = new Chart(ctx5, {
         }]
     },
     options: {
-        maintainAspectRatio: false, 
+        maintainAspectRatio: true, 
         scales: {
             y: {
                 beginAtZero: true
@@ -382,7 +382,7 @@ const myChart6 = new Chart(ctx6, {
         }]
     },
     options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
             y: {
                 beginAtZero: true

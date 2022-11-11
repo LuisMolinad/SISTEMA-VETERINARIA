@@ -52,53 +52,59 @@
         <input type="number" id="citasLimpiezaDental" value="{{ $citasLimpiezaDentalMesActual }}"style="display:none">
         <input type="number" id="citasServicios" value="{{ $citasServicios }}"style="display:none">
     </div>
-    <div class="graficos-container">
-        <div class="contenedor_carousel">
-            <canvas id="myChart">
-            </canvas>
-        </div>
-
-        <hr>
-
-        <div class="contenedor_carousel">
-            <div id="carouselTrimestral" class="carousel carousel-dark " data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <canvas id="myChart3">
-                        </canvas>
-                    </div>
-                    <div class="carousel-item">
-                        <canvas id="myChart4">
-                        </canvas>
-                    </div>
-                    <div class="carousel-item">
-                        <canvas id="myChart5">
-                        </canvas>
-                    </div>
-                    <div class="carousel-item">
-                        <canvas id="myChart6">
-                        </canvas>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrimestral"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselTrimestral"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
+    <div class="container">
+        <div class="row " style="padding-bottom: 3%">
+            <div class="col">
+                <canvas id="myChart">
+                </canvas>
             </div>
+
+        </div>
+        <div class="row " style="padding-bottom: 3%">
+            <div class=" col order-last">
+                <div id="carouselTrimestral" class="carousel carousel-dark " data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <canvas id="myChart3">
+                            </canvas>
+                        </div>
+                        <div class="carousel-item">
+                            <canvas id="myChart4">
+                            </canvas>
+                        </div>
+                        <div class="carousel-item">
+                            <canvas id="myChart5">
+                            </canvas>
+                        </div>
+                        <div class="carousel-item">
+                            <canvas id="myChart6">
+                            </canvas>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTrimestral"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTrimestral"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"></span>
+                    </button>
+                </div>
+            </div>
+
         </div>
 
-        <hr>
 
-        <div class="contenedor_carousel">
-            <canvas id="myChart7">
-            </canvas>
 
+        <div class="row align-items-center" style="padding-bottom: 3%">
+
+
+            <div class="col">
+                <canvas id="myChart7">
+                </canvas>
+            </div>
 
         </div>
     </div>

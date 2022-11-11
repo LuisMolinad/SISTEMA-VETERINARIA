@@ -30,7 +30,7 @@
   } */
 
  
-.graficos-container{
+/* .graficos-container{
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -47,7 +47,7 @@
   margin: 10px auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  /* Espacio arriba y abajo del grafico */
+  /* Espacio arriba y abajo del grafico 
   padding-top: 3%;
   padding-bottom: 3%;
   
@@ -73,7 +73,7 @@
   height: 40vh;
   width: 48vw;
  
-} 
+}  */
 
 /* canvas{
   position: relative;
