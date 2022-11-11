@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div class="container" style="padding-bottom: 1rem">
+    <div class="container" style="padding-bottom: 30rem">
         <!--Selector-->
         <div class="container">
             <select class="form-control col-md-4 mb-4 mt-4" id="selector">
@@ -39,8 +39,8 @@
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                                                      Launch
-                                                                    </button>-->
+                                                                              Launch
+                                                                            </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
