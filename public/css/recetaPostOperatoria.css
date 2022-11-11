@@ -151,3 +151,10 @@
 
         
      }
+
+     .contenedor_parrafo p{
+        text-align: justify;
+        width: 560px;
+        height: auto;
+        word-wrap: break-word;
+     }
