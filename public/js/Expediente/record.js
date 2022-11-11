@@ -207,7 +207,7 @@ for ( var i = 0 ; i < cells_peso.length ; i ++ ) {
 }
 
 //!Modal
-const btn_agregar_vacunacion = document.querySelector('#btn-agregar-vacunacion');
+/* const btn_agregar_vacunacion = document.querySelector('#btn-agregar-vacunacion');
 const contenedor_modal = document.querySelector('.record-space_modal');
 const modal = contenedor_modal.querySelector('.record-modal');
 const btn_modal_cerrar = modal.querySelector('#modal-cerrar');
@@ -227,4 +227,4 @@ contenedor_modal.onclick = function (event) {
     } else {
         // console.log('You clicked inside the box!');
     }
-}
+} */

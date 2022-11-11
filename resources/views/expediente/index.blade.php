@@ -17,8 +17,7 @@ GESTIONAR EXPEDIENTE
 @endsection
 
 @section('header')
-{{-- <h1 ondblclick="random_creador()" class="header">GESTIONAR EXPEDIENTE</h1> --}}
-<h1 class="header">GESTIONAR EXPEDIENTE</h1>
+<h1 ondblclick="random_creador()" class="header">GESTIONAR EXPEDIENTE</h1>
 @endsection
 
 @section('content')
