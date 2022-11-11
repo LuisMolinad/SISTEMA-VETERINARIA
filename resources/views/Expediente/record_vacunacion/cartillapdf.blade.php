@@ -86,8 +86,9 @@
                             @endfor
                         </tbody>
                     </table>
-
                 </div>
+                <div class="linea3"></div>
+                <div class="linea4"></div>
             </div>
             <div class="celdaExterna">
                 <div class="bordeInternoTabla">
@@ -137,6 +138,8 @@
                         E-mail: florpet33@gmail.com
                     </div>
                 </div>
+                <div class="linea"></div>
+                <div class="linea2"></div>
             </div>
         </div>
     </div>
@@ -194,6 +197,10 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="linea3"></div>
+                <div class="linea5">
+                    <div class="textolineaizquierda">El mejor amigo</div>
+                </div>
             </div>
             <div class="celdaExterna">
                 <div class="bordeInternoTabla">
@@ -245,6 +252,10 @@
                             @endfor
                         </tbody>
                     </table>
+                </div>
+                <div class="linea3"></div>
+                <div class="linea5">
+                    <div class="textolineaderecha">de su mejor amigo</div>
                 </div>
             </div>
         </div>
