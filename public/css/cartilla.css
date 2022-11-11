@@ -119,3 +119,56 @@ h4{
     font-style: italic;
     font-weight: normal;
 }
+
+.linea {
+    border-top: 3px solid rgb(28, 141, 0);
+    height: 2px;
+    padding: 0;
+    margin: 10px auto 0 auto;
+  }
+
+.linea2 {
+    border-top: 18px solid rgb(28, 141, 0);
+    height: 2px;
+    padding-bottom: 5px;
+    margin: 5px 0 0 0;
+  }
+
+ .linea3 {
+    border-top: 3px solid rgb(28, 141, 0);
+    height: 2px;
+    padding: 0;
+    margin: 79px auto 0 auto;
+  }
+
+.linea4 {
+    border-top: 18px solid rgb(28, 141, 0);
+    height: 2px;
+    padding-bottom: 5px;
+    margin: 5px 0 0 0;
+  }
+
+.linea5 {
+    /*border-top: 20px solid rgb(28, 141, 0);*/
+    background-color: #1c8d00;
+    font-family: 'zapfino-linotype-one-regular';
+    height: 20px;
+    padding-bottom: 5px;
+    margin: 5px 0 5px 0;
+  }
+
+.textolineaizquierda{
+    color: rgb(255, 255, 255);
+    text-align: right;
+    padding-right: 17px !important;
+    font-style: italic;
+    padding-top: 1.5px;
+}
+
+.textolineaderecha{
+    color: rgb(255, 255, 255);
+    text-align: left;
+    padding-left: 17px !important;
+    font-style: italic;
+    padding-top: 1.5px;
+}
