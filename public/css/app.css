@@ -199,7 +199,25 @@
 
 .ventana_ayuda{
     background: #a6ffad;
-    width: 30%;
+    width: 20%;
+    height: auto;
+    color: rgb(5, 3, 3);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    text-align: justify;
+    padding: 33px;
+    /* min-height: 250px; */
+    border-radius: 22px;
+    position: fixed;
+    left: 20px;
+    bottom: 80px;
+    display: none;
+    box-shadow: 0px 3px 12px rgba(0,0,0,0.2);
+}
+
+.ventana_ayuda_agenda{
+    background: #a6ffad;
+    width: 15%;
     height: auto;
     color: rgb(5, 3, 3);
     font-family: Arial, Helvetica, sans-serif;
@@ -263,6 +281,15 @@
     
     .fc .fc-daygrid-day.fc-day-today{
         background-color: #E6FFEC;
+    }
+
+    .ventana_ayuda_agenda{
+        width: 70%;
+        position: inherit;
+    }
+
+    .ventana_ayuda{
+        width: 50%;
     }
 }
 

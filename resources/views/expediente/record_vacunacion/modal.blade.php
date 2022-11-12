@@ -70,6 +70,7 @@
             </div>
             <div class="modal-footer">
                 <div class="contenedor-botones">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <input type="submit" class="btn btn-success" value="Guardar">
                 </div>
             </form>
