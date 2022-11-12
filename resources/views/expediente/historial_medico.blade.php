@@ -38,7 +38,7 @@ Historial Medico
             </div>
 
             <div class="col-lg-12">
-                <button onclick="return agregar_linea()" class="btn btn-success float-right" style="margin-top: 10px">Agregar linea</button>
+                <button onclick="return agregar_linea()" class="btn btn-success float-right" style="margin-top: 10px">Agregar</button>
             </div>
         </form>
 
