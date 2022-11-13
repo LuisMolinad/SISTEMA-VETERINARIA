@@ -40,7 +40,7 @@ class ExamenController extends Controller
         $datosExamen = request()->except('_token', 'name');
         // $datosExamen['documento']=$request->file('documento')->store('uploads/examenes/'.request('expediente_id'),'public');
         $datosExamen['documento']=$request->file('documento')->storeAs('public/uploads/examenes/'.request('expediente_id'), $maximo .'-' . request('name'));
-        $datosExamen['documento'] = substr($datosExamen['documento'], 6);
+        $datosExamen['documento'] = substr($datosExamen['documento'], 7);
         $datosExamen['fecha'] = date('Y-m-d');
 
         $name = $datosExamen['documento'];
