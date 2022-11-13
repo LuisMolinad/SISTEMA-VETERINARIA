@@ -186,7 +186,7 @@ Route::get('/mascota/msg/guardar', [MascotaController::class, 'mostrar_guardar']
 Route::get('/expediente/create/{id}', [ExpedienteController::class, 'crear']);
 Route::get('expediente/pdf/{expediente}', [\App\Http\Controllers\ExpedienteController::class, 'pdf'])->middleware('auth');
 Route::get('/exped/{id}', [ExpedienteController::class, 'pdfConverter'])->middleware('auth');
-Route::get('/expediente/examenes/{id}',[ExpedienteController::class, 'examenes'])->middleware('auth');
+Route::get('/expediente/examenes/{id}', [ExpedienteController::class, 'examenes'])->middleware('auth');
 
 //Examen
 Route::get('/examen/store', [ExamenController::class, 'ExamenController@store']);
@@ -281,4 +281,3 @@ Route::get('/record/edit/peso', [RecordVacunacionController::class, 'edit_table_
 */
 Route::get('/reporte', [ReporteController::class, 'index'])->name('reportes.index')->middleware('auth');
 Route::get('/reporte/pdf', [ReporteController::class, 'pdfG'])->middleware('auth');
-

@@ -30,12 +30,15 @@ class ExpedienteController extends Controller
         // que acciones tiene permitido cada ROL
         //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
         $this->middleware(
-            'permission:ver-Propietario|crear-Propietario|borrar-Propietario|editar-Propietario',
+            'permission:ver-Propietario|crear-Propietario|borrar-Propietario|editar-Propietario|ver-LineaHistorial',
             ['only' => ['index', 'show']]
         );
         $this->middleware('permission:crear-Propietario', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-Propietario', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-Propietario', ['only' => ['destroy']]);
+
+        //*Linea Historial
+        $this->middleware('permission:ver-LineaHistorial', ['only' => ['gestionar_historial_Medico']]);
     }
 
     /**
@@ -107,12 +110,13 @@ class ExpedienteController extends Controller
         return view('expediente.edit', compact('expediente'));
     }
 
-    public function pdfConverter($id){
+    public function pdfConverter($id)
+    {
         $expediente = expediente::FindOrFail($id);
-        $linea = lineaHistorial::all()->where('expediente_id','=',$id);
+        $linea = lineaHistorial::all()->where('expediente_id', '=', $id);
 
         $especie_id = expediente::all()->where('id', $id)->first()->mascota->especie_id;
-        $especie_vacunas = DB::table('especie_vacuna')->get()->where('especie_id', $especie_id );
+        $especie_vacunas = DB::table('especie_vacuna')->get()->where('especie_id', $especie_id);
 
         $datos = [
             'expediente' => $expediente,
@@ -122,9 +126,9 @@ class ExpedienteController extends Controller
             'especie_vacunas' => $especie_vacunas,
             'especie_id' => $especie_id
         ];
-        $pdf = PDF::loadView('expediente.pdf', ['datos'=>$datos]);
+        $pdf = PDF::loadView('expediente.pdf', ['datos' => $datos]);
         return $pdf->stream();
-    }    
+    }
 
     /**
      * Update the specified resource in storage.
@@ -136,7 +140,7 @@ class ExpedienteController extends Controller
     public function update(Request $request, $id)
     {
         $datosExpediente = request()->except(['_token', '_method']);
-        Expediente::where('id','=',$id)->update($datosExpediente);
+        Expediente::where('id', '=', $id)->update($datosExpediente);
         $expediente = Expediente::FindOrFail($id);
         //return redirect('/expediente?objeto=expediente&accion=edito');
         return redirect('/expediente')->with('warning', 'El expediente se edito correctamente');
@@ -154,13 +158,15 @@ class ExpedienteController extends Controller
         return redirect('/expediente?objeto=expediente&accion=elimino');
     }
 
-    public function gestionar_historial_Medico($id){
+    public function gestionar_historial_Medico($id)
+    {
         $expediente = expediente::FindOrFail($id);
         return view('expediente.historial_medico', compact('expediente'));
     }
 
-    public function examenes($id){
-        
+    public function examenes($id)
+    {
+
         $expediente = expediente::where('id', '=', $id)->first();
 
         $datos = [

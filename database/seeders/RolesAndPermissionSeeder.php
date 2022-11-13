@@ -104,10 +104,10 @@ class RolesAndPermissionSeeder extends Seeder
         ];
         //TODO Limpieza Dental
         $limpiezaDental = [
-            Permission::create(['name' => 'ver-LimpiezaDental']),//para nav que redirecicona al index principal,tabla 1
+            Permission::create(['name' => 'ver-LimpiezaDental']), //para nav que redirecicona al index principal,tabla 1
             Permission::create(['name' => 'editar-LimpiezaDental']),
-            Permission::create(['name' => 'consultar-LimpiezaDental']),//consultar del CRUD
-            Permission::create(['name'=>'gestionar-LimpiezaDental']),//vista gestionar para una mascota especifica, tabla 2 [Consultar, eliminar, editar]
+            Permission::create(['name' => 'consultar-LimpiezaDental']), //consultar del CRUD
+            Permission::create(['name' => 'gestionar-LimpiezaDental']), //vista gestionar para una mascota especifica, tabla 2 [Consultar, eliminar, editar]
             Permission::create(['name' => 'crear-LimpiezaDental']),
             Permission::create(['name' => 'borrar-LimpiezaDental']),
         ];
@@ -138,25 +138,43 @@ class RolesAndPermissionSeeder extends Seeder
             Permission::create(['name' => 'consultar-TipoServicio']),
         ];
 
+
+        //?Permisos no creados para reporte, porque se determino que todos puedieran verlo
+
+        //TODO Linea Historial
+        $lineaHistorial = [
+            Permission::create(['name' => 'ver-LineaHistorial']),
+            Permission::create(['name' => 'editar-LineaHistorial']),
+            Permission::create(['name' => 'crear-LineaHistorial']),
+            Permission::create(['name' => 'borrar-LineaHistorial']),
+            Permission::create(['name' => 'consultar-LineaHistorial']),
+        ];
+
+
+
         // create roles and assign created permissions
         //$role = Role::create(['name' => 'Asistente'])->givePermissionTo(Permission::all());
         $roleDoctora = Role::create(['name' => 'Doctora'])->givePermissionTo([
             $propietario, $Mascota,
             $actasDefuncion, $recetaMedica,  $vacuna,
-            'ver-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'crear-recetaPostoperatoria'
+            'ver-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'crear-recetaPostoperatoria', $lineaHistorial
 
         ]);
         $roleAsistente = Role::create(['name' => 'Asistente Administrativo'])->givePermissionTo([
             $propietario, $Mascota, $citaVacuna,
             $vacuna, $limpiezaDental,
             $citaServicio, $recordatorio,
-            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia'
+            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia',
+            'ver-LineaHistorial',
+            'consultar-LineaHistorial'
         ]);
         $roleGerente = Role::create(['name' => 'Gerente General'])->givePermissionTo([
             $citaVacuna, $limpiezaDental,
             $tipoServicio,
             $citaServicio, $recordatorio,
-            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia'
+            'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia',
+            'ver-LineaHistorial',
+            'consultar-LineaHistorial'
         ]);
         //$role = Role::create(['name' => 'Asistente']);
         //$role->givePermissionTo('edit articles');
