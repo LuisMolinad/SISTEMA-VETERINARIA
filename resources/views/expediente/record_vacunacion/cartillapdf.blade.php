@@ -19,7 +19,7 @@
                             </tr>
                             <tr>
                                 <th align="left">Fecha</th>
-                                <th>Peso</th>
+                                <th>Peso (lbs)</th>
                                 <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@
                             </tr>
                             <tr>
                                 <th align="left">Fecha</th>
-                                <th>Peso</th>
+                                <th>Peso (lbs)</th>
                                 <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
@@ -68,13 +68,13 @@
                             <tr>
                                 <th align="left">Nombre</th>
                                 <th>Fecha</th>
-                                <th>Peso</th>
+                                <th>Peso(lbs)</th>
                                 <th align="right">Refuerzo</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($otras as $record)
-                                <tr class="filaRecord"><td>$vacunas[$record->$vacuna_id]->nombreVacuna</td><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecord"><td>{{substr($vacunas[$record->vacuna_id - 1]->nombreVacuna,0,8)}}</td><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 7 - sizeof($otras); $i++)
                                 <tr class="filaRecord">
@@ -155,7 +155,7 @@
                             </tr>
                             <tr>
                                 <th align="left" class="cabeceras">Fecha</th>
-                                <th class="cabeceras">Peso</th>
+                                <th class="cabeceras">Peso (lbs)</th>
                                 <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
@@ -179,7 +179,7 @@
                             </tr>
                             <tr>
                                 <th align="left" class="cabeceras">Fecha</th>
-                                <th class="cabeceras">Peso</th>
+                                <th class="cabeceras">Peso (lbs)</th>
                                 <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
@@ -211,7 +211,7 @@
                             </tr>
                             <tr>
                                 <th align="left" class="cabeceras">Fecha</th>
-                                <th class="cabeceras">Peso</th>
+                                <th class="cabeceras">Peso (lbs)</th>
                                 <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>
@@ -235,7 +235,7 @@
                             </tr>
                             <tr>
                                 <th align="left" class="cabeceras">Fecha</th>
-                                <th class="cabeceras">Peso</th>
+                                <th class="cabeceras">Peso (lbs)</th>
                                 <th align="right" class="cabeceras">Refuerzo</th>
                             </tr>
                         </thead>

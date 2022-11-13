@@ -31,7 +31,7 @@ class VacunaSeeder extends Seeder
                 [
                     'nombreVacuna'=> 'Control de parásitos',
                     'descripcionVacuna'=> 'Control de parásitos de las mascotas.',
-                    'tiempoEntreDosisDia'=> 365,
+                    'tiempoEntreDosisDia'=> 91,
                     'disponibilidadVacuna' => 1
                 ],
                 [
