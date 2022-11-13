@@ -74,7 +74,7 @@
                         </thead>
                         <tbody>
                             @foreach($otras as $record)
-                                <tr class="filaRecord"><td>{{substr($vacunas[$record->vacuna_id - 1]->nombreVacuna,0,8)}}</td><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
+                                <tr class="filaRecord"><td>{{substr($vacunas[$record->vacuna_id - 1]->nombreVacuna,0,5)}}</td><td>{{$record->fecha}}</td><td>{{$record->peso}}</td><td>{{$record->refuerzo}}</td></tr>
                             @endforeach
                             @for($i = 1; $i <= 7 - sizeof($otras); $i++)
                                 <tr class="filaRecord">
