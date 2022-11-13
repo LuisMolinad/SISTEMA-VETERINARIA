@@ -46,8 +46,10 @@
                         <td>{{ $expediente->mascota->propietario->nombrePropietario }}</td>
                         <td id="botones-linea">
                             {{-- <a href="{{ url('/expediente/'.$expediente->id.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button></a> --}}
-                            <a href="{{ url('/record?i=' . $expediente->id) }}"><button type="button"
-                                    class="btn btn-success">Record vacunacion</button></a>
+                            @can('ver-RecordVacunacion')
+                                <a href="{{ url('/record?i=' . $expediente->id) }}"><button type="button"
+                                        class="btn btn-success">Record vacunacion</button></a>
+                            @endcan
                             @can('ver-LineaHistorial')
                                 <a href="{{ route('historialmedico.index', $expediente->id) }}"><button type="button"
                                         class="btn btn-warning"
@@ -79,6 +81,7 @@
                     [5, 10, 25, -1],
                     [5, 10, 25, "Todos"]
                 ],
+
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ records por página",
                     "zeroRecords": "No se encuentran datos relacionados found - ",

@@ -150,6 +150,16 @@ class RolesAndPermissionSeeder extends Seeder
             Permission::create(['name' => 'consultar-LineaHistorial']),
         ];
 
+        //TODO Record Vacunacion
+        $RecordVacunacion = [
+            Permission::create(['name' => 'ver-RecordVacunacion']),
+            Permission::create(['name' => 'editar-RecordVacunacion']),
+            Permission::create(['name' => 'crear-RecordVacunacion']),
+            Permission::create(['name' => 'borrar-RecordVacunacion']),
+            Permission::create(['name' => 'consultar-RecordVacunacion']),
+        ];
+
+
 
 
         // create roles and assign created permissions
@@ -157,7 +167,7 @@ class RolesAndPermissionSeeder extends Seeder
         $roleDoctora = Role::create(['name' => 'Doctora'])->givePermissionTo([
             $propietario, $Mascota,
             $actasDefuncion, $recetaMedica,  $vacuna,
-            'ver-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'crear-recetaPostoperatoria', $lineaHistorial
+            'ver-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'crear-recetaPostoperatoria', $lineaHistorial, $RecordVacunacion
 
         ]);
         $roleAsistente = Role::create(['name' => 'Asistente Administrativo'])->givePermissionTo([
@@ -166,7 +176,9 @@ class RolesAndPermissionSeeder extends Seeder
             $citaServicio, $recordatorio,
             'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia',
             'ver-LineaHistorial',
-            'consultar-LineaHistorial'
+            'consultar-LineaHistorial',
+            'ver-RecordVacunacion',
+            'consultar-RecordVacunacion'
         ]);
         $roleGerente = Role::create(['name' => 'Gerente General'])->givePermissionTo([
             $citaVacuna, $limpiezaDental,
@@ -174,8 +186,12 @@ class RolesAndPermissionSeeder extends Seeder
             $citaServicio, $recordatorio,
             'ver-Cirugia', 'crear-Cirugia', 'consultar-Cirugia', 'gestionar-Cirugia', 'editar-Cirugia', 'borrar-Cirugia',
             'ver-LineaHistorial',
-            'consultar-LineaHistorial'
+            'consultar-LineaHistorial',
+            'ver-RecordVacunacion',
+            'consultar-RecordVacunacion'
         ]);
+
+
         //$role = Role::create(['name' => 'Asistente']);
         //$role->givePermissionTo('edit articles');
 
