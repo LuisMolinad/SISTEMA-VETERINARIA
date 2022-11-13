@@ -67,7 +67,11 @@
                 @can('crear-RecordVacunacion')
                     <button class="btn btn-success" id="btn-agregar-vacunacion" data-toggle="modal"
                         data-target="#modal_record">Agregar record vacunacion</button>
-                        <a role="button" class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $datos['expediente']->mascota->id) }}" target="_blank">Crear cita de vacunación</a>
+                @endcan
+                @can('crear-CitaVacuna')
+                    <a role="button"
+                        class="btn btn-success"href="{{ url('/crearCitaVacuna/' . $datos['expediente']->mascota->id) }}"
+                        target="_blank">Crear cita de vacunación</a>
                 @endcan
             @endif
             <a href="/cartilla/{{ $datos['expediente']->id }}" class="btn btn-info">Cartilla de vacunación</a>
