@@ -36,10 +36,16 @@ class ExamenController extends Controller
      */
     public function store(Request $request)
     {
-        $datosExamen = request()->except('_token');
-
-        $datosExamen['documento']=$request->file('documento')->store('uploads/examenes','public');
+        $maximo = Examen::count() + 1;
+        $datosExamen = request()->except('_token', 'name');
+        // $datosExamen['documento']=$request->file('documento')->store('uploads/examenes/'.request('expediente_id'),'public');
+        $datosExamen['documento']=$request->file('documento')->storeAs('public/uploads/examenes/'.request('expediente_id'), $maximo .'-' . request('name'));
+        $datosExamen['documento'] = substr($datosExamen['documento'], 6);
         $datosExamen['fecha'] = date('Y-m-d');
+
+        $name = $datosExamen['documento'];
+
+        // return response()->json($name);
 
         Examen::insert($datosExamen);
         return redirect('/expediente/examenes/'.request('expediente_id'));
