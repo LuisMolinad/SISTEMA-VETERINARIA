@@ -18,7 +18,7 @@ services:
             - test-network
 
     web:
-        image: nginx:1.19.4
+        image: nginx:1.17-alpine
         container_name: test-nginx
         restart: unless-stopped
         ports:
@@ -36,7 +36,8 @@ services:
         ports:
             - ${SERVER_PORT_DB:-3306}:3306
         volumes:
-            - dbdata:/var/lib/mysql
+            # - dbdata:/var/lib/mysql
+             - ./docker-compose/mysql:/docker-entrypoint-initdb.d
         environment:
             - MYSQL_DATABASE=${DB_DATABASE:-SISTEMAVETERINARIAD}
             - MYSQL_USER=${DB_USERNAME:-homestead}
@@ -58,15 +59,15 @@ services:
         networks:
             - test-network
 
-    mailhog:
-        image: mailhog/mailhog
-        logging:
-            driver: "none"
-        ports:
-            - ${MAIL_PORT:-1025}:1025
-            - ${MAILHOG_PORT:-8025}:8025
-        networks:
-            - test-network
+    # mailhog:
+    #     image: mailhog/mailhog
+    #     logging:
+    #         driver: "none"
+    #     ports:
+    #         - ${MAIL_PORT:-1025}:1025
+    #         - ${MAILHOG_PORT:-8025}:8025
+    #     networks:
+    #         - test-network
 
 networks:
     test-network:
