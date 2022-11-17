@@ -12,7 +12,7 @@
               <p align="justify"><br> 
                   Yo, <strong>{{$mascotas->propietario->nombrePropietario }}</strong> que me identifico, 
                   con el documento (DUI, PASAPORTE, TARJETA DE RESIDENTE) _________________________________
-                  Propietario (a) del ejemplar <strong>{{ $mascotas->nombreMascota }}</strong> Especie <strong>{{ $mascotas->especie}}</strong>
+                  Propietario (a) del ejemplar <strong>{{ $mascotas->nombreMascota }}</strong> Especie <strong>{{ $mascotas->especie->nombreEspecie}}</strong>
                   Raza  <strong> {{$mascotas->razaMascota}}</strong> Sexo <strong>{{$mascotas->sexoMascota}} </strong>Hago constar que he sido 
                   informado por parte del personal médico veterinario de PET'S PARADISE, que mi mascota se someta a: 
                 <br>

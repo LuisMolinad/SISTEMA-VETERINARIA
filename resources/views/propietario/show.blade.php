@@ -68,7 +68,7 @@ Consultar Propietario
                         <td>{{$mascota->idMascota}}</td>
                         <td>{{$mascota->nombreMascota}}</td>
                         <td>{{$mascota->razaMascota}}</td>
-                        <td>{{$mascota->especie}}</td>
+                        <td>{{$mascota->especie->nombreEspecie}}</td>
                         <td>{{$mascota->fallecidoMascota}}</td>
                     </tr>
                 @endforeach

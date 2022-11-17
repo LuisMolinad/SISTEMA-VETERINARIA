@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form action="/record" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
                     @csrf
-                    <input name="expediente_id" type="text" value="{{$datos['expediente']->id}}" hidden>
+                    <input name="expediente_id" type="text" value="{{ $datos['expediente']->id }}" hidden>
                     <div class="form-group">
                         <label for="vacuna_id">Vacuna:</label>
                         <div class="form-group">
@@ -18,7 +18,7 @@
                                 @foreach ($datos['vacunas'] as $vacuna)
                                     @foreach ($datos['especie_vacunas'] as $especie_vacuna)
                                         @if ($especie_vacuna->vacuna_id == $vacuna->id)
-                                            <option value="{{$vacuna->id}}">{{$vacuna->nombreVacuna}}</option>
+                                            <option value="{{ $vacuna->id }}">{{ $vacuna->nombreVacuna }}</option>
                                         @endif
                                     @endforeach
                                 @endforeach
@@ -46,7 +46,8 @@
                     <div class="form-group">
                         <label for="peso">Peso:</label>
                         <div>
-                            <input class="form-control" type="number" name="peso" id="form-peso" min="1" step="0.1">
+                            <input class="form-control" type="number" name="peso" id="form-peso" min="1"
+                                step="0.1">
                             <div class="valid-feedback">
                                 Dato valido
                             </div>
@@ -70,9 +71,12 @@
             </div>
             <div class="modal-footer">
                 <div class="contenedor-botones">
-                    <input type="submit" class="btn btn-success" value="Guardar">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    @can('crear-RecordVacunacion')
+                        <input type="submit" class="btn btn-success" value="Guardar">
+                    @endcan
                 </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>

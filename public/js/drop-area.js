@@ -56,6 +56,83 @@ function processFile(file){
     if(validExtension.includes(doctype)){
         //Archivo valido
         const fileReader = new FileReader();
+        const id = `file-${file.name}`;
+
+        if(doctype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+            fileReader.addEventListener('load', (e)=>{
+                const fileUrl = fileReader.result;
+                const image = `
+                    <div id="${id}" class="file-container">
+                        <img src="/images/icono_word.png" alt="${file.name}" width="50"
+                        <div class="status">
+                            <span>${file.name}</span>
+                        </div>
+                    </div>
+                    <input name="name" type="hidden" value="${file.name}">
+                `;
+    
+                const html = document.querySelector('#preview').innerHTML;
+                document.querySelector('#preview').innerHTML = image;
+            });
+        }
+        else if(doctype == 'application/pdf'){
+            fileReader.addEventListener('load', (e)=>{
+                const fileUrl = fileReader.result;
+                const image = `
+                    <div id="${id}" class="file-container">
+                        <img src="/images/icono_pdf.png" alt="${file.name}" width="50"
+                        <div class="status">
+                            <span>${file.name}</span>
+                        </div>
+                    </div>
+                    <input name="name" type="hidden" value="${file.name}">
+                `;
+    
+                const html = document.querySelector('#preview').innerHTML;
+                document.querySelector('#preview').innerHTML = image;
+            });
+        }
+        else{
+            fileReader.addEventListener('load', (e)=>{
+                const fileUrl = fileReader.result;
+                const image = `
+                    <div id="${id}" class="file-container">
+                        <img src="${fileUrl}" alt="${file.name}" width="50"
+                        <div class="status">
+                            <span>${file.name}</span>
+                        </div>
+                    </div>
+                    <input name="name" type="hidden" value="${file.name}">
+                `;
+    
+                const html = document.querySelector('#preview').innerHTML;
+                document.querySelector('#preview').innerHTML = image;
+            });
+        }
+
+
+        fileReader.readAsDataURL(file);
+        uploadFile(file, id);
+    }
+    else{
+        //Archivo no valido
+        //console.log(doctype); //Para saber que tipo de archivo es en dado caso no lo acepte
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No es un archivo valido!'
+          })
+    }
+}
+
+
+/* function processFile(file){
+    const doctype = file.type;
+    const validExtension = ['image/jpeg','image/jpg', 'image/png', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if(validExtension.includes(doctype)){
+        //Archivo valido
+        const fileReader = new FileReader();
         const id = `file-${Math.random().toString(32).substring(7)}`;
 
         fileReader.addEventListener('load', (e)=>{
@@ -85,4 +162,4 @@ function processFile(file){
             text: 'No es un archivo valido!'
           })
     }
-}
+} */

@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding-bottom: 2rem">
         <!--Selector-->
         <div class="container">
             <select class="form-control col-md-4 mb-4 mt-4" id="selector">
@@ -35,12 +35,26 @@
             <!--Por medio de esta instruccion aparece la agenda-->
             <div id="agenda">
             </div>
+
+    <!-- Botón para abrir y cerrar ayuda -->
+    <a href="javascript:ayuda()" class="boton_ayuda" id="boton_ayuda"></a>
+    <!-- Contenedor de ayuda -->
+    <div class="ventana_ayuda_agenda" id="ventana_ayuda">
+        <strong>Ayuda</strong>
+        <br>
+        <br>
+        Para programar una cita de servicios presione cualquier día de la agenda veterinaria.
+        <br>
+        <br>
+        Para programar una Cita de Vacunación, Cirugía o Limpieza dental, Presione en el apartado de <strong>Citas</strong> en la barra de navegación
+    </div>
+
         </div>
 
         <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-                                              Launch
-                                            </button>-->
+                                                                              Launch
+                                                                            </button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
@@ -244,7 +258,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" id="btniraeditar">Editar</button>
                         <button type="button" class="btn btn-danger" id="btneliminar">Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrarEd">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="btnCerrarEd">Cerrar</button>
 
                     </div>
                 </div>
@@ -360,7 +375,28 @@
                 </div>
             </div>
         </div>
-        @extends('Calendario/modalCitasVacunas')
-        @extends('Calendario/modalCitasCirugia')
-        @extends('Calendario/modalCitasDental')
-    @endsection
+    </div>
+    @extends('Calendario/modalCitasVacunas')
+    @extends('Calendario/modalCitasCirugia')
+    @extends('Calendario/modalCitasDental')
+@endsection
+
+@section('js')
+
+<script>
+    function ayuda(){
+        const element=document.getElementById("ventana_ayuda");
+        const display = window.getComputedStyle(element).display;
+        if(display == "none"){
+            document.getElementById("ventana_ayuda").style.display="block";
+            document.getElementById("boton_ayuda").style.backgroundColor="#037b0d";
+        }
+        else{
+            document.getElementById("ventana_ayuda").style.display="none";
+            document.getElementById("boton_ayuda").style.backgroundColor="#00a00d";
+        }
+    }
+</script>
+
+
+@endsection

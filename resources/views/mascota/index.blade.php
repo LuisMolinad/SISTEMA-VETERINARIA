@@ -66,6 +66,17 @@ GESTIONAR MASCOTA
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Botón para abrir y cerrar ayuda -->
+        <a href="javascript:ayuda()" class="boton_ayuda" id="boton_ayuda"></a>
+        <!-- Contenedor de ayuda -->
+        <div class="ventana_ayuda" id="ventana_ayuda">
+        <strong>Ayuda</strong>
+        <br>
+        <br>
+        Para crear una mascota debes de ir al apartado de <strong>Propietario</strong>
+    </div>
+
     </div>
 @endsection
 
@@ -97,4 +108,20 @@ GESTIONAR MASCOTA
             });
         });
     </script>
+
+<script>
+    function ayuda(){
+        const element=document.getElementById("ventana_ayuda");
+        const display = window.getComputedStyle(element).display;
+        if(display == "none"){
+            document.getElementById("ventana_ayuda").style.display="block";
+            document.getElementById("boton_ayuda").style.backgroundColor="#037b0d";
+        }
+        else{
+            document.getElementById("ventana_ayuda").style.display="none";
+            document.getElementById("boton_ayuda").style.backgroundColor="#00a00d";
+        }
+    }
+</script>
+
 @endsection

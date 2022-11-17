@@ -124,4 +124,20 @@ GESTIONAR VACUNAS
             });
         });
     </script>
+
+<script>
+    function ayuda(){
+        const element=document.getElementById("ventana_ayuda");
+        const display = window.getComputedStyle(element).display;
+        if(display == "none"){
+            document.getElementById("ventana_ayuda").style.display="block";
+            document.getElementById("boton_ayuda").style.backgroundColor="#037b0d";
+        }
+        else{
+            document.getElementById("ventana_ayuda").style.display="none";
+            document.getElementById("boton_ayuda").style.backgroundColor="#00a00d";
+        }
+    }
+</script>
+
 @endsection
