@@ -37,7 +37,14 @@ for ( var i = 0 ; i < cells_fecha.length ; i ++ ) {
             var orig_text = input.parentElement.getAttribute('data-text');
             var current_text = this.value;
 
-            if(orig_text != current_text){
+            if(current_text == ''){
+                console.log('Dejo en blanco la fecha');
+                td.removeAttribute('data-clicked');
+                td.removeAttribute('data-text');
+                td.innerHTML = orig_text;
+                td.style.cssText = 'padding: 5px';
+            }
+            else if(orig_text != current_text){
                 //Aqui hacemos la magia con la bd
                 //saeve to db with ajax
                 fetch('/record/edit/fecha?id='+id_linea+'&fecha='+current_text)
@@ -103,7 +110,14 @@ for ( var i = 0 ; i < cells_refuerzo.length ; i ++ ) {
             var orig_text = input.parentElement.getAttribute('data-text');
             var current_text = this.value;
 
-            if(orig_text != current_text){
+            if(current_text == ''){
+                console.log('Dejo en blanco la fecha');
+                td.removeAttribute('data-clicked');
+                td.removeAttribute('data-text');
+                td.innerHTML = orig_text;
+                td.style.cssText = 'padding: 5px';
+            }
+            else if(orig_text != current_text){
                 //Aqui hacemos la magia con la bd
                 //saeve to db with ajax
                 fetch('/record/edit/refuerzo?id='+id_linea+'&refuerzo='+current_text)
@@ -171,7 +185,14 @@ for ( var i = 0 ; i < cells_peso.length ; i ++ ) {
             var orig_text = input.parentElement.getAttribute('data-text');
             var current_text = this.value;
 
-            if(orig_text != current_text){
+            if(current_text == ''){
+                td.removeAttribute('data-clicked');
+                td.removeAttribute('data-text');
+                td.innerHTML = orig_text;
+                td.style.cssText = 'padding: 5px';
+                console.log('no changes made');
+            }
+            else if(orig_text != current_text){
                 //Aqui hacemos la magia con la bd
                 //saeve to db with ajax
                 fetch('/record/edit/peso?id='+id_linea+'&peso='+current_text)
