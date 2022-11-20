@@ -4,6 +4,7 @@ services:
     app:
         build:
             args:
+              #NDesde este usuario se ha subido
                 user: duque
                 uid: 1000
             context: ./
@@ -46,7 +47,6 @@ services:
         networks:
             - test-network
 
-    
 networks:
     test-network:
         driver: bridge
