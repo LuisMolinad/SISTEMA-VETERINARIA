@@ -19,7 +19,7 @@ class CreateLineaHistorialsTable extends Migration
 
               $table->bigIncrements('id');
               //convencion de laravel para llaves foraneas, no estoy seguro del cascade on delete o en oupdate
-              $table->foreignId('expediente_id')->constrained('expedientes');
+              $table->foreignId('expediente_id')->constrained('expedientes')->onUpdate('cascade')->onDelete('cascade');
               $table->text('textoLineaHistorial');
               $table->date('fechaLineaHistorial');
         });
