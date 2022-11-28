@@ -99,14 +99,7 @@ class RecordatorioController extends Controller
             'mascota' => $mascota
         ];
 
-        /*         $informacion = [
-        'recordatorio' => recordatorio::FindOrFail($id),
-        ]; */
-
-        //$recordatorio = recordatorio::FindOrFail($id);
-
         return view('recordatorio.edit', compact('informacion'));
-        //return view('recordatorio.edit', compact('recordatorio'));
     }
 
     /**
@@ -148,8 +141,6 @@ class RecordatorioController extends Controller
             ];
 
         recordatorio::destroy($id);
-        /*         citaVacuna::where('recordatorio_id', $id)->update($datosRecordatorio);
-        citaCirugia::where('recordatorio_id', $id)->update($datosRecordatorio); */
 
         try {
             citaVacuna::where('recordatorio_id', $id)->update($datosRecordatorio);
@@ -165,10 +156,9 @@ class RecordatorioController extends Controller
     public function enviar_mensaje(Request $request)
     {
         $enviado = enviar_whatsapp(request('telefono'), request('concepto'), request('nombre_mascota'), request('fecha'));
-        if($enviado){
+        if ($enviado) {
             return redirect('/recordatorio/enviar_ui')->with('primary', 'Mensaje enviado satisfactoriamente');
-        }
-        else if(!$enviado){
+        } else if (!$enviado) {
             return redirect('/recordatorio/enviar_ui')->with('dark', 'El mensaje no se pudo enviar');
         }
     }
@@ -181,24 +171,61 @@ class RecordatorioController extends Controller
     public function enviar_mensaje_masivo(Request $request)
     {
 
-        $enviado = enviar_whatsapp(request('telefono'), request('concepto'), request('nombre_mascota'), request('fecha'));
-        $id = request('id');
+        $fecha_actual = date('d-m-Y');
+        $recordatorios = recordatorio::all()->where('estado', 0);
+        $contador = 0;
+        $contador_no_enviados = 0;
 
-        if ($enviado) {
-            $datosRecordatorio =
-                [
-                    'estado' => 1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+        foreach ($recordatorios as $recordatorio) {
 
-                ];
-            recordatorio::where('id', $id)->update($datosRecordatorio);
-        } else if (!$enviado) {
-            $datosRecordatorio =
-                [
-                    'estado' => -1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+            $fecha = date('d-m-Y', strtotime($recordatorio->fecha . ' - ' . $recordatorio->dias_de_anticipacion . ' days'));
 
-                ];
-            recordatorio::where('id', $id)->update($datosRecordatorio);
+            $datos = [
+                'fecha' => $fecha,
+                'fecha_actual' => $fecha_actual,
+                'valor' => ($fecha_actual == $fecha) ? true : false
+            ];
+
+            // return response()->json($datos);
+
+            if ($fecha == $fecha_actual) {
+                $enviado = enviar_whatsapp($recordatorio->telefono, $recordatorio->concepto, $recordatorio->nombre, $recordatorio->fecha);
+                $id = request('id');
+
+                // return response()->json($recordatorio);
+
+                if ($enviado) {
+                    $datosRecordatorio =
+                        [
+                            'estado' => 1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+
+                        ];
+                    recordatorio::where('id', $recordatorio->id)->update($datosRecordatorio);
+                    $contador++;
+                } else if ($enviado == false) {
+                    $datosRecordatorio =
+                        [
+                            'estado' => -1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
+
+                        ];
+                    recordatorio::where('id', $recordatorio->id)->update($datosRecordatorio);
+                    $contador_no_enviados++;
+                }
+            }
         }
+
+        if($contador > 0 && $contador_no_enviados > 0){
+            return redirect()->route('recordatorio.index')->with('info', 'Los recordatorios han sido enviados, pero algunos no pudieron enviarse');
+        }
+        else if($contador > 0){
+            return redirect()->route('recordatorio.index')->with('success', 'Los recordatorios han sido enviados');
+        }
+        else if($contador_no_enviados > 0){
+            return redirect()->route('recordatorio.index')->with('danger', 'Los recordatorios no han sido enviados');
+        }
+
+        return redirect()->route('recordatorio.index')->with('warning', 'El dia de hoy no hay recordatorios para enviar');
+
     }
 
     function eliminar_de_un_jalon()

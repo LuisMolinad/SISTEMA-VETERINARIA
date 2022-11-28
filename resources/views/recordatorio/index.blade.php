@@ -202,8 +202,14 @@
         <div class="boton crear container_btn_hstart">
 
             @can('enviar-Recordatorio')
-                <button type="button" onclick="enviar_mensajes()" class="btn btn-success boton_opcional">Enviar
-                    mensajes</button>
+                {!! Form::open([
+                    'url' => '/recordatorio/enviar_masivo',
+                    'method' => 'GET',
+                ]) !!}
+                {!! Form::submit('Enviar mensajes', [
+                    'class' => 'btn btn-success boton_opcional',
+                ]) !!}
+                {!! Form::close() !!}
             @endcan
 
             @can('borrar-Recordatorio')
