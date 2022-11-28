@@ -164,70 +164,13 @@ class RecordatorioController extends Controller
 
     public function enviar_mensaje(Request $request)
     {
-        //Variables
-        $id = request('id');
-        $url = env('FB_URL');
-        $cuerpo = [
-            "messaging_product" => "whatsapp",
-            "to" => "503" . request('telefono'),
-            "type" => "template",
-            "template" => [
-                "name" => "informes_veterinaria_pet_paradise",
-                "language" => [
-                    "code" => "es_MX",
-                ],
-                "components" => [
-                    [
-                        "type" => "body",
-                        "parameters" => [
-                            [
-                                "type" => "text",
-                                "text" => request('concepto'),
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => request('nombre_mascota'),
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => date("d-m-Y --- h:i", strtotime(request('fecha'))),
-                            ],
-                        ]
-                    ]
-                ],
-            ],
-        ];
-
-        $data = json_encode($cuerpo);
-        //Comenzar a crear el objeto de la peticion
-        $ch = curl_init($url);
-
-        $codigo_autorizacion = env('FB_Authorization_code');
-
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            array(
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $codigo_autorizacion,
-            )
-        );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        //Ejecutamos la peticion
-        $resultado = curl_exec($ch);
-
-        #Vemos si el codigo es 200, si lo es todo nice
-        $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if ($codigoRespuesta === 200) {
+        $enviado = enviar_whatsapp(request('telefono'), request('concepto'), request('nombre_mascota'), request('fecha'));
+        if($enviado){
             return redirect('/recordatorio/enviar_ui')->with('primary', 'Mensaje enviado satisfactoriamente');
-        } else {
+        }
+        else if(!$enviado){
             return redirect('/recordatorio/enviar_ui')->with('dark', 'El mensaje no se pudo enviar');
         }
-
-        curl_close($ch);
     }
 
     public function enviar_mensaje_ui()
@@ -237,82 +180,25 @@ class RecordatorioController extends Controller
 
     public function enviar_mensaje_masivo(Request $request)
     {
-        //Variables
+
+        $enviado = enviar_whatsapp(request('telefono'), request('concepto'), request('nombre_mascota'), request('fecha'));
         $id = request('id');
-        $url = env('FB_URL');
-        $cuerpo = [
-            "messaging_product" => "whatsapp",
-            "to" => "503" . request('telefono'),
-            "type" => "template",
-            "template" => [
-                "name" => "informes_veterinaria_pet_paradise",
-                "language" => [
-                    "code" => "es_MX",
-                ],
-                "components" => [
-                    [
-                        "type" => "body",
-                        "parameters" => [
-                            [
-                                "type" => "text",
-                                "text" => request('concepto'),
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => request('nombre_mascota'),
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => request('fecha'),
-                            ],
-                        ]
-                    ]
-                ],
-            ],
-        ];
 
-        $data = json_encode($cuerpo);
-        //Comenzar a crear el objeto de la peticion
-        $ch = curl_init($url);
-
-        $codigo_autorizacion = env('FB_Authorization_code');
-
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            array(
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $codigo_autorizacion,
-            )
-        );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        //Ejecutamos la peticion
-        $resultado = curl_exec($ch);
-
-        #Vemos si el codigo es 200, si lo es todo nice
-        $codigoRespuesta = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if ($codigoRespuesta === 200) {
+        if ($enviado) {
             $datosRecordatorio =
                 [
                     'estado' => 1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
 
                 ];
-
             recordatorio::where('id', $id)->update($datosRecordatorio);
-        } else {
+        } else if (!$enviado) {
             $datosRecordatorio =
                 [
                     'estado' => -1, //*0 = no enviado, -1 fallo al enviar, 1 envio exitoso
 
                 ];
-
             recordatorio::where('id', $id)->update($datosRecordatorio);
         }
-
-        curl_close($ch);
     }
 
     function eliminar_de_un_jalon()
