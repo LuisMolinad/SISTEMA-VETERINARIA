@@ -17,13 +17,6 @@ use PDF;
 class ExpedienteController extends Controller
 {
 
-    //TODO CLASE CONTRUC QUE SE NECESITA PARA QUE FUNCIONEN LOS ROLES EN LAS VISTAS
-    /*  $citaVacuna = [
-        Permission::create(['name' => 'ver-CitaVacuna']),
-        Permission::create(['name' => 'editar-CitaVacuna']),
-        Permission::create(['name' => 'crear-CitaVacuna']),
-        Permission::create(['name' => 'borrar-CitaVacuna']),
-    ]; */
     function __construct()
     {
         // Se crea este metodo para definir 

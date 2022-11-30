@@ -49,8 +49,6 @@
                         <label for="filtro_por_dia">Filtrar por dia de envio: </label>
                         <input type="date" name="filtro_por_dia" id="filtro_por_dia">
                     </div>
-                    {{--                 <br>
-                <button type="button" id="btn_limpiar" class="btn btn-secondary">Limpiar filtros</button> --}}
                 </div>
             </div>
 
@@ -81,26 +79,23 @@
                 <tbody>
                     @foreach ($recordatorios as $recordatorio)
                         @if ($recordatorio->dias_de_anticipacion != 0)
-                            <tr <?php
-                            if ($recordatorio->estado == 1) {
-                                echo ' style="background-color: lightgreen;"';
-                            } elseif ($recordatorio->estado == -1) {
-                                echo ' style="background-color: lightcoral;"';
-                            }
-                            ?>>
+                            <tr
+                                @if ($recordatorio->estado == 1) style="background-color: lightgreen;"
+                                @elseif ($recordatorio->estado == -1)
+                                    style="background-color: lightcoral;" @endif>
                                 <td> {{ $recordatorio->id_mascota }} </td>
                                 <td> {{ $recordatorio->nombre }} </td>
                                 <td> {{ $recordatorio->concepto }} </td>
                                 <td> {{ $recordatorio->telefono }} </td>
                                 <td>
-                                    <?php
-                                    echo date('d-m-Y --- H:i', strtotime($recordatorio->fecha));
-                                    ?>
+                                    @php
+                                        echo date('d-m-Y --- H:i', strtotime($recordatorio->fecha));
+                                    @endphp
                                 </td>
                                 <td>
-                                    <?php
-                                    echo date('d-m-Y', strtotime($recordatorio->fecha . ' - ' . $recordatorio->dias_de_anticipacion . ' days'));
-                                    ?>
+                                    @php
+                                        echo date('d-m-Y', strtotime($recordatorio->fecha . ' - ' . $recordatorio->dias_de_anticipacion . ' days'));
+                                    @endphp
                                 </td>
 
                                 @if ($recordatorio->estado == 0)
@@ -177,22 +172,6 @@
                                     @endif
                                 </td>
                             </tr>
-                            <p class="none dato_id"> {{ $recordatorio->id }} </p>
-                            <p class="none dato_estado"> {{ $recordatorio->estado }} </p>
-                            <p class="none dato_id_mascota"> {{ $recordatorio->id_mascota }} </p>
-                            <p class="none dato_nombre"> {{ $recordatorio->nombre }} </p>
-                            <p class="none dato_concepto"> {{ $recordatorio->concepto }} </p>
-                            <p class="none dato_telefono"> {{ $recordatorio->telefono }} </p>
-                            <p class="none dato_fecha">
-                                <?php
-                                echo date('d-m-Y --- H:i', strtotime($recordatorio->fecha));
-                                ?>
-                            </p>
-                            <p class="none dato_fecha_enviar">
-                                <?php
-                                echo date('d-m-Y', strtotime($recordatorio->fecha . ' - ' . $recordatorio->dias_de_anticipacion . ' days'));
-                                ?>
-                            </p>
                         @endif
                     @endforeach
                 </tbody>
@@ -256,6 +235,7 @@
                 "order": [5, "desc"]
             });
 
+            //Filtro para el envio de mensajes
             const selector = document.querySelector('#selector_estado_mensaje');
             selector.addEventListener('change', () => {
                 table_recordatorio

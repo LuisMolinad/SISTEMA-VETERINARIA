@@ -15,14 +15,6 @@ use Symfony\Component\Process\Process;
 
 class RecordatorioController extends Controller
 {
-
-    //TODO CLASE CONTRUC QUE SE NECESITA PARA QUE FUNCIONEN LOS ROLES EN LAS VISTAS
-    /*  $citaVacuna = [
-    Permission::create(['name' => 'ver-CitaVacuna']),
-    Permission::create(['name' => 'editar-CitaVacuna']),
-    Permission::create(['name' => 'crear-CitaVacuna']),
-    Permission::create(['name' => 'borrar-CitaVacuna']),
-    ]; */
     function __construct()
     {
         // Se crea este metodo para definir 
@@ -180,19 +172,9 @@ class RecordatorioController extends Controller
 
             $fecha = date('d-m-Y', strtotime($recordatorio->fecha . ' - ' . $recordatorio->dias_de_anticipacion . ' days'));
 
-            $datos = [
-                'fecha' => $fecha,
-                'fecha_actual' => $fecha_actual,
-                'valor' => ($fecha_actual == $fecha) ? true : false
-            ];
-
-            // return response()->json($datos);
-
             if ($fecha == $fecha_actual) {
                 $enviado = enviar_whatsapp($recordatorio->telefono, $recordatorio->concepto, $recordatorio->nombre, $recordatorio->fecha);
                 $id = request('id');
-
-                // return response()->json($recordatorio);
 
                 if ($enviado) {
                     $datosRecordatorio =
@@ -214,13 +196,11 @@ class RecordatorioController extends Controller
             }
         }
 
-        if($contador > 0 && $contador_no_enviados > 0){
+        if ($contador > 0 && $contador_no_enviados > 0) {
             return redirect()->route('recordatorio.index')->with('info', 'Los recordatorios han sido enviados, pero algunos no pudieron enviarse');
-        }
-        else if($contador > 0){
+        } else if ($contador > 0) {
             return redirect()->route('recordatorio.index')->with('success', 'Los recordatorios han sido enviados');
-        }
-        else if($contador_no_enviados > 0){
+        } else if ($contador_no_enviados > 0) {
             return redirect()->route('recordatorio.index')->with('danger', 'Los recordatorios no han sido enviados');
         }
 
@@ -230,26 +210,18 @@ class RecordatorioController extends Controller
 
     function eliminar_de_un_jalon()
     {
-        try {
-
-            $contador = 0;
-
-            //*Eliminar mensajes enviados
-            $mensajes_a_eliminar_enviados = recordatorio::all()->where('estado', '=', '1');
-            foreach ($mensajes_a_eliminar_enviados as $id) {
-                recordatorio::destroy($id->id);
-
-                $contador += 1;
-            }
-
-            if ($contador == 0) {
-                return redirect('/recordatorio')->with('info', 'No hay recordatorios para borrar');
-            }
-
-            return redirect('/recordatorio')->with('info', 'Los recordatorios enviados se han borrado satisfactoriamente');
-        } catch (Exception $e) {
-            return redirect('/recordatorio')->with('info', 'Los recordatorios no se han borrado');
+        $contador = 0;
+        //*Eliminar mensajes enviados
+        $mensajes_enviados = recordatorio::all()->where('estado', '=', '1');
+        foreach ($mensajes_enviados as $mensaje) {
+            recordatorio::destroy($mensaje->id);
+            $contador += 1;
         }
+
+        if ($contador == 0) {
+            return redirect('/recordatorio')->with('info', 'No hay recordatorios para borrar');
+        }
+        return redirect('/recordatorio')->with('info', 'Los recordatorios enviados se han borrado satisfactoriamente');
     }
 
     public function reenviar($id)

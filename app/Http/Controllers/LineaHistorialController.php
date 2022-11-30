@@ -12,12 +12,6 @@ class LineaHistorialController extends Controller
 
     function __construct()
     {
-        // Se crea este metodo para definir 
-        /*  Permission::create(['name' => 'editar-LineaHistorial']),
-            Permission::create(['name' => 'crear-LineaHistorial']),
-            Permission::create(['name' => 'borrar-LineaHistorial']),
-            Permission::create(['name' => 'consultar-LineaHistorial']), */
-        // que acciones tiene permitido cada ROL
         //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
         $this->middleware(
             'permission:crear-LineaHistorial|borrar-LineaHistorial|editar-LineaHistorial',

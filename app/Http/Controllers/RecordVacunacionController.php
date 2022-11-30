@@ -18,15 +18,6 @@ class RecordVacunacionController extends Controller
      */
     function __construct()
     {
-        // Se crea este metodo para definir 
-        // que acciones tiene permitido cada ROL
-        /*  $RecordVacunacion = [
-            Permission::create(['name' => 'ver-RecordVacunacion']),
-            Permission::create(['name' => 'editar-RecordVacunacion']),
-            Permission::create(['name' => 'crear-RecordVacunacion']),
-            Permission::create(['name' => 'borrar-RecordVacunacion']),
-            Permission::create(['name' => 'consultar-RecordVacunacion']),
-        ]; */
         //TODO Teoricamente con tener unicamente uno de estos permisos podes ver el index 
         $this->middleware(
             'permission:ver-RecordVacunacion|crear-RecordVacunacion|borrar-RecordVacunacion|editar-RecordVacunacion',
